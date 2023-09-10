@@ -61,8 +61,8 @@
         <UnitName Value="ClockText"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="60"/>
-        <CursorPos X="84" Y="70"/>
+        <TopLine Value="61"/>
+        <CursorPos X="35" Y="70"/>
         <UsageCount Value="47"/>
         <Loaded Value="True"/>
       </Unit>
@@ -167,8 +167,15 @@
         <CursorPos X="21" Y="137"/>
         <UsageCount Value="10"/>
       </Unit>
+      <Unit>
+        <Filename Value="/usr/share/fpcsrc/3.2.2/rtl/inc/mathh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="113"/>
+        <CursorPos X="14" Y="114"/>
+        <UsageCount Value="10"/>
+      </Unit>
     </Units>
-    <JumpHistory HistoryIndex="10">
+    <JumpHistory HistoryIndex="12">
       <Position>
         <Filename Value="clocktext.pas"/>
         <Caret Line="62" Column="22" TopLine="51"/>
@@ -212,6 +219,14 @@
       <Position>
         <Filename Value="clocktext.pas"/>
         <Caret Line="18" Column="23" TopLine="7"/>
+      </Position>
+      <Position>
+        <Filename Value="clocktext.pas"/>
+        <Caret Line="63" Column="13" TopLine="53"/>
+      </Position>
+      <Position>
+        <Filename Value="clocktext.pas"/>
+        <Caret Line="70" Column="31" TopLine="56"/>
       </Position>
     </JumpHistory>
     <RunParams>

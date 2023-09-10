@@ -67,7 +67,7 @@ begin
     TextBitmap.FontHeight := 124;
     TextBitmap.FontName := 'PT Caption';
     TextBitmap.FontAntialias := True;
-    if sec = 0 then strSec := IntToStr(maxSec) else strSec := IntToStr(maxSec - sec);
+    if (sec = 0) or (sec = maxSec) then strSec := IntToStr(maxSec) else strSec := IntToStr(maxSec - sec);
     TextBitmap.FillRect(textBox.RectBounds, AppSettings.bg, dmDrawWithTransparency);
     UpdateTextBox(strSec);
     TextBitmap.TextOut(x2 - Round(textBox.Width / 2),
