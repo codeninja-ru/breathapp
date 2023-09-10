@@ -1,0 +1,5 @@
+.DS_Store
+backup/*
+breath
+lib
+breath.app/*
