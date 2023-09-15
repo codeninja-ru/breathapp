@@ -70,6 +70,10 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="ClockText"/>
       </Unit>
+      <Unit>
+        <Filename Value="states.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

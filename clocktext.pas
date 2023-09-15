@@ -5,7 +5,7 @@ unit ClockText;
 interface
 
 uses
-  Classes, SysUtils, AppSettings, BGRABitmap, BGRABitmapTypes;
+  Classes, SysUtils, AppSettings, BGRABitmap, BGRABitmapTypes, states;
 
 type
 
@@ -24,7 +24,7 @@ type
     constructor Create(ARect : TRect; AAppColors: RAppSettings; AMaxSec : Integer);
     destructor Destroy; override;
 
-    procedure DrawText(FBitmap: TBGRABitmap; MSec: integer);
+    procedure DrawText(FBitmap: TBGRABitmap; State: TState);
   end;
 
 implementation
@@ -55,25 +55,25 @@ begin
   inherited Destroy;
 end;
 
-procedure TClockText.DrawText(FBitmap: TBGRABitmap; MSec: integer);
+procedure TClockText.DrawText(FBitmap: TBGRABitmap; State: TState);
 var
   sec: integer;
   strSec: string;
 begin
-  sec := Msec div 1000;
+  sec := State.Seconds;
   if sec <> prevSec then
   begin
     //TextBitmap.FillRect(0, 0, textBox.Width, textBox.Height, );
     TextBitmap.FontHeight := 124;
     TextBitmap.FontName := 'PT Caption';
     TextBitmap.FontAntialias := True;
-    if (sec = 0) or (sec = maxSec) then strSec := IntToStr(maxSec) else strSec := IntToStr(maxSec - sec);
+    strSec := State.SecondsString;
     TextBitmap.FillRect(textBox.RectBounds, AppSettings.bg, dmDrawWithTransparency);
     UpdateTextBox(strSec);
     TextBitmap.TextOut(x2 - Round(textBox.Width / 2),
       y2 - Round(TextBitmap.Height / 2),
       strSec,
-      AppSettings.main);
+      State.MainColor);
   end;
   prevSec := sec;
   FBitmap.BlendImage(rect.Left, rect.Top, TextBitmap, boLinearBlend);

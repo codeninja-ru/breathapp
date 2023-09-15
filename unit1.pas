@@ -9,7 +9,7 @@ uses
   StdCtrls, OpenGLContext, DTAnalogClock, DTAnalogGauge, dtthemedgauge,
   dtthemedclock, BCMaterialDesignButton, BCMDButton, BGRAGraphicControl,
   BGRAVirtualScreen, BGRABitmap, BGRABitmapTypes, BGLVirtualScreen,
-  ClockEllipse, ClockText, AppSettings, BGRAOpenGL, BCTypes;
+  ClockEllipse, ClockText, AppSettings, BGRAOpenGL, BCTypes, states;
 
 type
 
@@ -33,6 +33,7 @@ type
     ClockText: TClockText;
     AppSettings: RAppSettings;
     FBitmap: TBGRABitmap;
+    StateManager : TStateManager;
   public
   end;
 
@@ -44,7 +45,8 @@ var
 const
   DayModeAppSettings: RAppSettings = (
     bg: TColor($eeeeee);
-    main: TColor($00DA9062);
+    breathInColor: TColor($00DA9062);
+    breathOutColor: TColor($0062DA66); //todo correct the color
     clockBg: TColor($e8e8e8);
     clockStrockSize: 25;
     clockMarginLeft: 10;
@@ -66,6 +68,7 @@ begin
   ClockEllipse := TClockEllipse.Create(Self.Width - AppSettings.clockMarginLeft *
     2, AppSettings);
 
+  StateManager := TStateManager.Create(AppSettings);
   //TextRect := TRect.Create(124 div 2, 170 div 2, 124 div 2 + 190, 170 div 2 + 190);
   TextRect := ClockEllipse.InnerBoxRect;
   ClockText := TClockText.Create(TextRect, AppSettings, 5);
@@ -76,14 +79,12 @@ begin
   ClockEllipse.Free;
   ClockText.Free;
   FBitmap.Free;
+  StateManager.Free;
 end;
 
 procedure TMainForm.ImgTimerTimer(Sender: TObject);
 begin
-  if MSec >= 5 * 1000 then
-    MSec := 0
-  else
-    MSec := Msec + ImgTimer.Interval;
+  StateManager.tick(ImgTimer.Interval);
   BgImage.Refresh;
 end;
 
@@ -95,8 +96,8 @@ end;
 procedure TMainForm.BgImagePaint(Sender: TObject);
 begin
   BgImage.Bitmap.Fill(AppSettings.bg); //TODO can be drawn only once
-  ClockEllipse.DrawClock(BgImage.Bitmap, MSec / 5000);
-  ClockText.DrawText(BgImage.Bitmap, MSec);
+  ClockEllipse.DrawClock(BgImage.Bitmap, StateManager.State);
+  ClockText.DrawText(BgImage.Bitmap, StateManager.State);
 end;
 
 end.

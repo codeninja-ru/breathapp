@@ -9,9 +9,8 @@ uses
   athreads,
    {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, lazopenglcontext,
-  Unit1,
-  BreathClock, clockEllipse, AppSettings, clockText { you can add units after this };
+  Forms, lazopenglcontext, Unit1, BreathClock, clockEllipse, AppSettings,
+  clockText, states { you can add units after this };
 
 {$R *.res}
 

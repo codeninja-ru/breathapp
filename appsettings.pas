@@ -10,7 +10,8 @@ uses
 type
   RAppSettings = record
     bg: TColor;
-    main: TColor;
+    breathInColor: TColor;
+    breathOutColor: TColor;
     clockBg: TColor;
     clockStrockSize: Integer;
     clockMarginLeft: Integer;

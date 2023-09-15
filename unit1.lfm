@@ -3,7 +3,7 @@ object MainForm: TMainForm
   Height = 512
   Top = 113
   Width = 320
-  BorderStyle = bsSingle
+  BorderStyle = bsToolWindow
   Caption = 'Breath'
   ClientHeight = 512
   ClientWidth = 320
@@ -311,7 +311,7 @@ object MainForm: TMainForm
   }
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  LCLVersion = '2.2.2.0'
+  LCLVersion = '2.2.6.0'
   object BgImage: TBGRAGraphicControl
     Left = 0
     Height = 512

@@ -5,7 +5,7 @@ unit ClockEllipse;
 interface
 
 uses
-  Classes, SysUtils, BGRABitmap, BGRABitmapTypes, BGRAGradients, AppSettings;
+  Classes, SysUtils, BGRABitmap, BGRABitmapTypes, BGRAGradients, AppSettings, states;
 
 type
 
@@ -16,11 +16,11 @@ type
     ClockBitmap: TBGRABitmap;
     x, y, r, w: cardinal;
     AppSettings: RAppSettings;
-    procedure DrawBackground(const FBitmap: TBGRABitmap; xx, yy: integer);
+    procedure DrawBackground(const FBitmap: TBGRABitmap; xx, yy: integer; State: TState);
     function GetInnerBoxRect() : TRect;
   public
     property InnerBoxRect : TRect read GetInnerBoxRect;
-    procedure DrawClock(FBitmap: TBGRABitmap; persent: real);
+    procedure DrawClock(FBitmap: TBGRABitmap; State: TState);
 
     constructor Create(AWidth: integer; AAppColors: RAppSettings);
     destructor Destroy; override;
@@ -47,9 +47,10 @@ begin
   inherited Destroy;
 end;
 
-procedure TClockEllipse.DrawBackground(const FBitmap: TBGRABitmap; xx, yy: integer);
+procedure TClockEllipse.DrawBackground(const FBitmap: TBGRABitmap; xx,
+  yy: integer; State: TState);
 begin
-  FBitmap.EllipseAntialias(xx, yy, r, r, AppSettings.clockBg, AppSettings.clockStrockSize + 2);
+  FBitmap.EllipseAntialias(xx, yy, r, r, State.BgSecondColor, AppSettings.clockStrockSize + 2);
 end;
 
 function TClockEllipse.GetInnerBoxRect: TRect;
@@ -71,14 +72,14 @@ begin
   Result := TRect.Create(topx + xd, topy + yd, bottomx + xd, bottomy + yd);
 end;
 
-procedure TClockEllipse.DrawClock(FBitmap: TBGRABitmap; persent: real);
+procedure TClockEllipse.DrawClock(FBitmap: TBGRABitmap; State: TState);
 var
   rad: real;
 begin
-  rad := persent * 2 * Pi;
-  DrawBackground(ClockBitmap, x, y);
+  rad := State.ClockPersent * 2 * Pi;
+  DrawBackground(ClockBitmap, x, y, State);
   if rad <> 0 then
-    ClockBitmap.Arc(x, y, r, r, Pi / 2, (Pi / 2) - rad, AppSettings.main,
+    ClockBitmap.Arc(x, y, r, r, Pi / 2, (Pi / 2) - rad, State.MainColor,
       AppSettings.clockStrockSize, False, BGRAPixelTransparent);
 
   FBitmap.BlendImage(AppSettings.clockMarginLeft, AppSettings.clockMarginTop, ClockBitmap, boLinearBlend);
