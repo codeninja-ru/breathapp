@@ -8,13 +8,13 @@ uses
   Classes, SysUtils, AppSettings, Graphics;
 
 type
-  BreathStates = (stBreathIn, stHoldIn, stBreathOut, stHoldOut);
+  StateType = (stBreathIn, stHoldIn, stBreathOut, stHoldOut);
 
   { TState }
 
   TState = class
   protected
-    FState: BreathStates;
+    FStateType: StateType;
     FMaxMSec : integer;
     FCurrentMSec : integer;
     FMSecFromStart: integer;
@@ -23,7 +23,7 @@ type
     function GetBgColor : TColor; virtual;
     function GetBgSecondColor : TColor; virtual;
   public
-    property State: BreathStates read FState;
+    property StateType: StateType read FStateType;
     property MaxMSec: integer read FMaxMSec;
     property CurrentMSec : integer read FCurrentMSec;
     property MainColor : TColor read GetMainColor;
@@ -36,7 +36,7 @@ type
     function ClockPersent : real;
     function GetStateText : string; virtual; abstract;
 
-    constructor Create(AState: BreathStates; AMaxMSec : integer; AAppSettings : RAppSettings);
+    constructor Create(AState: StateType; AMaxMSec : integer; AAppSettings : RAppSettings);
     destructor Destroy;
   end;
 
@@ -84,15 +84,15 @@ type
   TStateManager = class
   private
     FAppSettings: RAppSettings;
-    FCurrentState: BreathStates;
+    FCurrentState: StateType;
     FCurrentStateObj: TState;
     FCurrentMSec: integer;
     FMSecFromStart: integer;
     FStateBreathIn, FStateHoldIn, FStateBreathOut, FStateHoldOut : TState;
     function GetState: TState;
     procedure MoveToNextState();
-    function NextState(ABreathState: BreathStates) : BreathStates;
-    function GetStateObject(AState : BreathStates) : TState;
+    function NextState(ABreathState: StateType) : StateType;
+    function GetStateObject(AState : StateType) : TState;
   public
     constructor Create(AAppSettings: RAppSettings);
     destructor Destory;
@@ -157,7 +157,7 @@ begin
 end;
 
 procedure TStateManager.MoveToNextState;
-var bstate : BreathStates;
+var bstate : StateType;
   stateObj : TState;
   i : integer;
 begin
@@ -179,7 +179,7 @@ begin
      raise Exception.Create('all states have zero max sec');
 end;
 
-function TStateManager.NextState(ABreathState: BreathStates): BreathStates;
+function TStateManager.NextState(ABreathState: StateType): StateType;
 begin
   case ABreathState of
   stHoldOut: Result := stBreathIn;
@@ -189,7 +189,7 @@ begin
   end;
 end;
 
-function TStateManager.GetStateObject(AState: BreathStates): TState;
+function TStateManager.GetStateObject(AState: StateType): TState;
 begin
   case AState of
   stHoldOut: Result := FStateHoldOut;
@@ -281,12 +281,12 @@ begin
   Result := FCurrentMSec / FMaxMSec;
 end;
 
-constructor TState.Create(AState: BreathStates; AMaxMSec: integer;
+constructor TState.Create(AState: StateType; AMaxMSec: integer;
   AAppSettings: RAppSettings);
 begin
   inherited Create;
 
-  FState := AState;
+  FStateType := AState;
   FMaxMSec := AMaxMSec;
   FCurrentMSec:=0;
   FAppSettings:=AAppSettings;

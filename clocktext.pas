@@ -19,8 +19,9 @@ type
     textBox, stateTextBox: TAffineBox;
     x2, y2, maxSec: integer;
     prevStateText, prevSec: string;
-    procedure DrawStateText(ABitmap: TBGRABitmap; State: TState);
-    procedure DrawSecondsText(ABitmap: TBGRABitmap; State: TState);
+    prevStateType: StateType;
+    procedure DrawStateText(State: TState);
+    procedure DrawSecondsText(State: TState);
   public
     constructor Create(ARect: TRect; AAppColors: RAppSettings; AMaxSec: integer);
     destructor Destroy; override;
@@ -50,18 +51,19 @@ end;
 
 procedure TClockText.DrawText(ABitmap: TBGRABitmap; State: TState);
 begin
-  DrawSecondsText(ABitmap, State);
-  DrawStateText(ABitmap, State);
+  DrawSecondsText(State);
+  DrawStateText(State);
+  prevStateType:=State.StateType;
   ABitmap.BlendImage(rect.Left, rect.Top, FTextBitmap, boLinearBlend);
 end;
 
-procedure TClockText.DrawStateText(ABitmap: TBGRABitmap; State: TState);
+procedure TClockText.DrawStateText(State: TState);
 var
   stateText: string;
 begin
   stateText := State.GetStateText();
 
-  if stateText <> prevStateText then
+  if (stateText <> prevStateText) or (prevStateType <> State.StateType) then
   begin
     FTextBitmap.FontHeight := 18;
     FTextBitmap.FontName := 'PT Caption';
@@ -88,12 +90,12 @@ begin
   prevStateText := stateText;
 end;
 
-procedure TClockText.DrawSecondsText(ABitmap: TBGRABitmap; State: TState);
+procedure TClockText.DrawSecondsText(State: TState);
 var
   strSec: string;
 begin
   strSec := State.SecondsString;
-  if strSec <> prevSec then
+  if (strSec <> prevSec) or (prevStateType <> State.StateType) then
   begin
     FTextBitmap.FontHeight := 124;
     FTextBitmap.FontName := 'PT Caption';

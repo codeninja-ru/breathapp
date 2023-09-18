@@ -10,7 +10,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="2"/>
         <CursorPos X="20" Y="13"/>
-        <UsageCount Value="151"/>
+        <UsageCount Value="155"/>
       </Unit>
       <Unit>
         <Filename Value="unit1.pas"/>
@@ -19,8 +19,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit1"/>
-        <CursorPos X="74" Y="8"/>
-        <UsageCount Value="151"/>
+        <TopLine Value="125"/>
+        <CursorPos X="43" Y="133"/>
+        <UsageCount Value="155"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -31,7 +32,7 @@
         <EditorIndex Value="6"/>
         <TopLine Value="8"/>
         <CursorPos X="18" Y="16"/>
-        <UsageCount Value="143"/>
+        <UsageCount Value="147"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -41,7 +42,7 @@
         <EditorIndex Value="1"/>
         <TopLine Value="29"/>
         <CursorPos X="31" Y="17"/>
-        <UsageCount Value="132"/>
+        <UsageCount Value="136"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -50,7 +51,7 @@
         <UnitName Value="AppSettings"/>
         <EditorIndex Value="5"/>
         <CursorPos X="28" Y="14"/>
-        <UsageCount Value="130"/>
+        <UsageCount Value="134"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -59,18 +60,18 @@
         <UnitName Value="ClockText"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="65"/>
-        <CursorPos X="44" Y="74"/>
-        <UsageCount Value="98"/>
+        <TopLine Value="42"/>
+        <CursorPos X="17" Y="55"/>
+        <UsageCount Value="102"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="states.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="280"/>
-        <CursorPos X="37" Y="294"/>
-        <UsageCount Value="71"/>
+        <TopLine Value="17"/>
+        <CursorPos X="17" Y="26"/>
+        <UsageCount Value="75"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -80,30 +81,8 @@
         <EditorIndex Value="3"/>
         <TopLine Value="65"/>
         <CursorPos X="72" Y="28"/>
-        <UsageCount Value="58"/>
+        <UsageCount Value="62"/>
         <Loaded Value="True"/>
-      </Unit>
-      <Unit>
-        <Filename Value="/Applications/Lazarus/lcl/controls.pp"/>
-        <UnitName Value="Controls"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="2408"/>
-        <CursorPos X="15" Y="2412"/>
-        <UsageCount Value="0"/>
-      </Unit>
-      <Unit>
-        <Filename Value="../../.lazarus/onlinepackagemanager/packages/BGRABitmap/bgrabitmap/bgracustombitmap.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="36"/>
-        <CursorPos X="35" Y="36"/>
-        <UsageCount Value="0"/>
-      </Unit>
-      <Unit>
-        <Filename Value="/usr/local/share/fpcsrc/rtl/inc/objpash.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="198"/>
-        <CursorPos X="22" Y="208"/>
-        <UsageCount Value="0"/>
       </Unit>
       <Unit>
         <Filename Value="../../.lazarus/onlinepackagemanager/packages/BGRAControls/bgravirtualscreen.pas"/>
@@ -201,26 +180,6 @@
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="clocktimer.pas"/>
-        <Caret Line="89" TopLine="84"/>
-      </Position>
-      <Position>
-        <Filename Value="clocktimer.pas"/>
-        <Caret Line="88" TopLine="84"/>
-      </Position>
-      <Position>
-        <Filename Value="clocktimer.pas"/>
-        <Caret Line="96" TopLine="84"/>
-      </Position>
-      <Position>
-        <Filename Value="clocktimer.pas"/>
-        <Caret Line="97" TopLine="84"/>
-      </Position>
-      <Position>
-        <Filename Value="clocktimer.pas"/>
-        <Caret Line="76" Column="15" TopLine="70"/>
-      </Position>
       <Position>
         <Filename Value="clocktext.pas"/>
         <Caret Line="76" Column="21" TopLine="67"/>
@@ -320,6 +279,26 @@
       <Position>
         <Filename Value="unit1.pas"/>
         <Caret Line="125" Column="32" TopLine="116"/>
+      </Position>
+      <Position>
+        <Filename Value="clocktext.pas"/>
+        <Caret Line="56" Column="3"/>
+      </Position>
+      <Position>
+        <Filename Value="states.pas"/>
+        <Caret Line="11" Column="12"/>
+      </Position>
+      <Position>
+        <Filename Value="states.pas"/>
+        <Caret Line="17" Column="15" TopLine="6"/>
+      </Position>
+      <Position>
+        <Filename Value="states.pas"/>
+        <Caret Line="26" Column="17" TopLine="17"/>
+      </Position>
+      <Position>
+        <Filename Value="clocktext.pas"/>
+        <Caret Line="23" Column="26" TopLine="78"/>
       </Position>
     </JumpHistory>
     <RunParams>
