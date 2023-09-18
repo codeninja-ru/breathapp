@@ -6,34 +6,35 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Menus,
-  StdCtrls, OpenGLContext, DTAnalogClock, DTAnalogGauge, dtthemedgauge,
-  dtthemedclock, BCMaterialDesignButton, BCMDButton, BGRAGraphicControl,
-  BGRAVirtualScreen, BGRABitmap, BGRABitmapTypes, BGLVirtualScreen,
-  ClockEllipse, ClockText, AppSettings, BGRAOpenGL, BCTypes, states;
+  BGRAGraphicControl, BGRABitmap, BGRABitmapTypes,
+  BGLVirtualScreen, ClockEllipse, ClockText, AppSettings, BGRAOpenGL, BCTypes,
+  BCButton, states, ClockTimer;
 
 type
 
   { TMainForm }
 
   TMainForm = class(TForm)
+    StartButton: TBCButton;
     BgImage: TBGRAGraphicControl;
-    Button2: TButton;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
     ImgTimer: TTimer;
     TrayMenu: TPopupMenu;
     TrayIcon: TTrayIcon;
     procedure BgImagePaint(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
+    procedure StartButtonClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure ImgTimerTimer(Sender: TObject);
   private
     ClockEllipse: TClockEllipse;
     ClockText: TClockText;
+    ClockTimer: TClockTimer;
     AppSettings: RAppSettings;
     FBitmap: TBGRABitmap;
-    StateManager : TStateManager;
+    StateManager: TStateManager;
+    procedure SetButtonStateStyle(button: TBCButton; State: TState);
   public
   end;
 
@@ -69,15 +70,22 @@ begin
     2, AppSettings);
 
   StateManager := TStateManager.Create(AppSettings);
-  //TextRect := TRect.Create(124 div 2, 170 div 2, 124 div 2 + 190, 170 div 2 + 190);
   TextRect := ClockEllipse.InnerBoxRect;
   ClockText := TClockText.Create(TextRect, AppSettings, 5);
+  ClockTimer := TClockTimer.Create(Self.Width, Self.Height, AppSettings);
+
+  StartButton.Rounding.RoundX := 5;
+  StartButton.Rounding.RoundY := 5;
+  SetButtonStateStyle(StartButton, StateManager.State);
+  StartButton.Font.Name := 'Helvetica';
+  StartButton.Font.Size := 14;
 end;
 
 procedure TMainForm.FormDestroy(Sender: TObject);
 begin
   ClockEllipse.Free;
   ClockText.Free;
+  ClockTimer.Free;
   FBitmap.Free;
   StateManager.Free;
 end;
@@ -85,12 +93,45 @@ end;
 procedure TMainForm.ImgTimerTimer(Sender: TObject);
 begin
   StateManager.tick(ImgTimer.Interval);
+  SetButtonStateStyle(StartButton, StateManager.State);
   BgImage.Refresh;
 end;
 
-procedure TMainForm.Button2Click(Sender: TObject);
+procedure TMainForm.SetButtonStateStyle(button: TBCButton; State: TState);
+
+  procedure setStyle(btnState: TBCButtonState);
+  begin
+    btnState.Border.Width := 2;
+    btnState.Background.Color := clNone;
+    btnState.Border.Color := State.MainColor;
+    btnState.FontEx.Color := State.MainColor;
+    btnState.FontEx.Shadow := False;
+  end;
+
 begin
-  ImgTimer.Enabled := True;
+  if button.StateNormal.Border.Color <> State.MainColor then
+  begin
+    setStyle(button.StateNormal);
+    setStyle(button.StateHover);
+    setStyle(button.StateClicked);
+  end;
+end;
+
+procedure TMainForm.StartButtonClick(Sender: TObject);
+begin
+  if not ImgTimer.Enabled then
+  begin
+    ImgTimer.Enabled := True;
+    StartButton.Caption := 'Stop';
+  end
+  else
+  begin
+    ImgTimer.Enabled := False;
+    StartButton.Caption := 'Start';
+    StateManager.Reset;
+    SetButtonStateStyle(StartButton, StateManager.State);
+    Refresh;
+  end;
 end;
 
 procedure TMainForm.BgImagePaint(Sender: TObject);
@@ -98,6 +139,7 @@ begin
   BgImage.Bitmap.Fill(AppSettings.bg); //TODO can be drawn only once
   ClockEllipse.DrawClock(BgImage.Bitmap, StateManager.State);
   ClockText.DrawText(BgImage.Bitmap, StateManager.State);
+  ClockTimer.Draw(BgImage.Bitmap, StateManager.State);
 end;
 
 end.

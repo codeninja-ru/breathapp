@@ -74,6 +74,11 @@
         <Filename Value="states.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
+      <Unit>
+        <Filename Value="clocktimer.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ClockTimer"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

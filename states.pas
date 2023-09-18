@@ -17,6 +17,7 @@ type
     FState: BreathStates;
     FMaxMSec : integer;
     FCurrentMSec : integer;
+    FMSecFromStart: integer;
     FAppSettings : RAppSettings;
     function GetMainColor : TColor; virtual; abstract;
     function GetBgColor : TColor; virtual;
@@ -28,10 +29,12 @@ type
     property MainColor : TColor read GetMainColor;
     property BgColor : TColor read GetBgColor;
     property BgSecondColor : TColor read GetBgSecondColor;
+    property MSecFromStart: integer read FMSecFromStart;
 
     function SecondsString : string;
     function Seconds : integer;
     function ClockPersent : real;
+    function GetStateText : string; virtual; abstract;
 
     constructor Create(AState: BreathStates; AMaxMSec : integer; AAppSettings : RAppSettings);
     destructor Destroy;
@@ -42,6 +45,8 @@ type
   TBreathInState = class(TState)
   protected
     function GetMainColor : TColor; override;
+  public
+    function GetStateText: string; override;
   end;
 
   { TBreathOutState }
@@ -49,18 +54,27 @@ type
   TBreathOutState = class(TState)
   protected
     function GetMainColor : TColor; override;
+  public
+    function GetStateText: string; override;
+  end;
+
+  { TAbstractHoldState }
+
+  TAbstractHoldState = class(TState)
+  public
+    function GetStateText: string; override;
   end;
 
   { THoldInState }
 
-  THoldInState = class(TState)
+  THoldInState = class(TAbstractHoldState)
   protected
     function GetMainColor : TColor; override;
   end;
 
   { THoldOutState }
 
-  THoldOutState = class(TState)
+  THoldOutState = class(TAbstractHoldState)
   protected
     function GetMainColor : TColor; override;
   end;
@@ -73,6 +87,7 @@ type
     FCurrentState: BreathStates;
     FCurrentStateObj: TState;
     FCurrentMSec: integer;
+    FMSecFromStart: integer;
     FStateBreathIn, FStateHoldIn, FStateBreathOut, FStateHoldOut : TState;
     function GetState: TState;
     procedure MoveToNextState();
@@ -84,9 +99,17 @@ type
 
     property State: TState read GetState;
     procedure tick(MSecInterval: integer);
+    procedure Reset;
   end;
 
 implementation
+
+{ TAbstractHoldState }
+
+function TAbstractHoldState.GetStateText: string;
+begin
+  Result := 'hold breath';
+end;
 
 { THoldOutState }
 
@@ -109,11 +132,21 @@ begin
   Result := FAppSettings.breathOutColor;
 end;
 
+function TBreathOutState.GetStateText: string;
+begin
+  Result := 'breath out';
+end;
+
 { TBreathInState }
 
 function TBreathInState.GetMainColor: TColor;
 begin
   Result := FAppSettings.breathInColor;
+end;
+
+function TBreathInState.GetStateText: string;
+begin
+  Result := 'breath in';
 end;
 
 { TStateManager }
@@ -171,6 +204,7 @@ begin
   inherited Create;
 
   FCurrentMSec := 0;
+  FMSecFromStart:=0;
   FAppSettings := AAppSettings;
   FStateBreathIn := TBreathInState.Create(stBreathIn, 5000, FAppSettings);
   FStateHoldIn := THoldInState.Create(stHoldIn, 0, FAppSettings);
@@ -192,8 +226,9 @@ end;
 procedure TStateManager.tick(MSecInterval: integer);
 begin
   FCurrentMSec := FCurrentMSec + MSecInterval;
+  FMSecFromStart := FMSecFromStart + MSecInterval;
 
-  if FCurrentMSec > FCurrentStateObj.MaxMSec then
+  if FCurrentMSec >= FCurrentStateObj.MaxMSec then
   begin
     FCurrentMSec:=0;
     MoveToNextState();
@@ -202,6 +237,16 @@ begin
   begin
     FCurrentStateObj.FCurrentMSec:=FCurrentMSec;
   end;
+  FCurrentStateObj.FMSecFromStart:=FMSecFromStart;
+end;
+
+procedure TStateManager.Reset;
+begin
+  FCurrentMSec:=0;
+  FCurrentStateObj:=FStateBreathIn;
+  FStateBreathIn.FCurrentMSec:=0;
+  FStateBreathIn.FMSecFromStart:=0;
+  FMSecFromStart := 0;
 end;
 
 { TState }
