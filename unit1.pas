@@ -15,14 +15,17 @@ type
   { TMainForm }
 
   TMainForm = class(TForm)
+    MenuItemExit: TMenuItem;
     StartButton: TBCButton;
     BgImage: TBGRAGraphicControl;
-    MenuItem1: TMenuItem;
-    MenuItem2: TMenuItem;
+    MenuItemShow: TMenuItem;
+    MenuItemSound: TMenuItem;
     ImgTimer: TTimer;
     TrayMenu: TPopupMenu;
     TrayIcon: TTrayIcon;
     procedure BgImagePaint(Sender: TObject);
+    procedure MenuItemExitClick(Sender: TObject);
+    procedure MenuItemShowClick(Sender: TObject);
     procedure StartButtonClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -77,7 +80,7 @@ begin
   StartButton.Rounding.RoundX := 5;
   StartButton.Rounding.RoundY := 5;
   SetButtonStateStyle(StartButton, StateManager.State);
-  StartButton.Font.Name := 'Helvetica';
+  StartButton.Font.Name := 'PT Caption';
   StartButton.Font.Size := 14;
 end;
 
@@ -103,9 +106,11 @@ procedure TMainForm.SetButtonStateStyle(button: TBCButton; State: TState);
   begin
     btnState.Border.Width := 2;
     btnState.Background.Color := clNone;
+    btnState.Border.Style := bboSolid;
     btnState.Border.Color := State.MainColor;
     btnState.FontEx.Color := State.MainColor;
     btnState.FontEx.Shadow := False;
+    btnState.FontEx.Style := [];
   end;
 
 begin
@@ -140,6 +145,16 @@ begin
   ClockEllipse.DrawClock(BgImage.Bitmap, StateManager.State);
   ClockText.DrawText(BgImage.Bitmap, StateManager.State);
   ClockTimer.Draw(BgImage.Bitmap, StateManager.State);
+end;
+
+procedure TMainForm.MenuItemExitClick(Sender: TObject);
+begin
+  Self.Close;
+end;
+
+procedure TMainForm.MenuItemShowClick(Sender: TObject);
+begin
+  Self.Visible := not Self.Visible;
 end;
 
 end.

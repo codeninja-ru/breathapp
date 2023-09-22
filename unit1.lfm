@@ -347,7 +347,7 @@ object MainForm: TMainForm
     StateClicked.Background.Gradient2.Point2YPercent = 100
     StateClicked.Background.Gradient1EndPercent = 100
     StateClicked.Background.Style = bbsClear
-    StateClicked.Border.Style = bboNone
+    StateClicked.Border.Style = bboSolid
     StateClicked.FontEx.Color = 16770790
     StateClicked.FontEx.FontQuality = fqFineAntialiasing
     StateClicked.FontEx.Shadow = True
@@ -564,13 +564,18 @@ object MainForm: TMainForm
   object TrayMenu: TPopupMenu
     Left = 48
     Top = 24
-    object MenuItem1: TMenuItem
+    object MenuItemShow: TMenuItem
       Caption = 'Show'
       Default = True
+      OnClick = MenuItemShowClick
     end
-    object MenuItem2: TMenuItem
+    object MenuItemSound: TMenuItem
       Caption = 'Sound'
       Checked = True
+    end
+    object MenuItemExit: TMenuItem
+      Caption = 'Exit'
+      OnClick = MenuItemExitClick
     end
   end
   object ImgTimer: TTimer
