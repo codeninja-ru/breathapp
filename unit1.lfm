@@ -311,7 +311,7 @@ object MainForm: TMainForm
   }
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  LCLVersion = '2.2.6.0'
+  LCLVersion = '2.2.2.0'
   object BgImage: TBGRAGraphicControl
     Left = 0
     Height = 512
@@ -584,5 +584,9 @@ object MainForm: TMainForm
     OnTimer = ImgTimerTimer
     Left = 16
     Top = 88
+  end
+  object ImageList1: TImageList
+    Left = 34
+    Top = 95
   end
 end

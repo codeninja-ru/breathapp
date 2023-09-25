@@ -79,6 +79,11 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="ClockTimer"/>
       </Unit>
+      <Unit>
+        <Filename Value="trayicontimer.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TrayIconTimer"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

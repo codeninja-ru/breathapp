@@ -5,16 +5,17 @@ unit Unit1;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Menus,
+  Classes, SysUtils, Forms, Controls, Graphics, ExtCtrls, Menus,
   BGRAGraphicControl, BGRABitmap, BGRABitmapTypes,
   BGLVirtualScreen, ClockEllipse, ClockText, AppSettings, BGRAOpenGL, BCTypes,
-  BCButton, states, ClockTimer;
+  BCButton, states, ClockTimer, TrayIconTimer;
 
 type
 
   { TMainForm }
 
   TMainForm = class(TForm)
+    ImageList1: TImageList;
     MenuItemExit: TMenuItem;
     StartButton: TBCButton;
     BgImage: TBGRAGraphicControl;
@@ -37,6 +38,8 @@ type
     AppSettings: RAppSettings;
     FBitmap: TBGRABitmap;
     StateManager: TStateManager;
+    TrayIconTimer: TTrayIconTimer;
+    MainTrayIcon: TIcon;
     procedure SetButtonStateStyle(button: TBCButton; State: TState);
   public
   end;
@@ -82,6 +85,10 @@ begin
   SetButtonStateStyle(StartButton, StateManager.State);
   StartButton.Font.Name := 'PT Caption';
   StartButton.Font.Size := 14;
+
+  TrayIconTimer := TTrayIconTimer.Create(AppSettings);
+  MainTrayIcon := TIcon.Create;
+  MainTrayIcon.Assign(TrayIcon.Icon);
 end;
 
 procedure TMainForm.FormDestroy(Sender: TObject);
@@ -91,13 +98,16 @@ begin
   ClockTimer.Free;
   FBitmap.Free;
   StateManager.Free;
+  TrayIconTimer.Free;
+  MainTrayIcon.Free;
 end;
 
 procedure TMainForm.ImgTimerTimer(Sender: TObject);
 begin
   StateManager.tick(ImgTimer.Interval);
   SetButtonStateStyle(StartButton, StateManager.State);
-  BgImage.Refresh;
+  if Self.Visible = True then Refresh;
+  TrayIconTimer.Draw(TrayIcon.Icon, StateManager.State);
 end;
 
 procedure TMainForm.SetButtonStateStyle(button: TBCButton; State: TState);
@@ -135,7 +145,8 @@ begin
     StartButton.Caption := 'Start';
     StateManager.Reset;
     SetButtonStateStyle(StartButton, StateManager.State);
-    Refresh;
+    if Self.Visible = True then Refresh;
+    TrayIcon.Icon.Assign(MainTrayIcon);
   end;
 end;
 
