@@ -8,14 +8,13 @@ uses
   Classes, SysUtils, Forms, Controls, Graphics, ExtCtrls, Menus,
   BGRAGraphicControl, BGRABitmap, BGRABitmapTypes,
   BGLVirtualScreen, ClockEllipse, ClockText, AppSettings, BGRAOpenGL, BCTypes,
-  BCButton, states, ClockTimer, TrayIconTimer;
+  BCButton, states, ClockTimer, TrayIconTimer, SoundTimer;
 
 type
 
   { TMainForm }
 
   TMainForm = class(TForm)
-    ImageList1: TImageList;
     MenuItemExit: TMenuItem;
     StartButton: TBCButton;
     BgImage: TBGRAGraphicControl;
@@ -27,14 +26,17 @@ type
     procedure BgImagePaint(Sender: TObject);
     procedure MenuItemExitClick(Sender: TObject);
     procedure MenuItemShowClick(Sender: TObject);
+    procedure MenuItemSoundClick(Sender: TObject);
     procedure StartButtonClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure ImgTimerTimer(Sender: TObject);
+    procedure TrayIconDblClick(Sender: TObject);
   private
     ClockEllipse: TClockEllipse;
     ClockText: TClockText;
     ClockTimer: TClockTimer;
+    SoundTimer: TSoundTimer;
     AppSettings: RAppSettings;
     FBitmap: TBGRABitmap;
     StateManager: TStateManager;
@@ -89,6 +91,8 @@ begin
   TrayIconTimer := TTrayIconTimer.Create(AppSettings);
   MainTrayIcon := TIcon.Create;
   MainTrayIcon.Assign(TrayIcon.Icon);
+
+  SoundTimer := TSoundTimer.Create;
 end;
 
 procedure TMainForm.FormDestroy(Sender: TObject);
@@ -100,6 +104,7 @@ begin
   StateManager.Free;
   TrayIconTimer.Free;
   MainTrayIcon.Free;
+  SoundTimer.Free;
 end;
 
 procedure TMainForm.ImgTimerTimer(Sender: TObject);
@@ -108,6 +113,15 @@ begin
   SetButtonStateStyle(StartButton, StateManager.State);
   if Self.Visible = True then Refresh;
   TrayIconTimer.Draw(TrayIcon.Icon, StateManager.State);
+  if MenuItemSound.Checked then
+  begin
+    SoundTimer.play(StateManager.State);
+  end;
+end;
+
+procedure TMainForm.TrayIconDblClick(Sender: TObject);
+begin
+  Self.Visible:= not Self.Visible;
 end;
 
 procedure TMainForm.SetButtonStateStyle(button: TBCButton; State: TState);
@@ -166,6 +180,11 @@ end;
 procedure TMainForm.MenuItemShowClick(Sender: TObject);
 begin
   Self.Visible := not Self.Visible;
+end;
+
+procedure TMainForm.MenuItemSoundClick(Sender: TObject);
+begin
+  MenuItemSound.Checked := not MenuItemSound.Checked;
 end;
 
 end.

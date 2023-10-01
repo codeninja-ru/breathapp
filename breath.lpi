@@ -84,6 +84,11 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="TrayIconTimer"/>
       </Unit>
+      <Unit>
+        <Filename Value="soundtimer.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="SoundTimer"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -93,6 +98,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
+      <OtherUnitFiles Value="vendor/uos"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Linking>

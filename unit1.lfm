@@ -558,6 +558,7 @@ object MainForm: TMainForm
       003FFE00007FFF0000FFFF8001FFFFE007FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFF
     }
+    OnDblClick = TrayIconDblClick
     Left = 16
     Top = 24
   end
@@ -572,6 +573,7 @@ object MainForm: TMainForm
     object MenuItemSound: TMenuItem
       Caption = 'Sound'
       Checked = True
+      OnClick = MenuItemSoundClick
     end
     object MenuItemExit: TMenuItem
       Caption = 'Exit'
@@ -584,9 +586,5 @@ object MainForm: TMainForm
     OnTimer = ImgTimerTimer
     Left = 16
     Top = 88
-  end
-  object ImageList1: TImageList
-    Left = 34
-    Top = 95
   end
 end

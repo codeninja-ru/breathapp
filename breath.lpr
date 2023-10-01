@@ -10,13 +10,13 @@ uses
    {$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms, lazopenglcontext, Unit1, BreathClock, clockEllipse, AppSettings,
-  clockText, states, ClockTimer, TrayIconTimer { you can add units after this };
+  clockText, states, ClockTimer, TrayIconTimer, SoundTimer { you can add units after this };
 
 {$R *.res}
 
 begin
   RequireDerivedFormResource := True;
-  Application.Scaled := True;
+  Application.Scaled:=True;
   Application.Initialize;
   Application.CreateForm(TMainForm, MainForm);
   Application.Run;
