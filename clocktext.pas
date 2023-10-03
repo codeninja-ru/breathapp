@@ -5,7 +5,7 @@ unit ClockText;
 interface
 
 uses
-  Classes, SysUtils, AppSettings, BGRABitmap, BGRABitmapTypes, states;
+  Classes, SysUtils, AppSettings, BGRABitmap, BGRABitmapTypes, Graphics, states;
 
 type
 
@@ -37,8 +37,9 @@ begin
   rect := ARect;
   maxSec := AMaxSec;
   AppSettings := AAppColors;
-  FTextBitmap := TBGRABitmap.Create();
-  FTextBitmap.SetSize(rect.Width, rect.Height);
+  FTextBitmap := TBGRABitmap.Create(rect.Width, rect.Height);
+  FTextBitmap.Fill(clDontMask);
+  FTextBitmap.FontAntialias := True;
   x2 := rect.Width div 2;
   y2 := rect.Height div 2;
 end;
@@ -53,8 +54,8 @@ procedure TClockText.DrawText(ABitmap: TBGRABitmap; State: TState);
 begin
   DrawSecondsText(State);
   DrawStateText(State);
-  prevStateType:=State.StateType;
-  ABitmap.BlendImage(rect.Left, rect.Top, FTextBitmap, boLinearBlend);
+  prevStateType := State.StateType;
+  ABitmap.EraseMask(rect.Left, rect.Top, FTextBitmap);
 end;
 
 procedure TClockText.DrawStateText(State: TState);
@@ -67,12 +68,11 @@ begin
   begin
     FTextBitmap.FontHeight := 18;
     FTextBitmap.FontName := 'PT Caption';
-    FTextBitmap.FontAntialias := True;
 
     if prevStateText <> '' then // not the first run
     begin
-      FTextBitmap.CanvasBGRA.Brush.Color := AppSettings.bg;
-      FTextBitmap.CanvasBGRA.Pen.Color := AppSettings.bg;
+      FTextBitmap.CanvasBGRA.Brush.Color := clDontMask;
+      FTextBitmap.CanvasBGRA.Pen.Color := clDontMask;
       FTextBitmap.CanvasBGRA.Pen.Width := 3;
 
       FTextBitmap.CanvasBGRA.Rectangle(stateTextBox.RectBounds);
@@ -84,7 +84,7 @@ begin
     FTextBitmap.TextOut(stateTextBox.TopLeft.x,
       stateTextBox.TopLeft.y,
       stateText,
-      State.MainColor);
+      clMask);
   end;
 
   prevStateText := stateText;
@@ -99,11 +99,10 @@ begin
   begin
     FTextBitmap.FontHeight := 124;
     FTextBitmap.FontName := 'PT Caption';
-    FTextBitmap.FontAntialias := True;
     strSec := State.SecondsString;
     if prevSec <> '' then // not the first run
     begin
-      FTextBitmap.FillRect(textBox.RectBounds, AppSettings.bg, dmDrawWithTransparency);
+      FTextBitmap.FillRect(textBox.RectBounds, clDontMask, dmDrawWithTransparency);
     end;
     textBox := FTextBitmap.TextAffineBox(strSec);
     textBox.Offset(x2 - Round(textBox.Width / 2),
@@ -112,7 +111,7 @@ begin
     FTextBitmap.TextOut(textBox.TopLeft.x,
       textBox.TopLeft.y,
       strSec,
-      State.MainColor);
+      clMask);
   end;
   prevSec := strSec;
 end;

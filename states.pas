@@ -15,28 +15,29 @@ type
   TState = class
   protected
     FStateType: StateType;
-    FMaxMSec : integer;
-    FCurrentMSec : integer;
+    FMaxMSec: integer;
+    FCurrentMSec: integer;
     FMSecFromStart: integer;
-    FAppSettings : RAppSettings;
-    function GetMainColor : TColor; virtual; abstract;
-    function GetBgColor : TColor; virtual;
-    function GetBgSecondColor : TColor; virtual;
+    FAppSettings: RAppSettings;
+    function GetMainColor: TColor; virtual; abstract;
+    function GetBgColor: TColor; virtual;
+    function GetBgSecondColor: TColor; virtual;
   public
     property StateType: StateType read FStateType;
     property MaxMSec: integer read FMaxMSec;
-    property CurrentMSec : integer read FCurrentMSec;
-    property MainColor : TColor read GetMainColor;
-    property BgColor : TColor read GetBgColor;
-    property BgSecondColor : TColor read GetBgSecondColor;
+    property CurrentMSec: integer read FCurrentMSec;
+    property MainColor: TColor read GetMainColor;
+    property BgColor: TColor read GetBgColor;
+    property BgSecondColor: TColor read GetBgSecondColor;
     property MSecFromStart: integer read FMSecFromStart;
 
-    function SecondsString : string;
-    function Seconds : integer;
-    function ClockPersent : real;
-    function GetStateText : string; virtual; abstract;
+    function SecondsString: string;
+    function Seconds: integer;
+    function ClockPersent: real;
+    function GetStateText: string; virtual; abstract;
 
-    constructor Create(AState: StateType; AMaxMSec : integer; AAppSettings : RAppSettings);
+    constructor Create(AState: StateType; AMaxMSec: integer;
+      AAppSettings: RAppSettings);
     destructor Destroy;
   end;
 
@@ -44,7 +45,7 @@ type
 
   TBreathInState = class(TState)
   protected
-    function GetMainColor : TColor; override;
+    function GetMainColor: TColor; override;
   public
     function GetStateText: string; override;
   end;
@@ -53,7 +54,7 @@ type
 
   TBreathOutState = class(TState)
   protected
-    function GetMainColor : TColor; override;
+    function GetMainColor: TColor; override;
   public
     function GetStateText: string; override;
   end;
@@ -69,14 +70,14 @@ type
 
   THoldInState = class(TAbstractHoldState)
   protected
-    function GetMainColor : TColor; override;
+    function GetMainColor: TColor; override;
   end;
 
   { THoldOutState }
 
   THoldOutState = class(TAbstractHoldState)
   protected
-    function GetMainColor : TColor; override;
+    function GetMainColor: TColor; override;
   end;
 
   { TStateManager }
@@ -88,11 +89,11 @@ type
     FCurrentStateObj: TState;
     FCurrentMSec: integer;
     FMSecFromStart: integer;
-    FStateBreathIn, FStateHoldIn, FStateBreathOut, FStateHoldOut : TState;
+    FStateBreathIn, FStateHoldIn, FStateBreathOut, FStateHoldOut: TState;
     function GetState: TState;
     procedure MoveToNextState();
-    function NextState(ABreathState: StateType) : StateType;
-    function GetStateObject(AState : StateType) : TState;
+    function NextState(ABreathState: StateType): StateType;
+    function GetStateObject(AState: StateType): TState;
   public
     constructor Create(AAppSettings: RAppSettings);
     destructor Destory;
@@ -157,9 +158,10 @@ begin
 end;
 
 procedure TStateManager.MoveToNextState;
-var bstate : StateType;
-  stateObj : TState;
-  i : integer;
+var
+  bstate: StateType;
+  stateObj: TState;
+  i: integer;
 begin
   bstate := FCurrentState;
   for i := 1 to 4 do
@@ -169,33 +171,33 @@ begin
     stateObj.FCurrentMSec := 0;
     if stateObj.MaxMSec <> 0 then
     begin
-      FCurrentState:=bstate;
+      FCurrentState := bstate;
       FCurrentStateObj := stateObj;
       break;
     end;
   end;
 
   if i = 4 then
-     raise Exception.Create('all states have zero max sec');
+    raise Exception.Create('all states have zero max sec');
 end;
 
 function TStateManager.NextState(ABreathState: StateType): StateType;
 begin
   case ABreathState of
-  stHoldOut: Result := stBreathIn;
-  stBreathIn: Result := stHoldIn;
-  stHoldIn: Result := stBreathOut;
-  stBreathOut: Result := stHoldOut;
+    stHoldOut: Result := stBreathIn;
+    stBreathIn: Result := stHoldIn;
+    stHoldIn: Result := stBreathOut;
+    stBreathOut: Result := stHoldOut;
   end;
 end;
 
 function TStateManager.GetStateObject(AState: StateType): TState;
 begin
   case AState of
-  stHoldOut: Result := FStateHoldOut;
-  stBreathIn: Result := FStateBreathIn;
-  stHoldIn: Result := FStateHoldIn;
-  stBreathOut: Result := FStateBreathOut;
+    stHoldOut: Result := FStateHoldOut;
+    stBreathIn: Result := FStateBreathIn;
+    stHoldIn: Result := FStateHoldIn;
+    stBreathOut: Result := FStateBreathOut;
   end;
 end;
 
@@ -204,7 +206,7 @@ begin
   inherited Create;
 
   FCurrentMSec := 0;
-  FMSecFromStart:=0;
+  FMSecFromStart := 0;
   FAppSettings := AAppSettings;
   FStateBreathIn := TBreathInState.Create(stBreathIn, 5000, FAppSettings);
   FStateHoldIn := THoldInState.Create(stHoldIn, 0, FAppSettings);
@@ -230,22 +232,22 @@ begin
 
   if FCurrentMSec >= FCurrentStateObj.MaxMSec then
   begin
-    FCurrentMSec:=0;
+    FCurrentMSec := 0;
     MoveToNextState();
   end
   else
   begin
-    FCurrentStateObj.FCurrentMSec:=FCurrentMSec;
+    FCurrentStateObj.FCurrentMSec := FCurrentMSec;
   end;
-  FCurrentStateObj.FMSecFromStart:=FMSecFromStart;
+  FCurrentStateObj.FMSecFromStart := FMSecFromStart;
 end;
 
 procedure TStateManager.Reset;
 begin
-  FCurrentMSec:=0;
-  FCurrentStateObj:=FStateBreathIn;
-  FStateBreathIn.FCurrentMSec:=0;
-  FStateBreathIn.FMSecFromStart:=0;
+  FCurrentMSec := 0;
+  FCurrentStateObj := FStateBreathIn;
+  FStateBreathIn.FCurrentMSec := 0;
+  FStateBreathIn.FMSecFromStart := 0;
   FMSecFromStart := 0;
 end;
 
@@ -262,11 +264,12 @@ begin
 end;
 
 function TState.SecondsString: string;
-var maxSec : integer;
+var
+  maxSec: integer;
 begin
   maxSec := FMaxMSec div 1000;
   if (Seconds = 0) or (Seconds = maxSec) then
-     Result := IntToStr(maxSec)
+    Result := IntToStr(maxSec)
   else
     Result := IntToStr(maxSec - Seconds);
 end;
@@ -288,8 +291,8 @@ begin
 
   FStateType := AState;
   FMaxMSec := AMaxMSec;
-  FCurrentMSec:=0;
-  FAppSettings:=AAppSettings;
+  FCurrentMSec := 0;
+  FAppSettings := AAppSettings;
 end;
 
 destructor TState.Destroy;

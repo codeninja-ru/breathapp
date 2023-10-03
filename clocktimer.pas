@@ -5,22 +5,24 @@ unit ClockTimer;
 interface
 
 uses
-  Classes, SysUtils, AppSettings, BGRABitmap, BGRABitmapTypes, states;
+  Classes, SysUtils, AppSettings, BGRABitmap, BGRABitmapTypes, Graphics, states;
 
 type
 
-{ TClockTimer }
+  { TClockTimer }
 
- TClockTimer = class
-  FFormWidth, FFormHeight : integer;
-  FAppSettings : RAppSettings;
-  FTimeString : string;
-  textBox: TAffineBox;
-  FTextBitmap: TBGRABitmap;
+  TClockTimer = class
+    FFormWidth, FFormHeight: integer;
+    FAppSettings: RAppSettings;
+    FTimeString: string;
+    textBox: TAffineBox;
+    FTextBitmap: TBGRABitmap;
 
-  function formatTime(minutes: integer; seconds: integer) : string;
+    function formatTime(minutes: integer; seconds: integer): string;
+
   public
-    constructor Create(AFormWidth: integer; AFormHeight : integer; AAppSettings: RAppSettings);
+    constructor Create(AFormWidth: integer; AFormHeight: integer;
+      AAppSettings: RAppSettings);
     destructor Destroy; override;
 
     procedure Draw(ABitmap: TBGRABitmap; State: TState);
@@ -31,10 +33,11 @@ implementation
 { TClockTimer }
 
 function TClockTimer.formatTime(minutes: integer; seconds: integer): string;
-  function pad2(num: string) : string;
+
+  function pad2(num: string): string;
   begin
     if Length(num) < 2 then
-       Result := '0' + num
+      Result := '0' + num
     else
       Result := num;
   end;
@@ -47,14 +50,15 @@ constructor TClockTimer.Create(AFormWidth: integer; AFormHeight: integer;
   AAppSettings: RAppSettings);
 begin
   FFormWidth := AFormWidth;
-  FFormHeight:= AFormHeight;
-  FAppSettings:= AAppSettings;
+  FFormHeight := AFormHeight;
+  FAppSettings := AAppSettings;
 
   FTextBitmap := TBGRABitmap.Create(100, 100);
+  FTextBitmap.Fill(clDontMask);
   FTextBitmap.FontHeight := 24;
   FTextBitmap.FontName := 'PT Caption';
-  FTextBitmap.FontAntialias := True;
-  textBox := FTextBitmap.TextAffineBox(formatTime(999,999));
+  FTextBitmap.FontAntialias := False;
+  textBox := FTextBitmap.TextAffineBox(formatTime(999, 999));
   FTextBitmap.SetSize(Round(textBox.Width) + 2, Round(textBox.Height) + 2);
 end;
 
@@ -64,7 +68,8 @@ begin
 end;
 
 procedure TClockTimer.Draw(ABitmap: TBGRABitmap; State: TState);
-var minutes, seconds: integer;
+var
+  minutes, seconds: integer;
   time: string;
 begin
   //todo should time be calculate in StateManager?
@@ -77,21 +82,22 @@ begin
   begin
     if FTimeString <> '' then
     begin
-      FTextBitmap.Fill(State.BgColor);
+      FTextBitmap.Fill(clDontMask);
     end;
     textBox := FTextBitmap.TextAffineBox(time);
 
     FTextBitmap.TextOut(
-    Round((FTextBitmap.Width - textBox.Width) / 2),
-    0,
-    time,
-    State.MainColor
-    );
+      Round((FTextBitmap.Width - textBox.Width) / 2),
+      0,
+      time,
+      clMask
+      );
   end;
 
   FTimeString := time;
-  ABitmap.BlendImage((ABitmap.Width - FTextBitmap.Width) div 2, Round(ABitmap.Height * 0.75), FTextBitmap, boLinearBlend);
+  ABitmap.EraseMask((ABitmap.Width - FTextBitmap.Width) div 2,
+    Round(ABitmap.Height * 0.75),
+    FTextBitmap);
 end;
 
 end.
-

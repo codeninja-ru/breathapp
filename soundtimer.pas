@@ -108,7 +108,7 @@ begin
       stBreathIn:
         PlaySound(430 + 20 * State.Seconds);
       stBreathOut:
-        PlaySound(170 - 20 * State.Seconds);
+        PlaySound(100 + 20 * State.Seconds);
       stHoldIn: ;
         //PlaySound(100);
       stHoldOut: ;

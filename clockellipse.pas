@@ -5,7 +5,8 @@ unit ClockEllipse;
 interface
 
 uses
-  Classes, SysUtils, BGRABitmap, BGRABitmapTypes, BGRAGradients, AppSettings, states;
+  Classes, SysUtils, BGRABitmap, BGRABitmapTypes, BGRAGradients,
+  AppSettings, states, Graphics;
 
 type
 
@@ -13,14 +14,14 @@ type
 
   TClockEllipse = class(TObject)
   private
-    ClockBitmap: TBGRABitmap;
+    FClockBitmap, FMaskBitmap: TBGRABitmap;
     x, y, r, w: cardinal;
     AppSettings: RAppSettings;
     procedure DrawBackground(const FBitmap: TBGRABitmap; xx, yy: integer; State: TState);
-    function GetInnerBoxRect() : TRect;
+    function GetInnerBoxRect(): TRect;
   public
-    property InnerBoxRect : TRect read GetInnerBoxRect;
-    procedure DrawClock(FBitmap: TBGRABitmap; State: TState);
+    property InnerBoxRect: TRect read GetInnerBoxRect;
+    procedure DrawClock(Bitmap: TBGRABitmap; State: TState);
 
     constructor Create(AWidth: integer; AAppColors: RAppSettings);
     destructor Destroy; override;
@@ -33,8 +34,9 @@ begin
   inherited Create;
 
   Self.AppSettings := AAppColors;
-  ClockBitmap := TBGRABitmap.Create;
-  ClockBitmap.SetSize(AWidth, AWidth);
+  FClockBitmap := TBGRABitmap.Create(AWidth, AWidth);
+  FMaskBitmap := TBGRABitmap.Create(AWidth, AWidth);
+  FMaskBitmap.Fill(clDontMask);
   r := (AWidth - AppSettings.clockStrockSize) div 2;
   x := AWidth div 2;
   y := x;
@@ -43,19 +45,22 @@ end;
 
 destructor TClockEllipse.Destroy;
 begin
-  ClockBitmap.Free;
+  FClockBitmap.Free;
+  FMaskBitmap.Free;
   inherited Destroy;
 end;
 
-procedure TClockEllipse.DrawBackground(const FBitmap: TBGRABitmap; xx,
-  yy: integer; State: TState);
+procedure TClockEllipse.DrawBackground(const FBitmap: TBGRABitmap;
+  xx, yy: integer; State: TState);
 begin
-  FBitmap.EllipseAntialias(xx, yy, r, r, State.BgSecondColor, AppSettings.clockStrockSize + 2);
+  FBitmap.EllipseAntialias(xx, yy, r, r, State.BgSecondColor,
+    AppSettings.clockStrockSize + 2);
 end;
 
 function TClockEllipse.GetInnerBoxRect: TRect;
-var topx, topy, bottomx, bottomy, a, b, xd, yd : Integer;
-  rr : Real;
+var
+  topx, topy, bottomx, bottomy, a, b, xd, yd: integer;
+  rr: real;
 begin
   rr := r - AppSettings.clockStrockSize / 2;
   b := Round(rr * Cos(Pi / 4));
@@ -72,17 +77,33 @@ begin
   Result := TRect.Create(topx + xd, topy + yd, bottomx + xd, bottomy + yd);
 end;
 
-procedure TClockEllipse.DrawClock(FBitmap: TBGRABitmap; State: TState);
+procedure TClockEllipse.DrawClock(Bitmap: TBGRABitmap; State: TState);
 var
   rad: real;
 begin
   rad := State.ClockPersent * 2 * Pi;
-  DrawBackground(ClockBitmap, x, y, State);
+  DrawBackground(FClockBitmap, x, y, State);
   if rad <> 0 then
-    ClockBitmap.Arc(x, y, r, r, Pi / 2, (Pi / 2) - rad, State.MainColor,
-      AppSettings.clockStrockSize, False, BGRAPixelTransparent);
+    begin
+      FMaskBitmap.Fill(clDontMask);
+      FMaskBitmap.Arc(x,
+        y,
+        r,
+        r,
+        Pi / 2,
+        (Pi / 2) - rad,
+        clMask,
+        AppSettings.clockStrockSize,
+        False,
+        BGRAPixelTransparent);
+    end;
 
-  FBitmap.BlendImage(AppSettings.clockMarginLeft, AppSettings.clockMarginTop, ClockBitmap, boLinearBlend);
+
+  Bitmap.BlendImage(AppSettings.clockMarginLeft,
+    AppSettings.clockMarginTop,
+    FClockBitmap,
+    boLinearBlend);
+  Bitmap.EraseMask(AppSettings.clockMarginLeft, AppSettings.clockMarginTop, FMaskBitmap);
 end;
 
 end.

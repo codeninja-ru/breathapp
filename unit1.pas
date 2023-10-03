@@ -74,6 +74,7 @@ begin
   TrayIcon.Show();
 
   FBitmap := TBGRABitmap.Create;
+  FBitmap.SetSize(BgImage.Width, BgImage.Height);
   ClockEllipse := TClockEllipse.Create(Self.Width - AppSettings.clockMarginLeft *
     2, AppSettings);
 
@@ -121,7 +122,7 @@ end;
 
 procedure TMainForm.TrayIconDblClick(Sender: TObject);
 begin
-  Self.Visible:= not Self.Visible;
+  Self.Visible := not Self.Visible;
 end;
 
 procedure TMainForm.SetButtonStateStyle(button: TBCButton; State: TState);
@@ -150,6 +151,7 @@ procedure TMainForm.StartButtonClick(Sender: TObject);
 begin
   if not ImgTimer.Enabled then
   begin
+    StateManager.Reset;
     ImgTimer.Enabled := True;
     StartButton.Caption := 'Stop';
   end
@@ -157,7 +159,6 @@ begin
   begin
     ImgTimer.Enabled := False;
     StartButton.Caption := 'Start';
-    StateManager.Reset;
     SetButtonStateStyle(StartButton, StateManager.State);
     if Self.Visible = True then Refresh;
     TrayIcon.Icon.Assign(MainTrayIcon);
@@ -166,10 +167,19 @@ end;
 
 procedure TMainForm.BgImagePaint(Sender: TObject);
 begin
-  BgImage.Bitmap.Fill(AppSettings.bg); //TODO can be drawn only once
-  ClockEllipse.DrawClock(BgImage.Bitmap, StateManager.State);
-  ClockText.DrawText(BgImage.Bitmap, StateManager.State);
-  ClockTimer.Draw(BgImage.Bitmap, StateManager.State);
+  FBitmap.Fill(AppSettings.bg); //TODO can be drawn only once
+  BgImage.Bitmap.GradientFill(0, 0, BgImage.Width - 1, BgImage.Height - 1,
+    AppSettings.breathInColor,
+    AppSettings.breathOutColor,
+    gtLinear,
+    PointF(0, 0),
+    PointF(BgImage.Width - 1, BgImage.Height - 1),
+    dmLinearBlend);
+  ClockEllipse.DrawClock(FBitmap, StateManager.State);
+  ClockText.DrawText(FBitmap, StateManager.State);
+  ClockTimer.Draw(FBitmap, StateManager.State);
+
+  BgImage.Bitmap.BlendImage(0, 0, FBitmap, boLinearBlend);
 end;
 
 procedure TMainForm.MenuItemExitClick(Sender: TObject);
