@@ -5,7 +5,7 @@ unit states;
 interface
 
 uses
-  Classes, SysUtils, AppSettings, Graphics;
+  Classes, SysUtils, AppSettings, Graphics, BGRABitmapTypes;
 
 type
   StateType = (stBreathIn, stHoldIn, stBreathOut, stHoldOut);
@@ -22,11 +22,15 @@ type
     function GetMainColor: TColor; virtual; abstract;
     function GetBgColor: TColor; virtual;
     function GetBgSecondColor: TColor; virtual;
+    function GetMainGradienColor1: TColor; virtual;
+    function GetMainGradienColor2: TColor; virtual; abstract;
   public
     property StateType: StateType read FStateType;
     property MaxMSec: integer read FMaxMSec;
     property CurrentMSec: integer read FCurrentMSec;
     property MainColor: TColor read GetMainColor;
+    property MainGradienColor1: TColor read GetMainGradienColor1;
+    property MainGradienColor2: TColor read GetMainGradienColor2;
     property BgColor: TColor read GetBgColor;
     property BgSecondColor: TColor read GetBgSecondColor;
     property MSecFromStart: integer read FMSecFromStart;
@@ -46,6 +50,7 @@ type
   TBreathInState = class(TState)
   protected
     function GetMainColor: TColor; override;
+    function GetMainGradienColor2: TColor; override;
   public
     function GetStateText: string; override;
   end;
@@ -55,6 +60,7 @@ type
   TBreathOutState = class(TState)
   protected
     function GetMainColor: TColor; override;
+    function GetMainGradienColor2: TColor; override;
   public
     function GetStateText: string; override;
   end;
@@ -64,6 +70,7 @@ type
   TAbstractHoldState = class(TState)
   public
     function GetStateText: string; override;
+    function GetMainGradienColor2: TColor; override;
   end;
 
   { THoldInState }
@@ -112,6 +119,11 @@ begin
   Result := 'hold breath';
 end;
 
+function TAbstractHoldState.GetMainGradienColor2: TColor;
+begin
+  Result := FAppSettings.holdColorSecond;
+end;
+
 { THoldOutState }
 
 function THoldOutState.GetMainColor: TColor;
@@ -133,6 +145,11 @@ begin
   Result := FAppSettings.breathOutColor;
 end;
 
+function TBreathOutState.GetMainGradienColor2: TColor;
+begin
+  Result := FAppSettings.breathOutColorSecond;
+end;
+
 function TBreathOutState.GetStateText: string;
 begin
   Result := 'breath out';
@@ -143,6 +160,11 @@ end;
 function TBreathInState.GetMainColor: TColor;
 begin
   Result := FAppSettings.breathInColor;
+end;
+
+function TBreathInState.GetMainGradienColor2: TColor;
+begin
+  Result := FAppSettings.breathInColorSecond;
 end;
 
 function TBreathInState.GetStateText: string;
@@ -261,6 +283,11 @@ end;
 function TState.GetBgSecondColor: TColor;
 begin
   Result := FAppSettings.clockBg;
+end;
+
+function TState.GetMainGradienColor1: TColor;
+begin
+  Result := Self.GetMainColor;
 end;
 
 function TState.SecondsString: string;

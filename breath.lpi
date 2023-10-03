@@ -89,6 +89,11 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="SoundTimer"/>
       </Unit>
+      <Unit>
+        <Filename Value="backgrounds.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Backgrounds"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

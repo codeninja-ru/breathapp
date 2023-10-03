@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, Forms, Controls, Graphics, ExtCtrls, Menus,
   BGRAGraphicControl, BGRABitmap, BGRABitmapTypes,
   BGLVirtualScreen, ClockEllipse, ClockText, AppSettings, BGRAOpenGL, BCTypes,
-  BCButton, states, ClockTimer, TrayIconTimer, SoundTimer;
+  BCButton, states, ClockTimer, TrayIconTimer, SoundTimer, Backgrounds, Dialogs;
 
 type
 
@@ -37,6 +37,8 @@ type
     ClockText: TClockText;
     ClockTimer: TClockTimer;
     SoundTimer: TSoundTimer;
+    FSolidBackground: TSolidBackground;
+    FGradientBackground: TGradientBackround;
     AppSettings: RAppSettings;
     FBitmap: TBGRABitmap;
     StateManager: TStateManager;
@@ -51,28 +53,39 @@ var
   MSec: integer;
   TextRect: TRect;
 
-const
-  DayModeAppSettings: RAppSettings = (
-    bg: TColor($eeeeee);
-    breathInColor: TColor($00DA9062);
-    breathOutColor: TColor($0062DA66); //todo correct the color
-    clockBg: TColor($e8e8e8);
-    clockStrockSize: 25;
-    clockMarginLeft: 10;
-    clockMarginTop: 60; );
-
 implementation
 
 {$R *.lfm}
 
 { TMainForm }
 
+function webHSL(hue, saturation, lightness: word) : TColor;
+begin
+  Result := HSLA(hue * 65535 div 360, saturation * 65535 div 100, lightness * 65535 div 100);
+end;
+
 procedure TMainForm.FormCreate(Sender: TObject);
 begin
-  AppSettings := DayModeAppSettings;
+  with AppSettings do
+  begin
+    bg := TColor($eeeeee);
+    breathInColor := webHSL(217, 62, 62);
+    breathInColorSecond := webHSL(267, 62, 62);
+    breathOutColor := webHSL(0, 62, 62);
+    breathOutColorSecond := webHSL(267, 62, 62);
+    holdColor := webHSL(146, 62, 62);
+    holdColorSecond := webHSL(146, 62, 62);
+    clockBg := TColor($e8e8e8);
+    clockStrockSize := 25;
+    clockMarginLeft := 10;
+    clockMarginTop := 60;
+  end;
+
   MSec := 0;
   TrayIcon.Show();
 
+  FSolidBackground := TSolidBackground.Create;
+  FGradientBackground := TGradientBackround.Create(BgImage.Width, BgImage.Height);
   FBitmap := TBGRABitmap.Create;
   FBitmap.SetSize(BgImage.Width, BgImage.Height);
   ClockEllipse := TClockEllipse.Create(Self.Width - AppSettings.clockMarginLeft *
@@ -83,8 +96,8 @@ begin
   ClockText := TClockText.Create(TextRect, AppSettings, 5);
   ClockTimer := TClockTimer.Create(Self.Width, Self.Height, AppSettings);
 
-  StartButton.Rounding.RoundX := 5;
-  StartButton.Rounding.RoundY := 5;
+  StartButton.Rounding.RoundX := 20;
+  StartButton.Rounding.RoundY := 20;
   SetButtonStateStyle(StartButton, StateManager.State);
   StartButton.Font.Name := 'PT Caption';
   StartButton.Font.Size := 14;
@@ -106,6 +119,8 @@ begin
   TrayIconTimer.Free;
   MainTrayIcon.Free;
   SoundTimer.Free;
+  FSolidBackground.Free;
+  FGradientBackground.Free;
 end;
 
 procedure TMainForm.ImgTimerTimer(Sender: TObject);
@@ -166,18 +181,15 @@ begin
 end;
 
 procedure TMainForm.BgImagePaint(Sender: TObject);
+var
+  state: TState;
 begin
-  FBitmap.Fill(AppSettings.bg); //TODO can be drawn only once
-  BgImage.Bitmap.GradientFill(0, 0, BgImage.Width - 1, BgImage.Height - 1,
-    AppSettings.breathInColor,
-    AppSettings.breathOutColor,
-    gtLinear,
-    PointF(0, 0),
-    PointF(BgImage.Width - 1, BgImage.Height - 1),
-    dmLinearBlend);
-  ClockEllipse.DrawClock(FBitmap, StateManager.State);
-  ClockText.DrawText(FBitmap, StateManager.State);
-  ClockTimer.Draw(FBitmap, StateManager.State);
+  state := StateManager.State;
+  FSolidBackground.Draw(FBitmap, state);
+  FGradientBackground.Draw(BgImage.Bitmap, state);
+  ClockEllipse.DrawClock(FBitmap, state);
+  ClockText.DrawText(FBitmap, state);
+  ClockTimer.Draw(FBitmap, state);
 
   BgImage.Bitmap.BlendImage(0, 0, FBitmap, boLinearBlend);
 end;

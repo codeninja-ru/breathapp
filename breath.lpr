@@ -10,7 +10,7 @@ uses
    {$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms, lazopenglcontext, Unit1, BreathClock, clockEllipse, AppSettings,
-  clockText, states, ClockTimer, TrayIconTimer, SoundTimer { you can add units after this };
+  clockText, states, ClockTimer, TrayIconTimer, SoundTimer, Backgrounds { you can add units after this };
 
 {$R *.res}
 

@@ -15,6 +15,7 @@ type
   TClockEllipse = class(TObject)
   private
     FClockBitmap, FMaskBitmap: TBGRABitmap;
+    prevState: StateType;
     x, y, r, w: cardinal;
     AppSettings: RAppSettings;
     procedure DrawBackground(const FBitmap: TBGRABitmap; xx, yy: integer; State: TState);
@@ -41,6 +42,7 @@ begin
   x := AWidth div 2;
   y := x;
   w := AWidth;
+  prevState := stHoldOut;
 end;
 
 destructor TClockEllipse.Destroy;
@@ -53,8 +55,11 @@ end;
 procedure TClockEllipse.DrawBackground(const FBitmap: TBGRABitmap;
   xx, yy: integer; State: TState);
 begin
-  FBitmap.EllipseAntialias(xx, yy, r, r, State.BgSecondColor,
-    AppSettings.clockStrockSize + 2);
+  if (prevState <> State.StateType) then
+  begin
+    FBitmap.EllipseAntialias(xx, yy, r, r, State.BgSecondColor,
+      AppSettings.clockStrockSize + 2);
+  end;
 end;
 
 function TClockEllipse.GetInnerBoxRect: TRect;
@@ -98,6 +103,7 @@ begin
         BGRAPixelTransparent);
     end;
 
+  prevState := State.StateType;
 
   Bitmap.BlendImage(AppSettings.clockMarginLeft,
     AppSettings.clockMarginTop,
