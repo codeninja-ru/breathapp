@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, Forms, Controls, Graphics, ExtCtrls, Menus,
   BGRAGraphicControl, BGRABitmap, BGRABitmapTypes,
   BGLVirtualScreen, ClockEllipse, ClockText, AppSettings, BGRAOpenGL, BCTypes,
-  BCButton, states, ClockTimer, TrayIconTimer, SoundTimer, Backgrounds, Dialogs;
+  BCButton, states, ClockTimer, TrayIconTimer, SoundTimer, Backgrounds;
 
 type
 
@@ -79,13 +79,14 @@ begin
     clockStrockSize := 25;
     clockMarginLeft := 10;
     clockMarginTop := 60;
+    mainFontName := 'PT Sans Caption';
   end;
 
   MSec := 0;
   TrayIcon.Show();
 
   FSolidBackground := TSolidBackground.Create;
-  FGradientBackground := TGradientBackround.Create(BgImage.Width, BgImage.Height);
+  FGradientBackground := TGradientBackround.Create(BgImage.Width, BgImage.Height, AppSettings);
   FBitmap := TBGRABitmap.Create;
   FBitmap.SetSize(BgImage.Width, BgImage.Height);
   ClockEllipse := TClockEllipse.Create(Self.Width - AppSettings.clockMarginLeft *
@@ -99,7 +100,7 @@ begin
   StartButton.Rounding.RoundX := 20;
   StartButton.Rounding.RoundY := 20;
   SetButtonStateStyle(StartButton, StateManager.State);
-  StartButton.Font.Name := 'PT Caption';
+  StartButton.Font.Name := AppSettings.mainFontName;
   StartButton.Font.Size := 14;
 
   TrayIconTimer := TTrayIconTimer.Create(AppSettings);
@@ -144,7 +145,6 @@ procedure TMainForm.SetButtonStateStyle(button: TBCButton; State: TState);
 
   procedure setStyle(btnState: TBCButtonState);
   begin
-    btnState.Border.Width := 2;
     btnState.Background.Color := clNone;
     btnState.Border.Style := bboSolid;
     btnState.Border.Color := State.MainColor;

@@ -17,6 +17,7 @@ type
     clockStrockSize: Integer;
     clockMarginLeft: Integer;
     clockMarginTop: Integer;
+    mainFontName: string;
   end;
 
 implementation

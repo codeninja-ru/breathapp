@@ -331,6 +331,7 @@ object MainForm: TMainForm
     Height = 38
     Top = 454
     Width = 109
+    Anchors = [akTop, akLeft, akRight]
     StateClicked.Background.Gradient1.StartColor = 8404992
     StateClicked.Background.Gradient1.EndColor = 4194304
     StateClicked.Background.Gradient1.GradientType = gtRadial
@@ -412,8 +413,8 @@ object MainForm: TMainForm
     GlobalOpacity = 255
     OnClick = StartButtonClick
     ParentColor = False
-    Rounding.RoundX = 5
-    Rounding.RoundY = 5
+    Rounding.RoundX = 20
+    Rounding.RoundY = 20
     RoundingDropDown.RoundX = 1
     RoundingDropDown.RoundY = 1
     TextApplyGlobalOpacity = False

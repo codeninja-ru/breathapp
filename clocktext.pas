@@ -67,7 +67,7 @@ begin
   if (stateText <> prevStateText) or (prevStateType <> State.StateType) then
   begin
     FTextBitmap.FontHeight := 18;
-    FTextBitmap.FontName := 'PT Caption';
+    FTextBitmap.FontName := AppSettings.mainFontName;
 
     if prevStateText <> '' then // not the first run
     begin
@@ -98,7 +98,7 @@ begin
   if (strSec <> prevSec) or (prevStateType <> State.StateType) then
   begin
     FTextBitmap.FontHeight := 124;
-    FTextBitmap.FontName := 'PT Caption';
+    FTextBitmap.FontName := AppSettings.mainFontName;
     strSec := State.SecondsString;
     if prevSec <> '' then // not the first run
     begin

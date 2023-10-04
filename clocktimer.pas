@@ -54,9 +54,8 @@ begin
   FAppSettings := AAppSettings;
 
   FTextBitmap := TBGRABitmap.Create(100, 100);
-  FTextBitmap.Fill(clDontMask);
   FTextBitmap.FontHeight := 24;
-  FTextBitmap.FontName := 'PT Caption';
+  FTextBitmap.FontName := FAppSettings.mainFontName;
   FTextBitmap.FontAntialias := False;
   textBox := FTextBitmap.TextAffineBox(formatTime(999, 999));
   FTextBitmap.SetSize(Round(textBox.Width) + 2, Round(textBox.Height) + 2);
@@ -82,7 +81,7 @@ begin
   begin
     if FTimeString <> '' then
     begin
-      FTextBitmap.Fill(clDontMask);
+      FTextBitmap.Fill(State.BgColor);
     end;
     textBox := FTextBitmap.TextAffineBox(time);
 
@@ -90,14 +89,15 @@ begin
       Round((FTextBitmap.Width - textBox.Width) / 2),
       0,
       time,
-      clMask
+      State.MainColor
       );
   end;
 
   FTimeString := time;
-  ABitmap.EraseMask((ABitmap.Width - FTextBitmap.Width) div 2,
-    Round(ABitmap.Height * 0.75),
-    FTextBitmap);
+  ABitmap.BlendImage((ABitmap.Width - FTextBitmap.Width) div 2,
+    Round(ABitmap.Height * 0.78),
+    FTextBitmap,
+    boLinearBlend);
 end;
 
 end.

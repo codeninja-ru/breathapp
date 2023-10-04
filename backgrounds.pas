@@ -24,12 +24,13 @@ type
 
   TGradientBackround = class
   private
+    FAppSettings: RAppSettings;
     currentBitmap: TBGRABitmap;
     prevStateType: StateType;
   public
     procedure Draw(Bitmap: TBGRABitmap; State: TState);
 
-    constructor Create(AWidth, AHeight: integer);
+    constructor Create(AWidth, AHeight: integer; AppSettings: RAppSettings);
     destructor Destory;
   end;
 
@@ -47,8 +48,8 @@ begin
       State.MainGradienColor1,
       State.MainGradienColor2,
       gtLinear,
-      PointF(0, 0),
-      PointF(currentBitmap.Width - 1, currentBitmap.Height - 1),
+      PointF(0, FAppSettings.clockMarginTop),
+      PointF(0, currentBitmap.Height - FAppSettings.clockMarginTop),
       dmLinearBlend);
   end;
 
@@ -57,7 +58,8 @@ begin
   prevStateType := State.StateType;
 end;
 
-constructor TGradientBackround.Create(AWidth, AHeight: integer);
+constructor TGradientBackround.Create(AWidth, AHeight: integer;
+  AppSettings: RAppSettings);
 begin
   prevStateType := stHoldOut;
   currentBitmap := TBGRABitmap.Create(AWidth, AHeight);
