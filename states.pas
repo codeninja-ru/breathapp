@@ -18,7 +18,7 @@ type
     FMaxMSec: integer;
     FCurrentMSec: integer;
     FMSecFromStart: integer;
-    FAppSettings: RAppSettings;
+    FAppSettings: TAppSettings;
     function GetMainColor: TColor; virtual; abstract;
     function GetBgColor: TColor; virtual;
     function GetBgSecondColor: TColor; virtual;
@@ -41,7 +41,7 @@ type
     function GetStateText: string; virtual; abstract;
 
     constructor Create(AState: StateType; AMaxMSec: integer;
-      AAppSettings: RAppSettings);
+      AAppSettings: TAppSettings);
     destructor Destroy;
   end;
 
@@ -91,7 +91,7 @@ type
 
   TStateManager = class
   private
-    FAppSettings: RAppSettings;
+    FAppSettings: TAppSettings;
     FCurrentState: StateType;
     FCurrentStateObj: TState;
     FCurrentMSec: integer;
@@ -102,7 +102,7 @@ type
     function NextState(ABreathState: StateType): StateType;
     function GetStateObject(AState: StateType): TState;
   public
-    constructor Create(AAppSettings: RAppSettings);
+    constructor Create(AAppSettings: TAppSettings);
     destructor Destory;
 
     property State: TState read GetState;
@@ -121,33 +121,33 @@ end;
 
 function TAbstractHoldState.GetMainGradienColor2: TColor;
 begin
-  Result := FAppSettings.holdColorSecond;
+  Result := FAppSettings.HoldColorSecond;
 end;
 
 { THoldOutState }
 
 function THoldOutState.GetMainColor: TColor;
 begin
-  Result := FAppSettings.breathInColor; //todo
+  Result := FAppSettings.BreathInColor; //todo
 end;
 
 { THoldInState }
 
 function THoldInState.GetMainColor: TColor;
 begin
-  Result := FAppSettings.breathInColor; //todo
+  Result := FAppSettings.BreathInColor; //todo
 end;
 
 { TBreathOutState }
 
 function TBreathOutState.GetMainColor: TColor;
 begin
-  Result := FAppSettings.breathOutColor;
+  Result := FAppSettings.BreathOutColor;
 end;
 
 function TBreathOutState.GetMainGradienColor2: TColor;
 begin
-  Result := FAppSettings.breathOutColorSecond;
+  Result := FAppSettings.BreathOutColorSecond;
 end;
 
 function TBreathOutState.GetStateText: string;
@@ -159,12 +159,12 @@ end;
 
 function TBreathInState.GetMainColor: TColor;
 begin
-  Result := FAppSettings.breathInColor;
+  Result := FAppSettings.BreathInColor;
 end;
 
 function TBreathInState.GetMainGradienColor2: TColor;
 begin
-  Result := FAppSettings.breathInColorSecond;
+  Result := FAppSettings.BreathInColorSecond;
 end;
 
 function TBreathInState.GetStateText: string;
@@ -223,7 +223,7 @@ begin
   end;
 end;
 
-constructor TStateManager.Create(AAppSettings: RAppSettings);
+constructor TStateManager.Create(AAppSettings: TAppSettings);
 begin
   inherited Create;
 
@@ -277,12 +277,12 @@ end;
 
 function TState.GetBgColor: TColor;
 begin
-  Result := FAppSettings.bg;
+  Result := FAppSettings.Bg;
 end;
 
 function TState.GetBgSecondColor: TColor;
 begin
-  Result := FAppSettings.clockBg;
+  Result := FAppSettings.ClockBg;
 end;
 
 function TState.GetMainGradienColor1: TColor;
@@ -312,7 +312,7 @@ begin
 end;
 
 constructor TState.Create(AState: StateType; AMaxMSec: integer;
-  AAppSettings: RAppSettings);
+  AAppSettings: TAppSettings);
 begin
   inherited Create;
 

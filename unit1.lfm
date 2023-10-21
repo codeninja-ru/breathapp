@@ -576,6 +576,13 @@ object MainForm: TMainForm
       Checked = True
       OnClick = MenuItemSoundClick
     end
+    object NightModeItem: TMenuItem
+      Caption = 'Night mode'
+      OnClick = NightModeItemClick
+    end
+    object SeparatorExit: TMenuItem
+      Caption = '-'
+    end
     object MenuItemExit: TMenuItem
       Caption = 'Exit'
       OnClick = MenuItemExitClick

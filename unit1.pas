@@ -15,7 +15,9 @@ type
   { TMainForm }
 
   TMainForm = class(TForm)
+    NightModeItem: TMenuItem;
     MenuItemExit: TMenuItem;
+    SeparatorExit: TMenuItem;
     StartButton: TBCButton;
     BgImage: TBGRAGraphicControl;
     MenuItemShow: TMenuItem;
@@ -24,6 +26,7 @@ type
     TrayMenu: TPopupMenu;
     TrayIcon: TTrayIcon;
     procedure BgImagePaint(Sender: TObject);
+    procedure NightModeItemClick(Sender: TObject);
     procedure MenuItemExitClick(Sender: TObject);
     procedure MenuItemShowClick(Sender: TObject);
     procedure MenuItemSoundClick(Sender: TObject);
@@ -39,7 +42,7 @@ type
     SoundTimer: TSoundTimer;
     FSolidBackground: TSolidBackground;
     FGradientBackground: TGradientBackround;
-    AppSettings: RAppSettings;
+    AppSettings: TAppSettings;
     FBitmap: TBGRABitmap;
     StateManager: TStateManager;
     TrayIconTimer: TTrayIconTimer;
@@ -59,28 +62,12 @@ implementation
 
 { TMainForm }
 
-function webHSL(hue, saturation, lightness: word) : TColor;
-begin
-  Result := HSLA(hue * 65535 div 360, saturation * 65535 div 100, lightness * 65535 div 100);
-end;
-
 procedure TMainForm.FormCreate(Sender: TObject);
 begin
-  with AppSettings do
-  begin
-    bg := TColor($eeeeee);
-    breathInColor := webHSL(217, 62, 62);
-    breathInColorSecond := webHSL(267, 62, 62);
-    breathOutColor := webHSL(0, 62, 62);
-    breathOutColorSecond := webHSL(267, 62, 62);
-    holdColor := webHSL(146, 62, 62);
-    holdColorSecond := webHSL(146, 62, 62);
-    clockBg := TColor($e8e8e8);
-    clockStrockSize := 25;
-    clockMarginLeft := 10;
-    clockMarginTop := 60;
-    mainFontName := 'PT Sans Caption';
-  end;
+  if NightModeItem.Checked then
+    AppSettings := TAppSettings.CreateNight
+  else
+    AppSettings := TAppSettings.CreateDay;
 
   MSec := 0;
   TrayIcon.Show();
@@ -89,7 +76,7 @@ begin
   FGradientBackground := TGradientBackround.Create(BgImage.Width, BgImage.Height, AppSettings);
   FBitmap := TBGRABitmap.Create;
   FBitmap.SetSize(BgImage.Width, BgImage.Height);
-  ClockEllipse := TClockEllipse.Create(Self.Width - AppSettings.clockMarginLeft *
+  ClockEllipse := TClockEllipse.Create(Self.Width - AppSettings.ClockMarginLeft *
     2, AppSettings);
 
   StateManager := TStateManager.Create(AppSettings);
@@ -100,7 +87,7 @@ begin
   StartButton.Rounding.RoundX := 20;
   StartButton.Rounding.RoundY := 20;
   SetButtonStateStyle(StartButton, StateManager.State);
-  StartButton.Font.Name := AppSettings.mainFontName;
+  StartButton.Font.Name := AppSettings.MainFontName;
   StartButton.Font.Size := 14;
 
   TrayIconTimer := TTrayIconTimer.Create(AppSettings);
@@ -122,6 +109,7 @@ begin
   SoundTimer.Free;
   FSolidBackground.Free;
   FGradientBackground.Free;
+  AppSettings.Free;
 end;
 
 procedure TMainForm.ImgTimerTimer(Sender: TObject);
@@ -192,6 +180,15 @@ begin
   ClockTimer.Draw(FBitmap, state);
 
   BgImage.Bitmap.BlendImage(0, 0, FBitmap, boLinearBlend);
+end;
+
+procedure TMainForm.NightModeItemClick(Sender: TObject);
+begin
+  NightModeItem.Checked := not NightModeItem.Checked;
+  if NightModeItem.Checked then
+    AppSettings.ActivateNightMode
+  else
+    AppSettings.ActivateDayMode;
 end;
 
 procedure TMainForm.MenuItemExitClick(Sender: TObject);

@@ -51,11 +51,6 @@
         <UnitName Value="Unit1"/>
       </Unit>
       <Unit>
-        <Filename Value="breathclock.pas"/>
-        <IsPartOfProject Value="True"/>
-        <UnitName Value="BreathClock"/>
-      </Unit>
-      <Unit>
         <Filename Value="clockellipse.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ClockEllipse"/>
@@ -94,6 +89,14 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="Backgrounds"/>
       </Unit>
+      <Unit>
+        <Filename Value="miniaudio/miniaudio.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="colorutils.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -103,7 +106,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="vendor/uos"/>
+      <OtherUnitFiles Value="vendor/uos;miniaudio"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Linking>

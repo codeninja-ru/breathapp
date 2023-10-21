@@ -13,7 +13,7 @@ type
 
   TClockTimer = class
     FFormWidth, FFormHeight: integer;
-    FAppSettings: RAppSettings;
+    FAppSettings: TAppSettings;
     FTimeString: string;
     textBox: TAffineBox;
     FTextBitmap: TBGRABitmap;
@@ -22,7 +22,7 @@ type
 
   public
     constructor Create(AFormWidth: integer; AFormHeight: integer;
-      AAppSettings: RAppSettings);
+      AAppSettings: TAppSettings);
     destructor Destroy; override;
 
     procedure Draw(ABitmap: TBGRABitmap; State: TState);
@@ -43,11 +43,11 @@ function TClockTimer.formatTime(minutes: integer; seconds: integer): string;
   end;
 
 begin
-  Result := pad2(IntToStr(minutes)) + ':' + pad2(IntToStr(seconds));
+  Result := pad2(IntToStr(minutes)) + ' : ' + pad2(IntToStr(seconds));
 end;
 
 constructor TClockTimer.Create(AFormWidth: integer; AFormHeight: integer;
-  AAppSettings: RAppSettings);
+  AAppSettings: TAppSettings);
 begin
   FFormWidth := AFormWidth;
   FFormHeight := AFormHeight;
@@ -55,7 +55,7 @@ begin
 
   FTextBitmap := TBGRABitmap.Create(100, 100);
   FTextBitmap.FontHeight := 24;
-  FTextBitmap.FontName := FAppSettings.mainFontName;
+  FTextBitmap.FontName := FAppSettings.SecondFontName;
   FTextBitmap.FontAntialias := False;
   textBox := FTextBitmap.TextAffineBox(formatTime(999, 999));
   FTextBitmap.SetSize(Round(textBox.Width) + 2, Round(textBox.Height) + 2);
@@ -71,7 +71,6 @@ var
   minutes, seconds: integer;
   time: string;
 begin
-  //todo should time be calculate in StateManager?
   seconds := Trunc(State.MSecFromStart / 1000) mod 60;
   minutes := Trunc(State.MSecFromStart / 60000);
 
@@ -81,7 +80,7 @@ begin
   begin
     if FTimeString <> '' then
     begin
-      FTextBitmap.Fill(State.BgColor);
+      FTextBitmap.Fill(clNone);
     end;
     textBox := FTextBitmap.TextAffineBox(time);
 

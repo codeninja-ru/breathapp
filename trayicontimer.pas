@@ -17,13 +17,13 @@ type
 
   TTrayIconTimer = class
   private
-    FAppSettings: RAppSettings;
+    FAppSettings: TAppSettings;
     FBitmap: TBGRABitmap;
     prevSeconds: integer;
     prevStateType: StateType;
     xr, yr: integer;
   public
-    constructor Create(AAppSettings: RAppSettings);
+    constructor Create(AAppSettings: TAppSettings);
     destructor Destory;
 
     procedure Draw(Icon: TIcon; State: TState);
@@ -33,7 +33,7 @@ implementation
 
 { TTrayIconTimer }
 
-constructor TTrayIconTimer.Create(AAppSettings: RAppSettings);
+constructor TTrayIconTimer.Create(AAppSettings: TAppSettings);
 begin
   FAppSettings := AAppSettings;
   prevSeconds := 0;

@@ -15,7 +15,7 @@ type
   private
     FTextBitmap: TBGRABitmap;
     rect: TRect;
-    AppSettings: RAppSettings;
+    AppSettings: TAppSettings;
     textBox, stateTextBox: TAffineBox;
     x2, y2, maxSec: integer;
     prevStateText, prevSec: string;
@@ -23,7 +23,7 @@ type
     procedure DrawStateText(State: TState);
     procedure DrawSecondsText(State: TState);
   public
-    constructor Create(ARect: TRect; AAppColors: RAppSettings; AMaxSec: integer);
+    constructor Create(ARect: TRect; AAppColors: TAppSettings; AMaxSec: integer);
     destructor Destroy; override;
 
     procedure DrawText(ABitmap: TBGRABitmap; State: TState);
@@ -31,7 +31,7 @@ type
 
 implementation
 
-constructor TClockText.Create(ARect: TRect; AAppColors: RAppSettings; AMaxSec: integer);
+constructor TClockText.Create(ARect: TRect; AAppColors: TAppSettings; AMaxSec: integer);
 begin
   inherited Create;
   rect := ARect;
@@ -66,8 +66,8 @@ begin
 
   if (stateText <> prevStateText) or (prevStateType <> State.StateType) then
   begin
-    FTextBitmap.FontHeight := 18;
-    FTextBitmap.FontName := AppSettings.mainFontName;
+    FTextBitmap.FontHeight := 20;
+    FTextBitmap.FontName := AppSettings.SecondFontName;
 
     if prevStateText <> '' then // not the first run
     begin
@@ -98,7 +98,7 @@ begin
   if (strSec <> prevSec) or (prevStateType <> State.StateType) then
   begin
     FTextBitmap.FontHeight := 124;
-    FTextBitmap.FontName := AppSettings.mainFontName;
+    FTextBitmap.FontName := AppSettings.MainFontName;
     strSec := State.SecondsString;
     if prevSec <> '' then // not the first run
     begin

@@ -5,21 +5,105 @@ unit AppSettings;
 interface
 
 uses
-  Classes, SysUtils, Graphics;
+  Classes, SysUtils, Graphics, ColorUtils;
 
 type
-  RAppSettings = record
-    bg: TColor;
-    breathInColor, breathInColorSecond: TColor;
-    breathOutColor, breathOutColorSecond: TColor;
-    holdColor, holdColorSecond: TColor;
-    clockBg: TColor;
-    clockStrockSize: Integer;
-    clockMarginLeft: Integer;
-    clockMarginTop: Integer;
-    mainFontName: string;
+
+  { TAppSettings }
+
+  TAppSettings = class
+  private
+    FBg: TColor;
+    FBreathInColor, FBreathInColorSecond: TColor;
+    FBreathOutColor, FBreathOutColorSecond: TColor;
+    FHoldColor, FHoldColorSecond: TColor;
+    FClockBg: TColor;
+    FClockStrockSize: integer;
+    FClockMarginLeft: integer;
+    FClockMarginTop: integer;
+    FMainFontName: string;
+    FSecondFontName: string;
+  public
+    property Bg: TColor read FBg;
+    property BreathInColor: TColor read FBreathInColor;
+    property BreathInColorSecond: TColor read FBreathInColorSecond;
+    property BreathOutColor: TColor read FBreathOutColor;
+    property BreathOutColorSecond: TColor read FBreathOutColorSecond;
+    property HoldColor: TColor read FHoldColor;
+    property HoldColorSecond: TColor read FHoldColorSecond;
+    property ClockBg: TColor read FClockBg;
+    property ClockStrockSize: integer read FClockStrockSize;
+    property ClockMarginLeft: integer read FClockMarginLeft;
+    property ClockMarginTop: integer read FClockMarginTop;
+    property MainFontName: string read FMainFontName;
+    property SecondFontName: string read FSecondFontName;
+
+    constructor Create;
+    constructor CreateDay;
+    constructor CreateNight;
+    procedure ActivateDayMode;
+    procedure ActivateNightMode;
   end;
 
 implementation
+
+{ TAppSettings }
+
+constructor TAppSettings.Create;
+begin
+  Self.ActivateDayMode;
+end;
+
+constructor TAppSettings.CreateDay;
+begin
+  Self.ActivateDayMode;
+end;
+
+constructor TAppSettings.CreateNight;
+begin
+  Self.ActivateNightMode;
+end;
+
+procedure TAppSettings.ActivateDayMode;
+begin
+  with Self do
+  begin
+    FBg := TColor($eeeeee);
+    FBreathInColor := webHSL(217, 62, 62);
+    FBreathInColorSecond := webHSL(267, 62, 62);
+    FBreathOutColor := webHSL(0, 62, 62);
+    FBreathOutColorSecond := webHSL(267, 62, 62);
+    FHoldColor := webHSL(146, 62, 62);
+    FHoldColorSecond := webHSL(146, 62, 62);
+    FClockBg := TColor($e8e8e8);
+    FClockStrockSize := 25;
+    FClockMarginLeft := 10;
+    FClockMarginTop := 60;
+    FMainFontName := 'PT Sans Caption';
+    FSecondFontName := 'PT Sans';
+  end;
+end;
+
+procedure TAppSettings.ActivateNightMode;
+begin
+  with Self do
+  begin
+    FBg := TColor($111111);
+    FBreathInColor := webHSL(217, 62, 62);
+    FBreathInColorSecond := webHSL(267, 62, 62);
+    FBreathOutColor := webHSL(0, 62, 62);
+    FBreathOutColorSecond := webHSL(267, 62, 62);
+    FHoldColor := webHSL(146, 62, 62);
+    FHoldColorSecond := webHSL(146, 62, 62);
+    FClockBg := TColor($171717);
+    FClockStrockSize := 25;
+    FClockMarginLeft := 10;
+    FClockMarginTop := 60;
+    FMainFontName := 'PT Sans Caption';
+    FSecondFontName := 'PT Sans';
+  end;
+end;
+
+initialization
 
 end.
