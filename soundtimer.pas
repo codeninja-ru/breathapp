@@ -5,17 +5,37 @@ unit SoundTimer;
 interface
 
 uses
-  Classes, SysUtils, uos_flat, states{$ifdef unix}, cthreads{$endif};
+  {$ifdef unix}cthreads, {$endif}Classes, SysUtils, states, miniaudio;
+
+const
+  DEVICE_CHANNELS = 2;
+  DEVICE_SAMPLE_RATE = 48000;
+  FREQ = 440;
+
+  ATTACK = 37;
+  DECAY = 12;
+  SUSTAIN = 50;
+  RELEASE = 37;
+  AMPLITUDE = 0.5;
+  NOTE_TIME = ATTACK + DECAY + SUSTAIN + RELEASE;
 
 type
+  ADSREnvelope = record
+    cursor: single;
+    time: single;
+    freq: integer;
+    pUserData: pointer;
+  end;
+  PADSREnvelope = ^ADSREnvelope;
 
   { TSoundTimer }
 
   TSoundTimer = class
   private
-    res: integer;
-    ordir, opath, PA_FileName: string;
-    PlayerIndex1, inindex1: integer;
+    deviceConfig: ma_device_config;
+    device: ma_device;
+    envelope: ADSREnvelope;
+
     prevSeconds: integer;
     procedure PlaySound(freq: integer);
   public
@@ -27,77 +47,99 @@ type
 
 implementation
 
-function inThread(playerIndex: pointer): ptrint;
+procedure dataCallback(pDevice: Pma_device;
+  pOutput: pointer;
+  pInput: pointer;
+  frameCount: ma_uint32); cdecl;
+var pEnvelope: PADSREnvelope;
+  i, iChannel, idx, channelsCount: integer;
+  value, volume, cursor, time, framesInOsc: single;
+  data: Psingle;
 begin
-  uos_Play(PInteger(playerIndex)^);
-  sleep(150);
-  uos_stop(PInteger(playerIndex)^);
+  data := pOutput;
+  pEnvelope := pDevice^.pUserData;
+  channelsCount := DEVICE_CHANNELS;
+  time := pEnvelope^.time;
+  cursor := pEnvelope^.cursor;
+  framesInOsc := pEnvelope^.freq / DEVICE_SAMPLE_RATE;
+  for i := 0 to frameCount - 1 do
+  begin
+
+    if time <= ATTACK then
+    begin
+      volume := (1/ATTACK) * time;
+    end;
+
+    if (time > ATTACK) and (time <= ATTACK + DECAY) then
+    begin
+      volume := (-0.5/DECAY) * time + 1 + (0.5/DECAY) * ATTACK;
+    end;
+
+    if (time > ATTACK + DECAY) and (time <= ATTACK + DECAY + SUSTAIN) then
+    begin
+      volume := 0.5;
+    end;
+
+    if (time >= ATTACK + DECAY + SUSTAIN) and (time <= ATTACK + DECAY + SUSTAIN + RELEASE) then
+    begin
+      volume := (-0.5/RELEASE) * time + 0.5 + (0.5 / RELEASE) * (ATTACK + DECAY + SUSTAIN);
+    end;
+
+    if time > ATTACK + DECAY + SUSTAIN + RELEASE then
+    begin
+      volume := 0;
+    end;
+
+    for iChannel := 0 to channelsCount - 1 do
+    begin
+      idx := i * channelsCount + iChannel;
+
+      value := sin(2 * Pi * cursor) * AMPLITUDE;
+
+      data[idx] := value * volume;
+    end;
+
+    cursor := cursor + framesInOsc;
+    pEnvelope^.cursor := cursor;
+    time := time + 1000 / DEVICE_SAMPLE_RATE;
+    pEnvelope^.time := time;
+
+  end;
+end;
+
+function sleepAndStop(pDevice: pointer): ptrint;
+begin
+  sleep(NOTE_TIME + 10);
+  ma_device_stop(pDevice);
+
   Result := 0;
 end;
 
+
 constructor TSoundTimer.Create;
 begin
-  ordir := IncludeTrailingBackslash(ExtractFilePath(ParamStr(0)));
+  envelope.cursor := 0;
+  envelope.freq := FREQ;
+  envelope.time := 0;
 
- {$IFDEF Windows}
-     {$if defined(cpu64)}
-    PA_FileName := ordir + 'vendor_libs\Windows\64bit\LibPortaudio-64.dll';
-     {$else}
-    PA_FileName := ordir + 'vendor_libs\Windows\32bit\LibPortaudio-32.dll';
-     {$endif}
- {$ENDIF}
+  deviceConfig := ma_device_config_init(ma_device_type_playback);
+  deviceConfig.playback.format   := ma_format_f32;
+  deviceConfig.playback.channels := DEVICE_CHANNELS;
+  deviceConfig.sampleRate        := DEVICE_SAMPLE_RATE;
+  deviceConfig.dataCallback      := @dataCallback;
+  deviceConfig.pUserData         := @envelope;
 
-  {$if defined(CPUAMD64) and  defined(linux) }
-    PA_FileName := ordir + 'vendor_libs/Linux/64bit/LibPortaudio-64.so';
-  {$ENDIF}
-
-  {$if defined(cpu86) and defined(linux)}
-    PA_FileName := ordir + 'vendor_libs/Linux/32bit/LibPortaudio-32.so';
-  {$ENDIF}
-
-  {$if defined(linux) and defined(cpuarm)}
-    PA_FileName := ordir + 'vendor_libs/Linux/arm_raspberrypi/libportaudio-arm.so';
-  {$ENDIF}
-
-  {$if defined(linux) and defined(cpuaarch64)}
-  PA_FileName := ordir + 'vendor_libs/Linux/aarch64_raspberrypi/libportaudio_aarch64.so';
-  {$ENDIF}
-
- {$IFDEF freebsd}
-    {$if defined(cpu64)}
-    PA_FileName := ordir + 'vendor_libs/FreeBSD/64bit/libportaudio-64.so';
-    {$else}
-    PA_FileName := ordir + 'vendor_libs/FreeBSD/32bit/libportaudio-32.so';
-    {$endif}
-  {$ENDIF}
-
- {$IFDEF Darwin}
-  {$IFDEF CPU32}
-    opath := ordir;
-    opath := copy(opath, 1, Pos('/UOS', opath) - 1);
-    PA_FileName := opath + '/vendor_libs/Mac/32bit/LibPortaudio-32.dylib';
-    {$ENDIF}
-
-   {$IFDEF CPU64}
-    opath := ordir;
-    opath := copy(opath, 1, Pos('/UOS', opath) - 1);
-    PA_FileName := opath + '/vendor_libs/Mac/64bit/LibPortaudio-64.dylib';
-    //PA_FileName := opath + 'LibPortaudio-64.dylib';
-    PA_FileName := 'system';
-    {$ENDIF}
- {$ENDIF}
-
-  // Load the libraries (here only portaudio is needed)
-  // function uos_loadlib(PortAudioFileName, SndFileFileName, Mpg123FileName, Mp4ffFileName, FaadFileName, opusfilefilename:: PChar) : LongInt;
-
-  res := uos_LoadLib(PChar(PA_FileName), nil, nil, nil, nil, nil);
+  if ma_device_init(nil, @deviceConfig, @device) <> MA_SUCCESS then
+  begin
+    raise Exception.Create('Failed to open playback device.');
+  end;
 
   inherited Create;
 end;
 
 destructor TSoundTimer.Destroy;
 begin
-  uos_free;
+  ma_device_uninit(@device);
 end;
 
 procedure TSoundTimer.Play(State: TState);
@@ -122,65 +164,14 @@ end;
 
 procedure TSoundTimer.PlaySound(freq: integer);
 begin
-  if res = 0 then
+  envelope.freq := freq;
+  if ma_device_start(@device) <> MA_SUCCESS then
   begin
-
-    //// Create the player.
-    //// PlayerIndex : from 0 to what your computer can do !
-    //// If PlayerIndex exists already, it will be overwriten...
-
-    PlayerIndex1 := 0;
-    inindex1 := -1;
-
-    if uos_CreatePlayer(PlayerIndex1) then
-      inindex1 :=
-        uos_AddFromSynth(PlayerIndex1, -1, -1, -1, freq, freq, -1,
-        -1, -1, -1, -1, 0, -1, -1, -1);
-
-{ function uos_AddFromSynth(PlayerIndex: cint32; Channels: integer; WaveTypeL, WaveTypeR: integer;
-                           FrequencyL, FrequencyR: float; VolumeL, VolumeR: float;
-                           duration : cint32; NbHarmonics: cint32; EvenHarmonics: cint32;
-                           OutputIndex: cint32;  SampleFormat: cint32 ;
-                           SampleRate: cint32 ; FramesCount : cint32): cint32;
-
-// Add a input from Synthesizer with custom parameters
-// Channels: default: -1 (2) (1 = mono, 2 = stereo)
-// WaveTypeL: default: -1 (0) (0 = sine-wave 1 = square-wave, used for mono and stereo)
-// WaveTypeR: default: -1 (0) (0 = sine-wave 1 = square-wave, used for stereo, ignored for mono)
-// FrequencyL: default: -1 (440 htz) (Left frequency, used for mono)
-// FrequencyR: default: -1 (440 htz) (Right frequency, used for stereo, ignored for mono)
-// VolumeL: default: -1 (= 1) (from 0 to 1) => volume left
-// VolumeR: default: -1 (= 1) (from 0 to 1) => volume rigth (ignored for mono)
-// Duration: default:  -1 (= 1000)  => duration in msec (0 = endless)
-// NbHarmonics: default:  -1 (= 0) Number of Harmonics
-// EvenHarmonics: default: -1 (= 0) (0 = all harmonics, 1 = Only even harmonics)
-// OutputIndex: Output index of used output
-            // -1: all output, -2: no output, other cint32 refer to
-            // a existing OutputIndex
-            // (if multi-output then OutName = name of each output separeted by ';')
-// SampleFormat: default : -1 (0: Float32) (0: Float32, 1:Int32, 2:Int16)
-// SampleRate: delault : -1 (44100)
-// FramesCount: -1 default : 1024
-//  result:  Input Index in array  -1 = error
-}
-
-     {$if defined(cpuarm) or defined(cpuaarch64)}  // need a lower latency
-      if uos_AddIntoDevOut(PlayerIndex1,-1,0.3,-1,-1, 0,-1,-1) > - 1 then
-       {$else}
-    if uos_AddIntoDevOut(PlayerIndex1, -1, -1, -1, -1, 0, -1, -1) > -1 then
-       {$endif}
-      //// add a Output into device with custom parameters
-      //////////// PlayerIndex : Index of a existing Player
-      //  result : -1 nothing created, otherwise Output Index in array
-    begin
-      /////// everything is ready, here we are, lets play it...
-
-      BeginThread(@inThread, @PlayerIndex1);
-
-    end;
-
+    ma_device_uninit(@device);
+    raise Exception.Create('Failed to start playback device.');
   end;
 
+  BeginThread(@sleepAndStop, @device);
 end;
 
 end.

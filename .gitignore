@@ -4,3 +4,4 @@ breath
 lib
 breath.app/*
 log
+*.o
