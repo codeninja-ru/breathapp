@@ -18,8 +18,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit1"/>
-        <TopLine Value="63"/>
-        <CursorPos X="30" Y="67"/>
+        <TopLine Value="130"/>
+        <CursorPos X="8" Y="66"/>
         <UsageCount Value="205"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -88,8 +88,8 @@
         <UnitName Value="SoundTimer"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="155"/>
-        <CursorPos Y="168"/>
+        <TopLine Value="140"/>
+        <CursorPos X="44" Y="152"/>
         <UsageCount Value="203"/>
         <Loaded Value="True"/>
       </Unit>
@@ -100,7 +100,7 @@
         <EditorIndex Value="7"/>
         <TopLine Value="67"/>
         <CursorPos X="34" Y="43"/>
-        <UsageCount Value="95"/>
+        <UsageCount Value="116"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -108,7 +108,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="45" Y="11"/>
-        <UsageCount Value="75"/>
+        <UsageCount Value="96"/>
       </Unit>
       <Unit>
         <Filename Value="colorutils.pas"/>
@@ -117,49 +117,49 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="22"/>
+        <UsageCount Value="43"/>
       </Unit>
       <Unit>
         <Filename Value="breathclock.pas"/>
         <UnitName Value="BreathClock"/>
         <EditorIndex Value="-1"/>
         <CursorPos Y="11"/>
-        <UsageCount Value="218"/>
+        <UsageCount Value="216"/>
       </Unit>
       <Unit>
         <Filename Value="vendor/uos/uos_flat.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2302"/>
         <CursorPos Y="2313"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="vendor/uos/uos.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="11871"/>
         <CursorPos Y="11881"/>
-        <UsageCount Value="4"/>
+        <UsageCount Value="2"/>
       </Unit>
       <Unit>
         <Filename Value="vendor/uos/uos_portaudio.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="356"/>
         <CursorPos Y="370"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/share/fpcsrc/rtl/inc/threadh.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="130"/>
         <CursorPos X="10" Y="141"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="../../.lazarus/onlinepackagemanager/packages/BGRABitmap/bgrabitmap/bgrapixel.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="195"/>
         <CursorPos X="13" Y="206"/>
-        <UsageCount Value="3"/>
+        <UsageCount Value="1"/>
       </Unit>
       <Unit>
         <Filename Value="../../.lazarus/onlinepackagemanager/packages/BGRABitmap/bgrabitmap/bgradefaultbitmap.pas"/>
@@ -167,7 +167,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="3223"/>
         <CursorPos X="47" Y="3240"/>
-        <UsageCount Value="3"/>
+        <UsageCount Value="1"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/graphics.pp"/>
@@ -175,27 +175,27 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="1977"/>
         <CursorPos X="10" Y="1903"/>
-        <UsageCount Value="3"/>
+        <UsageCount Value="1"/>
       </Unit>
       <Unit>
         <Filename Value="../../.lazarus/onlinepackagemanager/packages/BGRABitmap/bgrabitmap/bgracolorint.pas"/>
         <UnitName Value="BGRAColorInt"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="298"/>
-        <UsageCount Value="3"/>
+        <UsageCount Value="1"/>
       </Unit>
       <Unit>
         <Filename Value="../../.lazarus/onlinepackagemanager/packages/BGRABitmap/bgrabitmap/bgrabitmaptypes.pas"/>
         <UnitName Value="BGRABitmapTypes"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
         <Filename Value="../../.lazarus/onlinepackagemanager/packages/BGRABitmap/bgrabitmap/basiccolorspace.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="303"/>
         <CursorPos X="15" Y="215"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="4"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/graphutil.pp"/>
@@ -203,60 +203,24 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="134"/>
         <CursorPos Y="152"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="3"/>
       </Unit>
       <Unit>
         <Filename Value="miniaudio/colorutils.pas"/>
         <UnitName Value="ColorUtils"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="61" Y="10"/>
-        <UsageCount Value="24"/>
+        <UsageCount Value="22"/>
       </Unit>
       <Unit>
         <Filename Value="vendor/miniaudio/miniaudio.pp"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="3955"/>
         <CursorPos X="24" Y="3966"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="8"/>
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="soundtimer.pas"/>
-        <Caret Line="167" Column="23" TopLine="151"/>
-      </Position>
-      <Position>
-        <Filename Value="soundtimer.pas"/>
-        <Caret Line="40" Column="25" TopLine="29"/>
-      </Position>
-      <Position>
-        <Filename Value="soundtimer.pas"/>
-        <Caret Line="109" Column="10" TopLine="98"/>
-      </Position>
-      <Position>
-        <Filename Value="soundtimer.pas"/>
-        <Caret Line="172" Column="11" TopLine="153"/>
-      </Position>
-      <Position>
-        <Filename Value="soundtimer.pas"/>
-        <Caret Line="7" Column="23"/>
-      </Position>
-      <Position>
-        <Filename Value="soundtimer.pas"/>
-        <Caret Line="13" Column="7"/>
-      </Position>
-      <Position>
-        <Filename Value="soundtimer.pas"/>
-        <Caret Line="40" Column="29" TopLine="21"/>
-      </Position>
-      <Position>
-        <Filename Value="soundtimer.pas"/>
-        <Caret Line="121" Column="31" TopLine="102"/>
-      </Position>
-      <Position>
-        <Filename Value="soundtimer.pas"/>
-        <Caret Line="164" Column="37" TopLine="145"/>
-      </Position>
       <Position>
         <Filename Value="soundtimer.pas"/>
         <Caret Line="13" Column="7" TopLine="2"/>
@@ -264,14 +228,6 @@
       <Position>
         <Filename Value="soundtimer.pas"/>
         <Caret Line="40" Column="29" TopLine="21"/>
-      </Position>
-      <Position>
-        <Filename Value="soundtimer.pas"/>
-        <Caret Line="26" Column="18" TopLine="67"/>
-      </Position>
-      <Position>
-        <Filename Value="soundtimer.pas"/>
-        <Caret Line="64" Column="14" TopLine="90"/>
       </Position>
       <Position>
         <Filename Value="soundtimer.pas"/>
@@ -340,6 +296,50 @@
       <Position>
         <Filename Value="soundtimer.pas"/>
         <Caret Line="174" TopLine="155"/>
+      </Position>
+      <Position>
+        <Filename Value="soundtimer.pas"/>
+        <Caret Line="112" Column="42" TopLine="104"/>
+      </Position>
+      <Position>
+        <Filename Value="soundtimer.pas"/>
+        <Caret Line="42" Column="53" TopLine="33"/>
+      </Position>
+      <Position>
+        <Filename Value="soundtimer.pas"/>
+        <Caret Line="171" Column="14" TopLine="160"/>
+      </Position>
+      <Position>
+        <Filename Value="soundtimer.pas"/>
+        <Caret Line="46" Column="22" TopLine="36"/>
+      </Position>
+      <Position>
+        <Filename Value="soundtimer.pas"/>
+        <Caret Line="40" Column="25" TopLine="26"/>
+      </Position>
+      <Position>
+        <Filename Value="soundtimer.pas"/>
+        <Caret Line="115" Column="25" TopLine="104"/>
+      </Position>
+      <Position>
+        <Filename Value="soundtimer.pas"/>
+        <Caret Line="42" Column="16" TopLine="30"/>
+      </Position>
+      <Position>
+        <Filename Value="soundtimer.pas"/>
+        <Caret Line="156" Column="47" TopLine="145"/>
+      </Position>
+      <Position>
+        <Filename Value="soundtimer.pas"/>
+        <Caret Line="42" Column="27" TopLine="31"/>
+      </Position>
+      <Position>
+        <Filename Value="soundtimer.pas"/>
+        <Caret Line="197" Column="34" TopLine="180"/>
+      </Position>
+      <Position>
+        <Filename Value="soundtimer.pas"/>
+        <Caret Line="8" Column="76" TopLine="119"/>
       </Position>
     </JumpHistory>
     <RunParams>

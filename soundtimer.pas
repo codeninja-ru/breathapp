@@ -5,7 +5,7 @@ unit SoundTimer;
 interface
 
 uses
-  {$ifdef unix}cthreads, {$endif}Classes, SysUtils, states, miniaudio;
+  {$ifdef unix}cthreads, {$endif}Classes, SysUtils, states, miniaudio, math;
 
 const
   DEVICE_CHANNELS = 2;
@@ -24,7 +24,7 @@ type
     cursor: single;
     time: single;
     freq: integer;
-    pUserData: pointer;
+    isPlaying: boolean;
   end;
   PADSREnvelope = ^ADSREnvelope;
 
@@ -37,12 +37,15 @@ type
     envelope: ADSREnvelope;
 
     prevSeconds: integer;
+    isPlaying : boolean;
     procedure PlaySound(freq: integer);
+    function mtof(m : integer) : integer;
   public
     constructor Create;
     destructor Destroy;
 
     procedure Play(State: TState);
+    procedure StopPlaying();
   end;
 
 implementation
@@ -107,10 +110,10 @@ begin
   end;
 end;
 
-function sleepAndStop(pDevice: pointer): ptrint;
+function sleepAndStop(soundTimer: pointer): ptrint;
 begin
   sleep(NOTE_TIME + 10);
-  ma_device_stop(pDevice);
+  TSoundTimer(soundTimer).StopPlaying;
 
   Result := 0;
 end;
@@ -118,6 +121,8 @@ end;
 
 constructor TSoundTimer.Create;
 begin
+  isPlaying := false;
+
   envelope.cursor := 0;
   envelope.freq := FREQ;
   envelope.time := 0;
@@ -148,9 +153,9 @@ begin
   begin
     case State.StateType of
       stBreathIn:
-        PlaySound(430 + 20 * State.Seconds);
+        PlaySound(mtof(54 + 5 * State.Seconds));
       stBreathOut:
-        PlaySound(100 + 20 * State.Seconds);
+        PlaySound(mtof(30 + 5 * State.Seconds));
       stHoldIn: ;
         //PlaySound(100);
       stHoldOut: ;
@@ -162,16 +167,36 @@ begin
   prevSeconds := State.Seconds;
 end;
 
-procedure TSoundTimer.PlaySound(freq: integer);
+procedure TSoundTimer.StopPlaying;
 begin
-  envelope.freq := freq;
-  if ma_device_start(@device) <> MA_SUCCESS then
+  if isPlaying then
   begin
-    ma_device_uninit(@device);
-    raise Exception.Create('Failed to start playback device.');
+    ma_device_stop(@device);
+    isPlaying := false;
   end;
 
-  BeginThread(@sleepAndStop, @device);
+end;
+
+procedure TSoundTimer.PlaySound(freq: integer);
+begin
+  if not isPlaying then
+  begin
+    envelope.freq := freq;
+    envelope.cursor := 0;
+    envelope.time := 0;
+    if ma_device_start(@device) <> MA_SUCCESS then
+    begin
+      ma_device_uninit(@device);
+      raise Exception.Create('Failed to start playback device.');
+    end;
+
+    BeginThread(@sleepAndStop, Self);
+  end;
+end;
+
+function TSoundTimer.mtof(m: integer): integer;
+begin
+  Result := Round(440 * power(2, (m - 69) / 12));
 end;
 
 end.
