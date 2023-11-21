@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.1 (57501) - http://www.bohemiancoding.com/sketch -->
+    <title>gear</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="settings" fill="#000000">
+            <path d="M16.4914133,11.0243312 C14.3894602,10.8167389 12.3837976,11.952401 11.4804691,13.8616676 C10.5771406,15.7709343 10.9710331,18.0418943 12.4645694,19.5354306 C13.9581057,21.0289669 16.2290657,21.4228594 18.1383324,20.5195309 C20.047599,19.6162024 21.1832611,17.6105398 20.9756688,15.5085867 C20.7375306,13.1376288 18.8623712,11.2624694 16.4914133,11.0243312 Z M28,18 L32,20 L29,27 L24,25 L20,27 L20,32 L12,32 L12,27 L8,25 L3,27 L0,20 L4,18 L4,13 L0,11 L3,5 L8,7 L12,5 L12,0 L20,0 L20,5 L24,7 L29,5 L32,11 L28,13 L28,18 Z" id="gear"></path>
+        </g>
+    </g>
+</svg>

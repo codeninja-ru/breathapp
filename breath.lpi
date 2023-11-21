@@ -25,6 +25,9 @@
     </RunParams>
     <RequiredPackages>
       <Item>
+        <PackageName Value="LazControls"/>
+      </Item>
+      <Item>
         <PackageName Value="BGLControls"/>
       </Item>
       <Item>
@@ -90,12 +93,14 @@
         <UnitName Value="Backgrounds"/>
       </Unit>
       <Unit>
-        <Filename Value="miniaudio/miniaudio.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit>
-      <Unit>
         <Filename Value="colorutils.pas"/>
         <IsPartOfProject Value="True"/>
+        <UnitName Value="ColorUtils"/>
+      </Unit>
+      <Unit>
+        <Filename Value="buttonstate.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="buttonState"/>
       </Unit>
     </Units>
   </ProjectOptions>
