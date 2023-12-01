@@ -25,8 +25,6 @@ type
     FSecondFontName: string;
     FSoundEnabled: boolean;
     FNightModeEnabled: boolean;
-
-    constructor Create;
   public
     property Bg: TColor read FBg;
     property BreathInColor: TColor read FBreathInColor;
@@ -44,8 +42,7 @@ type
     property NightModeEnabled: boolean read FNightModeEnabled write FNightModeEnabled;
     property SoundEnabled: boolean read FSoundEnabled write FSoundEnabled;
 
-    constructor CreateDay;
-    constructor CreateNight;
+    constructor Create;
     procedure ActivateDayMode;
     procedure ActivateNightMode;
   end;
@@ -56,20 +53,12 @@ implementation
 
 constructor TAppSettings.Create;
 begin
-  FNightModeEnabled := False;
+  FNightModeEnabled := IsDarkTheme;
   FSoundEnabled := True;
-end;
-
-constructor TAppSettings.CreateDay;
-begin
-  Self.Create;
-  Self.ActivateDayMode;
-end;
-
-constructor TAppSettings.CreateNight;
-begin
-  Self.Create;
-  Self.ActivateNightMode;
+  if FNightModeEnabled then
+    Self.ActivateNightMode
+  else
+    Self.ActivateDayMode;
 end;
 
 procedure TAppSettings.ActivateDayMode;

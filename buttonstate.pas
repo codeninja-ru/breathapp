@@ -41,6 +41,7 @@ begin
 end;
 
 procedure TButtonState.FillImageListButton;
+
   function addColoredButton(color: TBGRAPixel): integer;
   var
     bitmap, colored: TBGRABitmap;
@@ -90,7 +91,10 @@ procedure TButtonState.Draw(state: TState; button: TSpeedButton);
 begin
   if (state.StateType <> FCurrentState) or (isFirstRun) then
   begin
-    button.ImageIndex := GetDefaultImageIndex(state);
+    if button.Cursor = crDefault then
+      button.ImageIndex := GetDefaultImageIndex(state)
+    else
+      button.ImageIndex := GetFocusImageIndex(state);
     FCurrentState := state.StateType;
   end;
 

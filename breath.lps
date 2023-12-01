@@ -18,9 +18,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit1"/>
-        <IsVisibleTab Value="True"/>
-        <TopLine Value="55"/>
-        <CursorPos X="64" Y="65"/>
+        <TopLine Value="226"/>
+        <CursorPos X="25" Y="233"/>
         <UsageCount Value="205"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -29,7 +28,7 @@
         <Filename Value="clockellipse.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ClockEllipse"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="13"/>
         <CursorPos X="23" Y="50"/>
         <UsageCount Value="207"/>
@@ -39,9 +38,9 @@
         <Filename Value="appsettings.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="AppSettings"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="22"/>
-        <CursorPos X="33" Y="50"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="20"/>
+        <CursorPos X="32" Y="27"/>
         <UsageCount Value="205"/>
         <Loaded Value="True"/>
       </Unit>
@@ -49,7 +48,7 @@
         <Filename Value="clocktext.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ClockText"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="2"/>
         <CursorPos X="48" Y="39"/>
         <UsageCount Value="217"/>
@@ -58,7 +57,7 @@
       <Unit>
         <Filename Value="states.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="192"/>
         <CursorPos Y="204"/>
         <UsageCount Value="235"/>
@@ -68,8 +67,8 @@
         <Filename Value="clocktimer.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ClockTimer"/>
-        <EditorIndex Value="7"/>
-        <TopLine Value="81"/>
+        <EditorIndex Value="8"/>
+        <TopLine Value="6"/>
         <CursorPos X="30" Y="83"/>
         <UsageCount Value="222"/>
         <Loaded Value="True"/>
@@ -87,7 +86,7 @@
         <Filename Value="soundtimer.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="SoundTimer"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="31"/>
         <CursorPos X="12" Y="147"/>
         <UsageCount Value="203"/>
@@ -97,7 +96,7 @@
         <Filename Value="backgrounds.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Backgrounds"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="38"/>
         <CursorPos X="22" Y="48"/>
         <UsageCount Value="214"/>
@@ -107,45 +106,48 @@
         <Filename Value="colorutils.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ColorUtils"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="59" Y="14"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="12"/>
+        <CursorPos X="5" Y="32"/>
         <UsageCount Value="210"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="buttonstate.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="buttonState"/>
-        <EditorIndex Value="1"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="2"/>
         <TopLine Value="81"/>
-        <CursorPos Y="87"/>
-        <UsageCount Value="102"/>
+        <CursorPos X="9" Y="96"/>
+        <UsageCount Value="111"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="events.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="28" Y="2"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="32"/>
       </Unit>
       <Unit>
         <Filename Value="miniaudio/miniaudio.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="45" Y="11"/>
-        <UsageCount Value="144"/>
+        <UsageCount Value="143"/>
       </Unit>
       <Unit>
         <Filename Value="breathclock.pas"/>
         <UnitName Value="BreathClock"/>
         <EditorIndex Value="-1"/>
         <CursorPos Y="11"/>
-        <UsageCount Value="199"/>
+        <UsageCount Value="198"/>
       </Unit>
       <Unit>
         <Filename Value="miniaudio/colorutils.pas"/>
         <UnitName Value="ColorUtils"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="61" Y="10"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="4"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/controls.pp"/>
@@ -153,7 +155,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="2414"/>
         <CursorPos X="3" Y="2425"/>
-        <UsageCount Value="3"/>
+        <UsageCount Value="2"/>
       </Unit>
       <Unit>
         <Filename Value="../../.lazarus/onlinepackagemanager/packages/BGRABitmap/bgrabitmap/bgradefaultbitmap.pas"/>
@@ -161,14 +163,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="527"/>
         <CursorPos X="15" Y="538"/>
-        <UsageCount Value="17"/>
+        <UsageCount Value="16"/>
       </Unit>
       <Unit>
         <Filename Value="../../.lazarus/onlinepackagemanager/packages/BGRABitmap/bgrabitmap/bgrapixel.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="122"/>
         <CursorPos X="44" Y="135"/>
-        <UsageCount Value="17"/>
+        <UsageCount Value="16"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/imglist.pp"/>
@@ -176,14 +178,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="355"/>
         <CursorPos X="14" Y="339"/>
-        <UsageCount Value="15"/>
+        <UsageCount Value="14"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/dialogs.pp"/>
         <UnitName Value="Dialogs"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="67" Y="8"/>
-        <UsageCount Value="3"/>
+        <UsageCount Value="2"/>
       </Unit>
       <Unit>
         <Filename Value="../../.lazarus/onlinepackagemanager/packages/BGRABitmap/bgrabitmap/bgrabitmap.pas"/>
@@ -191,7 +193,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="83"/>
         <CursorPos X="9" Y="94"/>
-        <UsageCount Value="3"/>
+        <UsageCount Value="2"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/comctrls.pp"/>
@@ -199,56 +201,56 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="2"/>
         <CursorPos X="113" Y="13"/>
-        <UsageCount Value="3"/>
+        <UsageCount Value="2"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/include/speedbutton.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="547"/>
         <CursorPos X="27" Y="549"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/include/control.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1078"/>
         <CursorPos Y="1092"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/include/buttonglyph.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="80"/>
         <CursorPos X="25" Y="83"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/include/custompage.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="155"/>
         <CursorPos Y="170"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/include/customnotebook.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="346"/>
         <CursorPos Y="358"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/include/customcheckbox.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="138"/>
         <CursorPos X="22" Y="162"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/include/menuitem.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1176"/>
         <CursorPos Y="1195"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/interfaces/cocoa/cocoawsmenus.pas"/>
@@ -256,7 +258,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="838"/>
         <CursorPos Y="849"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/lclproc.pas"/>
@@ -264,14 +266,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="909"/>
         <CursorPos Y="925"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/include/buttoncontrol.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="38"/>
         <CursorPos X="23" Y="42"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="28">

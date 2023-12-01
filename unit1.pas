@@ -94,10 +94,7 @@ implementation
 
 procedure TMainForm.FormCreate(Sender: TObject);
 begin
-  if MenuItemNightMode.Checked then
-    AppSettings := TAppSettings.CreateNight
-  else
-    AppSettings := TAppSettings.CreateDay;
+  AppSettings := TAppSettings.Create;
   ToggleSoundEnabledAction.Checked := AppSettings.SoundEnabled;
   ToggleNightModeEnabledAction.Checked := AppSettings.NightModeEnabled;
 
