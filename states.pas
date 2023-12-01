@@ -7,6 +7,12 @@ interface
 uses
   Classes, SysUtils, AppSettings, Graphics, BGRABitmapTypes;
 
+const
+  DEFAULT_BREATH_IN_MSEC = 5000;
+  DEFAULT_BREATH_OUT_MSEC = 5000;
+  DEFAULT_HOLD_IN_MSEC = 0;
+  DEFAULT_HOLD_OUT_MSEC = 0;
+
 type
   StateType = (stBreathIn, stHoldIn, stBreathOut, stHoldOut);
 
@@ -48,21 +54,21 @@ type
   { TBreathInState }
 
   TBreathInState = class(TState)
-  protected
+  public
     function GetMainColor: TColor; override;
     function GetMainGradienColor2: TColor; override;
-  public
     function GetStateText: string; override;
+    constructor Create(AMaxMSec: integer; AAppSettings: TAppSettings);
   end;
 
   { TBreathOutState }
 
   TBreathOutState = class(TState)
-  protected
+  public
     function GetMainColor: TColor; override;
     function GetMainGradienColor2: TColor; override;
-  public
     function GetStateText: string; override;
+    constructor Create(AMaxMSec: integer; AAppSettings: TAppSettings);
   end;
 
   { TAbstractHoldState }
@@ -70,21 +76,22 @@ type
   TAbstractHoldState = class(TState)
   public
     function GetStateText: string; override;
+    function GetMainColor: TColor; override;
     function GetMainGradienColor2: TColor; override;
   end;
 
   { THoldInState }
 
   THoldInState = class(TAbstractHoldState)
-  protected
-    function GetMainColor: TColor; override;
+  public
+    constructor Create(AMaxMSec: integer; AAppSettings: TAppSettings);
   end;
 
   { THoldOutState }
 
   THoldOutState = class(TAbstractHoldState)
-  protected
-    function GetMainColor: TColor; override;
+  public
+    constructor Create(AMaxMSec: integer; AAppSettings: TAppSettings);
   end;
 
   { TStateManager }
@@ -107,10 +114,26 @@ type
 
     property State: TState read GetState;
     procedure tick(MSecInterval: integer);
+    procedure SetMaxTime(maxBreathInMsec, maxHoldInMsec, maxBreathOutMsec,
+      maxHoldOutMsec: integer);
     procedure Reset;
   end;
 
 implementation
+
+{ THoldOutState }
+
+constructor THoldOutState.Create(AMaxMSec: integer; AAppSettings: TAppSettings);
+begin
+  inherited Create(stHoldOut, AMaxMSec, AAppSettings);
+end;
+
+{ THoldInState }
+
+constructor THoldInState.Create(AMaxMSec: integer; AAppSettings: TAppSettings);
+begin
+  inherited Create(stHoldIn, AMaxMSec, AAppSettings);
+end;
 
 { TAbstractHoldState }
 
@@ -119,23 +142,14 @@ begin
   Result := 'hold breath';
 end;
 
+function TAbstractHoldState.GetMainColor: TColor;
+begin
+  Result := FAppSettings.HoldColor;
+end;
+
 function TAbstractHoldState.GetMainGradienColor2: TColor;
 begin
   Result := FAppSettings.HoldColorSecond;
-end;
-
-{ THoldOutState }
-
-function THoldOutState.GetMainColor: TColor;
-begin
-  Result := FAppSettings.BreathInColor; //todo
-end;
-
-{ THoldInState }
-
-function THoldInState.GetMainColor: TColor;
-begin
-  Result := FAppSettings.BreathInColor; //todo
 end;
 
 { TBreathOutState }
@@ -155,6 +169,11 @@ begin
   Result := 'breath out';
 end;
 
+constructor TBreathOutState.Create(AMaxMSec: integer; AAppSettings: TAppSettings);
+begin
+  inherited Create(stBreathOut, AMaxMSec, AAppSettings);
+end;
+
 { TBreathInState }
 
 function TBreathInState.GetMainColor: TColor;
@@ -170,6 +189,11 @@ end;
 function TBreathInState.GetStateText: string;
 begin
   Result := 'breath in';
+end;
+
+constructor TBreathInState.Create(AMaxMSec: integer; AAppSettings: TAppSettings);
+begin
+  inherited Create(stBreathIn, AMaxMSec, AAppSettings);
 end;
 
 { TStateManager }
@@ -230,10 +254,10 @@ begin
   FCurrentMSec := 0;
   FMSecFromStart := 0;
   FAppSettings := AAppSettings;
-  FStateBreathIn := TBreathInState.Create(stBreathIn, 5000, FAppSettings);
-  FStateHoldIn := THoldInState.Create(stHoldIn, 0, FAppSettings);
-  FStateBreathOut := TBreathOutState.Create(stBreathOut, 5000, FAppSettings);
-  FStateHoldOut := THoldOutState.Create(stHoldOut, 0, FAppSettings);
+  FStateBreathIn := TBreathInState.Create(DEFAULT_BREATH_IN_MSEC, FAppSettings);
+  FStateHoldIn := THoldInState.Create(DEFAULT_HOLD_IN_MSEC, FAppSettings);
+  FStateBreathOut := TBreathOutState.Create(DEFAULT_BREATH_OUT_MSEC, FAppSettings);
+  FStateHoldOut := THoldOutState.Create(DEFAULT_HOLD_OUT_MSEC, FAppSettings);
 
   FCurrentStateObj := FStateBreathIn;
 end;
@@ -262,6 +286,15 @@ begin
     FCurrentStateObj.FCurrentMSec := FCurrentMSec;
   end;
   FCurrentStateObj.FMSecFromStart := FMSecFromStart;
+end;
+
+procedure TStateManager.SetMaxTime(maxBreathInMsec, maxHoldInMsec,
+  maxBreathOutMsec, maxHoldOutMsec: integer);
+begin
+  FStateBreathIn.FMaxMSec := maxBreathInMsec;
+  FStateHoldIn.FMaxMSec := maxHoldInMsec;
+  FStateBreathOut.FMaxMSec := maxBreathOutMsec;
+  FStateHoldOut.FMaxMSec := maxHoldOutMsec;
 end;
 
 procedure TStateManager.Reset;

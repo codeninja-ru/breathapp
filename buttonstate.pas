@@ -41,38 +41,39 @@ begin
 end;
 
 procedure TButtonState.FillImageListButton;
-var
-  bitmap, colored: TBGRABitmap;
-
   function addColoredButton(color: TBGRAPixel): integer;
+  var
+    bitmap, colored: TBGRABitmap;
   begin
-    colored.FillMask(0, 0, bitmap, color);
-    Result := FImageList.Add(colored.Bitmap, colored.Bitmap);
+    bitmap := TBGRABitmap.Create(FImageList.Width, FImageList.Height);
+    colored := TBGRABitmap.Create(FImageList.Width, FImageList.Height);
+    try
+      FImageList.GetBitmap(0, bitmap.Bitmap);
+
+      colored.FillMask(0, 0, bitmap, color);
+      Result := FImageList.Add(colored.Bitmap, colored.Bitmap);
+
+    finally
+      bitmap.Free;
+      colored.Free;
+    end;
   end;
 
 begin
-  bitmap := TBGRABitmap.Create(FImageList.Width, FImageList.Height);
-  colored := TBGRABitmap.Create(FImageList.Width, FImageList.Height);
-  try
-    FImageList.GetBitmap(0, bitmap.Bitmap);
-    FDefaultIdx[stBreathIn] :=
-      addColoredButton(ColorToBGRA(FAppSettings.BreathInColor, 50));
-    FFocusIdx[stBreathIn] := addColoredButton(FAppSettings.BreathInColor);
+  FDefaultIdx[stBreathIn] :=
+    addColoredButton(ColorToBGRA(FAppSettings.BreathInColor, 50));
+  FFocusIdx[stBreathIn] := addColoredButton(FAppSettings.BreathInColor);
 
-    FDefaultIdx[stBreathOut] :=
-      addColoredButton(ColorToBGRA(FAppSettings.BreathOutColor, 50));
-    FFocusIdx[stBreathOut] := addColoredButton(FAppSettings.BreathOutColor);
+  FDefaultIdx[stBreathOut] :=
+    addColoredButton(ColorToBGRA(FAppSettings.BreathOutColor, 50));
+  FFocusIdx[stBreathOut] := addColoredButton(FAppSettings.BreathOutColor);
 
-    FDefaultIdx[stHoldIn] :=
-      addColoredButton(ColorToBGRA(FAppSettings.HoldColor, 50));
-    FFocusIdx[stHoldIn] := addColoredButton(FAppSettings.HoldColor);
+  FDefaultIdx[stHoldIn] :=
+    addColoredButton(ColorToBGRA(FAppSettings.HoldColor, 50));
+  FFocusIdx[stHoldIn] := addColoredButton(FAppSettings.HoldColor);
 
-    FDefaultIdx[stHoldOut] := FDefaultIdx[stHoldIn];
-    FFocusIdx[stHoldOut] := FDefaultIdx[stHoldOut];
-  finally
-    bitmap.Free;
-    colored.Free;
-  end;
+  FDefaultIdx[stHoldOut] := FDefaultIdx[stHoldIn];
+  FFocusIdx[stHoldOut] := FFocusIdx[stHoldOut];
 end;
 
 function TButtonState.GetDefaultImageIndex(state: TState): integer;

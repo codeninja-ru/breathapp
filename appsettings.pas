@@ -23,6 +23,10 @@ type
     FClockMarginTop: integer;
     FMainFontName: string;
     FSecondFontName: string;
+    FSoundEnabled: boolean;
+    FNightModeEnabled: boolean;
+
+    constructor Create;
   public
     property Bg: TColor read FBg;
     property BreathInColor: TColor read FBreathInColor;
@@ -37,8 +41,9 @@ type
     property ClockMarginTop: integer read FClockMarginTop;
     property MainFontName: string read FMainFontName;
     property SecondFontName: string read FSecondFontName;
+    property NightModeEnabled: boolean read FNightModeEnabled write FNightModeEnabled;
+    property SoundEnabled: boolean read FSoundEnabled write FSoundEnabled;
 
-    constructor Create;
     constructor CreateDay;
     constructor CreateNight;
     procedure ActivateDayMode;
@@ -51,16 +56,19 @@ implementation
 
 constructor TAppSettings.Create;
 begin
-  Self.ActivateDayMode;
+  FNightModeEnabled := False;
+  FSoundEnabled := True;
 end;
 
 constructor TAppSettings.CreateDay;
 begin
+  Self.Create;
   Self.ActivateDayMode;
 end;
 
 constructor TAppSettings.CreateNight;
 begin
+  Self.Create;
   Self.ActivateNightMode;
 end;
 
@@ -74,7 +82,7 @@ begin
     FBreathOutColor := webHSL(0, 62, 62);
     FBreathOutColorSecond := webHSL(267, 62, 62);
     FHoldColor := webHSL(146, 62, 62);
-    FHoldColorSecond := webHSL(146, 62, 62);
+    FHoldColorSecond := webHSL(217, 62, 62);
     FClockBg := TColor($e8e8e8);
     FClockStrockSize := 25;
     FClockMarginLeft := 10;
@@ -94,7 +102,7 @@ begin
     FBreathOutColor := webHSL(0, 62, 62);
     FBreathOutColorSecond := webHSL(267, 62, 62);
     FHoldColor := webHSL(146, 62, 62);
-    FHoldColorSecond := webHSL(146, 62, 62);
+    FHoldColorSecond := webHSL(217, 62, 62);
     FClockBg := TColor($171717);
     FClockStrockSize := 25;
     FClockMarginLeft := 10;

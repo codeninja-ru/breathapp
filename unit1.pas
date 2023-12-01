@@ -6,23 +6,38 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, ExtCtrls, Menus, ComCtrls,
-  StdCtrls, Buttons, BGRAGraphicControl, BGRABitmap, BGRABitmapTypes,
-  BGLVirtualScreen, ClockEllipse, ClockText, AppSettings, BGRAOpenGL, BCTypes,
-  BCButton, BCTrackbarUpdown, BCSVGButton, BGRAImageList,
-  states, ClockTimer, TrayIconTimer, SoundTimer, Backgrounds, buttonState;
+  StdCtrls, Buttons, Spin, ActnList, BGRAGraphicControl,
+  BGRABitmap, BGRABitmapTypes, ClockEllipse, ClockText, AppSettings,
+  BCTypes, BCButton, states, ClockTimer, TrayIconTimer, SoundTimer,
+  Backgrounds, buttonState;
 
 type
 
   { TMainForm }
 
   TMainForm = class(TForm)
+    ShowAction: TAction;
+    ExitAction: TAction;
+    ToggleNightModeEnabledAction: TAction;
+    ToggleSoundEnabledAction: TAction;
+    SettingsBackAction: TAction;
+    FormActionList: TActionList;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    NightModeCheckBox: TCheckBox;
+    SoundCheckBox: TCheckBox;
+    HoldOutSpinEdit: TSpinEdit;
+    HoldInSpinEdit: TSpinEdit;
+    BreathOutSpinEdit: TSpinEdit;
     ImageListButton: TImageList;
-    BCTrackbarUpdown1: TBCTrackbarUpdown;
     LabelCaption: TLabel;
-    NightModeItem: TMenuItem;
+    MenuItemNightMode: TMenuItem;
     MenuItemExit: TMenuItem;
     PageControl: TPageControl;
     SeparatorExit: TMenuItem;
+    BreathInSpinEdit: TSpinEdit;
     SettingsButton: TSpeedButton;
     StartButton: TBCButton;
     BgImage: TBGRAGraphicControl;
@@ -34,19 +49,20 @@ type
     TabSettings: TTabSheet;
     TrayMenu: TPopupMenu;
     TrayIcon: TTrayIcon;
-    procedure BackButtonClick(Sender: TObject);
+    procedure ExitActionExecute(Sender: TObject);
+    procedure SettingsBackActionExecute(Sender: TObject);
     procedure BgImagePaint(Sender: TObject);
-    procedure NightModeItemClick(Sender: TObject);
-    procedure MenuItemExitClick(Sender: TObject);
-    procedure MenuItemShowClick(Sender: TObject);
-    procedure MenuItemSoundClick(Sender: TObject);
     procedure SettingsButtonClick(Sender: TObject);
     procedure SettingsButtonMouseEnter(Sender: TObject);
     procedure SettingsButtonMouseLeave(Sender: TObject);
+    procedure ShowActionExecute(Sender: TObject);
+    procedure SpineEditChanged(Sender: TObject);
     procedure StartButtonClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure ImgTimerTimer(Sender: TObject);
+    procedure ToggleNightModeEnabledActionExecute(Sender: TObject);
+    procedure ToggleSoundEnabledActionExecute(Sender: TObject);
     procedure TrayIconDblClick(Sender: TObject);
   private
     ClockEllipse: TClockEllipse;
@@ -78,16 +94,19 @@ implementation
 
 procedure TMainForm.FormCreate(Sender: TObject);
 begin
-  if NightModeItem.Checked then
+  if MenuItemNightMode.Checked then
     AppSettings := TAppSettings.CreateNight
   else
     AppSettings := TAppSettings.CreateDay;
+  ToggleSoundEnabledAction.Checked := AppSettings.SoundEnabled;
+  ToggleNightModeEnabledAction.Checked := AppSettings.NightModeEnabled;
 
   MSec := 0;
   TrayIcon.Show();
 
   FSolidBackground := TSolidBackground.Create;
-  FGradientBackground := TGradientBackround.Create(BgImage.Width, BgImage.Height, AppSettings);
+  FGradientBackground := TGradientBackround.Create(BgImage.Width,
+    BgImage.Height, AppSettings);
   FBitmap := TBGRABitmap.Create;
   FBitmap.SetSize(BgImage.Width, BgImage.Height);
   ClockEllipse := TClockEllipse.Create(Self.Width - AppSettings.ClockMarginLeft *
@@ -101,6 +120,7 @@ begin
   StartButton.Rounding.RoundX := 20;
   StartButton.Rounding.RoundY := 20;
   SetButtonStateStyle(StartButton, StateManager.State);
+  SetButtonStateStyle(BackButton, StateManager.State);
   StartButton.Font.Name := AppSettings.MainFontName;
   StartButton.Font.Size := 14;
 
@@ -111,6 +131,7 @@ begin
   SoundTimer := TSoundTimer.Create;
 
   FSettingButtonState := TButtonState.Create(ImageListButton, AppSettings);
+  Self.PageControl.ActivePageIndex := 0;
 end;
 
 procedure TMainForm.FormDestroy(Sender: TObject);
@@ -135,10 +156,27 @@ begin
   SetButtonStateStyle(StartButton, StateManager.State);
   if Self.Visible = True then BgImage.Refresh;
   TrayIconTimer.Draw(TrayIcon.Icon, StateManager.State);
-  if MenuItemSound.Checked then
+  if ToggleSoundEnabledAction.Checked then
   begin
     SoundTimer.play(StateManager.State);
   end;
+end;
+
+procedure TMainForm.ToggleNightModeEnabledActionExecute(Sender: TObject);
+begin
+  AppSettings.NightModeEnabled := not AppSettings.NightModeEnabled;
+  if AppSettings.NightModeEnabled then
+    AppSettings.ActivateNightMode
+  else
+    AppSettings.ActivateDayMode;
+  ToggleNightModeEnabledAction.Checked := AppSettings.NightModeEnabled;
+  TabTimer.Refresh;
+end;
+
+procedure TMainForm.ToggleSoundEnabledActionExecute(Sender: TObject);
+begin
+  AppSettings.SoundEnabled := not AppSettings.SoundEnabled;
+  ToggleSoundEnabledAction.Checked := AppSettings.SoundEnabled;
 end;
 
 procedure TMainForm.TrayIconDblClick(Sender: TObject);
@@ -200,33 +238,14 @@ begin
   BgImage.Bitmap.BlendImage(0, 0, FBitmap, boLinearBlend);
 end;
 
-procedure TMainForm.BackButtonClick(Sender: TObject);
+procedure TMainForm.SettingsBackActionExecute(Sender: TObject);
 begin
   PageControl.PageIndex := 0;
 end;
 
-procedure TMainForm.NightModeItemClick(Sender: TObject);
-begin
-  NightModeItem.Checked := not NightModeItem.Checked;
-  if NightModeItem.Checked then
-    AppSettings.ActivateNightMode
-  else
-    AppSettings.ActivateDayMode;
-end;
-
-procedure TMainForm.MenuItemExitClick(Sender: TObject);
+procedure TMainForm.ExitActionExecute(Sender: TObject);
 begin
   Self.Close;
-end;
-
-procedure TMainForm.MenuItemShowClick(Sender: TObject);
-begin
-  Self.Visible := not Self.Visible;
-end;
-
-procedure TMainForm.MenuItemSoundClick(Sender: TObject);
-begin
-  MenuItemSound.Checked := not MenuItemSound.Checked;
 end;
 
 procedure TMainForm.SettingsButtonClick(Sender: TObject);
@@ -237,13 +256,26 @@ end;
 procedure TMainForm.SettingsButtonMouseEnter(Sender: TObject);
 begin
   SettingsButton.Cursor := crHandPoint;
-  SettingsButton.ImageIndex:=FSettingButtonState.GetFocusImageIndex(StateManager.State);
+  SettingsButton.ImageIndex :=
+    FSettingButtonState.GetFocusImageIndex(StateManager.State);
 end;
 
 procedure TMainForm.SettingsButtonMouseLeave(Sender: TObject);
 begin
   SettingsButton.Cursor := crDefault;
-  SettingsButton.ImageIndex:=FSettingButtonState.GetDefaultImageIndex(StateManager.State);
+  SettingsButton.ImageIndex :=
+    FSettingButtonState.GetDefaultImageIndex(StateManager.State);
+end;
+
+procedure TMainForm.ShowActionExecute(Sender: TObject);
+begin
+  Self.Visible := not Self.Visible;
+end;
+
+procedure TMainForm.SpineEditChanged(Sender: TObject);
+begin
+  StateManager.SetMaxTime(BreathInSpinEdit.Value * 1000, HoldInSpinEdit.Value * 1000,
+    BreathOutSpinEdit.Value * 1000, HoldOutSpinEdit.Value * 1000);
 end;
 
 end.

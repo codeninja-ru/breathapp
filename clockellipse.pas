@@ -95,19 +95,19 @@ begin
   rad := State.ClockPersent * 2 * Pi;
   DrawBackground(FClockBitmap, x, y, State);
   if rad <> 0 then
-    begin
-      FMaskBitmap.Fill(clDontMask);
-      FMaskBitmap.Arc(x,
-        y,
-        r,
-        r,
-        Pi / 2,
-        (Pi / 2) - rad,
-        clMask,
-        AppSettings.ClockStrockSize,
-        False,
-        BGRAPixelTransparent);
-    end;
+  begin
+    FMaskBitmap.Fill(clDontMask);
+    FMaskBitmap.Arc(x,
+      y,
+      r,
+      r,
+      Pi / 2,
+      (Pi / 2) - rad,
+      clMask,
+      AppSettings.ClockStrockSize,
+      False,
+      BGRAPixelTransparent);
+  end;
 
   prevState := State.StateType;
 
