@@ -317,10 +317,10 @@ object MainForm: TMainForm
     Height = 512
     Top = 0
     Width = 320
-    ActivePage = TabTimer
+    ActivePage = TabSettings
     Align = alClient
     ShowTabs = False
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 0
     object TabTimer: TTabSheet
       Caption = 'TabTimer'
@@ -617,30 +617,6 @@ object MainForm: TMainForm
         ParentFont = False
         TabOrder = 3
       end
-      object SoundCheckBox: TCheckBox
-        Left = 104
-        Height = 23
-        Top = 216
-        Width = 69
-        Action = ToggleSoundEnabledAction
-        Font.CharSet = ANSI_CHARSET
-        Font.Height = -16
-        Font.Name = '.SF NS'
-        ParentFont = False
-        TabOrder = 4
-      end
-      object NightModeCheckBox: TCheckBox
-        Left = 104
-        Height = 23
-        Top = 248
-        Width = 107
-        Action = ToggleNightModeEnabledAction
-        Font.CharSet = ANSI_CHARSET
-        Font.Height = -16
-        Font.Name = '.SF NS'
-        ParentFont = False
-        TabOrder = 5
-      end
       object Label1: TLabel
         Left = 16
         Height = 18
@@ -685,6 +661,46 @@ object MainForm: TMainForm
         Caption = 'Hold out(s)'
         Font.CharSet = ANSI_CHARSET
         Font.Height = -16
+        Font.Name = '.SF NS'
+        ParentColor = False
+        ParentFont = False
+      end
+      object NightModeSwitchBox: TSwitchBox
+        Left = 64
+        Height = 29
+        Top = 296
+        Width = 67
+        Action = ToggleNightModeEnabledAction
+        TabOrder = 4
+      end
+      object NightModeLabel: TLabel
+        Left = 151
+        Height = 28
+        Top = 296
+        Width = 121
+        Caption = 'Night mode'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -24
+        Font.Name = '.SF NS'
+        ParentColor = False
+        ParentFont = False
+      end
+      object SoundSwitchBox: TSwitchBox
+        Left = 64
+        Height = 29
+        Top = 240
+        Width = 67
+        Action = ToggleSoundEnabledAction
+        TabOrder = 5
+      end
+      object SoundLabel: TLabel
+        Left = 151
+        Height = 28
+        Top = 240
+        Width = 67
+        Caption = 'Sound'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -24
         Font.Name = '.SF NS'
         ParentColor = False
         ParentFont = False
