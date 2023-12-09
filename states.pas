@@ -336,7 +336,7 @@ end;
 
 function TState.Seconds: integer;
 begin
-  Result := FCurrentMSec div 1000;
+  Result := Trunc(FCurrentMSec / 1000);
 end;
 
 function TState.ClockPersent: real;

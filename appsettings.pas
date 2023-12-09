@@ -17,6 +17,7 @@ type
     FBreathInColor, FBreathInColorSecond: TColor;
     FBreathOutColor, FBreathOutColorSecond: TColor;
     FHoldColor, FHoldColorSecond: TColor;
+    FFontColor: TColor;
     FClockBg: TColor;
     FClockStrockSize: integer;
     FClockMarginLeft: integer;
@@ -41,6 +42,7 @@ type
     property SecondFontName: string read FSecondFontName;
     property NightModeEnabled: boolean read FNightModeEnabled write FNightModeEnabled;
     property SoundEnabled: boolean read FSoundEnabled write FSoundEnabled;
+    property FontColor: TColor read FFontColor;
 
     constructor Create;
     procedure ActivateDayMode;
@@ -78,6 +80,7 @@ begin
     FClockMarginTop := 60;
     FMainFontName := 'PT Sans Caption';
     FSecondFontName := 'PT Sans';
+    FFontColor:= TColor($555555);
   end;
 end;
 
@@ -98,6 +101,7 @@ begin
     FClockMarginTop := 60;
     FMainFontName := 'PT Sans Caption';
     FSecondFontName := 'PT Sans';
+    FFontColor:= TColor($eeeeee);
   end;
 end;
 

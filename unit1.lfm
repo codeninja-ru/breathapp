@@ -455,13 +455,13 @@ object MainForm: TMainForm
       ClientWidth = 320
       object LabelCaption: TLabel
         Left = 96
-        Height = 24
+        Height = 28
         Top = 8
-        Width = 124
+        Width = 121
         Caption = '❮ Settings ❯'
         Font.CharSet = ANSI_CHARSET
         Font.Height = -24
-        Font.Name = 'Helvetica'
+        Font.Name = '.SF NS'
         ParentColor = False
         ParentFont = False
         OnClick = SettingsBackActionExecute

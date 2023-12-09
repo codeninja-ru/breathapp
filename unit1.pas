@@ -80,6 +80,7 @@ type
     MainTrayIcon: TIcon;
     FSettingButtonState: TButtonState;
     procedure SetButtonStateStyle(button: TBCButton; State: TState);
+    procedure UpdateFormColors;
   public
   end;
 
@@ -131,6 +132,7 @@ begin
 
   FSettingButtonState := TButtonState.Create(ImageListButton, AppSettings);
   Self.PageControl.ActivePageIndex := 0;
+  UpdateFormColors;
 end;
 
 procedure TMainForm.FormDestroy(Sender: TObject);
@@ -169,6 +171,7 @@ begin
   else
     AppSettings.ActivateDayMode;
   ToggleNightModeEnabledAction.Checked := AppSettings.NightModeEnabled;
+  UpdateFormColors;
   TabTimer.Refresh;
 end;
 
@@ -201,6 +204,19 @@ begin
     setStyle(button.StateNormal);
     setStyle(button.StateHover);
     setStyle(button.StateClicked);
+  end;
+end;
+
+procedure TMainForm.UpdateFormColors;
+var
+  i: integer;
+begin
+  MainForm.Color := AppSettings.Bg;
+  MainForm.Font.Color := AppSettings.FontColor;
+  for i := 0 to TabSettings.ControlCount - 1 do
+  begin
+    if not TabSettings.Controls[i].IsParentFont then;
+    TabSettings.Controls[i].Font.Color := AppSettings.FontColor;
   end;
 end;
 

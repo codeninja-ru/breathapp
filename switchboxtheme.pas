@@ -166,8 +166,8 @@ begin
   FPillCheckedStyle.x2 := BITMAP_WIDTH - 1;
   FPillCheckedStyle.y2 := BITMAP_HEIGHT - 1;
   FPillCheckedStyle.borderRadius := 22;
-  FPillCheckedStyle.color := clNone;
-  FPillCheckedStyle.borderWidth := 0;
+  FPillCheckedStyle.borderColor := clWhite;
+  FPillCheckedStyle.borderWidth := 1;
   FPillCheckedStyle.color := RGBToColor(155, 195, 239);
 
   FKnobCheckedStyle.radius := BITMAP_HEIGHT div 2 - 4;
@@ -195,8 +195,8 @@ begin
   FPillUncheckedStyle.x2 := BITMAP_WIDTH - 1;
   FPillUncheckedStyle.y2 := BITMAP_HEIGHT - 1;
   FPillUncheckedStyle.borderRadius := 22;
-  FPillUncheckedStyle.color := clNone;
-  FPillUncheckedStyle.borderWidth := 0;
+  FPillUncheckedStyle.borderColor := clWhite;
+  FPillUncheckedStyle.borderWidth := 1;
   FPillUncheckedStyle.color := RGBToColor(221, 221, 221);
 
   FKnobUncheckedStyle.radius := BITMAP_HEIGHT div 2 - 4;
