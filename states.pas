@@ -251,15 +251,13 @@ constructor TStateManager.Create(AAppSettings: TAppSettings);
 begin
   inherited Create;
 
-  FCurrentMSec := 0;
-  FMSecFromStart := 0;
   FAppSettings := AAppSettings;
   FStateBreathIn := TBreathInState.Create(DEFAULT_BREATH_IN_MSEC, FAppSettings);
   FStateHoldIn := THoldInState.Create(DEFAULT_HOLD_IN_MSEC, FAppSettings);
   FStateBreathOut := TBreathOutState.Create(DEFAULT_BREATH_OUT_MSEC, FAppSettings);
   FStateHoldOut := THoldOutState.Create(DEFAULT_HOLD_OUT_MSEC, FAppSettings);
 
-  FCurrentStateObj := FStateBreathIn;
+  Reset;
 end;
 
 destructor TStateManager.Destory;
@@ -276,7 +274,7 @@ begin
   FCurrentMSec := FCurrentMSec + MSecInterval;
   FMSecFromStart := FMSecFromStart + MSecInterval;
 
-  if FCurrentMSec >= FCurrentStateObj.MaxMSec then
+  if FCurrentMSec > FCurrentStateObj.MaxMSec then
   begin
     FCurrentMSec := 0;
     MoveToNextState();
@@ -301,6 +299,7 @@ procedure TStateManager.Reset;
 begin
   FCurrentMSec := 0;
   FCurrentStateObj := FStateBreathIn;
+  FCurrentState := stBreathIn;
   FStateBreathIn.FCurrentMSec := 0;
   FStateBreathIn.FMSecFromStart := 0;
   FMSecFromStart := 0;

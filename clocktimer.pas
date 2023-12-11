@@ -17,8 +17,10 @@ type
     FTimeString: string;
     textBox: TAffineBox;
     FTextBitmap: TBGRABitmap;
+    PrevStateType: StateType;
 
     function formatTime(minutes: integer; seconds: integer): string;
+
 
   public
     constructor Create(AFormWidth: integer; AFormHeight: integer;
@@ -59,6 +61,7 @@ begin
   FTextBitmap.FontAntialias := False;
   textBox := FTextBitmap.TextAffineBox(formatTime(999, 999));
   FTextBitmap.SetSize(Round(textBox.Width) + 2, Round(textBox.Height) + 2);
+  PrevStateType := stHoldOut;
 end;
 
 destructor TClockTimer.Destroy;
@@ -76,7 +79,7 @@ begin
 
   time := formatTime(minutes, seconds);
 
-  if time <> FTimeString then
+  if (time <> FTimeString) or (PrevStateType <> State.StateType) then
   begin
     if FTimeString <> '' then
     begin
@@ -97,6 +100,7 @@ begin
     Round(ABitmap.Height * 0.78),
     FTextBitmap,
     boLinearBlend);
+  PrevStateType := State.StateType;
 end;
 
 end.
