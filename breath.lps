@@ -57,10 +57,9 @@
       <Unit>
         <Filename Value="states.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="12"/>
-        <TopLine Value="245"/>
-        <CursorPos X="9" Y="260"/>
+        <TopLine Value="289"/>
+        <CursorPos Y="300"/>
         <UsageCount Value="235"/>
         <Loaded Value="True"/>
       </Unit>
@@ -125,20 +124,20 @@
         <Filename Value="events.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="28" Y="2"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="miniaudio/miniaudio.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="45" Y="11"/>
-        <UsageCount Value="118"/>
+        <UsageCount Value="117"/>
       </Unit>
       <Unit>
         <Filename Value="breathclock.pas"/>
         <UnitName Value="BreathClock"/>
         <EditorIndex Value="-1"/>
         <CursorPos Y="11"/>
-        <UsageCount Value="173"/>
+        <UsageCount Value="172"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/controls.pp"/>
@@ -146,7 +145,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="1355"/>
         <CursorPos X="15" Y="1424"/>
-        <UsageCount Value="17"/>
+        <UsageCount Value="16"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/include/control.inc"/>
@@ -169,14 +168,15 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="681"/>
         <CursorPos X="19" Y="693"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit>
       <Unit>
         <Filename Value="switchbox.pas"/>
         <UnitName Value="SwitchBox"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="316"/>
+        <TopLine Value="12"/>
         <CursorPos X="37" Y="17"/>
         <UsageCount Value="104"/>
         <Loaded Value="True"/>
@@ -187,7 +187,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="1311"/>
         <CursorPos X="3" Y="1322"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/components/lazcontrols/checkboxthemed.pas"/>
@@ -202,7 +202,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="48"/>
         <CursorPos Y="60"/>
-        <UsageCount Value="44"/>
+        <UsageCount Value="43"/>
       </Unit>
       <Unit>
         <Filename Value="../../.lazarus/onlinepackagemanager/packages/BGRABitmap/bgrabitmap/bgrabitmap.pas"/>
@@ -210,21 +210,21 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="329"/>
         <CursorPos X="50" Y="362"/>
-        <UsageCount Value="41"/>
+        <UsageCount Value="40"/>
       </Unit>
       <Unit>
         <Filename Value="../../.lazarus/onlinepackagemanager/packages/BGRABitmap/bgrabitmap/bgracustombitmap.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1748"/>
         <CursorPos X="50" Y="1770"/>
-        <UsageCount Value="41"/>
+        <UsageCount Value="40"/>
       </Unit>
       <Unit>
         <Filename Value="vendor/miniaudio/miniaudio.pp"/>
         <EditorIndex Value="4"/>
         <TopLine Value="3955"/>
         <CursorPos X="24" Y="3966"/>
-        <UsageCount Value="93"/>
+        <UsageCount Value="95"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -232,28 +232,28 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="80"/>
         <CursorPos Y="92"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="4"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/include/containedaction.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="89"/>
         <CursorPos Y="100"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="12"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/include/customactionlist.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="143"/>
         <CursorPos Y="156"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="12"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/include/wincontrol.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="5414"/>
         <CursorPos Y="5430"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="12"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/interfaces/cocoa/cocoawscommon.pas"/>
@@ -261,14 +261,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="1058"/>
         <CursorPos Y="1069"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="12"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/include/actionlink.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="3"/>
         <CursorPos Y="22"/>
-        <UsageCount Value="12"/>
+        <UsageCount Value="11"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/lclmessageglue.pas"/>
@@ -276,7 +276,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="107"/>
         <CursorPos Y="123"/>
-        <UsageCount Value="12"/>
+        <UsageCount Value="11"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/interfaces/cocoa/cocoaprivate.pas"/>
@@ -284,7 +284,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="694"/>
         <CursorPos Y="707"/>
-        <UsageCount Value="12"/>
+        <UsageCount Value="11"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/interfaces/cocoa/cocoawindows.pas"/>
@@ -292,7 +292,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="983"/>
         <CursorPos Y="993"/>
-        <UsageCount Value="12"/>
+        <UsageCount Value="11"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/interfaces/cocoa/cocoaint.pas"/>
@@ -300,7 +300,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="599"/>
         <CursorPos Y="610"/>
-        <UsageCount Value="12"/>
+        <UsageCount Value="11"/>
       </Unit>
       <Unit>
         <Filename Value="switchboxtheme.pas"/>
@@ -308,15 +308,11 @@
         <EditorIndex Value="3"/>
         <TopLine Value="165"/>
         <CursorPos X="32" Y="169"/>
-        <UsageCount Value="72"/>
+        <UsageCount Value="74"/>
         <Loaded Value="True"/>
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="clocktext.pas"/>
-        <Caret Line="98" TopLine="93"/>
-      </Position>
       <Position>
         <Filename Value="clocktext.pas"/>
         <Caret Line="100" TopLine="93"/>
@@ -433,6 +429,10 @@
         <Filename Value="states.pas"/>
         <Caret Line="282" TopLine="270"/>
       </Position>
+      <Position>
+        <Filename Value="states.pas"/>
+        <Caret Line="260" Column="9" TopLine="245"/>
+      </Position>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
@@ -468,13 +468,6 @@
         <WatchKind Value="wpkWrite"/>
         <Source Value="/Applications/Lazarus/components/lazcontrols/checkboxthemed.pas"/>
         <Line Value="339"/>
-      </Item>
-      <Item>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="states.pas"/>
-        <Line Value="300"/>
       </Item>
     </BreakPoints>
   </Debugging>
