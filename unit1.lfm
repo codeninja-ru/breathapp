@@ -317,10 +317,10 @@ object MainForm: TMainForm
     Height = 512
     Top = 0
     Width = 320
-    ActivePage = TabSettings
+    ActivePage = TabTimer
     Align = alClient
     ShowTabs = False
-    TabIndex = 1
+    TabIndex = 0
     TabOrder = 0
     object TabTimer: TTabSheet
       Caption = 'TabTimer'
@@ -569,7 +569,7 @@ object MainForm: TMainForm
         Font.CharSet = ANSI_CHARSET
         Font.Height = -19
         Font.Name = '.SF NS'
-        MaxValue = 10
+        MaxValue = 20
         MinValue = 1
         OnChange = SpineEditChanged
         ParentFont = False
@@ -584,7 +584,7 @@ object MainForm: TMainForm
         Font.CharSet = ANSI_CHARSET
         Font.Height = -19
         Font.Name = '.SF NS'
-        MaxValue = 10
+        MaxValue = 20
         MinValue = 1
         OnChange = SpineEditChanged
         ParentFont = False
@@ -599,7 +599,7 @@ object MainForm: TMainForm
         Font.CharSet = ANSI_CHARSET
         Font.Height = -19
         Font.Name = '.SF NS'
-        MaxValue = 10
+        MaxValue = 20
         OnChange = SpineEditChanged
         ParentFont = False
         TabOrder = 2
@@ -612,7 +612,7 @@ object MainForm: TMainForm
         Font.CharSet = ANSI_CHARSET
         Font.Height = -19
         Font.Name = '.SF NS'
-        MaxValue = 10
+        MaxValue = 20
         OnChange = SpineEditChanged
         ParentFont = False
         TabOrder = 3
@@ -667,9 +667,9 @@ object MainForm: TMainForm
       end
       object NightModeSwitchBox: TSwitchBox
         Left = 64
-        Height = 29
+        Height = 24
         Top = 296
-        Width = 67
+        Width = 56
         Action = ToggleNightModeEnabledAction
         TabOrder = 4
       end
@@ -687,9 +687,9 @@ object MainForm: TMainForm
       end
       object SoundSwitchBox: TSwitchBox
         Left = 64
-        Height = 29
+        Height = 24
         Top = 240
-        Width = 67
+        Width = 56
         Action = ToggleSoundEnabledAction
         TabOrder = 5
       end

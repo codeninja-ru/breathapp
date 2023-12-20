@@ -159,9 +159,9 @@ begin
     begin
       case State.StateType of
         stBreathIn:
-          PlaySound(mtof(54 + 5 * State.Seconds));
+          PlaySound(mtof(Round(64 + ((90 - 64) / (State.MaxMSec div 1000)) * State.Seconds)));
         stBreathOut:
-          PlaySound(mtof(30 + 5 * State.Seconds));
+          PlaySound(mtof(Round(60 - ((60 - 40) / (State.MaxMSec div 1000)) * State.Seconds)));
         stHoldIn: ;
         //PlaySound(100);
         stHoldOut: ;

@@ -25,6 +25,9 @@
     </RunParams>
     <RequiredPackages>
       <Item>
+        <PackageName Value="RoundSpinEditPackage"/>
+      </Item>
+      <Item>
         <PackageName Value="SwitchBoxPackage"/>
       </Item>
       <Item>

@@ -18,8 +18,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit1"/>
-        <TopLine Value="216"/>
-        <CursorPos X="19" Y="227"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="97"/>
+        <CursorPos X="62" Y="97"/>
         <UsageCount Value="205"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -28,7 +29,7 @@
         <Filename Value="clockellipse.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ClockEllipse"/>
-        <EditorIndex Value="11"/>
+        <EditorIndex Value="10"/>
         <TopLine Value="87"/>
         <CursorPos X="21" Y="95"/>
         <UsageCount Value="207"/>
@@ -38,8 +39,8 @@
         <Filename Value="appsettings.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="AppSettings"/>
-        <EditorIndex Value="9"/>
-        <TopLine Value="83"/>
+        <EditorIndex Value="8"/>
+        <TopLine Value="67"/>
         <CursorPos X="33" Y="104"/>
         <UsageCount Value="205"/>
         <Loaded Value="True"/>
@@ -50,14 +51,14 @@
         <UnitName Value="ClockText"/>
         <EditorIndex Value="6"/>
         <TopLine Value="91"/>
-        <CursorPos Y="98"/>
+        <CursorPos X="34" Y="98"/>
         <UsageCount Value="217"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="states.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="12"/>
+        <EditorIndex Value="11"/>
         <TopLine Value="289"/>
         <CursorPos Y="300"/>
         <UsageCount Value="235"/>
@@ -67,7 +68,7 @@
         <Filename Value="clocktimer.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ClockTimer"/>
-        <EditorIndex Value="13"/>
+        <EditorIndex Value="12"/>
         <TopLine Value="84"/>
         <CursorPos X="18" Y="88"/>
         <UsageCount Value="222"/>
@@ -86,9 +87,9 @@
         <Filename Value="soundtimer.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="SoundTimer"/>
-        <EditorIndex Value="10"/>
-        <TopLine Value="160"/>
-        <CursorPos X="14" Y="173"/>
+        <EditorIndex Value="9"/>
+        <TopLine Value="122"/>
+        <CursorPos X="15" Y="129"/>
         <UsageCount Value="203"/>
         <Loaded Value="True"/>
       </Unit>
@@ -96,7 +97,7 @@
         <Filename Value="backgrounds.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Backgrounds"/>
-        <EditorIndex Value="14"/>
+        <EditorIndex Value="13"/>
         <TopLine Value="38"/>
         <CursorPos X="22" Y="48"/>
         <UsageCount Value="214"/>
@@ -106,10 +107,9 @@
         <Filename Value="colorutils.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ColorUtils"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="-1"/>
         <CursorPos X="47" Y="8"/>
         <UsageCount Value="210"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="buttonstate.pas"/>
@@ -121,79 +121,48 @@
         <UsageCount Value="203"/>
       </Unit>
       <Unit>
-        <Filename Value="events.pas"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="28" Y="2"/>
-        <UsageCount Value="6"/>
-      </Unit>
-      <Unit>
         <Filename Value="miniaudio/miniaudio.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="45" Y="11"/>
-        <UsageCount Value="117"/>
+        <UsageCount Value="96"/>
       </Unit>
       <Unit>
         <Filename Value="breathclock.pas"/>
         <UnitName Value="BreathClock"/>
         <EditorIndex Value="-1"/>
         <CursorPos Y="11"/>
-        <UsageCount Value="172"/>
-      </Unit>
-      <Unit>
-        <Filename Value="/Applications/Lazarus/lcl/controls.pp"/>
-        <UnitName Value="Controls"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="1355"/>
-        <CursorPos X="15" Y="1424"/>
-        <UsageCount Value="16"/>
+        <UsageCount Value="151"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/include/control.inc"/>
         <EditorIndex Value="5"/>
         <TopLine Value="2819"/>
-        <CursorPos Y="2829"/>
+        <CursorPos X="40" Y="2823"/>
         <UsageCount Value="115"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/include/customcheckbox.inc"/>
-        <EditorIndex Value="8"/>
-        <TopLine Value="248"/>
-        <CursorPos X="17" Y="212"/>
-        <UsageCount Value="104"/>
-        <Loaded Value="True"/>
-      </Unit>
-      <Unit>
-        <Filename Value="unit1.lfm"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="681"/>
-        <CursorPos X="19" Y="693"/>
-        <UsageCount Value="9"/>
-        <DefaultSyntaxHighlighter Value="LFM"/>
+        <TopLine Value="245"/>
+        <CursorPos X="17" Y="212"/>
+        <UsageCount Value="103"/>
       </Unit>
       <Unit>
         <Filename Value="switchbox.pas"/>
         <UnitName Value="SwitchBox"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="12"/>
-        <CursorPos X="37" Y="17"/>
+        <TopLine Value="19"/>
+        <CursorPos X="5" Y="53"/>
         <UsageCount Value="104"/>
         <Loaded Value="True"/>
-      </Unit>
-      <Unit>
-        <Filename Value="/Applications/Lazarus/lcl/stdctrls.pp"/>
-        <UnitName Value="StdCtrls"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="1311"/>
-        <CursorPos X="3" Y="1322"/>
-        <UsageCount Value="9"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/components/lazcontrols/checkboxthemed.pas"/>
         <UnitName Value="CheckBoxThemed"/>
         <EditorIndex Value="1"/>
-        <CursorPos Y="210"/>
+        <TopLine Value="47"/>
+        <CursorPos Y="61"/>
         <UsageCount Value="104"/>
         <Loaded Value="True"/>
       </Unit>
@@ -202,7 +171,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="48"/>
         <CursorPos Y="60"/>
-        <UsageCount Value="43"/>
+        <UsageCount Value="22"/>
       </Unit>
       <Unit>
         <Filename Value="../../.lazarus/onlinepackagemanager/packages/BGRABitmap/bgrabitmap/bgrabitmap.pas"/>
@@ -210,228 +179,127 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="329"/>
         <CursorPos X="50" Y="362"/>
-        <UsageCount Value="40"/>
+        <UsageCount Value="19"/>
       </Unit>
       <Unit>
         <Filename Value="../../.lazarus/onlinepackagemanager/packages/BGRABitmap/bgrabitmap/bgracustombitmap.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1748"/>
         <CursorPos X="50" Y="1770"/>
-        <UsageCount Value="40"/>
+        <UsageCount Value="19"/>
       </Unit>
       <Unit>
         <Filename Value="vendor/miniaudio/miniaudio.pp"/>
         <EditorIndex Value="4"/>
         <TopLine Value="3955"/>
         <CursorPos X="24" Y="3966"/>
-        <UsageCount Value="95"/>
+        <UsageCount Value="103"/>
         <Loaded Value="True"/>
-      </Unit>
-      <Unit>
-        <Filename Value="/Applications/Lazarus/lcl/include/customaction.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="80"/>
-        <CursorPos Y="92"/>
-        <UsageCount Value="4"/>
-      </Unit>
-      <Unit>
-        <Filename Value="/Applications/Lazarus/lcl/include/containedaction.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="89"/>
-        <CursorPos Y="100"/>
-        <UsageCount Value="12"/>
-      </Unit>
-      <Unit>
-        <Filename Value="/Applications/Lazarus/lcl/include/customactionlist.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="143"/>
-        <CursorPos Y="156"/>
-        <UsageCount Value="12"/>
-      </Unit>
-      <Unit>
-        <Filename Value="/Applications/Lazarus/lcl/include/wincontrol.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="5414"/>
-        <CursorPos Y="5430"/>
-        <UsageCount Value="12"/>
-      </Unit>
-      <Unit>
-        <Filename Value="/Applications/Lazarus/lcl/interfaces/cocoa/cocoawscommon.pas"/>
-        <UnitName Value="CocoaWSCommon"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="1058"/>
-        <CursorPos Y="1069"/>
-        <UsageCount Value="12"/>
-      </Unit>
-      <Unit>
-        <Filename Value="/Applications/Lazarus/lcl/include/actionlink.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="3"/>
-        <CursorPos Y="22"/>
-        <UsageCount Value="11"/>
-      </Unit>
-      <Unit>
-        <Filename Value="/Applications/Lazarus/lcl/lclmessageglue.pas"/>
-        <UnitName Value="LCLMessageGlue"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="107"/>
-        <CursorPos Y="123"/>
-        <UsageCount Value="11"/>
-      </Unit>
-      <Unit>
-        <Filename Value="/Applications/Lazarus/lcl/interfaces/cocoa/cocoaprivate.pas"/>
-        <UnitName Value="CocoaPrivate"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="694"/>
-        <CursorPos Y="707"/>
-        <UsageCount Value="11"/>
-      </Unit>
-      <Unit>
-        <Filename Value="/Applications/Lazarus/lcl/interfaces/cocoa/cocoawindows.pas"/>
-        <UnitName Value="CocoaWindows"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="983"/>
-        <CursorPos Y="993"/>
-        <UsageCount Value="11"/>
-      </Unit>
-      <Unit>
-        <Filename Value="/Applications/Lazarus/lcl/interfaces/cocoa/cocoaint.pas"/>
-        <UnitName Value="CocoaInt"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="599"/>
-        <CursorPos Y="610"/>
-        <UsageCount Value="11"/>
       </Unit>
       <Unit>
         <Filename Value="switchboxtheme.pas"/>
         <UnitName Value="SwitchBoxTheme"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="165"/>
-        <CursorPos X="32" Y="169"/>
-        <UsageCount Value="74"/>
+        <TopLine Value="103"/>
+        <CursorPos X="47" Y="117"/>
+        <UsageCount Value="104"/>
         <Loaded Value="True"/>
       </Unit>
+      <Unit>
+        <Filename Value="roundspinedit.pas"/>
+        <UnitName Value="RoundSpinEdit"/>
+        <EditorIndex Value="7"/>
+        <TopLine Value="116"/>
+        <CursorPos X="37" Y="131"/>
+        <UsageCount Value="103"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/Applications/Lazarus/lcl/include/rasterimage.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="507"/>
+        <CursorPos Y="522"/>
+        <UsageCount Value="72"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/Applications/Lazarus/lcl/include/canvas.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1178"/>
+        <CursorPos Y="1189"/>
+        <UsageCount Value="69"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/Applications/Lazarus/lcl/extctrls.pp"/>
+        <UnitName Value="ExtCtrls"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="972"/>
+        <CursorPos X="20" Y="988"/>
+        <UsageCount Value="72"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/Applications/Lazarus/lcl/include/speedbutton.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="479"/>
+        <CursorPos Y="487"/>
+        <UsageCount Value="12"/>
+      </Unit>
     </Units>
-    <JumpHistory HistoryIndex="29">
+    <JumpHistory HistoryIndex="13">
       <Position>
-        <Filename Value="clocktext.pas"/>
-        <Caret Line="100" TopLine="93"/>
+        <Filename Value="roundspinedit.pas"/>
+        <Caret Line="61" Column="22" TopLine="43"/>
       </Position>
       <Position>
-        <Filename Value="clocktext.pas"/>
-        <Caret Line="101" TopLine="93"/>
+        <Filename Value="roundspinedit.pas"/>
+        <Caret Line="29" Column="5" TopLine="23"/>
       </Position>
       <Position>
-        <Filename Value="clocktext.pas"/>
-        <Caret Line="102" TopLine="93"/>
+        <Filename Value="roundspinedit.pas"/>
+        <Caret Line="88" Column="5" TopLine="77"/>
       </Position>
       <Position>
-        <Filename Value="clocktext.pas"/>
-        <Caret Line="103" TopLine="93"/>
-      </Position>
-      <Position>
-        <Filename Value="clocktext.pas"/>
-        <Caret Line="105" TopLine="93"/>
-      </Position>
-      <Position>
-        <Filename Value="clocktext.pas"/>
-        <Caret Line="107" TopLine="93"/>
+        <Filename Value="roundspinedit.pas"/>
+        <Caret Line="114" Column="33" TopLine="94"/>
       </Position>
       <Position>
         <Filename Value="unit1.pas"/>
-        <Caret Line="227" Column="19" TopLine="216"/>
+        <Caret Line="82" Column="19" TopLine="82"/>
       </Position>
       <Position>
-        <Filename Value="states.pas"/>
-        <Caret Line="119" Column="15" TopLine="110"/>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="91" Column="32" TopLine="82"/>
       </Position>
       <Position>
-        <Filename Value="states.pas"/>
-        <Caret Line="277" TopLine="266"/>
+        <Filename Value="roundspinedit.pas"/>
+        <Caret Line="130" TopLine="121"/>
       </Position>
       <Position>
-        <Filename Value="states.pas"/>
-        <Caret Line="286" TopLine="267"/>
+        <Filename Value="roundspinedit.pas"/>
+        <Caret Line="130" TopLine="121"/>
       </Position>
       <Position>
-        <Filename Value="states.pas"/>
-        <Caret Line="281" TopLine="267"/>
+        <Filename Value="roundspinedit.pas"/>
+        <Caret Line="130" TopLine="111"/>
       </Position>
       <Position>
-        <Filename Value="states.pas"/>
-        <Caret Line="282" TopLine="267"/>
+        <Filename Value="roundspinedit.pas"/>
+        <Caret Line="130" TopLine="111"/>
       </Position>
       <Position>
-        <Filename Value="states.pas"/>
-        <Caret Line="212" TopLine="201"/>
+        <Filename Value="roundspinedit.pas"/>
+        <Caret Line="130" TopLine="111"/>
       </Position>
       <Position>
-        <Filename Value="states.pas"/>
-        <Caret Line="213" TopLine="201"/>
+        <Filename Value="roundspinedit.pas"/>
+        <Caret Line="130" TopLine="111"/>
       </Position>
       <Position>
-        <Filename Value="states.pas"/>
-        <Caret Line="215" TopLine="201"/>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="98" Column="62" TopLine="184"/>
       </Position>
       <Position>
-        <Filename Value="states.pas"/>
-        <Caret Line="216" TopLine="201"/>
-      </Position>
-      <Position>
-        <Filename Value="states.pas"/>
-        <Caret Line="217" TopLine="201"/>
-      </Position>
-      <Position>
-        <Filename Value="states.pas"/>
-        <Caret Line="218" TopLine="201"/>
-      </Position>
-      <Position>
-        <Filename Value="states.pas"/>
-        <Caret Line="213" TopLine="201"/>
-      </Position>
-      <Position>
-        <Filename Value="states.pas"/>
-        <Caret Line="215" TopLine="201"/>
-      </Position>
-      <Position>
-        <Filename Value="states.pas"/>
-        <Caret Line="216" TopLine="201"/>
-      </Position>
-      <Position>
-        <Filename Value="states.pas"/>
-        <Caret Line="217" TopLine="201"/>
-      </Position>
-      <Position>
-        <Filename Value="states.pas"/>
-        <Caret Line="218" TopLine="201"/>
-      </Position>
-      <Position>
-        <Filename Value="states.pas"/>
-        <Caret Line="220" TopLine="201"/>
-      </Position>
-      <Position>
-        <Filename Value="states.pas"/>
-        <Caret Line="221" TopLine="202"/>
-      </Position>
-      <Position>
-        <Filename Value="states.pas"/>
-        <Caret Line="222" TopLine="203"/>
-      </Position>
-      <Position>
-        <Filename Value="states.pas"/>
-        <Caret Line="226" TopLine="216"/>
-      </Position>
-      <Position>
-        <Filename Value="states.pas"/>
-        <Caret Line="228" TopLine="216"/>
-      </Position>
-      <Position>
-        <Filename Value="states.pas"/>
-        <Caret Line="282" TopLine="270"/>
-      </Position>
-      <Position>
-        <Filename Value="states.pas"/>
-        <Caret Line="260" Column="9" TopLine="245"/>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="97" Column="62" TopLine="97"/>
       </Position>
     </JumpHistory>
     <RunParams>
@@ -447,27 +315,6 @@
         <WatchKind Value="wpkWrite"/>
         <Source Value="/Applications/Lazarus/lcl/graphutil.pp"/>
         <Line Value="116"/>
-      </Item>
-      <Item>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="/Applications/Lazarus/components/lazcontrols/checkboxthemed.pas"/>
-        <Line Value="234"/>
-      </Item>
-      <Item>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="/Applications/Lazarus/components/lazcontrols/checkboxthemed.pas"/>
-        <Line Value="229"/>
-      </Item>
-      <Item>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="/Applications/Lazarus/components/lazcontrols/checkboxthemed.pas"/>
-        <Line Value="339"/>
       </Item>
     </BreakPoints>
   </Debugging>

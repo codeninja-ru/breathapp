@@ -50,6 +50,8 @@ type
     procedure MouseUp(Button: TMouseButton; Shift: TShiftState; X, Y: integer); override;
     property CheckFromAction: boolean read FCheckFromAction write FCheckFromAction;
     property CheckBoxHovered: boolean read FCheckBoxHovered write SetCheckBoxHovered;
+    procedure CalculatePreferredSize(var PreferredWidth, PreferredHeight: integer;
+    {%H-}WithThemeSpace: boolean); override;
   public
     constructor Create(aOwner: TComponent); override;
     destructor Destroy; override;
@@ -281,6 +283,20 @@ begin
     DoClick;
     CheckBoxPressed := False;
   end;
+end;
+
+procedure TSwitchBox.CalculatePreferredSize(
+  var PreferredWidth, PreferredHeight: integer;
+  WithThemeSpace: boolean);
+begin
+  if FTheme <> nil then
+  begin
+    PreferredWidth := FTheme.Width;
+    PreferredHeight := FTheme.Height;
+  end
+  else
+    inherited CalculatePreferredSize(PreferredWidth, PreferredHeight,
+      WithThemeSpace);
 end;
 
 constructor TSwitchBox.Create(aOwner: TComponent);
