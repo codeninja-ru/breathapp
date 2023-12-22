@@ -145,6 +145,7 @@ end;
 
 destructor TSoundTimer.Destroy;
 begin
+  StopPlaying;
   ma_device_uninit(@device);
 end;
 

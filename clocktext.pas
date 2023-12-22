@@ -13,7 +13,7 @@ type
 
   TClockText = class(TObject)
   private
-    FTextBitmap: TBGRABitmap;
+    FSecondsBitmap, FStateTextBitmap: TBGRABitmap;
     rect: TRect;
     AppSettings: TAppSettings;
     textBox, stateTextBox: TAffineBox;
@@ -37,16 +37,26 @@ begin
   rect := ARect;
   maxSec := AMaxSec;
   AppSettings := AAppColors;
-  FTextBitmap := TBGRABitmap.Create(rect.Width, rect.Height);
-  FTextBitmap.Fill(clDontMask);
-  FTextBitmap.FontAntialias := True;
+  FSecondsBitmap := TBGRABitmap.Create(rect.Width, rect.Height);
+  FSecondsBitmap.Fill(clDontMask);
+  FSecondsBitmap.FontAntialias := True;
+  FSecondsBitmap.FontHeight := 124;
+  FSecondsBitmap.FontName := AppSettings.MainFontName;
+
+
+  FStateTextBitmap := TBGRABitmap.Create(rect.Width, rect.Height);
+  FStateTextBitmap.Fill(clDontMask);
+  FStateTextBitmap.FontAntialias := True;
+  FStateTextBitmap.FontHeight := 20;
+  FStateTextBitmap.FontName := AppSettings.SecondFontName;
+
   x2 := rect.Width div 2;
   y2 := rect.Height div 2;
 end;
 
 destructor TClockText.Destroy;
 begin
-  FTextBitmap.Free;
+  FSecondsBitmap.Free;
   inherited Destroy;
 end;
 
@@ -55,7 +65,9 @@ begin
   DrawSecondsText(State);
   DrawStateText(State);
   prevStateType := State.StateType;
-  ABitmap.EraseMask(rect.Left, rect.Top, FTextBitmap);
+  //TODO draw when changed
+  ABitmap.EraseMask(rect.Left, rect.Top, FSecondsBitmap);
+  ABitmap.EraseMask(rect.Left, rect.Top, FStateTextBitmap);
 end;
 
 procedure TClockText.DrawStateText(State: TState);
@@ -66,22 +78,20 @@ begin
 
   if (stateText <> prevStateText) or (prevStateType <> State.StateType) then
   begin
-    FTextBitmap.FontHeight := 20;
-    FTextBitmap.FontName := AppSettings.SecondFontName;
-
     if prevStateText <> '' then // not the first run
     begin
-      FTextBitmap.CanvasBGRA.Brush.Color := clDontMask;
-      FTextBitmap.CanvasBGRA.Pen.Color := clDontMask;
-      FTextBitmap.CanvasBGRA.Pen.Width := 3;
+      FStateTextBitmap.CanvasBGRA.Brush.Color := clDontMask;
+      FStateTextBitmap.CanvasBGRA.Pen.Color := clDontMask;
+      FStateTextBitmap.CanvasBGRA.Pen.Width := 3;
 
-      FTextBitmap.CanvasBGRA.Rectangle(stateTextBox.RectBounds);
+      FStateTextBitmap.CanvasBGRA.Rectangle(stateTextBox.RectBounds);
     end;
-    stateTextBox := FTextBitmap.TextAffineBox(stateText);
-    stateTextBox.Offset(x2 - Round(stateTextBox.Width / 2), FTextBitmap.Height -
-      stateTextBox.Height);
 
-    FTextBitmap.TextOut(stateTextBox.TopLeft.x,
+    stateTextBox := FStateTextBitmap.TextAffineBox(stateText);
+    stateTextBox.Offset(x2 - Round(stateTextBox.Width / 2),
+      FStateTextBitmap.Height - stateTextBox.Height);
+
+    FStateTextBitmap.TextOut(stateTextBox.TopLeft.x,
       stateTextBox.TopLeft.y,
       stateText,
       clMask);
@@ -97,18 +107,16 @@ begin
   strSec := State.SecondsString;
   if (strSec <> prevSec) or (prevStateType <> State.StateType) then
   begin
-    FTextBitmap.FontHeight := 124;
-    FTextBitmap.FontName := AppSettings.MainFontName;
     strSec := State.SecondsString;
     if prevSec <> '' then // not the first run
     begin
-      FTextBitmap.FillRect(textBox.RectBounds, clDontMask, dmDrawWithTransparency);
+      FSecondsBitmap.FillRect(textBox.RectBounds, clDontMask, dmDrawWithTransparency);
     end;
-    textBox := FTextBitmap.TextAffineBox(strSec);
+    textBox := FSecondsBitmap.TextAffineBox(strSec);
     textBox.Offset(x2 - Round(textBox.Width / 2),
-      y2 - Round(FTextBitmap.Height / 2 + FTextBitmap.Height * 0.10));
+      y2 - Round(FSecondsBitmap.Height / 2 + FSecondsBitmap.Height * 0.10));
 
-    FTextBitmap.TextOut(textBox.TopLeft.x,
+    FSecondsBitmap.TextOut(textBox.TopLeft.x,
       textBox.TopLeft.y,
       strSec,
       clMask);

@@ -6,11 +6,10 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, ExtCtrls, Menus, ComCtrls,
-  StdCtrls, Buttons, Spin, ActnList, CustomDrawnControls, BGRAGraphicControl,
+  StdCtrls, Buttons, Spin, ActnList, BGRAGraphicControl,
   BGRABitmap, BGRABitmapTypes, ClockEllipse, ClockText, AppSettings, BCTypes,
-  BCButton, BCMaterialSpinEdit, BCMaterialEdit, BCTrackbarUpdown, states,
-  ClockTimer, TrayIconTimer, SoundTimer, Backgrounds, buttonState, SwitchBox,
-  RoundSpinEdit;
+  BCButton, states,
+  ClockTimer, TrayIconTimer, SoundTimer, Backgrounds, buttonState, SwitchBox;
 
 type
 
