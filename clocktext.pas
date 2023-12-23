@@ -14,6 +14,7 @@ type
   TClockText = class(TObject)
   private
     FSecondsBitmap, FStateTextBitmap: TBGRABitmap;
+    FSecondsChanged, FStateTextChanged: boolean;
     rect: TRect;
     AppSettings: TAppSettings;
     textBox, stateTextBox: TAffineBox;
@@ -42,6 +43,7 @@ begin
   FSecondsBitmap.FontAntialias := True;
   FSecondsBitmap.FontHeight := 124;
   FSecondsBitmap.FontName := AppSettings.MainFontName;
+  FSecondsChanged := False;
 
 
   FStateTextBitmap := TBGRABitmap.Create(rect.Width, rect.Height);
@@ -49,6 +51,7 @@ begin
   FStateTextBitmap.FontAntialias := True;
   FStateTextBitmap.FontHeight := 20;
   FStateTextBitmap.FontName := AppSettings.SecondFontName;
+  FStateTextChanged := False;
 
   x2 := rect.Width div 2;
   y2 := rect.Height div 2;
@@ -65,9 +68,14 @@ begin
   DrawSecondsText(State);
   DrawStateText(State);
   prevStateType := State.StateType;
-  //TODO draw when changed
-  ABitmap.EraseMask(rect.Left, rect.Top, FSecondsBitmap);
-  ABitmap.EraseMask(rect.Left, rect.Top, FStateTextBitmap);
+  if FSecondsChanged then
+    ABitmap.EraseMask(rect.Left, rect.Top, FSecondsBitmap)
+  else
+    FSecondsChanged := False;
+  if FStateTextChanged then
+    ABitmap.EraseMask(rect.Left, rect.Top, FStateTextBitmap)
+  else
+    FStateTextChanged := False;
 end;
 
 procedure TClockText.DrawStateText(State: TState);
@@ -95,6 +103,7 @@ begin
       stateTextBox.TopLeft.y,
       stateText,
       clMask);
+    FStateTextChanged := True;
   end;
 
   prevStateText := stateText;
@@ -120,6 +129,7 @@ begin
       textBox.TopLeft.y,
       strSec,
       clMask);
+    FSecondsChanged := True;
   end;
   prevSec := strSec;
 end;

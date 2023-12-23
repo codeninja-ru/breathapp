@@ -9,7 +9,7 @@ uses
   athreads,
    {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, lazopenglcontext, lazcontrols, Unit1, clockEllipse, AppSettings,
+  Forms, lazcontrols, Unit1, clockEllipse, AppSettings,
   clockText, states, ClockTimer, TrayIconTimer, SoundTimer, Backgrounds{ you can add units after this };
 
 {$R *.res}

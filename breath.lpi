@@ -153,9 +153,6 @@
         <PackageName Value="BGLControls"/>
       </Item>
       <Item>
-        <PackageName Value="LazOpenGLContext"/>
-      </Item>
-      <Item>
         <PackageName Value="bgracontrols"/>
       </Item>
       <Item>

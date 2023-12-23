@@ -198,9 +198,11 @@ begin
     if ma_device_start(@device) <> MA_SUCCESS then
     begin
       ma_device_uninit(@device);
+      isPlaying := false;
       raise Exception.Create('Failed to start playback device.');
     end;
 
+    isPlaying:=True;
     BeginThread(@sleepAndStop, Self);
   end;
 end;
