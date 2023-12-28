@@ -1,7 +1,7 @@
 object MainForm: TMainForm
   Left = 748
   Height = 512
-  Top = 139
+  Top = 138
   Width = 320
   BorderStyle = bsToolWindow
   Caption = 'Breath'
@@ -317,10 +317,10 @@ object MainForm: TMainForm
     Height = 512
     Top = 0
     Width = 320
-    ActivePage = TabTimer
+    ActivePage = TabSettings
     Align = alClient
     ShowTabs = False
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 0
     object TabTimer: TTabSheet
       Caption = 'TabTimer'
@@ -448,6 +448,30 @@ object MainForm: TMainForm
         OnMouseEnter = SettingsButtonMouseEnter
         OnMouseLeave = SettingsButtonMouseLeave
       end
+      object RoundSpinEdit1: TRoundSpinEdit
+        Left = 68
+        Height = 40
+        Top = 345
+        Width = 82
+        MinValue = 0
+        MaxValue = 10
+        Value = 0
+        Increment = 1
+        Edit.Left = 4
+        Edit.Height = 32
+        Edit.Top = 4
+        Edit.Width = 52
+        Edit.Align = alClient
+        Edit.BorderSpacing.Around = 4
+        Edit.BorderStyle = bsNone
+        Edit.Color = 4473924
+        Edit.Font.Height = -29
+        Edit.ParentFont = False
+        Edit.TabOrder = 0
+        Edit.Text = '0'
+        DisabledColor = 12103592
+        AccentColor = clHighlight
+      end
     end
     object TabSettings: TTabSheet
       Caption = 'Settings'
@@ -561,8 +585,8 @@ object MainForm: TMainForm
         TextApplyGlobalOpacity = False
         MemoryUsage = bmuHigh
       end
-      object BreathInSpinEdit: TSpinEdit
-        Left = 16
+      object BreathOutSpinEdit: TSpinEdit
+        Left = 191
         Height = 32
         Top = 72
         Width = 95
@@ -576,21 +600,6 @@ object MainForm: TMainForm
         TabOrder = 0
         Value = 5
       end
-      object BreathOutSpinEdit: TSpinEdit
-        Left = 191
-        Height = 32
-        Top = 72
-        Width = 95
-        Font.CharSet = ANSI_CHARSET
-        Font.Height = -19
-        Font.Name = '.SF NS'
-        MaxValue = 20
-        MinValue = 1
-        OnChange = SpineEditChanged
-        ParentFont = False
-        TabOrder = 1
-        Value = 5
-      end
       object HoldInSpinEdit: TSpinEdit
         Left = 16
         Height = 32
@@ -602,7 +611,7 @@ object MainForm: TMainForm
         MaxValue = 20
         OnChange = SpineEditChanged
         ParentFont = False
-        TabOrder = 2
+        TabOrder = 1
       end
       object HoldOutSpinEdit: TSpinEdit
         Left = 191
@@ -615,7 +624,7 @@ object MainForm: TMainForm
         MaxValue = 20
         OnChange = SpineEditChanged
         ParentFont = False
-        TabOrder = 3
+        TabOrder = 2
       end
       object Label1: TLabel
         Left = 16
@@ -671,7 +680,7 @@ object MainForm: TMainForm
         Top = 296
         Width = 56
         Action = ToggleNightModeEnabledAction
-        TabOrder = 4
+        TabOrder = 3
       end
       object NightModeLabel: TLabel
         Left = 151
@@ -691,7 +700,7 @@ object MainForm: TMainForm
         Top = 240
         Width = 56
         Action = ToggleSoundEnabledAction
-        TabOrder = 5
+        TabOrder = 4
       end
       object SoundLabel: TLabel
         Left = 151
@@ -704,6 +713,30 @@ object MainForm: TMainForm
         Font.Name = '.SF NS'
         ParentColor = False
         ParentFont = False
+      end
+      object BreathInSpinEdit: TRoundSpinEdit
+        Left = 16
+        Height = 43
+        Top = 80
+        Width = 101
+        MinValue = 1
+        MaxValue = 20
+        Value = 5
+        Increment = 1
+        Edit.Left = 4
+        Edit.Height = 35
+        Edit.Top = 4
+        Edit.Width = 71
+        Edit.Align = alClient
+        Edit.BorderSpacing.Around = 4
+        Edit.BorderStyle = bsNone
+        Edit.Color = 4473924
+        Edit.Font.Height = -29
+        Edit.ParentFont = False
+        Edit.TabOrder = 0
+        Edit.Text = '5'
+        DisabledColor = 12103592
+        AccentColor = clHighlight
       end
     end
   end
