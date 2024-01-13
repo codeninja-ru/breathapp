@@ -15,6 +15,14 @@
         <HasRegisterProc Value="True"/>
         <UnitName Value="RoundSpinEdit"/>
       </Item>
+      <Item>
+        <Filename Value="roundspinedittheme.pas"/>
+        <UnitName Value="RoundSpinEditTheme"/>
+      </Item>
+      <Item>
+        <Filename Value="roundupdown.pas"/>
+        <UnitName Value="roundupdown"/>
+      </Item>
     </Files>
     <RequiredPkgs>
       <Item>

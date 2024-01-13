@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, ExtCtrls, Menus, ComCtrls,
-  StdCtrls, Buttons, Spin, ActnList, BGRAGraphicControl, BGRABitmap,
+  StdCtrls, Buttons, ActnList, BGRAGraphicControl, BGRABitmap,
   BGRABitmapTypes, ClockEllipse, ClockText, AppSettings, BCTypes, BCButton,
   states, ClockTimer, TrayIconTimer, SoundTimer, Backgrounds, buttonState,
   SwitchBox, RoundSpinEdit;
@@ -16,8 +16,10 @@ type
   { TMainForm }
 
   TMainForm = class(TForm)
-    RoundSpinEdit1: TRoundSpinEdit;
     BreathInSpinEdit: TRoundSpinEdit;
+    BreathOutSpinEdit: TRoundSpinEdit;
+    HoldInSpinEdit: TRoundSpinEdit;
+    HoldOutSpinEdit: TRoundSpinEdit;
     SoundLabel: TLabel;
     NightModeLabel: TLabel;
     ShowAction: TAction;
@@ -28,13 +30,10 @@ type
     ToggleSoundEnabledAction: TAction;
     SettingsBackAction: TAction;
     FormActionList: TActionList;
-    Label1: TLabel;
-    Label2: TLabel;
-    Label3: TLabel;
-    Label4: TLabel;
-    HoldOutSpinEdit: TSpinEdit;
-    HoldInSpinEdit: TSpinEdit;
-    BreathOutSpinEdit: TSpinEdit;
+    BreathInLabel: TLabel;
+    BreathOutLabel: TLabel;
+    HoldInLabel: TLabel;
+    HoldOutLabel: TLabel;
     ImageListButton: TImageList;
     LabelCaption: TLabel;
     MenuItemNightMode: TMenuItem;

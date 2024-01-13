@@ -8,7 +8,7 @@ unit RoundSpinEditPackage;
 interface
 
 uses
-  RoundSpinEdit, LazarusPackageIntf;
+  RoundSpinEdit, RoundSpinEditTheme, RoundUpDown, LazarusPackageIntf;
 
 implementation
 

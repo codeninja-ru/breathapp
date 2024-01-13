@@ -7,9 +7,9 @@
       <Unit>
         <Filename Value="breath.lpr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
         <CursorPos X="72" Y="13"/>
         <UsageCount Value="205"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="unit1.pas"/>
@@ -18,8 +18,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit1"/>
-        <TopLine Value="29"/>
-        <CursorPos X="87" Y="37"/>
+        <EditorIndex Value="1"/>
+        <CursorPos X="22" Y="32"/>
         <UsageCount Value="205"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -28,50 +28,45 @@
         <Filename Value="clockellipse.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ClockEllipse"/>
-        <EditorIndex Value="12"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="99"/>
         <CursorPos X="21" Y="95"/>
         <UsageCount Value="207"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="appsettings.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="AppSettings"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="8"/>
         <CursorPos Y="52"/>
         <UsageCount Value="205"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="clocktext.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ClockText"/>
-        <EditorIndex Value="6"/>
-        <TopLine Value="65"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="64"/>
         <CursorPos X="31" Y="64"/>
         <UsageCount Value="217"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="states.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="13"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="180"/>
         <CursorPos Y="192"/>
         <UsageCount Value="235"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="clocktimer.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ClockTimer"/>
-        <EditorIndex Value="14"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="85"/>
         <CursorPos X="9" Y="90"/>
         <UsageCount Value="222"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="trayicontimer.pas"/>
@@ -86,20 +81,18 @@
         <Filename Value="soundtimer.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="SoundTimer"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="-1"/>
         <CursorPos X="31" Y="136"/>
         <UsageCount Value="203"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="backgrounds.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Backgrounds"/>
-        <EditorIndex Value="15"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="48"/>
         <CursorPos X="39" Y="48"/>
         <UsageCount Value="214"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="colorutils.pas"/>
@@ -122,91 +115,66 @@
         <Filename Value="miniaudio/miniaudio.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="45" Y="11"/>
-        <UsageCount Value="82"/>
+        <UsageCount Value="26"/>
       </Unit>
       <Unit>
         <Filename Value="breathclock.pas"/>
         <UnitName Value="BreathClock"/>
         <EditorIndex Value="-1"/>
         <CursorPos Y="11"/>
-        <UsageCount Value="137"/>
+        <UsageCount Value="81"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/include/control.inc"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="2819"/>
-        <CursorPos X="40" Y="2823"/>
-        <UsageCount Value="101"/>
+        <TopLine Value="768"/>
+        <CursorPos X="20" Y="769"/>
+        <UsageCount Value="110"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/include/customcheckbox.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="245"/>
         <CursorPos X="17" Y="212"/>
-        <UsageCount Value="89"/>
+        <UsageCount Value="33"/>
       </Unit>
       <Unit>
         <Filename Value="switchbox.pas"/>
         <UnitName Value="SwitchBox"/>
-        <EditorIndex Value="4"/>
-        <UsageCount Value="104"/>
-        <Loaded Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="43"/>
+        <CursorPos X="21" Y="64"/>
+        <UsageCount Value="99"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/components/lazcontrols/checkboxthemed.pas"/>
         <UnitName Value="CheckBoxThemed"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="47"/>
-        <CursorPos Y="61"/>
-        <UsageCount Value="104"/>
-        <Loaded Value="True"/>
-      </Unit>
-      <Unit>
-        <Filename Value="/Applications/Lazarus/lcl/include/customcontrol.inc"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="48"/>
-        <CursorPos Y="60"/>
-        <UsageCount Value="8"/>
-      </Unit>
-      <Unit>
-        <Filename Value="../../.lazarus/onlinepackagemanager/packages/BGRABitmap/bgrabitmap/bgrabitmap.pas"/>
-        <UnitName Value="BGRABitmap"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="329"/>
-        <CursorPos X="50" Y="362"/>
-        <UsageCount Value="5"/>
-      </Unit>
-      <Unit>
-        <Filename Value="../../.lazarus/onlinepackagemanager/packages/BGRABitmap/bgrabitmap/bgracustombitmap.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="142"/>
-        <CursorPos X="29" Y="152"/>
-        <UsageCount Value="5"/>
+        <TopLine Value="92"/>
+        <CursorPos X="36" Y="101"/>
+        <UsageCount Value="92"/>
       </Unit>
       <Unit>
         <Filename Value="vendor/miniaudio/miniaudio.pp"/>
-        <EditorIndex Value="11"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="5721"/>
         <CursorPos X="33" Y="5732"/>
-        <UsageCount Value="101"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="96"/>
       </Unit>
       <Unit>
         <Filename Value="switchboxtheme.pas"/>
         <UnitName Value="SwitchBoxTheme"/>
-        <EditorIndex Value="5"/>
-        <TopLine Value="103"/>
-        <CursorPos X="66" Y="117"/>
-        <UsageCount Value="104"/>
-        <Loaded Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="176"/>
+        <CursorPos X="35" Y="151"/>
+        <UsageCount Value="99"/>
       </Unit>
       <Unit>
         <Filename Value="roundspinedit.pas"/>
         <UnitName Value="RoundSpinEdit"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="7"/>
-        <TopLine Value="124"/>
-        <CursorPos X="38" Y="128"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="214"/>
+        <CursorPos X="32" Y="215"/>
         <UsageCount Value="103"/>
         <Loaded Value="True"/>
       </Unit>
@@ -215,14 +183,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="288"/>
         <CursorPos Y="302"/>
-        <UsageCount Value="61"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/include/canvas.inc"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="1694"/>
-        <CursorPos X="3" Y="1699"/>
-        <UsageCount Value="73"/>
+        <TopLine Value="378"/>
+        <CursorPos Y="391"/>
+        <UsageCount Value="84"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/extctrls.pp"/>
@@ -230,261 +198,193 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="972"/>
         <CursorPos X="20" Y="988"/>
-        <UsageCount Value="58"/>
+        <UsageCount Value="2"/>
       </Unit>
       <Unit>
-        <Filename Value="../../.lazarus/onlinepackagemanager/packages/BGRABitmap/bgrabitmap/bgradefaultbitmap.pas"/>
-        <UnitName Value="BGRADefaultBitmap"/>
+        <Filename Value="/Applications/Lazarus/lcl/spin.pp"/>
+        <UnitName Value="Spin"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="2199"/>
-        <CursorPos X="11" Y="2206"/>
-        <UsageCount Value="6"/>
+        <TopLine Value="30"/>
+        <CursorPos X="37" Y="32"/>
+        <UsageCount Value="42"/>
       </Unit>
       <Unit>
-        <Filename Value="/Applications/Lazarus/lcl/lclintf.pas"/>
-        <UnitName Value="LCLIntf"/>
+        <Filename Value="/Applications/Lazarus/lcl/include/customedit.inc"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="218"/>
-        <CursorPos X="35" Y="38"/>
-        <UsageCount Value="3"/>
-      </Unit>
-      <Unit>
-        <Filename Value="../../.lazarus/onlinepackagemanager/packages/BGRABitmap/bgrabitmap/bgrabitmaptypes.pas"/>
-        <UnitName Value="BGRABitmapTypes"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="823"/>
-        <CursorPos Y="830"/>
-        <UsageCount Value="10"/>
-      </Unit>
-      <Unit>
-        <Filename Value="../../.lazarus/onlinepackagemanager/packages/BGRABitmap/bgrabitmap/bgratext.pas"/>
-        <UnitName Value="BGRAText"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="225"/>
-        <CursorPos Y="232"/>
-        <UsageCount Value="10"/>
-      </Unit>
-      <Unit>
-        <Filename Value="/Applications/Lazarus/lcl/include/font.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="1317"/>
-        <CursorPos Y="1322"/>
-        <UsageCount Value="10"/>
-      </Unit>
-      <Unit>
-        <Filename Value="/Applications/Lazarus/lcl/include/winapi.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="509"/>
-        <CursorPos Y="520"/>
-        <UsageCount Value="9"/>
-      </Unit>
-      <Unit>
-        <Filename Value="/Applications/Lazarus/lcl/graphics.pp"/>
-        <UnitName Value="Graphics"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="1048"/>
-        <CursorPos X="15" Y="1057"/>
-        <UsageCount Value="18"/>
-      </Unit>
-      <Unit>
-        <Filename Value="../../.lazarus/onlinepackagemanager/packages/BGRABitmap/bgrabitmap/bgrapolygon.pas"/>
-        <UnitName Value="BGRAPolygon"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="720"/>
-        <CursorPos X="3" Y="723"/>
-        <UsageCount Value="6"/>
-      </Unit>
-      <Unit>
-        <Filename Value="/Applications/Lazarus/lcl/controls.pp"/>
-        <UnitName Value="Controls"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="413"/>
-        <CursorPos X="47" Y="413"/>
-        <UsageCount Value="10"/>
+        <TopLine Value="15"/>
+        <CursorPos X="84" Y="18"/>
+        <UsageCount Value="32"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/stdctrls.pp"/>
         <UnitName Value="StdCtrls"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="980"/>
-        <CursorPos X="14" Y="989"/>
-        <UsageCount Value="10"/>
+        <TopLine Value="785"/>
+        <CursorPos X="27" Y="799"/>
+        <UsageCount Value="33"/>
       </Unit>
       <Unit>
-        <Filename Value="/Applications/Lazarus/lcl/buttons.pp"/>
-        <UnitName Value="Buttons"/>
+        <Filename Value="/Applications/Lazarus/lcl/controls.pp"/>
+        <UnitName Value="Controls"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="354"/>
-        <CursorPos X="18" Y="366"/>
-        <UsageCount Value="10"/>
+        <TopLine Value="1312"/>
+        <CursorPos X="16" Y="1324"/>
+        <UsageCount Value="34"/>
       </Unit>
       <Unit>
-        <Filename Value="/Applications/Lazarus/lcl/include/speedbutton.inc"/>
+        <Filename Value="/Applications/Lazarus/lcl/include/wincontrol.inc"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="33"/>
-        <CursorPos X="30" Y="47"/>
-        <UsageCount Value="9"/>
+        <TopLine Value="4797"/>
+        <CursorPos Y="4809"/>
+        <UsageCount Value="44"/>
       </Unit>
       <Unit>
-        <Filename Value="/Applications/Lazarus/lcl/spin.pp"/>
-        <UnitName Value="Spin"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="61"/>
-        <CursorPos X="5" Y="73"/>
-        <UsageCount Value="12"/>
+        <Filename Value="roundspinedittheme.pas"/>
+        <UnitName Value="RoundSpinEditTheme"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="120"/>
+        <CursorPos X="23" Y="138"/>
+        <UsageCount Value="55"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="/Applications/Lazarus/lcl/include/spinedit.inc"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="2"/>
-        <CursorPos X="18" Y="17"/>
-        <UsageCount Value="12"/>
-        <Loaded Value="True"/>
-      </Unit>
-      <Unit>
-        <Filename Value="/usr/local/share/fpcsrc/rtl/objpas/sysutils/sysstrh.inc"/>
+        <Filename Value="unit1.lfm"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="104"/>
-        <CursorPos X="10" Y="115"/>
-        <UsageCount Value="10"/>
+        <TopLine Value="641"/>
+        <CursorPos X="9" Y="675"/>
+        <UsageCount Value="8"/>
+        <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit>
       <Unit>
-        <Filename Value="/usr/local/share/fpcsrc/rtl/objpas/sysutils/sysstr.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="850"/>
-        <CursorPos X="2" Y="852"/>
-        <UsageCount Value="10"/>
-      </Unit>
-      <Unit>
-        <Filename Value="/Applications/Lazarus/lcl/include/customedit.inc"/>
-        <EditorIndex Value="8"/>
-        <TopLine Value="614"/>
-        <CursorPos Y="625"/>
-        <UsageCount Value="10"/>
+        <Filename Value="roundupdown.pas"/>
+        <UnitName Value="RoundUpDown"/>
+        <EditorIndex Value="4"/>
+        <CursorPos X="12" Y="9"/>
+        <UsageCount Value="48"/>
         <Loaded Value="True"/>
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
       <Position>
-        <Filename Value="roundspinedit.pas"/>
-        <Caret Line="308" TopLine="297"/>
+        <Filename Value="roundspinedittheme.pas"/>
+        <Caret Line="376" TopLine="357"/>
       </Position>
       <Position>
         <Filename Value="roundspinedit.pas"/>
-        <Caret Line="309" TopLine="297"/>
+        <Caret Line="169" TopLine="157"/>
       </Position>
       <Position>
         <Filename Value="roundspinedit.pas"/>
-        <Caret Line="311" TopLine="297"/>
+        <Caret Line="168" TopLine="157"/>
       </Position>
       <Position>
         <Filename Value="roundspinedit.pas"/>
-        <Caret Line="318" TopLine="299"/>
+        <Caret Line="145" TopLine="134"/>
       </Position>
       <Position>
         <Filename Value="roundspinedit.pas"/>
-        <Caret Line="308" TopLine="299"/>
+        <Caret Line="148" TopLine="134"/>
       </Position>
       <Position>
         <Filename Value="roundspinedit.pas"/>
-        <Caret Line="309" TopLine="299"/>
+        <Caret Line="149" TopLine="134"/>
       </Position>
       <Position>
         <Filename Value="roundspinedit.pas"/>
-        <Caret Line="320" TopLine="301"/>
+        <Caret Line="168" TopLine="157"/>
+      </Position>
+      <Position>
+        <Filename Value="roundspinedittheme.pas"/>
+        <Caret Line="364" TopLine="357"/>
+      </Position>
+      <Position>
+        <Filename Value="roundspinedittheme.pas"/>
+        <Caret Line="365" TopLine="357"/>
+      </Position>
+      <Position>
+        <Filename Value="roundspinedittheme.pas"/>
+        <Caret Line="366" TopLine="357"/>
+      </Position>
+      <Position>
+        <Filename Value="roundspinedittheme.pas"/>
+        <Caret Line="367" TopLine="357"/>
+      </Position>
+      <Position>
+        <Filename Value="roundspinedittheme.pas"/>
+        <Caret Line="368" TopLine="357"/>
       </Position>
       <Position>
         <Filename Value="roundspinedit.pas"/>
-        <Caret Line="392" TopLine="381"/>
+        <Caret Line="35" Column="22" TopLine="31"/>
       </Position>
       <Position>
         <Filename Value="roundspinedit.pas"/>
-        <Caret Line="393" TopLine="381"/>
+        <Caret Line="134" TopLine="115"/>
+      </Position>
+      <Position>
+        <Filename Value="roundspinedittheme.pas"/>
+        <Caret Line="373" TopLine="357"/>
+      </Position>
+      <Position>
+        <Filename Value="roundspinedittheme.pas"/>
+        <Caret Line="374" TopLine="358"/>
+      </Position>
+      <Position>
+        <Filename Value="roundspinedittheme.pas"/>
+        <Caret Line="375" TopLine="358"/>
+      </Position>
+      <Position>
+        <Filename Value="roundspinedittheme.pas"/>
+        <Caret Line="373" TopLine="358"/>
       </Position>
       <Position>
         <Filename Value="roundspinedit.pas"/>
-        <Caret Line="394" TopLine="381"/>
+        <Caret Line="134" TopLine="115"/>
       </Position>
       <Position>
         <Filename Value="roundspinedit.pas"/>
-        <Caret Line="395" TopLine="381"/>
+        <Caret Line="150" TopLine="139"/>
       </Position>
       <Position>
         <Filename Value="roundspinedit.pas"/>
-        <Caret Line="397" TopLine="381"/>
+        <Caret Line="153" TopLine="139"/>
       </Position>
       <Position>
         <Filename Value="roundspinedit.pas"/>
-        <Caret Line="308" TopLine="297"/>
+        <Caret Line="154" TopLine="139"/>
       </Position>
       <Position>
-        <Filename Value="roundspinedit.pas"/>
-        <Caret Line="309" TopLine="297"/>
+        <Filename Value="roundspinedittheme.pas"/>
+        <Caret Line="338" Column="5" TopLine="338"/>
       </Position>
       <Position>
-        <Filename Value="roundspinedit.pas"/>
-        <Caret Line="311" TopLine="297"/>
+        <Filename Value="roundspinedittheme.pas"/>
+        <Caret Line="130" Column="23" TopLine="124"/>
       </Position>
       <Position>
-        <Filename Value="roundspinedit.pas"/>
-        <Caret Line="313" TopLine="297"/>
+        <Filename Value="roundspinedittheme.pas"/>
+        <Caret Line="367" Column="28" TopLine="348"/>
       </Position>
       <Position>
-        <Filename Value="roundspinedit.pas"/>
-        <Caret Line="314" TopLine="297"/>
+        <Filename Value="roundspinedittheme.pas"/>
+        <Caret Line="370" Column="42" TopLine="351"/>
       </Position>
       <Position>
-        <Filename Value="roundspinedit.pas"/>
-        <Caret Line="398" TopLine="387"/>
+        <Filename Value="roundspinedittheme.pas"/>
+        <Caret Line="371" Column="53" TopLine="352"/>
       </Position>
       <Position>
-        <Filename Value="roundspinedit.pas"/>
-        <Caret Line="309" TopLine="301"/>
+        <Filename Value="roundspinedittheme.pas"/>
+        <Caret Line="61" Column="31" TopLine="56"/>
       </Position>
       <Position>
-        <Filename Value="roundspinedit.pas"/>
-        <Caret Line="314" TopLine="301"/>
+        <Filename Value="roundspinedittheme.pas"/>
+        <Caret Line="62" Column="26" TopLine="56"/>
       </Position>
       <Position>
-        <Filename Value="roundspinedit.pas"/>
-        <Caret Line="309" TopLine="301"/>
-      </Position>
-      <Position>
-        <Filename Value="roundspinedit.pas"/>
-        <Caret Line="311" TopLine="301"/>
-      </Position>
-      <Position>
-        <Filename Value="roundspinedit.pas"/>
-        <Caret Line="309" TopLine="301"/>
-      </Position>
-      <Position>
-        <Filename Value="roundspinedit.pas"/>
-        <Caret Line="314" TopLine="301"/>
-      </Position>
-      <Position>
-        <Filename Value="roundspinedit.pas"/>
-        <Caret Line="325" TopLine="315"/>
-      </Position>
-      <Position>
-        <Filename Value="/Applications/Lazarus/lcl/include/customedit.inc"/>
-        <Caret Line="625" TopLine="614"/>
-      </Position>
-      <Position>
-        <Filename Value="roundspinedit.pas"/>
-        <Caret Line="314" TopLine="302"/>
-      </Position>
-      <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="43" Column="27" TopLine="28"/>
-      </Position>
-      <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="44" Column="27" TopLine="29"/>
-      </Position>
-      <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="43" Column="30" TopLine="29"/>
+        <Filename Value="roundspinedittheme.pas"/>
+        <Caret Line="371" Column="15" TopLine="363"/>
       </Position>
     </JumpHistory>
     <RunParams>

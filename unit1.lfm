@@ -448,44 +448,24 @@ object MainForm: TMainForm
         OnMouseEnter = SettingsButtonMouseEnter
         OnMouseLeave = SettingsButtonMouseLeave
       end
-      object RoundSpinEdit1: TRoundSpinEdit
-        Left = 68
-        Height = 40
-        Top = 345
-        Width = 82
-        MinValue = 0
-        MaxValue = 10
-        Value = 0
-        Increment = 1
-        Edit.Left = 4
-        Edit.Height = 32
-        Edit.Top = 4
-        Edit.Width = 52
-        Edit.Align = alClient
-        Edit.BorderSpacing.Around = 4
-        Edit.BorderStyle = bsNone
-        Edit.Color = 4473924
-        Edit.Font.Height = -29
-        Edit.ParentFont = False
-        Edit.TabOrder = 0
-        Edit.Text = '0'
-        DisabledColor = 12103592
-        AccentColor = clHighlight
-      end
     end
     object TabSettings: TTabSheet
       Caption = 'Settings'
       ClientHeight = 512
       ClientWidth = 320
       object LabelCaption: TLabel
-        Left = 96
-        Height = 28
-        Top = 8
-        Width = 121
+        Left = 0
+        Height = 29
+        Top = 10
+        Width = 320
+        Align = alTop
+        Alignment = taCenter
+        BorderSpacing.Top = 10
+        BorderSpacing.Bottom = 10
         Caption = '❮ Settings ❯'
         Font.CharSet = ANSI_CHARSET
         Font.Height = -24
-        Font.Name = '.SF NS'
+        Font.Name = 'PT Sans Caption'
         ParentColor = False
         ParentFont = False
         OnClick = SettingsBackActionExecute
@@ -585,48 +565,7 @@ object MainForm: TMainForm
         TextApplyGlobalOpacity = False
         MemoryUsage = bmuHigh
       end
-      object BreathOutSpinEdit: TSpinEdit
-        Left = 191
-        Height = 32
-        Top = 72
-        Width = 95
-        Font.CharSet = ANSI_CHARSET
-        Font.Height = -19
-        Font.Name = '.SF NS'
-        MaxValue = 20
-        MinValue = 1
-        OnChange = SpineEditChanged
-        ParentFont = False
-        TabOrder = 0
-        Value = 5
-      end
-      object HoldInSpinEdit: TSpinEdit
-        Left = 16
-        Height = 32
-        Top = 145
-        Width = 95
-        Font.CharSet = ANSI_CHARSET
-        Font.Height = -19
-        Font.Name = '.SF NS'
-        MaxValue = 20
-        OnChange = SpineEditChanged
-        ParentFont = False
-        TabOrder = 1
-      end
-      object HoldOutSpinEdit: TSpinEdit
-        Left = 191
-        Height = 32
-        Top = 145
-        Width = 95
-        Font.CharSet = ANSI_CHARSET
-        Font.Height = -19
-        Font.Name = '.SF NS'
-        MaxValue = 20
-        OnChange = SpineEditChanged
-        ParentFont = False
-        TabOrder = 2
-      end
-      object Label1: TLabel
+      object BreathInLabel: TLabel
         Left = 16
         Height = 18
         Top = 56
@@ -638,8 +577,8 @@ object MainForm: TMainForm
         ParentColor = False
         ParentFont = False
       end
-      object Label2: TLabel
-        Left = 191
+      object BreathOutLabel: TLabel
+        Left = 200
         Height = 18
         Top = 56
         Width = 95
@@ -650,10 +589,10 @@ object MainForm: TMainForm
         ParentColor = False
         ParentFont = False
       end
-      object Label3: TLabel
+      object HoldInLabel: TLabel
         Left = 16
         Height = 18
-        Top = 128
+        Top = 144
         Width = 70
         Caption = 'Hold in(s)'
         Font.CharSet = ANSI_CHARSET
@@ -662,10 +601,10 @@ object MainForm: TMainForm
         ParentColor = False
         ParentFont = False
       end
-      object Label4: TLabel
-        Left = 191
+      object HoldOutLabel: TLabel
+        Left = 200
         Height = 18
-        Top = 128
+        Top = 144
         Width = 81
         Caption = 'Hold out(s)'
         Font.CharSet = ANSI_CHARSET
@@ -675,17 +614,17 @@ object MainForm: TMainForm
         ParentFont = False
       end
       object NightModeSwitchBox: TSwitchBox
-        Left = 64
+        Left = 72
         Height = 24
-        Top = 296
+        Top = 324
         Width = 56
         Action = ToggleNightModeEnabledAction
-        TabOrder = 3
+        TabOrder = 0
       end
       object NightModeLabel: TLabel
         Left = 151
         Height = 28
-        Top = 296
+        Top = 320
         Width = 121
         Caption = 'Night mode'
         Font.CharSet = ANSI_CHARSET
@@ -695,17 +634,17 @@ object MainForm: TMainForm
         ParentFont = False
       end
       object SoundSwitchBox: TSwitchBox
-        Left = 64
+        Left = 71
         Height = 24
-        Top = 240
+        Top = 260
         Width = 56
         Action = ToggleSoundEnabledAction
-        TabOrder = 4
+        TabOrder = 1
       end
       object SoundLabel: TLabel
-        Left = 151
+        Left = 150
         Height = 28
-        Top = 240
+        Top = 256
         Width = 67
         Caption = 'Sound'
         Font.CharSet = ANSI_CHARSET
@@ -718,25 +657,41 @@ object MainForm: TMainForm
         Left = 16
         Height = 43
         Top = 80
-        Width = 101
+        Width = 100
         MinValue = 1
         MaxValue = 20
         Value = 5
         Increment = 1
-        Edit.Left = 4
-        Edit.Height = 35
-        Edit.Top = 4
-        Edit.Width = 71
-        Edit.Align = alClient
-        Edit.BorderSpacing.Around = 4
-        Edit.BorderStyle = bsNone
-        Edit.Color = 4473924
-        Edit.Font.Height = -29
-        Edit.ParentFont = False
-        Edit.TabOrder = 0
-        Edit.Text = '5'
-        DisabledColor = 12103592
-        AccentColor = clHighlight
+      end
+      object BreathOutSpinEdit: TRoundSpinEdit
+        Left = 200
+        Height = 43
+        Top = 80
+        Width = 100
+        MinValue = 0
+        MaxValue = 20
+        Value = 5
+        Increment = 1
+      end
+      object HoldInSpinEdit: TRoundSpinEdit
+        Left = 16
+        Height = 43
+        Top = 168
+        Width = 100
+        MinValue = 0
+        MaxValue = 20
+        Value = 0
+        Increment = 1
+      end
+      object HoldOutSpinEdit: TRoundSpinEdit
+        Left = 200
+        Height = 43
+        Top = 168
+        Width = 100
+        MinValue = 0
+        MaxValue = 20
+        Value = 0
+        Increment = 1
       end
     end
   end

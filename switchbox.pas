@@ -62,40 +62,23 @@ type
 
   published
     property Action;
-    //property Align;
-    //property Anchors;
-    //property AutoSize default True;
-    //property BiDiMode;
-    //property BorderSpacing;
-    //property Caption;
-    //property Checked;
-    //property Color;
-    //property Constraints;
     property Cursor;
     property DragCursor;
     property DragKind;
     property DragMode;
     property Enabled;
-    //property Font;
-    //property Height;
     property HelpContext;
     property HelpKeyword;
     property HelpType;
     property Hint;
     property Left;
-    //property ParentBiDiMode;
-    //property ParentColor;
-    //property ParentFont;
-    //property ParentShowHint;
     property PopupMenu;
     property ShowHint;
     property TabOrder;
     property TabStop default True;
     property Top;
     property Visible;
-    //property Width;
     property OnChangeBounds;
-    //property OnChange;
     property OnClick;
     property OnContextPopup;
     property OnDragDrop;
@@ -320,7 +303,8 @@ end;
 
 destructor TSwitchBox.Destroy;
 begin
-  FBitmap.Free;
+  FreeAndNil(FBitmap);
+  FreeAndNil(FTheme);
   inherited Destroy;
 end;
 
