@@ -12,7 +12,7 @@ type
 
   { TAbstractRoundSpinEditTheme }
 
-  TAbstractRoundSpinEditTheme = class abstract
+  TAbstractRoundSpinEditTheme = class abstract(TPersistent)
   private
     FButtonWidth, FButtonHeight: integer;
     FPadding: integer;
@@ -112,31 +112,14 @@ type
       override;
     procedure UpdateControls(Edit: TEdit; UpDown: TCustomControl); override;
 
+    procedure Assign(Source: TPersistent); override;
+
     constructor Create();
+    constructor CreateNightTheme();
     destructor Destroy;
   end;
 
-  { TDefaultDarkRoundSpinEditTheme }
-
-  TDefaultDarkRoundSpinEditTheme = class(TDefaultRoundSpinEditTheme)
-  public
-    constructor Create();
-  end;
-
-
 implementation
-
-{ TDefaultDarkRoundSpinEditTheme }
-
-constructor TDefaultDarkRoundSpinEditTheme.Create;
-begin
-  inherited Create;
-  FBgColor := DARK_BG_COLOR;
-  FFontColor := DARK_FONT_COLOR;
-  FButtonBgColor := DARK_ARROW_BUTTON_BG_COLOR;
-  FButtonBgHoverColor := DARK_ARROW_BUTTON_HOVER_BG_COLOR;
-  FArrowColor := DARK_ARROW_COLOR;
-end;
 
 { TDefaultRoundSpinEditTheme }
 
@@ -360,6 +343,30 @@ begin
   UpDown.Align := alRight;
 end;
 
+procedure TDefaultRoundSpinEditTheme.Assign(Source: TPersistent);
+begin
+  if Source is TDefaultRoundSpinEditTheme then
+  begin
+    FArrowColor := TDefaultRoundSpinEditTheme(Source).FArrowColor;
+    FBorderColor := TDefaultRoundSpinEditTheme(Source).FBorderColor;
+    FBorderRadius := TDefaultRoundSpinEditTheme(Source).FBorderRadius;
+    FBorderWidth := TDefaultRoundSpinEditTheme(Source).FBorderWidth;
+    FButtonBgColor := TDefaultRoundSpinEditTheme(Source).FButtonBgColor;
+    FButtonBorderColor := TDefaultRoundSpinEditTheme(Source).FButtonBorderColor;
+    FButtonBgHoverColor := TDefaultRoundSpinEditTheme(Source).FButtonBgHoverColor;
+    FButtonBorderRadius := TDefaultRoundSpinEditTheme(Source).FButtonBorderRadius;
+    FButtonBorderWidth := TDefaultRoundSpinEditTheme(Source).FButtonBorderWidth;
+    FBgColor := TDefaultRoundSpinEditTheme(Source).FBgColor;
+    FButtonHeight := TDefaultRoundSpinEditTheme(Source).FButtonHeight;
+    FButtonWidth := TDefaultRoundSpinEditTheme(Source).FButtonWidth;
+    FFontColor := TDefaultRoundSpinEditTheme(Source).FFontColor;
+    FFontSize := TDefaultRoundSpinEditTheme(Source).FFontSize;
+    FPadding := TDefaultRoundSpinEditTheme(Source).FPadding;
+  end
+  else
+    inherited Assign(Source);
+end;
+
 constructor TDefaultRoundSpinEditTheme.Create;
 begin
   FButtonWidth := ARROW_BUTTON_WIDTH;
@@ -376,6 +383,16 @@ begin
   FButtonBorderRadius := ARROW_BORDER_RADIUS;
   FButtonBorderWidth := ARROW_BORDER_WIDTH;
   FButtonBorderColor := ARROW_BORDER_COLOR;
+end;
+
+constructor TDefaultRoundSpinEditTheme.CreateNightTheme;
+begin
+  Create();
+  FBgColor := DARK_BG_COLOR;
+  FFontColor := DARK_FONT_COLOR;
+  FButtonBgColor := DARK_ARROW_BUTTON_BG_COLOR;
+  FButtonBgHoverColor := DARK_ARROW_BUTTON_HOVER_BG_COLOR;
+  FArrowColor := DARK_ARROW_COLOR;
 end;
 
 destructor TDefaultRoundSpinEditTheme.Destroy;

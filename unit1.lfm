@@ -659,19 +659,21 @@ object MainForm: TMainForm
         Top = 80
         Width = 100
         MinValue = 1
-        MaxValue = 20
+        MaxValue = 60
         Value = 5
         Increment = 1
+        OnChange = SpinEditChanged
       end
       object BreathOutSpinEdit: TRoundSpinEdit
         Left = 200
         Height = 43
         Top = 80
         Width = 100
-        MinValue = 0
-        MaxValue = 20
+        MinValue = 1
+        MaxValue = 60
         Value = 5
         Increment = 1
+        OnChange = SpinEditChanged
       end
       object HoldInSpinEdit: TRoundSpinEdit
         Left = 16
@@ -679,9 +681,10 @@ object MainForm: TMainForm
         Top = 168
         Width = 100
         MinValue = 0
-        MaxValue = 20
+        MaxValue = 60
         Value = 0
         Increment = 1
+        OnChange = SpinEditChanged
       end
       object HoldOutSpinEdit: TRoundSpinEdit
         Left = 200
@@ -689,9 +692,10 @@ object MainForm: TMainForm
         Top = 168
         Width = 100
         MinValue = 0
-        MaxValue = 20
+        MaxValue = 60
         Value = 0
         Increment = 1
+        OnChange = SpinEditChanged
       end
     end
   end

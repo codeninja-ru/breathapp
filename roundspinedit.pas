@@ -212,7 +212,7 @@ constructor TRoundSpinEdit.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
 
-  FDefaultTheme := TDefaultDarkRoundSpinEditTheme.Create();
+  FDefaultTheme := TDefaultRoundSpinEditTheme.Create();
 
   with GetControlClassDefaultSize do
     SetInitialBounds(0, 0, 185, 80);
@@ -241,7 +241,7 @@ begin
 
   FDefaultTheme.UpdateControls(FEdit, FUpDown);
 
-  FMaxValue := 10;
+  FMaxValue := 100;
   FMinValue := 0;
   FIncrement := 1;
 end;

@@ -9,7 +9,7 @@ uses
   StdCtrls, Buttons, ActnList, BGRAGraphicControl, BGRABitmap,
   BGRABitmapTypes, ClockEllipse, ClockText, AppSettings, BCTypes, BCButton,
   states, ClockTimer, TrayIconTimer, SoundTimer, Backgrounds, buttonState,
-  SwitchBox, RoundSpinEdit;
+  SwitchBox, RoundSpinEdit, RoundSpinEditTheme;
 
 type
 
@@ -58,7 +58,7 @@ type
     procedure SettingsButtonMouseEnter(Sender: TObject);
     procedure SettingsButtonMouseLeave(Sender: TObject);
     procedure ShowActionExecute(Sender: TObject);
-    procedure SpineEditChanged(Sender: TObject);
+    procedure SpinEditChanged(Sender: TObject);
     procedure StartButtonClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -79,6 +79,8 @@ type
     TrayIconTimer: TTrayIconTimer;
     MainTrayIcon: TIcon;
     FSettingButtonState: TButtonState;
+    NightRoundSpinEditTheme: TDefaultRoundSpinEditTheme;
+    DayRoundSpinEditTheme: TDefaultRoundSpinEditTheme;
     procedure SetButtonStateStyle(button: TBCButton; State: TState);
     procedure UpdateFormColors;
   public
@@ -86,8 +88,6 @@ type
 
 var
   MainForm: TMainForm;
-  MSec: integer;
-  TextRect: TRect;
 
 implementation
 
@@ -101,7 +101,6 @@ begin
   ToggleSoundEnabledAction.Checked := AppSettings.SoundEnabled;
   ToggleNightModeEnabledAction.Checked := AppSettings.NightModeEnabled;
 
-  MSec := 0;
   TrayIcon.Show();
 
   FSolidBackground := TSolidBackground.Create;
@@ -113,8 +112,7 @@ begin
     2, AppSettings);
 
   StateManager := TStateManager.Create(AppSettings);
-  TextRect := ClockEllipse.InnerBoxRect;
-  ClockText := TClockText.Create(TextRect, AppSettings, 5);
+  ClockText := TClockText.Create(ClockEllipse.InnerBoxRect, AppSettings, 5);
   ClockTimer := TClockTimer.Create(Self.Width, Self.Height, AppSettings);
 
   StartButton.Rounding.RoundX := 20;
@@ -130,6 +128,9 @@ begin
 
   SoundTimer := TSoundTimer.Create;
 
+  NightRoundSpinEditTheme := TDefaultRoundSpinEditTheme.CreateNightTheme();
+  DayRoundSpinEditTheme := TDefaultRoundSpinEditTheme.Create();
+
   FSettingButtonState := TButtonState.Create(ImageListButton, AppSettings);
   Self.PageControl.ActivePageIndex := 0;
   UpdateFormColors;
@@ -137,18 +138,20 @@ end;
 
 procedure TMainForm.FormDestroy(Sender: TObject);
 begin
-  ClockEllipse.Free;
-  ClockText.Free;
-  ClockTimer.Free;
-  FBitmap.Free;
-  StateManager.Free;
-  TrayIconTimer.Free;
-  MainTrayIcon.Free;
-  SoundTimer.Free;
-  FSolidBackground.Free;
-  FGradientBackground.Free;
-  AppSettings.Free;
-  FSettingButtonState.Free;
+  FreeAndNil(ClockEllipse);
+  FreeAndNil(ClockText);
+  FreeAndNil(ClockTimer);
+  FreeAndNil(FBitmap);
+  FreeAndNil(StateManager);
+  FreeAndNil(TrayIconTimer);
+  FreeAndNil(MainTrayIcon);
+  FreeAndNil(SoundTimer);
+  FreeAndNil(FSolidBackground);
+  FreeAndNil(FGradientBackground);
+  FreeAndNil(AppSettings);
+  FreeAndNil(FSettingButtonState);
+  FreeAndNil(NightRoundSpinEditTheme);
+  FreeAndNil(DayRoundSpinEditTheme);
 end;
 
 procedure TMainForm.ImgTimerTimer(Sender: TObject);
@@ -170,6 +173,7 @@ begin
     AppSettings.ActivateNightMode
   else
     AppSettings.ActivateDayMode;
+
   ToggleNightModeEnabledAction.Checked := AppSettings.NightModeEnabled;
   UpdateFormColors;
   TabTimer.Refresh;
@@ -217,6 +221,21 @@ begin
   begin
     if not TabSettings.Controls[i].IsParentFont then;
     TabSettings.Controls[i].Font.Color := AppSettings.FontColor;
+  end;
+
+  if AppSettings.NightModeEnabled then
+  begin
+    BreathInSpinEdit.Theme := NightRoundSpinEditTheme;
+    BreathOutSpinEdit.Theme := NightRoundSpinEditTheme;
+    HoldInSpinEdit.Theme := NightRoundSpinEditTheme;
+    HoldOutSpinEdit.Theme := NightRoundSpinEditTheme;
+  end
+  else
+  begin
+    BreathInSpinEdit.Theme := DayRoundSpinEditTheme;
+    BreathOutSpinEdit.Theme := DayRoundSpinEditTheme;
+    HoldInSpinEdit.Theme := DayRoundSpinEditTheme;
+    HoldOutSpinEdit.Theme := DayRoundSpinEditTheme;
   end;
 end;
 
@@ -287,7 +306,7 @@ begin
   Self.Visible := not Self.Visible;
 end;
 
-procedure TMainForm.SpineEditChanged(Sender: TObject);
+procedure TMainForm.SpinEditChanged(Sender: TObject);
 begin
   StateManager.SetMaxTime(BreathInSpinEdit.Value * 1000, HoldInSpinEdit.Value * 1000,
     BreathOutSpinEdit.Value * 1000, HoldOutSpinEdit.Value * 1000);
