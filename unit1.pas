@@ -9,20 +9,24 @@ uses
   StdCtrls, Buttons, ActnList, BGRAGraphicControl, BGRABitmap,
   BGRABitmapTypes, ClockEllipse, ClockText, AppSettings, BCTypes, BCButton,
   states, ClockTimer, TrayIconTimer, SoundTimer, Backgrounds, buttonState,
-  SwitchBox, RoundSpinEdit, RoundSpinEditTheme;
+  SwitchBox, RoundSpinEdit, RoundSpinEditTheme, unit2;
 
 type
 
   { TMainForm }
 
   TMainForm = class(TForm)
+    ShowAboutFormAction: TAction;
     BreathInSpinEdit: TRoundSpinEdit;
     BreathOutSpinEdit: TRoundSpinEdit;
     HoldInSpinEdit: TRoundSpinEdit;
     HoldOutSpinEdit: TRoundSpinEdit;
+    MenuItem1: TMenuItem;
+    MenuItem2: TMenuItem;
+    Separator1: TMenuItem;
     SoundLabel: TLabel;
     NightModeLabel: TLabel;
-    ShowAction: TAction;
+    ShowMainAction: TAction;
     ExitAction: TAction;
     NightModeSwitchBox: TSwitchBox;
     SoundSwitchBox: TSwitchBox;
@@ -57,7 +61,8 @@ type
     procedure SettingsButtonClick(Sender: TObject);
     procedure SettingsButtonMouseEnter(Sender: TObject);
     procedure SettingsButtonMouseLeave(Sender: TObject);
-    procedure ShowActionExecute(Sender: TObject);
+    procedure ShowAboutFormActionExecute(Sender: TObject);
+    procedure ShowMainActionExecute(Sender: TObject);
     procedure SpinEditChanged(Sender: TObject);
     procedure StartButtonClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -65,7 +70,6 @@ type
     procedure ImgTimerTimer(Sender: TObject);
     procedure ToggleNightModeEnabledActionExecute(Sender: TObject);
     procedure ToggleSoundEnabledActionExecute(Sender: TObject);
-    procedure TrayIconDblClick(Sender: TObject);
   private
     ClockEllipse: TClockEllipse;
     ClockText: TClockText;
@@ -185,11 +189,6 @@ begin
   ToggleSoundEnabledAction.Checked := AppSettings.SoundEnabled;
 end;
 
-procedure TMainForm.TrayIconDblClick(Sender: TObject);
-begin
-  Self.Visible := not Self.Visible;
-end;
-
 procedure TMainForm.SetButtonStateStyle(button: TBCButton; State: TState);
 
   procedure setStyle(btnState: TBCButtonState);
@@ -301,7 +300,12 @@ begin
     FSettingButtonState.GetDefaultImageIndex(StateManager.State);
 end;
 
-procedure TMainForm.ShowActionExecute(Sender: TObject);
+procedure TMainForm.ShowAboutFormActionExecute(Sender: TObject);
+begin
+  AboutForm.Show;
+end;
+
+procedure TMainForm.ShowMainActionExecute(Sender: TObject);
 begin
   Self.Visible := not Self.Visible;
 end;

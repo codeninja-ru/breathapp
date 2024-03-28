@@ -9,8 +9,8 @@ uses
   athreads,
    {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, lazcontrols, Unit1, clockEllipse, AppSettings,
-  clockText, states, ClockTimer, TrayIconTimer, SoundTimer, Backgrounds{ you can add units after this };
+  Forms, lazcontrols, Unit1, clockEllipse, AppSettings, clockText, states,
+  ClockTimer, TrayIconTimer, SoundTimer, Backgrounds, Unit2{ you can add units after this };
 
 {$R *.res}
 
@@ -19,5 +19,6 @@ begin
   Application.Scaled:=True;
   Application.Initialize;
   Application.CreateForm(TMainForm, MainForm);
+  Application.CreateForm(TAboutForm, AboutForm);
   Application.Run;
 end.
