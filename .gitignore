@@ -3,5 +3,7 @@ backup/*
 breath
 lib
 breath.app/*
+breath.dSYM/*
 log
 *.o
+*.bak

@@ -16,7 +16,7 @@ type
     DescrText: TStaticText;
     AuthorLabel: TLabel;
     TittleLable: TLabel;
-    VersionLable: TLabel;
+    VersionLabel: TLabel;
     LogoImage: TImage;
     procedure CloseOnClick(Sender: TObject);
   private

@@ -142,17 +142,17 @@ end;
 
 procedure TMainForm.FormDestroy(Sender: TObject);
 begin
+  FreeAndNil(AppSettings);
+  FreeAndNil(FSolidBackground);
+  FreeAndNil(FGradientBackground);
+  FreeAndNil(FBitmap);
   FreeAndNil(ClockEllipse);
   FreeAndNil(ClockText);
   FreeAndNil(ClockTimer);
-  FreeAndNil(FBitmap);
   FreeAndNil(StateManager);
   FreeAndNil(TrayIconTimer);
   FreeAndNil(MainTrayIcon);
   FreeAndNil(SoundTimer);
-  FreeAndNil(FSolidBackground);
-  FreeAndNil(FGradientBackground);
-  FreeAndNil(AppSettings);
   FreeAndNil(FSettingButtonState);
   FreeAndNil(NightRoundSpinEditTheme);
   FreeAndNil(DayRoundSpinEditTheme);
