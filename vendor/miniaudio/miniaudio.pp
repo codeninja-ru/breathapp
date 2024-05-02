@@ -10,6 +10,10 @@ uses Ctypes{$ifndef WIN32},unix{$endif};
     miniaudio.h
 }
 {$L miniaudio_lib.o}
+{$ifdef LINUX}
+{$linklib c}
+{$linklib m}
+{$endif}
 
     const MA_MAX_LOG_CALLBACKS = 4;
 {$if defined(cpu64)}
@@ -3963,6 +3967,15 @@ uses Ctypes{$ifndef WIN32},unix{$endif};
 {$ifndef miniaudio_h}
 {$define miniaudio_h}  
 { C++ extern C conditionnal removed }
+{$if defined(_MSC_VER) AND NOT defined(__clang__)}
+(** unsupported pragma#pragma warning(push)*)
+(** unsupported pragma#pragma warning(disable:4201)   /* nonstandard extension used: nameless struct/union */*)
+(** unsupported pragma#pragma warning(disable:4214)   /* nonstandard extension used: bit field types other than int */*)
+(** unsupported pragma#pragma warning(disable:4324)   /* structure was padded due to alignment specifier */*)
+(*** was #elif ****){$else defined(__clang__) OR (defined(__GNUC__) AND (__GNUC__ > 4 OR (__GNUC__ == 4 AND __GNUC_MINOR__ >= 8)))}
+(** unsupported pragma#pragma GCC diagnostic push*)
+(** unsupported pragma#pragma GCC diagnostic ignored "-Wpedantic" /* For ISO C99 doesn't support unnamed structs/unions [-Wpedantic] */*)
+{$endif}
 {include <stddef.h> /* For size_t. */}
   { Sized types.  }
 {$if defined(MA_USE_STDINT)}
@@ -4025,6 +4038,10 @@ uses Ctypes{$ifndef WIN32},unix{$endif};
 {$else}
 
     ma_proc = pointer;
+{$endif}
+{$if defined(_MSC_VER) AND NOT defined(_WCHAR_T_DEFINED)}
+
+    wchar_t = ma_uint16;
 {$endif}
 {$ifndef WIN32    /* If it's not Win32, assume POSIX. */}
 {$define MA_POSIX}  
@@ -5721,7 +5738,7 @@ uses Ctypes{$ifndef WIN32},unix{$endif};
 {$define MA_SUPPORT_DSOUND}  
 {$define MA_SUPPORT_WINMM}  
   { Don't enable JACK here if compiling with Cosmopolitan. It'll be enabled in the Linux section below.  }
-{$if NOT defined(__COSMOPOLITAN__)}
+{$ifndef WINDOWS}
   { JACK is technically supported on Windows, but I don't know how many people use it in practice...  }
 {$define MA_SUPPORT_JACK}  
 {$endif}
@@ -5729,7 +5746,8 @@ uses Ctypes{$ifndef WIN32},unix{$endif};
 {$endif}
 {$if defined(MA_UNIX) AND NOT defined(MA_ORBIS) AND NOT defined(MA_PROSPERO)}
 {$if defined(MA_LINUX)}
-{$if NOT defined(MA_ANDROID) AND NOT defined(__COSMOPOLITAN__)   /* ALSA is not supported on Android. */}
+{if NOT defined(MA_ANDROID) AND NOT defined(__COSMOPOLITAN__)   /* ALSA is not supported on Android. */}
+{$ifndef ANDROID AND WINDOWS}
 {$define MA_SUPPORT_ALSA}  
 {$endif}
 {$endif}

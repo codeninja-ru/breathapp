@@ -5,3 +5,6 @@ lib
 breath.app/*
 log
 *.o
+*.dbg
+link*.res
+vendor/miniaudio/backup/

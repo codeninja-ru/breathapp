@@ -7,7 +7,8 @@
       <Unit>
         <Filename Value="breath.lpr"/>
         <IsPartOfProject Value="True"/>
-        <CursorPos X="60" Y="13"/>
+        <TopLine Value="4"/>
+        <CursorPos X="44" Y="12"/>
         <UsageCount Value="205"/>
         <Loaded Value="True"/>
       </Unit>
@@ -113,37 +114,50 @@
         <UsageCount Value="203"/>
       </Unit>
       <Unit>
+        <Filename Value="unit2.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="AboutForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="Unit2"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="21"/>
+        <CursorPos Y="39"/>
+        <UsageCount Value="31"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit>
+      <Unit>
         <Filename Value="miniaudio/miniaudio.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="45" Y="11"/>
-        <UsageCount Value="3"/>
+        <UsageCount Value="2"/>
       </Unit>
       <Unit>
         <Filename Value="breathclock.pas"/>
         <UnitName Value="BreathClock"/>
         <EditorIndex Value="-1"/>
         <CursorPos Y="11"/>
-        <UsageCount Value="58"/>
+        <UsageCount Value="57"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/include/control.inc"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="574"/>
         <CursorPos Y="586"/>
-        <UsageCount Value="87"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="86"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/include/customcheckbox.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="245"/>
         <CursorPos X="17" Y="212"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit>
       <Unit>
         <Filename Value="switchbox.pas"/>
         <UnitName Value="SwitchBox"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="204"/>
         <CursorPos X="55" Y="331"/>
         <UsageCount Value="111"/>
@@ -155,14 +169,16 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="92"/>
         <CursorPos X="36" Y="101"/>
-        <UsageCount Value="69"/>
+        <UsageCount Value="68"/>
       </Unit>
       <Unit>
         <Filename Value="vendor/miniaudio/miniaudio.pp"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="5721"/>
-        <CursorPos X="33" Y="5732"/>
-        <UsageCount Value="73"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="5723"/>
+        <CursorPos X="29" Y="5733"/>
+        <UsageCount Value="78"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="switchboxtheme.pas"/>
@@ -170,12 +186,12 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="176"/>
         <CursorPos X="35" Y="151"/>
-        <UsageCount Value="76"/>
+        <UsageCount Value="75"/>
       </Unit>
       <Unit>
         <Filename Value="roundspinedit.pas"/>
         <UnitName Value="RoundSpinEdit"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="152"/>
         <CursorPos X="14" Y="12"/>
         <UsageCount Value="103"/>
@@ -186,7 +202,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="378"/>
         <CursorPos Y="391"/>
-        <UsageCount Value="61"/>
+        <UsageCount Value="60"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/spin.pp"/>
@@ -194,14 +210,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="23"/>
         <CursorPos X="38" Y="32"/>
-        <UsageCount Value="19"/>
+        <UsageCount Value="18"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/include/customedit.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="15"/>
         <CursorPos X="84" Y="18"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/stdctrls.pp"/>
@@ -209,7 +225,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="292"/>
         <CursorPos X="10" Y="301"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/controls.pp"/>
@@ -217,20 +233,19 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="1445"/>
         <CursorPos X="14" Y="1445"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/include/wincontrol.inc"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="6506"/>
         <CursorPos Y="6519"/>
-        <UsageCount Value="21"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="20"/>
       </Unit>
       <Unit>
         <Filename Value="roundspinedittheme.pas"/>
         <UnitName Value="RoundSpinEditTheme"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="348"/>
         <CursorPos X="15" Y="122"/>
         <UsageCount Value="119"/>
@@ -241,13 +256,13 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="641"/>
         <CursorPos X="9" Y="675"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="4"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit>
       <Unit>
         <Filename Value="roundupdown.pas"/>
         <UnitName Value="RoundUpDown"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="7"/>
         <CursorPos X="12" Y="9"/>
         <UsageCount Value="112"/>
         <Loaded Value="True"/>
@@ -257,13 +272,13 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="421"/>
         <CursorPos X="43" Y="439"/>
-        <UsageCount Value="94"/>
+        <UsageCount Value="93"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/share/fpcsrc/rtl/unix/classes.pp"/>
         <UnitName Value="Classes"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="94"/>
+        <UsageCount Value="93"/>
       </Unit>
       <Unit>
         <Filename Value="../../.lazarus/onlinepackagemanager/packages/BGRAControls/bctrackbarupdown.pas"/>
@@ -271,7 +286,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="40"/>
         <CursorPos X="26" Y="49"/>
-        <UsageCount Value="94"/>
+        <UsageCount Value="93"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit>
       <Unit>
@@ -280,7 +295,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="949"/>
         <CursorPos X="31" Y="968"/>
-        <UsageCount Value="94"/>
+        <UsageCount Value="93"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit>
       <Unit>
@@ -289,7 +304,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="641"/>
         <CursorPos X="3" Y="644"/>
-        <UsageCount Value="94"/>
+        <UsageCount Value="93"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit>
       <Unit>
@@ -297,7 +312,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="106"/>
         <CursorPos X="12" Y="117"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="4"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/interfacebase.pp"/>
@@ -305,14 +320,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="140"/>
         <CursorPos X="35" Y="150"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="4"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/lclplatformdef.pas"/>
         <UnitName Value="LCLPlatformDef"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="20" Y="12"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="4"/>
       </Unit>
       <Unit>
         <Filename Value="../../.lazarus/onlinepackagemanager/packages/EC_Controls/EC_Controls/ecgrid.pas"/>
@@ -320,151 +335,136 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="2895"/>
         <CursorPos X="42" Y="2895"/>
-        <UsageCount Value="5"/>
-      </Unit>
-      <Unit>
-        <Filename Value="unit2.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="AboutForm"/>
-        <ResourceBaseClass Value="Form"/>
-        <UnitName Value="Unit2"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="5"/>
-        <TopLine Value="21"/>
-        <CursorPos Y="39"/>
-        <UsageCount Value="22"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <UsageCount Value="4"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/include/customform.inc"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="2313"/>
         <CursorPos Y="2324"/>
-        <UsageCount Value="10"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="9"/>
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
       <Position>
-        <Filename Value="/Applications/Lazarus/lcl/include/customform.inc"/>
-        <Caret Line="2322" TopLine="2303"/>
+        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
+        <Caret Line="5778" Column="29" TopLine="5761"/>
       </Position>
       <Position>
-        <Filename Value="/Applications/Lazarus/lcl/include/customform.inc"/>
-        <Caret Line="2323" TopLine="2304"/>
+        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
+        <Caret Line="6503" Column="24" TopLine="6486"/>
       </Position>
       <Position>
-        <Filename Value="/Applications/Lazarus/lcl/include/control.inc"/>
-        <Caret Line="585" TopLine="574"/>
+        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
+        <Caret Line="6598" Column="34" TopLine="6581"/>
       </Position>
       <Position>
-        <Filename Value="/Applications/Lazarus/lcl/include/control.inc"/>
-        <Caret Line="586" TopLine="574"/>
+        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
+        <Caret Line="6956" Column="24" TopLine="6939"/>
       </Position>
       <Position>
-        <Filename Value="/Applications/Lazarus/lcl/include/customform.inc"/>
-        <Caret Line="2324" TopLine="2305"/>
+        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
+        <Caret Line="7136" Column="34" TopLine="7119"/>
       </Position>
       <Position>
-        <Filename Value="unit2.pas"/>
-        <Caret Line="39" TopLine="21"/>
+        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
+        <Caret Line="5142" Column="7" TopLine="6381"/>
       </Position>
       <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="305" TopLine="297"/>
+        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
+        <Caret Line="5732" Column="62" TopLine="5722"/>
       </Position>
       <Position>
-        <Filename Value="/Applications/Lazarus/lcl/include/customform.inc"/>
-        <Caret Line="2314" TopLine="2305"/>
+        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
+        <Caret Line="5724" Column="34" TopLine="5720"/>
       </Position>
       <Position>
-        <Filename Value="/Applications/Lazarus/lcl/include/customform.inc"/>
-        <Caret Line="2315" TopLine="2305"/>
+        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
+        <Caret Line="5732" Column="62" TopLine="5720"/>
       </Position>
       <Position>
-        <Filename Value="/Applications/Lazarus/lcl/include/customform.inc"/>
-        <Caret Line="2319" TopLine="2305"/>
+        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
+        <Caret Line="5724" Column="34" TopLine="5714"/>
       </Position>
       <Position>
-        <Filename Value="/Applications/Lazarus/lcl/include/customform.inc"/>
-        <Caret Line="2321" TopLine="2305"/>
+        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
+        <Caret Line="5732" Column="62" TopLine="5715"/>
       </Position>
       <Position>
-        <Filename Value="/Applications/Lazarus/lcl/include/customform.inc"/>
-        <Caret Line="2322" TopLine="2305"/>
+        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
+        <Caret Line="5726" Column="2" TopLine="5715"/>
       </Position>
       <Position>
-        <Filename Value="/Applications/Lazarus/lcl/include/wincontrol.inc"/>
-        <Caret Line="6517" TopLine="6505"/>
+        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
+        <Caret Line="5717" Column="32" TopLine="5709"/>
       </Position>
       <Position>
-        <Filename Value="/Applications/Lazarus/lcl/include/wincontrol.inc"/>
-        <Caret Line="7893" TopLine="7882"/>
+        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
+        <Caret Line="5725" Column="45" TopLine="5709"/>
       </Position>
       <Position>
-        <Filename Value="/Applications/Lazarus/lcl/include/wincontrol.inc"/>
-        <Caret Line="7910" TopLine="7900"/>
+        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
+        <Caret Line="7328" Column="54" TopLine="7311"/>
       </Position>
       <Position>
-        <Filename Value="/Applications/Lazarus/lcl/include/wincontrol.inc"/>
-        <Caret Line="6518" TopLine="6506"/>
+        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
+        <Caret Line="7329" Column="54" TopLine="7312"/>
       </Position>
       <Position>
-        <Filename Value="/Applications/Lazarus/lcl/include/wincontrol.inc"/>
-        <Caret Line="6519" TopLine="6506"/>
+        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
+        <Caret Line="7330" Column="54" TopLine="7313"/>
       </Position>
       <Position>
-        <Filename Value="/Applications/Lazarus/lcl/include/customform.inc"/>
-        <Caret Line="2322" TopLine="2305"/>
+        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
+        <Caret Line="7333" Column="82" TopLine="7316"/>
       </Position>
       <Position>
-        <Filename Value="/Applications/Lazarus/lcl/include/customform.inc"/>
-        <Caret Line="2323" TopLine="2305"/>
+        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
+        <Caret Line="7460" Column="112" TopLine="7443"/>
       </Position>
       <Position>
-        <Filename Value="/Applications/Lazarus/lcl/include/control.inc"/>
-        <Caret Line="585" TopLine="574"/>
+        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
+        <Caret Line="8031" Column="24" TopLine="8014"/>
       </Position>
       <Position>
-        <Filename Value="/Applications/Lazarus/lcl/include/customform.inc"/>
-        <Caret Line="1180" TopLine="1169"/>
+        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
+        <Caret Line="8980" Column="63" TopLine="8963"/>
       </Position>
       <Position>
-        <Filename Value="/Applications/Lazarus/lcl/include/customform.inc"/>
-        <Caret Line="1182" TopLine="1169"/>
+        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
+        <Caret Line="727" Column="20" TopLine="716"/>
       </Position>
       <Position>
-        <Filename Value="/Applications/Lazarus/lcl/include/customform.inc"/>
-        <Caret Line="1184" TopLine="1169"/>
+        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
+        <Caret Line="5753" Column="24" TopLine="5731"/>
       </Position>
       <Position>
-        <Filename Value="/Applications/Lazarus/lcl/include/customform.inc"/>
-        <Caret Line="1187" TopLine="1169"/>
+        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
+        <Caret Line="5735" Column="48" TopLine="5722"/>
       </Position>
       <Position>
-        <Filename Value="/Applications/Lazarus/lcl/include/customform.inc"/>
-        <Caret Line="1188" TopLine="1169"/>
+        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
+        <Caret Line="5733" Column="29" TopLine="5723"/>
       </Position>
       <Position>
-        <Filename Value="/Applications/Lazarus/lcl/include/customform.inc"/>
-        <Caret Line="1193" TopLine="1183"/>
+        <Filename Value="breath.lpr"/>
+        <Caret Line="24" TopLine="4"/>
       </Position>
       <Position>
-        <Filename Value="/Applications/Lazarus/lcl/include/control.inc"/>
-        <Caret Line="586" TopLine="574"/>
+        <Filename Value="breath.lpr"/>
+        <Caret Line="17" Column="52" TopLine="4"/>
       </Position>
       <Position>
-        <Filename Value="/Applications/Lazarus/lcl/include/customform.inc"/>
-        <Caret Line="2324" TopLine="2313"/>
+        <Filename Value="breath.lpr"/>
+        <Caret Line="24" TopLine="4"/>
       </Position>
       <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="306" TopLine="297"/>
+        <Filename Value="breath.lpr"/>
+        <Caret Line="16" Column="2" TopLine="4"/>
       </Position>
       <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="305" TopLine="297"/>
+        <Filename Value="breath.lpr"/>
+        <Caret Line="24" TopLine="4"/>
       </Position>
     </JumpHistory>
     <RunParams>
