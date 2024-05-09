@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 605
+  Left = 355
   Height = 512
-  Top = 132
+  Top = 154
   Width = 320
   BorderStyle = bsToolWindow
   Caption = 'Breath'
@@ -311,7 +311,7 @@ object MainForm: TMainForm
   }
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  LCLVersion = '2.2.2.0'
+  LCLVersion = '2.2.6.0'
   object PageControl: TPageControl
     Left = 0
     Height = 512
@@ -324,13 +324,13 @@ object MainForm: TMainForm
     TabOrder = 0
     object TabTimer: TTabSheet
       Caption = 'TabTimer'
-      ClientHeight = 512
-      ClientWidth = 320
+      ClientHeight = 508
+      ClientWidth = 310
       object BgImage: TBGRAGraphicControl
         Left = 0
-        Height = 512
+        Height = 508
         Top = 0
-        Width = 320
+        Width = 310
         Align = alClient
         BevelOuter = bvNone
         Color = clNone
@@ -344,7 +344,7 @@ object MainForm: TMainForm
         Left = 104
         Height = 38
         Top = 454
-        Width = 116
+        Width = 106
         Anchors = [akTop, akLeft, akRight]
         StateClicked.Background.Gradient1.StartColor = 8404992
         StateClicked.Background.Gradient1.EndColor = 4194304
@@ -451,13 +451,13 @@ object MainForm: TMainForm
     end
     object TabSettings: TTabSheet
       Caption = 'Settings'
-      ClientHeight = 512
-      ClientWidth = 320
+      ClientHeight = 508
+      ClientWidth = 310
       object LabelCaption: TLabel
         Left = 0
-        Height = 29
+        Height = 32
         Top = 10
-        Width = 320
+        Width = 310
         Align = alTop
         Alignment = taCenter
         BorderSpacing.Top = 10
@@ -475,7 +475,7 @@ object MainForm: TMainForm
         Left = 104
         Height = 38
         Top = 454
-        Width = 116
+        Width = 106
         Action = SettingsBackAction
         Anchors = [akTop, akLeft, akRight]
         StateClicked.Background.Gradient1.StartColor = 8404992
@@ -567,9 +567,9 @@ object MainForm: TMainForm
       end
       object BreathInLabel: TLabel
         Left = 16
-        Height = 18
+        Height = 23
         Top = 56
-        Width = 84
+        Width = 86
         Caption = 'Breath in(s)'
         Font.CharSet = ANSI_CHARSET
         Font.Height = -16
@@ -579,9 +579,9 @@ object MainForm: TMainForm
       end
       object BreathOutLabel: TLabel
         Left = 200
-        Height = 18
+        Height = 23
         Top = 56
-        Width = 95
+        Width = 98
         Caption = 'Breath out(s)'
         Font.CharSet = ANSI_CHARSET
         Font.Height = -16
@@ -591,9 +591,9 @@ object MainForm: TMainForm
       end
       object HoldInLabel: TLabel
         Left = 16
-        Height = 18
+        Height = 23
         Top = 144
-        Width = 70
+        Width = 72
         Caption = 'Hold in(s)'
         Font.CharSet = ANSI_CHARSET
         Font.Height = -16
@@ -603,9 +603,9 @@ object MainForm: TMainForm
       end
       object HoldOutLabel: TLabel
         Left = 200
-        Height = 18
+        Height = 23
         Top = 144
-        Width = 81
+        Width = 84
         Caption = 'Hold out(s)'
         Font.CharSet = ANSI_CHARSET
         Font.Height = -16
@@ -623,9 +623,9 @@ object MainForm: TMainForm
       end
       object NightModeLabel: TLabel
         Left = 151
-        Height = 28
+        Height = 34
         Top = 320
-        Width = 121
+        Width = 135
         Caption = 'Night mode'
         Font.CharSet = ANSI_CHARSET
         Font.Height = -24
@@ -643,9 +643,9 @@ object MainForm: TMainForm
       end
       object SoundLabel: TLabel
         Left = 150
-        Height = 28
+        Height = 34
         Top = 256
-        Width = 67
+        Width = 73
         Caption = 'Sound'
         Font.CharSet = ANSI_CHARSET
         Font.Height = -24

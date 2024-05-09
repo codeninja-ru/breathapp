@@ -15,49 +15,6 @@
     </General>
     <BuildModes>
       <Item Name="Default" Default="True"/>
-      <Item Name="Debug">
-        <CompilerOptions>
-          <Version Value="11"/>
-          <Target>
-            <Filename Value="breath"/>
-          </Target>
-          <SearchPaths>
-            <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="vendor/miniaudio"/>
-            <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
-          </SearchPaths>
-          <Parsing>
-            <SyntaxOptions>
-              <IncludeAssertionCode Value="True"/>
-            </SyntaxOptions>
-          </Parsing>
-          <CodeGeneration>
-            <Checks>
-              <IOChecks Value="True"/>
-              <RangeChecks Value="True"/>
-              <OverflowChecks Value="True"/>
-              <StackChecks Value="True"/>
-            </Checks>
-            <VerifyObjMethodCallValidity Value="True"/>
-            <Optimizations>
-              <OptimizationLevel Value="0"/>
-            </Optimizations>
-          </CodeGeneration>
-          <Linking>
-            <Debugging>
-              <DebugInfoType Value="dsDwarf3"/>
-              <UseHeaptrc Value="True"/>
-              <TrashVariables Value="True"/>
-              <UseExternalDbgSyms Value="True"/>
-            </Debugging>
-            <Options>
-              <Win32>
-                <GraphicApplication Value="True"/>
-              </Win32>
-            </Options>
-          </Linking>
-        </CompilerOptions>
-      </Item>
       <Item Name="Release">
         <CompilerOptions>
           <Version Value="11"/>
@@ -225,6 +182,7 @@
         <Filename Value="unit2.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="AboutForm"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit2"/>
       </Unit>

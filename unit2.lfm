@@ -1,7 +1,7 @@
 object AboutForm: TAboutForm
-  Left = 354
+  Left = 613
   Height = 521
-  Top = 112
+  Top = 170
   Width = 396
   Caption = 'About'
   ClientHeight = 521
@@ -9,7 +9,7 @@ object AboutForm: TAboutForm
   FormStyle = fsStayOnTop
   Position = poDesktopCenter
   ShowInTaskBar = stNever
-  LCLVersion = '2.2.2.0'
+  LCLVersion = '2.2.6.0'
   object LogoImage: TImage
     Left = 24
     Height = 128
@@ -441,17 +441,17 @@ object AboutForm: TAboutForm
   end
   object VersionLable: TLabel
     Left = 168
-    Height = 16
+    Height = 15
     Top = 64
-    Width = 70
+    Width = 84
     Caption = 'Version: 1.0'
     ParentColor = False
   end
   object TittleLable: TLabel
     Left = 168
-    Height = 28
+    Height = 34
     Top = 24
-    Width = 68
+    Width = 76
     Caption = 'Breath'
     Font.CharSet = ANSI_CHARSET
     Font.Height = -24
@@ -478,9 +478,9 @@ object AboutForm: TAboutForm
   end
   object AuthorLabel: TLabel
     Left = 168
-    Height = 16
+    Height = 15
     Top = 96
-    Width = 140
+    Width = 161
     Caption = 'Author: Mayorov Vitaliy'
     ParentColor = False
   end

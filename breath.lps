@@ -2,13 +2,56 @@
 <CONFIG>
   <ProjectSession>
     <Version Value="12"/>
-    <BuildModes Active="Debug"/>
+    <BuildModes Active="Debug">
+      <Item Name="Debug">
+        <CompilerOptions>
+          <Version Value="11"/>
+          <Target>
+            <Filename Value="breath"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="vendor/miniaudio"/>
+            <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <Parsing>
+            <SyntaxOptions>
+              <IncludeAssertionCode Value="True"/>
+            </SyntaxOptions>
+          </Parsing>
+          <CodeGeneration>
+            <Checks>
+              <IOChecks Value="True"/>
+              <RangeChecks Value="True"/>
+              <OverflowChecks Value="True"/>
+              <StackChecks Value="True"/>
+            </Checks>
+            <VerifyObjMethodCallValidity Value="True"/>
+            <Optimizations>
+              <OptimizationLevel Value="0"/>
+            </Optimizations>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <DebugInfoType Value="dsDwarf3"/>
+              <UseHeaptrc Value="True"/>
+              <TrashVariables Value="True"/>
+              <UseExternalDbgSyms Value="True"/>
+            </Debugging>
+            <Options>
+              <Win32>
+                <GraphicApplication Value="True"/>
+              </Win32>
+            </Options>
+          </Linking>
+        </CompilerOptions>
+      </Item>
+    </BuildModes>
     <Units>
       <Unit>
         <Filename Value="breath.lpr"/>
         <IsPartOfProject Value="True"/>
-        <TopLine Value="4"/>
-        <CursorPos X="44" Y="12"/>
+        <CursorPos X="79" Y="8"/>
         <UsageCount Value="205"/>
         <Loaded Value="True"/>
       </Unit>
@@ -20,8 +63,8 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit1"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="297"/>
-        <CursorPos Y="305"/>
+        <TopLine Value="171"/>
+        <CursorPos X="72" Y="184"/>
         <UsageCount Value="205"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -56,10 +99,11 @@
       <Unit>
         <Filename Value="states.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="180"/>
-        <CursorPos Y="192"/>
+        <EditorIndex Value="20"/>
+        <TopLine Value="327"/>
+        <CursorPos Y="339"/>
         <UsageCount Value="235"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="clocktimer.pas"/>
@@ -83,9 +127,11 @@
         <Filename Value="soundtimer.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="SoundTimer"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="31" Y="136"/>
+        <EditorIndex Value="6"/>
+        <TopLine Value="202"/>
+        <CursorPos X="90" Y="210"/>
         <UsageCount Value="203"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="backgrounds.pas"/>
@@ -121,9 +167,9 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit2"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="21"/>
+        <TopLine Value="13"/>
         <CursorPos Y="39"/>
-        <UsageCount Value="31"/>
+        <UsageCount Value="71"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -131,35 +177,35 @@
         <Filename Value="miniaudio/miniaudio.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="45" Y="11"/>
-        <UsageCount Value="2"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="breathclock.pas"/>
         <UnitName Value="BreathClock"/>
         <EditorIndex Value="-1"/>
         <CursorPos Y="11"/>
-        <UsageCount Value="57"/>
+        <UsageCount Value="55"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/include/control.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="574"/>
         <CursorPos Y="586"/>
-        <UsageCount Value="86"/>
+        <UsageCount Value="84"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/include/customcheckbox.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="245"/>
         <CursorPos X="17" Y="212"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="7"/>
       </Unit>
       <Unit>
         <Filename Value="switchbox.pas"/>
         <UnitName Value="SwitchBox"/>
-        <EditorIndex Value="6"/>
-        <TopLine Value="204"/>
-        <CursorPos X="55" Y="331"/>
+        <EditorIndex Value="18"/>
+        <TopLine Value="133"/>
+        <CursorPos X="36" Y="147"/>
         <UsageCount Value="111"/>
         <Loaded Value="True"/>
       </Unit>
@@ -169,15 +215,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="92"/>
         <CursorPos X="36" Y="101"/>
-        <UsageCount Value="68"/>
+        <UsageCount Value="66"/>
       </Unit>
       <Unit>
         <Filename Value="vendor/miniaudio/miniaudio.pp"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="5723"/>
-        <CursorPos X="29" Y="5733"/>
-        <UsageCount Value="78"/>
+        <TopLine Value="337"/>
+        <CursorPos X="63" Y="347"/>
+        <UsageCount Value="98"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -186,14 +231,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="176"/>
         <CursorPos X="35" Y="151"/>
-        <UsageCount Value="75"/>
+        <UsageCount Value="73"/>
       </Unit>
       <Unit>
         <Filename Value="roundspinedit.pas"/>
         <UnitName Value="RoundSpinEdit"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="152"/>
-        <CursorPos X="14" Y="12"/>
+        <TopLine Value="214"/>
+        <CursorPos X="54" Y="9"/>
         <UsageCount Value="103"/>
         <Loaded Value="True"/>
       </Unit>
@@ -202,7 +247,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="378"/>
         <CursorPos Y="391"/>
-        <UsageCount Value="60"/>
+        <UsageCount Value="58"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/spin.pp"/>
@@ -210,14 +255,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="23"/>
         <CursorPos X="38" Y="32"/>
-        <UsageCount Value="18"/>
+        <UsageCount Value="16"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/include/customedit.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="15"/>
         <CursorPos X="84" Y="18"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/stdctrls.pp"/>
@@ -225,7 +270,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="292"/>
         <CursorPos X="10" Y="301"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="7"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/controls.pp"/>
@@ -233,21 +278,22 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="1445"/>
         <CursorPos X="14" Y="1445"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/include/wincontrol.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="6506"/>
         <CursorPos Y="6519"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="18"/>
       </Unit>
       <Unit>
         <Filename Value="roundspinedittheme.pas"/>
         <UnitName Value="RoundSpinEditTheme"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="348"/>
-        <CursorPos X="15" Y="122"/>
+        <TopLine Value="341"/>
+        <CursorPos X="11" Y="354"/>
         <UsageCount Value="119"/>
         <Loaded Value="True"/>
       </Unit>
@@ -256,13 +302,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="641"/>
         <CursorPos X="9" Y="675"/>
-        <UsageCount Value="4"/>
+        <UsageCount Value="2"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit>
       <Unit>
         <Filename Value="roundupdown.pas"/>
         <UnitName Value="RoundUpDown"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="19"/>
+        <TopLine Value="9"/>
         <CursorPos X="12" Y="9"/>
         <UsageCount Value="112"/>
         <Loaded Value="True"/>
@@ -272,13 +319,13 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="421"/>
         <CursorPos X="43" Y="439"/>
-        <UsageCount Value="93"/>
+        <UsageCount Value="91"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/share/fpcsrc/rtl/unix/classes.pp"/>
         <UnitName Value="Classes"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="93"/>
+        <UsageCount Value="91"/>
       </Unit>
       <Unit>
         <Filename Value="../../.lazarus/onlinepackagemanager/packages/BGRAControls/bctrackbarupdown.pas"/>
@@ -286,7 +333,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="40"/>
         <CursorPos X="26" Y="49"/>
-        <UsageCount Value="93"/>
+        <UsageCount Value="91"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit>
       <Unit>
@@ -295,7 +342,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="949"/>
         <CursorPos X="31" Y="968"/>
-        <UsageCount Value="93"/>
+        <UsageCount Value="91"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit>
       <Unit>
@@ -304,7 +351,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="641"/>
         <CursorPos X="3" Y="644"/>
-        <UsageCount Value="93"/>
+        <UsageCount Value="91"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit>
       <Unit>
@@ -312,7 +359,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="106"/>
         <CursorPos X="12" Y="117"/>
-        <UsageCount Value="4"/>
+        <UsageCount Value="2"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/interfacebase.pp"/>
@@ -320,14 +367,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="140"/>
         <CursorPos X="35" Y="150"/>
-        <UsageCount Value="4"/>
+        <UsageCount Value="2"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/lclplatformdef.pas"/>
         <UnitName Value="LCLPlatformDef"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="20" Y="12"/>
-        <UsageCount Value="4"/>
+        <UsageCount Value="2"/>
       </Unit>
       <Unit>
         <Filename Value="../../.lazarus/onlinepackagemanager/packages/EC_Controls/EC_Controls/ecgrid.pas"/>
@@ -335,142 +382,292 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="2895"/>
         <CursorPos X="42" Y="2895"/>
-        <UsageCount Value="4"/>
+        <UsageCount Value="2"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/include/customform.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2313"/>
         <CursorPos Y="2324"/>
+        <UsageCount Value="7"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/share/fpcsrc/3.2.2/rtl/objpas/sysutils/osutilsh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="21"/>
+        <CursorPos X="11" Y="31"/>
+        <UsageCount Value="8"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/share/fpcsrc/3.2.2/rtl/inc/threadh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="131"/>
+        <CursorPos X="10" Y="141"/>
+        <UsageCount Value="8"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/lib/lazarus/2.2.6/components/lazutils/LazLoggerIntf.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="46"/>
+        <CursorPos X="11" Y="13"/>
+        <UsageCount Value="8"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/lib/lazarus/2.2.6/components/lazutils/lazloggerbase.pas"/>
+        <UnitName Value="LazLoggerBase"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="6" Y="8"/>
+        <UsageCount Value="13"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/lib/lazarus/2.2.6/lcl/forms.pp"/>
+        <UnitName Value="Forms"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1799"/>
+        <CursorPos X="3" Y="1872"/>
+        <UsageCount Value="8"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/lib/lazarus/3.0/components/jcf2/ReadWrite/UI/EditorConverter.pas"/>
+        <EditorIndex Value="7"/>
+        <TopLine Value="30"/>
+        <CursorPos X="80" Y="40"/>
+        <UsageCount Value="22"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../.lazarus/onlinepackagemanager/packages/BGRAControls/atshapelinebgra.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="14"/>
+        <CursorPos X="3" Y="25"/>
         <UsageCount Value="9"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/lib/lazarus/3.0/designer/menueditor.pp"/>
+        <UnitName Value="MenuEditor"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="2665"/>
+        <CursorPos X="3" Y="2679"/>
+        <UsageCount Value="9"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/lib/lazarus/2.2.6/lcl/stdctrls.pp"/>
+        <UnitName Value="StdCtrls"/>
+        <EditorIndex Value="14"/>
+        <TopLine Value="751"/>
+        <CursorPos X="3" Y="764"/>
+        <UsageCount Value="21"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/lib/lazarus/2.2.6/lcl/controls.pp"/>
+        <UnitName Value="Controls"/>
+        <EditorIndex Value="15"/>
+        <TopLine Value="1428"/>
+        <CursorPos X="15" Y="1441"/>
+        <UsageCount Value="21"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/lib/lazarus/2.2.6/lcl/include/control.inc"/>
+        <EditorIndex Value="16"/>
+        <TopLine Value="1822"/>
+        <CursorPos Y="1837"/>
+        <UsageCount Value="21"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/lib/lazarus/2.2.6/lcl/include/wincontrol.inc"/>
+        <EditorIndex Value="8"/>
+        <TopLine Value="7518"/>
+        <CursorPos Y="7543"/>
+        <UsageCount Value="16"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/lib/lazarus/2.2.6/lcl/include/customedit.inc"/>
+        <EditorIndex Value="17"/>
+        <TopLine Value="483"/>
+        <CursorPos Y="501"/>
+        <UsageCount Value="16"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/lib/lazarus/2.2.6/lcl/interfaces/gtk2/gtk2wsstdctrls.pp"/>
+        <UnitName Value="Gtk2WSStdCtrls"/>
+        <EditorIndex Value="9"/>
+        <TopLine Value="2588"/>
+        <CursorPos X="18" Y="2610"/>
+        <UsageCount Value="16"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/lib/lazarus/2.2.6/lcl/interfaces/gtk2/gtk2int.pas"/>
+        <UnitName Value="Gtk2Int"/>
+        <EditorIndex Value="11"/>
+        <TopLine Value="27"/>
+        <CursorPos Y="83"/>
+        <UsageCount Value="16"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/lib/lazarus/2.2.6/lcl/interfaces/gtk2/gtk2widgetset.inc"/>
+        <EditorIndex Value="12"/>
+        <TopLine Value="2387"/>
+        <CursorPos X="35" Y="2438"/>
+        <UsageCount Value="16"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/share/fpcsrc/3.2.2/packages/gtk2/src/gtk+/gtk/gtkwidget.inc"/>
+        <EditorIndex Value="13"/>
+        <TopLine Value="16"/>
+        <CursorPos X="100" Y="359"/>
+        <UsageCount Value="16"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/lib/lazarus/2.2.6/lcl/widgetset/wsproc.pp"/>
+        <UnitName Value="WSProc"/>
+        <EditorIndex Value="10"/>
+        <TopLine Value="20"/>
+        <CursorPos X="10" Y="33"/>
+        <UsageCount Value="14"/>
+        <Loaded Value="True"/>
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
       <Position>
-        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
-        <Caret Line="5778" Column="29" TopLine="5761"/>
+        <Filename Value="/usr/lib/lazarus/2.2.6/lcl/interfaces/gtk2/gtk2wsstdctrls.pp"/>
+        <Caret Line="1297" Column="32" TopLine="1275"/>
       </Position>
       <Position>
-        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
-        <Caret Line="6503" Column="24" TopLine="6486"/>
+        <Filename Value="/usr/lib/lazarus/2.2.6/lcl/interfaces/gtk2/gtk2wsstdctrls.pp"/>
+        <Caret Line="1316" Column="32" TopLine="1294"/>
       </Position>
       <Position>
-        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
-        <Caret Line="6598" Column="34" TopLine="6581"/>
+        <Filename Value="/usr/lib/lazarus/2.2.6/lcl/interfaces/gtk2/gtk2wsstdctrls.pp"/>
+        <Caret Line="1337" Column="32" TopLine="1315"/>
       </Position>
       <Position>
-        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
-        <Caret Line="6956" Column="24" TopLine="6939"/>
+        <Filename Value="/usr/lib/lazarus/2.2.6/lcl/interfaces/gtk2/gtk2wsstdctrls.pp"/>
+        <Caret Line="1354" Column="32" TopLine="1332"/>
       </Position>
       <Position>
-        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
-        <Caret Line="7136" Column="34" TopLine="7119"/>
+        <Filename Value="/usr/lib/lazarus/2.2.6/lcl/interfaces/gtk2/gtk2wsstdctrls.pp"/>
+        <Caret Line="1384" Column="32" TopLine="1362"/>
       </Position>
       <Position>
-        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
-        <Caret Line="5142" Column="7" TopLine="6381"/>
+        <Filename Value="/usr/lib/lazarus/2.2.6/lcl/interfaces/gtk2/gtk2wsstdctrls.pp"/>
+        <Caret Line="1407" Column="32" TopLine="1385"/>
       </Position>
       <Position>
-        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
-        <Caret Line="5732" Column="62" TopLine="5722"/>
+        <Filename Value="/usr/lib/lazarus/2.2.6/lcl/interfaces/gtk2/gtk2wsstdctrls.pp"/>
+        <Caret Line="1442" Column="32" TopLine="1420"/>
       </Position>
       <Position>
-        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
-        <Caret Line="5724" Column="34" TopLine="5720"/>
+        <Filename Value="/usr/lib/lazarus/2.2.6/lcl/interfaces/gtk2/gtk2wsstdctrls.pp"/>
+        <Caret Line="1466" Column="32" TopLine="1444"/>
       </Position>
       <Position>
-        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
-        <Caret Line="5732" Column="62" TopLine="5720"/>
+        <Filename Value="/usr/lib/lazarus/2.2.6/lcl/interfaces/gtk2/gtk2wsstdctrls.pp"/>
+        <Caret Line="1488" Column="32" TopLine="1466"/>
       </Position>
       <Position>
-        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
-        <Caret Line="5724" Column="34" TopLine="5714"/>
+        <Filename Value="/usr/lib/lazarus/2.2.6/lcl/interfaces/gtk2/gtk2wsstdctrls.pp"/>
+        <Caret Line="1503" Column="32" TopLine="1481"/>
       </Position>
       <Position>
-        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
-        <Caret Line="5732" Column="62" TopLine="5715"/>
+        <Filename Value="/usr/lib/lazarus/2.2.6/lcl/interfaces/gtk2/gtk2wsstdctrls.pp"/>
+        <Caret Line="2094" Column="32" TopLine="2072"/>
       </Position>
       <Position>
-        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
-        <Caret Line="5726" Column="2" TopLine="5715"/>
+        <Filename Value="/usr/lib/lazarus/2.2.6/lcl/interfaces/gtk2/gtk2wsstdctrls.pp"/>
+        <Caret Line="2358" Column="32" TopLine="2336"/>
       </Position>
       <Position>
-        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
-        <Caret Line="5717" Column="32" TopLine="5709"/>
+        <Filename Value="/usr/lib/lazarus/2.2.6/lcl/interfaces/gtk2/gtk2wsstdctrls.pp"/>
+        <Caret Line="2428" Column="32" TopLine="2406"/>
       </Position>
       <Position>
-        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
-        <Caret Line="5725" Column="45" TopLine="5709"/>
+        <Filename Value="/usr/lib/lazarus/2.2.6/lcl/interfaces/gtk2/gtk2wsstdctrls.pp"/>
+        <Caret Line="2595" Column="70" TopLine="2589"/>
       </Position>
       <Position>
-        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
-        <Caret Line="7328" Column="54" TopLine="7311"/>
+        <Filename Value="/usr/lib/lazarus/2.2.6/lcl/interfaces/gtk2/gtk2wsstdctrls.pp"/>
+        <Caret Line="2610" Column="18" TopLine="2588"/>
       </Position>
       <Position>
-        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
-        <Caret Line="7329" Column="54" TopLine="7312"/>
+        <Filename Value="roundspinedittheme.pas"/>
+        <Caret Line="349" Column="9" TopLine="334"/>
       </Position>
       <Position>
-        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
-        <Caret Line="7330" Column="54" TopLine="7313"/>
+        <Filename Value="roundspinedittheme.pas"/>
+        <Caret Line="12" Column="12"/>
       </Position>
       <Position>
-        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
-        <Caret Line="7333" Column="82" TopLine="7316"/>
+        <Filename Value="roundspinedittheme.pas"/>
+        <Caret Line="127" Column="17" TopLine="115"/>
       </Position>
       <Position>
-        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
-        <Caret Line="7460" Column="112" TopLine="7443"/>
+        <Filename Value="roundspinedittheme.pas"/>
+        <Caret Line="12" Column="9"/>
       </Position>
       <Position>
-        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
-        <Caret Line="8031" Column="24" TopLine="8014"/>
+        <Filename Value="roundspinedittheme.pas"/>
+        <Caret Line="127" Column="17" TopLine="118"/>
       </Position>
       <Position>
-        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
-        <Caret Line="8980" Column="63" TopLine="8963"/>
+        <Filename Value="roundspinedittheme.pas"/>
+        <Caret Line="12" Column="9"/>
       </Position>
       <Position>
-        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
-        <Caret Line="727" Column="20" TopLine="716"/>
+        <Filename Value="roundspinedittheme.pas"/>
+        <Caret Line="353" Column="6" TopLine="334"/>
       </Position>
       <Position>
-        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
-        <Caret Line="5753" Column="24" TopLine="5731"/>
+        <Filename Value="roundspinedittheme.pas"/>
+        <Caret Line="355" TopLine="339"/>
       </Position>
       <Position>
-        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
-        <Caret Line="5735" Column="48" TopLine="5722"/>
+        <Filename Value="roundspinedittheme.pas"/>
+        <Caret Line="128" Column="25" TopLine="114"/>
       </Position>
       <Position>
-        <Filename Value="vendor/miniaudio/miniaudio.pp"/>
-        <Caret Line="5733" Column="29" TopLine="5723"/>
+        <Filename Value="roundspinedit.pas"/>
+        <Caret Line="221" Column="11" TopLine="211"/>
       </Position>
       <Position>
-        <Filename Value="breath.lpr"/>
-        <Caret Line="24" TopLine="4"/>
+        <Filename Value="roundspinedit.pas"/>
+        <Caret Line="249" Column="30" TopLine="230"/>
       </Position>
       <Position>
-        <Filename Value="breath.lpr"/>
-        <Caret Line="17" Column="52" TopLine="4"/>
+        <Filename Value="roundspinedittheme.pas"/>
+        <Caret Line="119" Column="20" TopLine="117"/>
       </Position>
       <Position>
-        <Filename Value="breath.lpr"/>
-        <Caret Line="24" TopLine="4"/>
+        <Filename Value="roundspinedittheme.pas"/>
+        <Caret Line="411" Column="46" TopLine="337"/>
       </Position>
       <Position>
-        <Filename Value="breath.lpr"/>
-        <Caret Line="16" Column="2" TopLine="4"/>
+        <Filename Value="roundspinedittheme.pas"/>
+        <Caret Line="355" Column="29" TopLine="46"/>
       </Position>
       <Position>
-        <Filename Value="breath.lpr"/>
-        <Caret Line="24" TopLine="4"/>
+        <Filename Value="roundspinedittheme.pas"/>
+        <Caret Line="350" Column="58" TopLine="330"/>
       </Position>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
       <Modes ActiveMode=""/>
     </RunParams>
+    <HistoryLists>
+      <List Name="LaunchingApplication" Type="File" Count="1">
+        <Item1 Value="/usr/bin/xterm -T &apos;Lazarus Run Output&apos; -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
+      </List>
+    </HistoryLists>
   </ProjectSession>
   <Debugging>
     <BreakPoints>

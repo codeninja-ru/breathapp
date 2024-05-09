@@ -6,7 +6,8 @@ interface
 
 uses
   Classes, SysUtils, LResources, Controls, Graphics, Dialogs,
-  StdCtrls, BGRABitmap, BGRABitmapTypes, BGRAGradients;
+  StdCtrls, BGRABitmap, BGRABitmapTypes, BGRAGradients,
+  {$IFDEF LCLGTK2}gtk2, WSProc{$ENDIF};
 
 type
 
@@ -120,6 +121,10 @@ type
   end;
 
 implementation
+
+{$IFDEF LCLGTK2}
+var isGtkResurseInit: boolean;
+{$ENDIF}
 
 { TDefaultRoundSpinEditTheme }
 
@@ -333,6 +338,25 @@ begin
   Edit.BorderSpacing.Around := FPadding;
   Edit.BorderSpacing.Left := FButtonWidth - 2 * FPadding;
   Edit.ParentColor := False;
+  {$IFDEF LCLGTK2}
+  // Color is not working with GTK see https://gitlab.com/freepascal.org/lazarus/lazarus/-/issues/38516
+  // https://gitlab.com/freepascal.org/lazarus/lazarus/-/issues/38516
+  // gtk theme affects the background style
+  // turn off the theme engine
+  if not isGtkResurseInit then
+  begin
+    isGtkResurseInit:=true;
+    gtk_rc_parse_string(PChar('style "noengine" {' + LineEnding +
+                                     'engine "" {}' + LineEnding +
+                                     '}' + LineEnding +
+                                     'widget "*.round-spin-edit" style "noengine"'));
+  end;
+  if WSCheckHandleAllocated(Edit, 'SetColor') then
+  begin
+    gtk_widget_set_name({%H-}PGtkWidget(Edit.Handle), 'round-spin-edit');
+  end;
+  {$ENDIF}
+
   Edit.Color := FBgColor;
   Edit.Font.Size := FFontSize;
   Edit.Font.Color := FFontColor;
