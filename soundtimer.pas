@@ -17,7 +17,7 @@ uses
   SysUtils,
   states,
   miniaudio,
-  Math;
+  Math, MiniaudioSoundEngine;
 
 const
   DEVICE_CHANNELS = 2;
