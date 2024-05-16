@@ -166,7 +166,7 @@ begin
   TrayIconTimer.Draw(TrayIcon.Icon, StateManager.State);
   if ToggleSoundEnabledAction.Checked then
   begin
-    SoundTimer.play(StateManager.State);
+    SoundTimer.PlayEverySecond(StateManager.State);
   end;
 end;
 

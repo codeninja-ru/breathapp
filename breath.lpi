@@ -156,6 +156,11 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit2"/>
       </Unit>
+      <Unit>
+        <Filename Value="miniaudiosoundengine.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="MiniaudioSoundEngine"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

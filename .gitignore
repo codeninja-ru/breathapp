@@ -6,4 +6,7 @@ breath.app/*
 breath.dSYM/*
 log
 *.o
+*.dbg
+link*.res
+vendor/miniaudio/backup/
 *.bak

@@ -4,8 +4,20 @@ unit SoundTimer;
 
 interface
 
+{$DEFINE DEBUG}
+
 uses
-  {$ifdef unix}cthreads, {$endif}Classes, SysUtils, states, miniaudio, Math;
+  {$IFDEF DEBUG}
+  LazLogger,
+  {$ENDIF}
+  {$ifdef unix}cthreads,{$endif}
+  {$ifdef DEBUG}LazLoggerBase,{$ELSE}LazLoggerDummy,{$ENDIF}
+  Forms,
+  Classes,
+  SysUtils,
+  states,
+  miniaudio,
+  Math, MiniaudioSoundEngine;
 
 const
   DEVICE_CHANNELS = 2;
@@ -15,9 +27,9 @@ const
   ATTACK = 37;
   DECAY = 12;
   SUSTAIN = 50;
-  Release = 37;
+  RELEASE = 37;
   AMPLITUDE = 0.5;
-  NOTE_TIME = ATTACK + DECAY + SUSTAIN + Release;
+  NOTE_TIME = ATTACK + DECAY + SUSTAIN + RELEASE;
 
 type
   ADSREnvelope = record
@@ -38,14 +50,17 @@ type
 
     prevSeconds: integer;
     isPlaying: boolean;
+    playMutex: TRTLCriticalSection;
+    stopMutex: TRTLCriticalSection;
     procedure PlaySound(freq: integer);
     function mtof(m: integer): integer;
+    procedure WaitAndStopPlaying();
+    procedure StopPlaying();
   public
     constructor Create;
     destructor Destroy;
 
-    procedure Play(State: TState);
-    procedure StopPlaying();
+    procedure PlayEverySecond(State: TState);
   end;
 
 implementation
@@ -83,13 +98,13 @@ begin
     end;
 
     if (time >= ATTACK + DECAY + SUSTAIN) and (time <= ATTACK + DECAY +
-      SUSTAIN + Release) then
+      SUSTAIN + RELEASE) then
     begin
-      volume := (-0.5 / Release) * time + 0.5 + (0.5 / Release) *
+      volume := (-0.5 / RELEASE) * time + 0.5 + (0.5 / RELEASE) *
         (ATTACK + DECAY + SUSTAIN);
     end;
 
-    if time > ATTACK + DECAY + SUSTAIN + Release then
+    if time > ATTACK + DECAY + SUSTAIN + RELEASE then
     begin
       volume := 0;
     end;
@@ -111,11 +126,9 @@ begin
   end;
 end;
 
-function sleepAndStop(soundTimer: pointer): ptrint;
+function sleepAndStopFn(soundTimer: pointer): ptrint;
 begin
-  sleep(NOTE_TIME + 10);
-  TSoundTimer(soundTimer).StopPlaying;
-
+  TSoundTimer(soundTimer).WaitAndStopPlaying();
   Result := 0;
 end;
 
@@ -123,6 +136,7 @@ end;
 constructor TSoundTimer.Create;
 begin
   isPlaying := False;
+  prevSeconds := -1;
 
   envelope.cursor := 0;
   envelope.freq := FREQ;
@@ -140,70 +154,99 @@ begin
     raise Exception.Create('Failed to open playback device.');
   end;
 
+  InitCriticalSection(playMutex);
+  InitCriticalSection(stopMutex);
+
   inherited Create;
 end;
 
 destructor TSoundTimer.Destroy;
 begin
   StopPlaying;
+  DoneCriticalSection(playMutex);
+  DoneCriticalSection(stopMutex);
   ma_device_uninit(@device);
 end;
 
-procedure TSoundTimer.Play(State: TState);
+procedure TSoundTimer.PlayEverySecond(State: TState);
 var
   sec: integer;
 begin
-  sec := State.Seconds;
-  if prevSeconds <> sec then
-  begin
-    if sec > 0 then
-    begin
-      case State.StateType of
-        stBreathIn:
-          PlaySound(mtof(Round(64 + ((90 - 64) / (State.MaxMSec div 1000)) * State.Seconds)));
-        stBreathOut:
-          PlaySound(mtof(Round(60 - ((60 - 40) / (State.MaxMSec div 1000)) * State.Seconds)));
-        stHoldIn: ;
-        //PlaySound(100);
-        stHoldOut: ;
-        //PlaySound(100);
-      end;
-    end
-    else if State.CurrentMSec = State.MaxMSec then
-    begin
-      // todo
-    end;
-
-    prevSeconds := sec;
-  end;
-end;
-
-procedure TSoundTimer.StopPlaying;
-begin
-  if isPlaying then
-  begin
-    ma_device_stop(@device);
-    isPlaying := False;
-  end;
-
-end;
-
-procedure TSoundTimer.PlaySound(freq: integer);
-begin
   if not isPlaying then
   begin
-    envelope.freq := freq;
-    envelope.cursor := 0;
-    envelope.time := 0;
-    if ma_device_start(@device) <> MA_SUCCESS then
+    DebugLn('PlayEverySecond started');
+    EnterCriticalSection(playMutex);
+    DebugLn('PlayEverySecond called: sec = ' + IntToStr(State.Seconds) + ' prevSec = ' + IntToStr(prevSeconds) + ' state = ' + State.GetStateText + ' isPlaying = ' + BoolToStr(isPlaying));
+    try
+      sec := State.Seconds;
+      if prevSeconds <> sec then
+      begin
+        if sec > 0 then
+        begin
+            case State.StateType of
+              stBreathIn:
+                PlaySound(mtof(Round(64 + ((90 - 64) / (State.MaxMSec div 1000)) * State.Seconds)));
+              stBreathOut:
+                PlaySound(mtof(Round(60 - ((60 - 40) / (State.MaxMSec div 1000)) * State.Seconds)));
+              stHoldIn: ;
+              //PlaySound(100);
+              stHoldOut: ;
+              //PlaySound(100);
+            end;
+        end
+        else if State.CurrentMSec = State.MaxMSec then
+        begin
+          // todo
+        end;
+
+        prevSeconds := sec;
+      end;
+    finally
+      LeaveCriticalSection(playMutex);
+    end;
+    DebugLn('PlayEverySecond finished');
+  end;
+end;
+
+procedure TSoundTimer.WaitAndStopPlaying;
+begin
+  DebugLn('WaitAndPlaying started, isPlaying = ' + BoolToStr(isPlaying));
+  if ma_device_start(@device) <> MA_SUCCESS then
     begin
       ma_device_uninit(@device);
       isPlaying := false;
       raise Exception.Create('Failed to start playback device.');
     end;
+  sleep(NOTE_TIME + 50);
+  StopPlaying();
+  DebugLn('WaitAndPlaying finished');
+end;
 
+procedure TSoundTimer.StopPlaying;
+begin
+  EnterCriticalSection(stopMutex);
+  try
+    if isPlaying then
+    begin
+      ma_device_stop(@device);
+      isPlaying := False;
+    end;
+  finally
+    LeaveCriticalSection(stopMutex);
+  end;
+end;
+
+procedure TSoundTimer.PlaySound(freq: integer);
+begin
+  DebugLn('PlaySound started, isPlaying = ' + BoolToStr(isPlaying) + ' freq = ' + IntToStr(freq));
+  if not isPlaying then
+  begin
     isPlaying:=True;
-    BeginThread(@sleepAndStop, Self);
+    envelope.freq := freq;
+    envelope.cursor := 0;
+    envelope.time := 0;
+    BeginThread(@sleepAndStopFn, Self);
+    DebugLn('PlaySound finished');
   end;
 end;
 
