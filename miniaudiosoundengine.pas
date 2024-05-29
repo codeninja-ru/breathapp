@@ -5,12 +5,11 @@ unit MiniaudioSoundEngine;
 interface
 
 uses
-  Classes, SysUtils, miniaudio,
-  {$ifdef unix}cthreads{$endif};
+  Classes, SysUtils, miniaudio{$ifndef WIN32},unix{$endif};
 
 const
   DEVICE_CHANNELS = 2;
-  DEVICE_SAMPLE_RATE = 48000;
+  DEVICE_SAMPLE_RATE = 48000; // number of pcm frames that are procesed per second
   FREQ = 440;
 
   ATTACK = 37;
@@ -21,107 +20,129 @@ const
   NOTE_TIME = ATTACK + DECAY + SUSTAIN + RELEASE;
 
 type
-  TSoundSource = class
-    public
-      procedure DataCallBack(pOutput: pointer; frameCount: integer); virtual; abstract;
-  end;
-
   TBeepDataSource = record
     base: ma_data_source_base;
-    cursor: single;
-    time: single;
+    cursor: ma_uint64;
     freq: integer;
   end;
   PBeepDataSource = ^TBeepDataSource;
+
+  { TMiniaudioSound }
+
+  TAbstractSound = class
+  protected
+    function GetIsPlaying(): boolean; virtual; abstract;
+  public
+    procedure Play(); virtual; abstract;
+    property IsPlaying: boolean read GetIsPlaying;
+  end;
 
   { TMiniaudioSoundEngine }
 
   TMiniaudioSoundEngine = class
   private
-    FIsPlaying: boolean;
     FMaEgine: ma_engine;
-    FBeepDataSource: TBeepDataSource;
 
   public
-    property IsPlaying: boolean read FIsPlaying;
-
-    procedure Play(ASound: TSoundSource);
-    procedure Stop();
-
     constructor Create;
     destructor Destroy;
   end;
 
+  { TMiniaudioBeepSound }
 
-var beepSoundVtable : ma_data_source_vtable;
+  TMiniaudioBeepSound = class(TAbstractSound)
+  private
+    FSound: ma_sound;
+    FEgine: TMiniaudioSoundEngine;
+    FBeepDataSource: TBeepDataSource;
+    procedure SetFrequency(freq: integer);
+    function GetFrequency: integer;
+    function GetIsPlaying(): boolean; override;
+  public
+    property Frequency: integer read GetFrequency write SetFrequency;
+    property IsPlaying: boolean read GetIsPlaying;
+    procedure Play(); override;
+
+    constructor Create(AEngine: TMiniaudioSoundEngine);
+    destructor Destroy;
+  end;
 
 implementation
 
-function beepSoundOnRead(pDataSource:PBeepDataSource; pFramesOut:pointer;
-             frameCount:ma_uint64; pFramesRead:Pma_uint64):ma_result;cdecl;
+var beepSoundVtable : ma_data_source_vtable;
+
+function beepSoundOnRead(pDataSource:Pma_data_source; pFramesOut:pointer;
+  frameCount:ma_uint64; pFramesRead:Pma_uint64):ma_result;cdecl;
 var
-  i, iChannel, idx, channelsCount: integer;
-  Value, volume, cursor, time, framesInOsc: single;
+  i, iChannel, idx, channelsCount, framesInOsc, framesInMsec: integer;
+  Value, volume, time: single;
   Data: Psingle;
+  dataSource: PBeepDataSource;
 begin
+  dataSource:=PBeepDataSource(pDataSource);
   Data := pFramesOut;
   channelsCount := DEVICE_CHANNELS;
-  time := pDataSource^.time;
-  cursor := pDataSource^.cursor;
-  framesInOsc := pDataSource^.freq / DEVICE_SAMPLE_RATE;
-  for i := 0 to frameCount - 1 do
+  framesInOsc := DEVICE_SAMPLE_RATE div dataSource^.freq;
+  framesInMsec:= DEVICE_SAMPLE_RATE div 1000;
+  if dataSource^.cursor <= (ATTACK + DECAY + SUSTAIN + RELEASE) * framesInMsec then
   begin
-
-    if time <= ATTACK then
+    for i := 0 to frameCount - 1 do
     begin
-      volume := (1 / ATTACK) * time;
+      time := dataSource^.cursor / framesInMsec;
+      if time <= ATTACK then
+      begin
+        volume := (1 / ATTACK) * time;
+      end;
+
+      if (time > ATTACK) and (time <= ATTACK + DECAY) then
+      begin
+        volume := (-0.5 / DECAY) * time + 1 + (0.5 / DECAY) * ATTACK;
+      end;
+
+      if (time > ATTACK + DECAY) and (time <= ATTACK + DECAY + SUSTAIN) then
+      begin
+        volume := 0.5;
+      end;
+
+      if (time >= ATTACK + DECAY + SUSTAIN) and (time <= ATTACK + DECAY +
+        SUSTAIN + RELEASE) then
+        begin
+          volume := (-0.5 / RELEASE) * time + 0.5 + (0.5 / RELEASE) *
+          (ATTACK + DECAY + SUSTAIN);
+        end;
+
+        if time > ATTACK + DECAY + SUSTAIN + RELEASE then
+        begin
+          volume := 0;
+        end;
+
+        Value := sin(2 * Pi * (dataSource^.cursor mod framesInOsc) / framesInOsc) * AMPLITUDE;
+        for iChannel := 0 to channelsCount - 1 do
+        begin
+          idx := i * channelsCount + iChannel;
+          Data[idx] := Value * volume;
+        end;
+
+      Inc(dataSource^.cursor);
     end;
 
-    if (time > ATTACK) and (time <= ATTACK + DECAY) then
-    begin
-      volume := (-0.5 / DECAY) * time + 1 + (0.5 / DECAY) * ATTACK;
-    end;
-
-    if (time > ATTACK + DECAY) and (time <= ATTACK + DECAY + SUSTAIN) then
-    begin
-      volume := 0.5;
-    end;
-
-    if (time >= ATTACK + DECAY + SUSTAIN) and (time <= ATTACK + DECAY +
-      SUSTAIN + RELEASE) then
-    begin
-      volume := (-0.5 / RELEASE) * time + 0.5 + (0.5 / RELEASE) *
-        (ATTACK + DECAY + SUSTAIN);
-    end;
-
-    if time > ATTACK + DECAY + SUSTAIN + RELEASE then
-    begin
-      volume := 0;
-    end;
-
-    for iChannel := 0 to channelsCount - 1 do
-    begin
-      idx := i * channelsCount + iChannel;
-
-      Value := sin(2 * Pi * cursor) * AMPLITUDE;
-
-      Data[idx] := Value * volume;
-    end;
-
-    cursor := cursor + framesInOsc;
-    pDataSource^.cursor := cursor;
-    time := time + 1000 / DEVICE_SAMPLE_RATE;
-    pDataSource^.time := time;
-
+    if pFramesRead <> nil then pFramesRead^ := frameCount;
   end;
+
+
+  Result := MA_SUCCESS;
 end;
 
 function OnSeek(pDataSource:Pma_data_source; frameIndex:ma_uint64):ma_result;cdecl;
+var dataSource: PBeepDataSource;
 begin
+  dataSource:=PBeepDataSource(pDataSource);
+  dataSource^.cursor:=frameIndex;
   Result := MA_SUCCESS;
 end;
+
 function OnGetDataformat(pDataSource:Pma_data_source; pFormat:Pma_format; pChannels:Pma_uint32; pSampleRate:Pma_uint32; pChannelMap:Pma_channel;
-             channelMapCap:size_t):ma_result;cdecl;
+  channelMapCap:size_t):ma_result;cdecl;
 begin
   pFormat^:=ma_format_f32;
   pChannels^:= DEVICE_CHANNELS;
@@ -129,20 +150,20 @@ begin
   ma_channel_map_init_standard(ma_standard_channel_map_default, pChannelMap, channelMapCap, DEVICE_CHANNELS);
   Result := MA_SUCCESS;
 end;
-function OnGetCursor(pDataSource:PBeepDataSource; pCursor:Pma_uint64):ma_result;cdecl;
+
+function OnGetCursor(pDataSource:Pma_data_source; pCursor:Pma_uint64):ma_result;cdecl;
 begin
   // Retrieve the current position of the cursor here. Return MA_NOT_IMPLEMENTED and set *pCursor to 0 if there is no notion of a cursor.
-  pCursor^:=pDataSource^.cursor;
+  pCursor^:=PBeepDataSource(pDataSource)^.cursor;
   Result := MA_SUCCESS;
 end;
 
 function OnGetLength(pDataSource:Pma_data_source; pLength:Pma_uint64):ma_result;cdecl;
 begin
   // Retrieve the length in PCM frames here. Return MA_NOT_IMPLEMENTED and set *pLength to 0 if there is no notion of a length or if the length is unknown.
-  pLength^:=NOTE_TIME * DEVICE_SAMPLE_RATE;
+  pLength^:= (NOTE_TIME * DEVICE_SAMPLE_RATE) div 1000;
   Result := MA_SUCCESS;
 end;
-
 
 function beepSound_source_init(pDataSource: PBeepDataSource): ma_result;cdecl;
 var baseConfig: ma_data_source_config;
@@ -152,71 +173,84 @@ begin
   beepSoundVtable.onRead:=@beepSoundOnRead;
   beepSoundVtable.onGetLength:=@OnGetLength;
   beepSoundVtable.onSeek:=@OnSeek;
+  beepSoundVtable.onSetLooping:=nil;
+  beepSoundVtable.flags:=0;
 
   baseConfig := ma_data_source_config_init();
   baseConfig.vtable:=@beepSoundVtable;
 
-  Result := ma_data_source_init(@baseConfig, PBeepDataSource(pDataSource)^.base);
-  if Result <> MA_SUCCESS then
+  if ma_data_source_init(@baseConfig, @PBeepDataSource(pDataSource)^.base) <> MA_SUCCESS then
   begin
-    Exit;
+    raise Exception.Create('could not create datasource');
   end;
-  //begin
-  //  raise Exception.Create('could not create datasource');
-  //end;
 
   Result := MA_SUCCESS;
 end;
 
 procedure beep_data_source_uninit(pDataSource: PBeepDataSource);
 begin
-  ma_data_source_init(pDataSource^.base);
+  ma_data_source_uninit(@PBeepDataSource(pDataSource)^.base);
 end;
 
-{ TMiniaudioSoundEngine }
+{ TMiniaudioBeepSound }
 
-procedure TMiniaudioSoundEngine.Play(ASound: TSoundSource);
-var sound: ma_sound;
+procedure TMiniaudioBeepSound.SetFrequency(freq: integer);
 begin
+  FBeepDataSource.freq := freq;
+end;
+
+function TMiniaudioBeepSound.GetFrequency: integer;
+begin
+  Result := FBeepDataSource.freq;
+end;
+
+function TMiniaudioBeepSound.GetIsPlaying: boolean;
+begin
+  Result := ma_sound_is_playing(@FSound) = MA_TRUE;
+end;
+
+procedure TMiniaudioBeepSound.Play;
+begin
+  ma_sound_seek_to_pcm_frame(@FSound, 0);
+  if ma_sound_start(@FSound) <> MA_SUCCESS then
+     raise Exception.Create('cound not play sound');
+end;
+
+constructor TMiniaudioBeepSound.Create(AEngine: TMiniaudioSoundEngine);
+begin
+  FEgine := AEngine;
+
   FBeepDataSource.freq := FREQ;
   if beepSound_source_init(@FBeepDataSource) <> MA_SUCCESS then
   begin
     raise Exception.Create('cound not init beep data source');
   end;
-  if ma_sound_init_from_data_source(@FMaEgine, @FBeepDataSource, 0, nil, @sound) <> MA_SUCCESS then
+  if ma_sound_init_from_data_source(@FEgine.FMaEgine, @FBeepDataSource, 0, nil, @FSound) <> MA_SUCCESS then
   begin
     raise Exception.Create('cound not init beep sound from data source');
   end;
-  if ma_sound_start(@sound) <> MA_SUCCESS then
-  begin
-    raise Exception.Create('cound not start sound');
-  end;
-  //todo uninit sound
 end;
 
-procedure TMiniaudioSoundEngine.Stop;
+destructor TMiniaudioBeepSound.Destroy;
 begin
-
+  ma_sound_uninit(@FSound);
+  beep_data_source_uninit(@FBeepDataSource);
 end;
+
+{ TMiniaudioSoundEngine }
 
 constructor TMiniaudioSoundEngine.Create;
 begin
-  FIsPlaying := False;
-
-  if ma_engine_init(NULL, @engine) <> MA_SUCCESS then
+  if ma_engine_init(nil, @FMaEgine) <> MA_SUCCESS then
   begin
-    Exception.Create('Failed to initialize the engine.');
+    raise Exception.Create('Failed to initialize the engine.');
   end;
-
-
 
   inherited Create;
 end;
 
 destructor TMiniaudioSoundEngine.Destroy;
 begin
-  Stop();
-  beep_data_source_uninit(@FBeepDataSource);
   ma_engine_uninit(@FMaEgine);
 end;
 

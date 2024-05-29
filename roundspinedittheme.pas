@@ -6,8 +6,8 @@ interface
 
 uses
   Classes, SysUtils, LResources, Controls, Graphics, Dialogs,
-  StdCtrls, BGRABitmap, BGRABitmapTypes, BGRAGradients,
-  {$IFDEF LCLGTK2}gtk2, WSProc{$ENDIF};
+  StdCtrls, BGRABitmap, BGRABitmapTypes, BGRAGradients
+  {$IFDEF LCLGTK2},gtk2, WSProc{$ENDIF};
 
 type
 
