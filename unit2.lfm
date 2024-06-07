@@ -3,6 +3,7 @@ object AboutForm: TAboutForm
   Height = 521
   Top = 167
   Width = 396
+  BorderStyle = bsDialog
   Caption = 'About'
   ClientHeight = 521
   ClientWidth = 396
@@ -423,7 +424,7 @@ object AboutForm: TAboutForm
     Height = 264
     Top = 176
     Width = 352
-    Caption = 'DescrText'
+    Caption = 'Breath is a simple and intuitive app designed to help you practice breathing exercises. With customizable settings for inhalation, exhalation, and holding breaths, you can tailor your breathing routine to your needs. Whether you''re looking to relax, meditate, or improve your lung capacity, Breath provides the tools to support your practice.'#10#10'If you wander where to get started, you can use the 5:5 breathing pattern (inhale for 5 seconds, exhale for 5 seconds). This balanced approach can help promote relaxation and reduce stress. Feel free to experiment with different timings to find what works best for you.'
     TabOrder = 0
   end
   object CloseButton: TButton

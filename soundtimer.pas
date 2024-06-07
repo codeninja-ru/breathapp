@@ -9,7 +9,7 @@ uses
   Classes,
   SysUtils,
   states,
-  math,
+  Math,
   MiniaudioSoundEngine;
 
 type
@@ -52,29 +52,31 @@ var
   sec: integer;
 begin
 
-    sec := State.Seconds;
-    if prevSeconds <> sec then
+  sec := State.Seconds;
+  if prevSeconds <> sec then
+  begin
+    if sec > 0 then
     begin
-      if sec > 0 then
-      begin
-          case State.StateType of
-            stBreathIn:
-              PlaySound(mtof(Round(64 + ((90 - 64) / (State.MaxMSec div 1000)) * State.Seconds)));
-            stBreathOut:
-              PlaySound(mtof(Round(60 - ((60 - 40) / (State.MaxMSec div 1000)) * State.Seconds)));
-            stHoldIn: ;
-            //PlaySound(100);
-            stHoldOut: ;
-            //PlaySound(100);
-          end;
-      end
-      else if State.CurrentMSec = State.MaxMSec then
-      begin
-        // todo
+      case State.StateType of
+        stBreathIn:
+          PlaySound(mtof(Round(64 + ((90 - 64) / (State.MaxMSec div 1000)) *
+            State.Seconds)));
+        stBreathOut:
+          PlaySound(mtof(Round(60 - ((60 - 40) / (State.MaxMSec div 1000)) *
+            State.Seconds)));
+        stHoldIn: ;
+        //PlaySound(100);
+        stHoldOut: ;
+        //PlaySound(100);
       end;
-
-      prevSeconds := sec;
+    end
+    else if State.CurrentMSec = State.MaxMSec then
+    begin
+      // todo
     end;
+
+    prevSeconds := sec;
+  end;
 
 end;
 
@@ -82,7 +84,7 @@ procedure TSoundTimer.PlaySound(freq: integer);
 begin
   if not FBeepSound.IsPlaying then
   begin
-    FBeepSound.Frequency:=freq;
+    FBeepSound.Frequency := freq;
     FBeepSound.Play();
   end;
 
