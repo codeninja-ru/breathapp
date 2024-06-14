@@ -166,7 +166,7 @@ end;
 
 function TBreathOutState.GetStateText: string;
 begin
-  Result := 'breath out';
+  Result := 'exhaile';
 end;
 
 constructor TBreathOutState.Create(AMaxMSec: integer; AAppSettings: TAppSettings);
@@ -188,7 +188,7 @@ end;
 
 function TBreathInState.GetStateText: string;
 begin
-  Result := 'breath in';
+  Result := 'inhale';
 end;
 
 constructor TBreathInState.Create(AMaxMSec: integer; AAppSettings: TAppSettings);

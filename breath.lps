@@ -93,8 +93,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit1"/>
-        <TopLine Value="280"/>
-        <CursorPos X="15" Y="89"/>
+        <CursorPos X="23" Y="14"/>
         <UsageCount Value="205"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -103,35 +102,39 @@
         <Filename Value="clockellipse.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ClockEllipse"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="99"/>
-        <CursorPos X="21" Y="95"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="32"/>
+        <CursorPos X="51" Y="34"/>
         <UsageCount Value="207"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="appsettings.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="AppSettings"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="8"/>
-        <CursorPos Y="52"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="88"/>
+        <CursorPos X="29" Y="19"/>
         <UsageCount Value="205"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="clocktext.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ClockText"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="64"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="105"/>
         <CursorPos X="31" Y="64"/>
         <UsageCount Value="217"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="states.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="327"/>
-        <CursorPos Y="339"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="222"/>
+        <CursorPos X="16" Y="169"/>
         <UsageCount Value="235"/>
         <Loaded Value="True"/>
       </Unit>
@@ -157,8 +160,8 @@
         <Filename Value="soundtimer.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="SoundTimer"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="75"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="4"/>
         <CursorPos X="30" Y="60"/>
         <UsageCount Value="203"/>
         <Loaded Value="True"/>
@@ -196,11 +199,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit2"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="21"/>
+        <EditorIndex Value="6"/>
+        <TopLine Value="3"/>
         <CursorPos X="52" Y="34"/>
-        <UsageCount Value="188"/>
+        <UsageCount Value="193"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -208,10 +210,10 @@
         <Filename Value="miniaudiosoundengine.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="MiniaudioSoundEngine"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="241"/>
         <CursorPos X="57" Y="169"/>
-        <UsageCount Value="183"/>
+        <UsageCount Value="188"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -237,7 +239,7 @@
       <Unit>
         <Filename Value="switchbox.pas"/>
         <UnitName Value="SwitchBox"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="10"/>
         <TopLine Value="204"/>
         <CursorPos X="55" Y="331"/>
         <UsageCount Value="111"/>
@@ -269,7 +271,7 @@
       <Unit>
         <Filename Value="roundspinedit.pas"/>
         <UnitName Value="RoundSpinEdit"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="22"/>
         <CursorPos X="17" Y="22"/>
         <UsageCount Value="103"/>
@@ -300,15 +302,16 @@
       <Unit>
         <Filename Value="roundspinedittheme.pas"/>
         <UnitName Value="RoundSpinEditTheme"/>
-        <EditorIndex Value="5"/>
-        <CursorPos X="55" Y="9"/>
+        <EditorIndex Value="8"/>
+        <TopLine Value="405"/>
+        <CursorPos X="36" Y="342"/>
         <UsageCount Value="119"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="roundupdown.pas"/>
         <UnitName Value="RoundUpDown"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="11"/>
         <TopLine Value="126"/>
         <CursorPos X="3" Y="14"/>
         <UsageCount Value="112"/>
@@ -392,14 +395,6 @@
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="soundtimer.pas"/>
-        <Caret Line="93" TopLine="74"/>
-      </Position>
-      <Position>
-        <Filename Value="soundtimer.pas"/>
-        <Caret Line="94" TopLine="74"/>
-      </Position>
       <Position>
         <Filename Value="soundtimer.pas"/>
         <Caret Line="62" TopLine="52"/>
@@ -511,6 +506,14 @@
       <Position>
         <Filename Value="miniaudiosoundengine.pas"/>
         <Caret Line="86" TopLine="74"/>
+      </Position>
+      <Position>
+        <Filename Value="clockellipse.pas"/>
+        <Caret Line="116" Column="62" TopLine="32"/>
+      </Position>
+      <Position>
+        <Filename Value="clockellipse.pas"/>
+        <Caret Line="34" Column="51" TopLine="32"/>
       </Position>
     </JumpHistory>
     <RunParams>
