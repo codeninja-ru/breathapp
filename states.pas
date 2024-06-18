@@ -166,7 +166,7 @@ end;
 
 function TBreathOutState.GetStateText: string;
 begin
-  Result := 'exhaile';
+  Result := 'exhale';
 end;
 
 constructor TBreathOutState.Create(AMaxMSec: integer; AAppSettings: TAppSettings);

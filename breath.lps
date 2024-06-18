@@ -113,7 +113,7 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="AppSettings"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="88"/>
+        <TopLine Value="86"/>
         <CursorPos X="29" Y="19"/>
         <UsageCount Value="205"/>
         <Loaded Value="True"/>
@@ -123,7 +123,7 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="ClockText"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="105"/>
+        <TopLine Value="104"/>
         <CursorPos X="31" Y="64"/>
         <UsageCount Value="217"/>
         <Loaded Value="True"/>
@@ -133,8 +133,8 @@
         <IsPartOfProject Value="True"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="222"/>
-        <CursorPos X="16" Y="169"/>
+        <TopLine Value="167"/>
+        <CursorPos X="18" Y="169"/>
         <UsageCount Value="235"/>
         <Loaded Value="True"/>
       </Unit>
