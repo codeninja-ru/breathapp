@@ -2,14 +2,26 @@
 unit miniaudio;
 interface
 
-uses Ctypes{$ifndef WIN32},unix{$endif};
+uses Ctypes{$ifdef UNIX},unix{$endif};
 
 {
   Automatically converted by H2Pas 1.0.0 from miniaudio.h
   The following command line parameters were used:
     miniaudio.h
 }
-{$L miniaudio_lib.o}
+
+{$ifdef CPU64}
+  {$ifdef LINUX}{$L miniaudio_lib-linux-x86_64.o}{$endif}
+  {$ifdef WIN64}{$L miniaudio_lib-win64-x86_64.o}{$endif}
+  {$ifdef DARWIN}{$L miniaudio_lib-darwin-x86_64.o}{$endif}
+{$endif}
+
+{$ifdef CPU32}
+  {$ifdef WIN32}{$L miniaudio_lib-win32-i680.o}{$endif}
+  {$ifdef LINUX}{$L miniaudio_lib-linux-i680.o}{$endif}
+{$endif}
+
+{//$L miniaudio_lib.o}
 {$ifdef LINUX}
 {$linklib c}
 {$linklib m}
@@ -4043,7 +4055,7 @@ uses Ctypes{$ifndef WIN32},unix{$endif};
 
     wchar_t = ma_uint16;
 {$endif}
-{$ifndef WIN32    /* If it's not Win32, assume POSIX. */}
+{$ifdef WIN32    /* If it's not Win32, assume POSIX. */}
 {$define MA_POSIX}  
 {$ifndef MA_NO_PTHREAD_IN_HEADER}
 {include <pthread.h>    /* Unfortunate #include, but needed for pthread_t, pthread_mutex_t and pthread_cond_t types. */}

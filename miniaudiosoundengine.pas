@@ -5,7 +5,7 @@ unit MiniaudioSoundEngine;
 interface
 
 uses
-  Classes, SysUtils, miniaudio{$ifndef WIN32}, unix{$endif};
+  Classes, SysUtils, miniaudio{$ifdef UNIX}, unix{$endif};
 
 const
   DEVICE_CHANNELS = 2;
