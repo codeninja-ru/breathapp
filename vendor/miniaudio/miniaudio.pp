@@ -10,6 +10,41 @@ uses Ctypes{$ifdef UNIX},unix{$endif};
     miniaudio.h
 }
 
+{$ifdef windows}
+    {$ifdef cpu64}
+	    { apt install mingw-w64-x86-64-dev }
+	    {$linklib /usr/x86_64-w64-mingw32/lib/libkernel32.a}
+	    {linklib /usr/x86_64-w64-mingw32/lib/libmsvcrt.a}
+	    {$linklib /usr/x86_64-w64-mingw32/lib/libmingwex.a}
+	    {$linklib /usr/x86_64-w64-mingw32/lib/libmingw32.a}
+	    {$linklib /usr/x86_64-w64-mingw32/lib/libsynchronization.a}
+	    {linklib /usr/x86_64-w64-mingw32/lib/libucrt.a}
+	    {linklib /usr/x86_64-w64-mingw32/lib/libmingwex.a}
+	    {$linklib /usr/x86_64-w64-mingw32/lib/libmsvcr120d.a}
+    {$endif}
+    {$ifdef cpu32}
+	    { apt install mingw-w64-i686-dev }
+	    {$linklib /usr/lib/gcc-cross/i686-linux-gnu/12/libgcc.a}
+	    {$linklib /usr/i686-w64-mingw32/lib/libkernel32.a}
+	    {$linklib /usr/i686-w64-mingw32/lib/libwinpthread.a}
+	    {$linklib /usr/i686-w64-mingw32/lib/libwindowsapp.a}
+	    {$linklib /usr/i686-w64-mingw32/lib/libwinstorecompat.a}
+	    {$linklib /usr/i686-w64-mingw32/lib/libwindowsappcompat.a}
+	    {$linklib /usr/i686-w64-mingw32/lib/libmsvcrt.a}
+	    {$linklib /usr/i686-w64-mingw32/lib/libmsvcrt40.a}
+	    {$linklib /usr/i686-w64-mingw32/lib/libmsvcrt20.a}
+	    {$linklib /usr/i686-w64-mingw32/lib/libmsvcrt10.a}
+	    {$linklib /usr/i686-w64-mingw32/lib/libmsvcrt-os.a}
+	    {$linklib /usr/i686-w64-mingw32/lib/libmingwex.a}
+	    {$linklib /usr/i686-w64-mingw32/lib/libmingw32.a}
+	    {$linklib /usr/i686-w64-mingw32/lib/libsynchronization.a}
+	    {$linklib /usr/i686-w64-mingw32/lib/libucrt.a}
+	    {$linklib /usr/i686-w64-mingw32/lib/libmingwex.a}
+	    {$linklib /usr/i686-w64-mingw32/lib/libmsvcr120d.a}
+	    {$linklib /usr/i686-w64-mingw32/lib/libmincore.a}
+    {$endif}
+{$endif}
+
 {$ifdef CPU64}
   {$ifdef LINUX}{$L miniaudio_lib-linux-x86_64.o}{$endif}
   {$ifdef WIN64}{$L miniaudio_lib-win64-x86_64.o}{$endif}
@@ -17,8 +52,8 @@ uses Ctypes{$ifdef UNIX},unix{$endif};
 {$endif}
 
 {$ifdef CPU32}
-  {$ifdef WIN32}{$L miniaudio_lib-win32-i680.o}{$endif}
-  {$ifdef LINUX}{$L miniaudio_lib-linux-i680.o}{$endif}
+  {$ifdef WIN32}{$L miniaudio_lib-win32-i686.o}{$endif}
+  {$ifdef LINUX}{$L miniaudio_lib-linux-i686.o}{$endif}
 {$endif}
 
 {//$L miniaudio_lib.o}
@@ -4055,7 +4090,7 @@ uses Ctypes{$ifdef UNIX},unix{$endif};
 
     wchar_t = ma_uint16;
 {$endif}
-{$ifdef WIN32    /* If it's not Win32, assume POSIX. */}
+{$ifdef UNIX    /* If it's not Win32, assume POSIX. */}
 {$define MA_POSIX}  
 {$ifndef MA_NO_PTHREAD_IN_HEADER}
 {include <pthread.h>    /* Unfortunate #include, but needed for pthread_t, pthread_mutex_t and pthread_cond_t types. */}
@@ -12845,4 +12880,64 @@ uses Ctypes{$ifdef UNIX},unix{$endif};
 
 implementation
 
+{$ifdef windows}
+{FIX FOR windows}
+{see https://forum.lazarus.freepascal.org/index.php?topic=60332.0}
+{ https://github.com/skeeto/w64devkit/blob/068236d/src/libchkstk.S }
+procedure __chkstk_ms; assembler; nostackframe; public Name '___chkstk_ms';
+{$ifdef cpu64}
+  label zero, one;
+  asm
+  	push %rax
+	  push %rcx
+	  neg  %rax		// rax = frame low address
+	  add  %rsp, %rax		// "
+	  mov  %gs:(0x10), %rcx	// rcx = stack low address
+	  jmp  one
+zero:  	sub  $0x1000, %rcx	// extend stack into guard page
+	  mov  %eax, (%rcx)	// commit page (two instruction bytes)
+one:  	cmp  %rax, %rcx
+	  ja   zero
+	  pop  %rcx
+	  pop  %rax
+	  ret
+  end;
+{$endif}
+{$ifdef cpu32}
+  label zero, one;
+  asm
+    push %ecx
+    neg  %eax               // 2.
+    lea  8(%esp,%eax), %eax // 2.
+    mov  %fs:(0x08), %ecx   // 3.
+    jmp  one                 // 4.
+    zero:sub  $0x1000, %ecx      // 5.
+    test %eax, (%ecx)       // 6. page fault (very slow!)
+    one:cmp  %eax, %ecx         // 7.
+    ja   zero                 // 7.
+    pop  %ecx               // 8.
+    xchg %eax, %esp         // ?. allocate frame
+    jmp  *(%eax)            // 8. return
+  end;
+{$endif}
+{$endif}
+{$ifdef cpu32}
+{see https://github.com/synopse/mORMot/blob/master/SynSQLite3Static.pas }
+function moddi3(num, den: int64): int64; cdecl; {$ifdef linux}public alias: '__moddi3';{$endif}{$ifdef window}public alias: '___moddi3';{$endif}
+begin
+  result := num mod den;
+end;
+function umoddi3(num, den: uint64): uint64; cdecl; {$ifdef linux}public alias: '__umoddi3';{$endif}{$ifdef window}public alias: '__umoddi3';{$endif}
+begin
+  result := num mod den;
+end;
+function divdi3(num, den: int64): int64; cdecl; {$ifdef linux}public alias: '__divdi3';{$endif}{$ifdef linux}public alias: '___divdi3';{$endif}
+begin
+  result := num div den;
+end;
+function udivdi3(num, den: uint64): uint64; cdecl; {$ifdef linux}public alias: '__udivdi3';{$endif}{$ifdef window}public alias: '___udivdi3';{$endif}
+begin
+  result := num div den;
+end;
+{$endif}
 end.

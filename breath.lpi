@@ -115,6 +115,16 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="MiniaudioSoundEngine"/>
       </Unit>
+      <Unit>
+        <Filename Value="coreaudiosoundengine.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="CoreAudioSoundEngine"/>
+      </Unit>
+      <Unit>
+        <Filename Value="soundwave.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="SoundWave"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

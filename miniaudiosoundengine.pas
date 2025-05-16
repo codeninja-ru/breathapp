@@ -156,14 +156,16 @@ begin
   Result := MA_SUCCESS;
 end;
 
-function OnGetCursor(pDataSource: Pma_data_source; pCursor: Pma_uint64): ma_result; cdecl;
+function OnGetCursor(pDataSource: Pma_data_source;
+  pCursor: Pma_uint64): ma_result; cdecl;
 begin
   // Retrieve the current position of the cursor here. Return MA_NOT_IMPLEMENTED and set *pCursor to 0 if there is no notion of a cursor.
   pCursor^ := PBeepDataSource(pDataSource)^.cursor;
   Result := MA_SUCCESS;
 end;
 
-function OnGetLength(pDataSource: Pma_data_source; pLength: Pma_uint64): ma_result; cdecl;
+function OnGetLength(pDataSource: Pma_data_source;
+  pLength: Pma_uint64): ma_result; cdecl;
 begin
   // Retrieve the length in PCM frames here. Return MA_NOT_IMPLEMENTED and set *pLength to 0 if there is no notion of a length or if the length is unknown.
   pLength^ := (NOTE_TIME * DEVICE_SAMPLE_RATE) div 1000;

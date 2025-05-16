@@ -245,6 +245,7 @@ begin
     StateManager.Reset;
     ImgTimer.Enabled := True;
     StartButton.Caption := 'Stop';
+    SoundTimer.StartDevice;
   end
   else
   begin
@@ -253,6 +254,7 @@ begin
     SetButtonStateStyle(StartButton, StateManager.State);
     if Self.Visible = True then BGImage.Refresh;
     TrayIcon.Icon.Assign(MainTrayIcon);
+    SoundTimer.StartDevice;
   end;
 end;
 

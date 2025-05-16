@@ -10,7 +10,8 @@ uses
   SysUtils,
   states,
   Math,
-  MiniaudioSoundEngine;
+  MiniaudioSoundEngine
+  {$IFDEF DARWIN},CoreAudioSoundEngine{$ENDIF};
 
 type
   { TSoundTimer }
@@ -20,6 +21,7 @@ type
     FEngine: TMiniaudioSoundEngine;
     FBeepSound: TMiniaudioBeepSound;
     prevSeconds: integer;
+    {$IFDEF DARWIN}FCoreAudioEngine: TCoreAudioSoundEngine;{$ENDIF}
 
     procedure PlaySound(freq: integer);
     function mtof(m: integer): integer;
@@ -28,6 +30,8 @@ type
     destructor Destroy;
 
     procedure PlayEverySecond(State: TState);
+    procedure StartDevice;
+    procedure StopDevice;
   end;
 
 implementation
@@ -35,16 +39,23 @@ implementation
 
 constructor TSoundTimer.Create;
 begin
+  inherited Create;
+
+  {$IFDEF DARWIN}FCoreAudioEngine:=TCoreAudioSoundEngine.Create;
+  {$ELSE}
   FEngine := TMiniaudioSoundEngine.Create;
   FBeepSound := TMiniaudioBeepSound.Create(FEngine);
-
-  inherited Create;
+  {$ENDIF}
 end;
 
 destructor TSoundTimer.Destroy;
 begin
+  {$IFDEF DARWIN}
+  FreeAndNil(FCoreAudioEngine);
+  {$ELSE}
   FreeAndNil(FBeepSound);
   FreeAndNil(FEngine);
+  {$ENDIF}
 end;
 
 procedure TSoundTimer.PlayEverySecond(State: TState);
@@ -80,13 +91,32 @@ begin
 
 end;
 
+procedure TSoundTimer.StartDevice;
+begin
+  {$IFDEF DARWIN}
+  FCoreAudioEngine.Start;
+  {$ENDIF}
+end;
+
+procedure TSoundTimer.StopDevice;
+begin
+  {$IFDEF DARWIN}
+  FCoreAudioEngine.Stop;
+  {$ENDIF}
+end;
+
 procedure TSoundTimer.PlaySound(freq: integer);
 begin
+  {$IFDEF DARWIN}
+  FCoreAudioEngine.Play(freq);
+  {$ELSE}
   if not FBeepSound.IsPlaying then
   begin
     FBeepSound.Frequency := freq;
     FBeepSound.Play();
   end;
+  {$ENDIF}
+
 
 end;
 

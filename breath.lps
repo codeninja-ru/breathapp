@@ -50,7 +50,7 @@
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
-            <Filename Value="breath-$(TargetCPU)-$(TargetOS)-$(LCLWidgetType)"/>
+            <Filename Value="bin/breath-$(TargetCPU)-$(TargetOS)-$(LCLWidgetType)"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
@@ -66,6 +66,7 @@
           <Linking>
             <Debugging>
               <GenerateDebugInfo Value="False"/>
+              <DebugInfoType Value="dsDwarf2"/>
             </Debugging>
             <LinkSmart Value="True"/>
             <Options>
@@ -81,10 +82,11 @@
       <Unit>
         <Filename Value="breath.lpr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="12"/>
         <TopLine Value="2"/>
-        <CursorPos X="30" Y="8"/>
+        <CursorPos X="61" Y="13"/>
         <UsageCount Value="205"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="unit1.pas"/>
@@ -94,7 +96,8 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit1"/>
         <IsVisibleTab Value="True"/>
-        <CursorPos X="76" Y="10"/>
+        <TopLine Value="299"/>
+        <CursorPos X="27" Y="257"/>
         <UsageCount Value="205"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -114,7 +117,7 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="AppSettings"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="86"/>
+        <TopLine Value="84"/>
         <CursorPos X="29" Y="19"/>
         <UsageCount Value="205"/>
         <Loaded Value="True"/>
@@ -124,7 +127,7 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="ClockText"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="104"/>
+        <TopLine Value="103"/>
         <CursorPos X="31" Y="64"/>
         <UsageCount Value="217"/>
         <Loaded Value="True"/>
@@ -161,8 +164,8 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="SoundTimer"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="4"/>
-        <CursorPos X="30" Y="60"/>
+        <TopLine Value="45"/>
+        <CursorPos X="25" Y="104"/>
         <UsageCount Value="203"/>
         <Loaded Value="True"/>
       </Unit>
@@ -200,9 +203,9 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit2"/>
         <EditorIndex Value="6"/>
-        <TopLine Value="3"/>
+        <TopLine Value="12"/>
         <CursorPos X="52" Y="34"/>
-        <UsageCount Value="196"/>
+        <UsageCount Value="246"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -210,36 +213,46 @@
         <Filename Value="miniaudiosoundengine.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="MiniaudioSoundEngine"/>
+        <EditorIndex Value="11"/>
+        <TopLine Value="245"/>
+        <CursorPos X="85" Y="88"/>
+        <UsageCount Value="241"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="coreaudiosoundengine.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="CoreAudioSoundEngine"/>
         <EditorIndex Value="9"/>
-        <TopLine Value="241"/>
-        <CursorPos X="57" Y="169"/>
-        <UsageCount Value="191"/>
+        <TopLine Value="198"/>
+        <CursorPos Y="209"/>
+        <UsageCount Value="134"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="miniaudio/miniaudio.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="45" Y="11"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
         <Filename Value="breathclock.pas"/>
         <UnitName Value="BreathClock"/>
         <EditorIndex Value="-1"/>
         <CursorPos Y="11"/>
-        <UsageCount Value="41"/>
+        <UsageCount Value="30"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/include/control.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="574"/>
         <CursorPos Y="586"/>
-        <UsageCount Value="81"/>
+        <UsageCount Value="70"/>
       </Unit>
       <Unit>
         <Filename Value="switchbox.pas"/>
         <UnitName Value="SwitchBox"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="13"/>
         <TopLine Value="204"/>
         <CursorPos X="55" Y="331"/>
         <UsageCount Value="111"/>
@@ -251,14 +264,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="92"/>
         <CursorPos X="36" Y="101"/>
-        <UsageCount Value="52"/>
+        <UsageCount Value="41"/>
       </Unit>
       <Unit>
         <Filename Value="vendor/miniaudio/miniaudio.pp"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1276"/>
         <CursorPos X="50" Y="1327"/>
-        <UsageCount Value="119"/>
+        <UsageCount Value="108"/>
       </Unit>
       <Unit>
         <Filename Value="switchboxtheme.pas"/>
@@ -266,7 +279,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="176"/>
         <CursorPos X="35" Y="151"/>
-        <UsageCount Value="59"/>
+        <UsageCount Value="48"/>
       </Unit>
       <Unit>
         <Filename Value="roundspinedit.pas"/>
@@ -282,28 +295,20 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="378"/>
         <CursorPos Y="391"/>
-        <UsageCount Value="44"/>
-      </Unit>
-      <Unit>
-        <Filename Value="/Applications/Lazarus/lcl/spin.pp"/>
-        <UnitName Value="Spin"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="23"/>
-        <CursorPos X="38" Y="32"/>
-        <UsageCount Value="2"/>
+        <UsageCount Value="33"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/include/wincontrol.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="6506"/>
         <CursorPos Y="6519"/>
-        <UsageCount Value="15"/>
+        <UsageCount Value="4"/>
       </Unit>
       <Unit>
         <Filename Value="roundspinedittheme.pas"/>
         <UnitName Value="RoundSpinEditTheme"/>
         <EditorIndex Value="8"/>
-        <TopLine Value="405"/>
+        <TopLine Value="342"/>
         <CursorPos X="36" Y="342"/>
         <UsageCount Value="119"/>
         <Loaded Value="True"/>
@@ -311,7 +316,7 @@
       <Unit>
         <Filename Value="roundupdown.pas"/>
         <UnitName Value="RoundUpDown"/>
-        <EditorIndex Value="11"/>
+        <EditorIndex Value="14"/>
         <TopLine Value="126"/>
         <CursorPos X="3" Y="14"/>
         <UsageCount Value="112"/>
@@ -322,13 +327,13 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="421"/>
         <CursorPos X="43" Y="439"/>
-        <UsageCount Value="77"/>
+        <UsageCount Value="66"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/share/fpcsrc/rtl/unix/classes.pp"/>
         <UnitName Value="Classes"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="77"/>
+        <UsageCount Value="66"/>
       </Unit>
       <Unit>
         <Filename Value="../../.lazarus/onlinepackagemanager/packages/BGRAControls/bctrackbarupdown.pas"/>
@@ -336,7 +341,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="40"/>
         <CursorPos X="26" Y="49"/>
-        <UsageCount Value="77"/>
+        <UsageCount Value="66"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit>
       <Unit>
@@ -345,7 +350,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="949"/>
         <CursorPos X="31" Y="968"/>
-        <UsageCount Value="77"/>
+        <UsageCount Value="66"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit>
       <Unit>
@@ -354,29 +359,22 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="641"/>
         <CursorPos X="3" Y="644"/>
-        <UsageCount Value="77"/>
+        <UsageCount Value="66"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit>
-      <Unit>
-        <Filename Value="/Applications/Lazarus/lcl/include/customform.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="2313"/>
-        <CursorPos Y="2324"/>
-        <UsageCount Value="4"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/share/fpcsrc/rtl/inc/ctypes.pp"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="172"/>
         <CursorPos X="10" Y="92"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/share/fpcsrc/rtl/unix/aliasptp.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="32"/>
         <CursorPos X="5" Y="43"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/graphics.pp"/>
@@ -384,136 +382,231 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="2220"/>
         <CursorPos X="65" Y="2271"/>
-        <UsageCount Value="48"/>
+        <UsageCount Value="37"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/share/fpcsrc/rtl/objpas/sysutils/datih.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="118"/>
         <CursorPos X="10" Y="129"/>
-        <UsageCount Value="40"/>
+        <UsageCount Value="29"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/share/fpcsrc/packages/univint/src/AudioComponents.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="576"/>
+        <CursorPos X="41" Y="580"/>
+        <UsageCount Value="5"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/share/fpcsrc/packages/univint/src/MacTypes.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="434"/>
+        <CursorPos X="9" Y="445"/>
+        <UsageCount Value="37"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/share/fpcsrc/packages/univint/src/AUComponent.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1362"/>
+        <CursorPos X="10" Y="1373"/>
+        <UsageCount Value="32"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/share/fpcsrc/packages/univint/src/AudioUnitProperties.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1091"/>
+        <CursorPos X="35" Y="1102"/>
+        <UsageCount Value="68"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/share/fpcsrc/rtl/objpas/sysutils/sysutilh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="100"/>
+        <CursorPos X="25" Y="113"/>
+        <UsageCount Value="28"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/share/fpcsrc/packages/univint/src/AudioHardwareDeprecated.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="432"/>
+        <CursorPos X="23" Y="450"/>
+        <UsageCount Value="5"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/share/fpcsrc/packages/univint/src/AudioHardware.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1269"/>
+        <CursorPos X="10" Y="1280"/>
+        <UsageCount Value="6"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/share/fpcsrc/packages/univint/src/AudioHardwareBase.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="289"/>
+        <CursorPos X="9" Y="307"/>
+        <UsageCount Value="6"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/share/fpcsrc/packages/univint/src/CFString.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="482"/>
+        <CursorPos X="10" Y="493"/>
+        <UsageCount Value="5"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/share/fpcsrc/packages/univint/src/CFBase.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="393"/>
+        <CursorPos X="9" Y="404"/>
+        <UsageCount Value="5"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/Applications/Lazarus/components/lazutils/lazstringutils.pas"/>
+        <UnitName Value="LazStringUtils"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="235"/>
+        <CursorPos Y="246"/>
+        <UsageCount Value="5"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/share/fpcsrc/packages/univint/src/CoreAudioTypes.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="861"/>
+        <CursorPos X="9" Y="872"/>
+        <UsageCount Value="33"/>
+      </Unit>
+      <Unit>
+        <Filename Value="soundwave.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="SoundWave"/>
+        <EditorIndex Value="10"/>
+        <TopLine Value="44"/>
+        <CursorPos X="38" Y="46"/>
+        <UsageCount Value="22"/>
+        <Loaded Value="True"/>
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
       <Position>
-        <Filename Value="soundtimer.pas"/>
-        <Caret Line="62" TopLine="52"/>
+        <Filename Value="coreaudiosoundengine.pas"/>
+        <Caret Line="140" Column="27" TopLine="139"/>
+      </Position>
+      <Position>
+        <Filename Value="coreaudiosoundengine.pas"/>
+        <Caret Line="81" Column="34" TopLine="70"/>
+      </Position>
+      <Position>
+        <Filename Value="coreaudiosoundengine.pas"/>
+        <Caret Line="179" Column="11" TopLine="162"/>
+      </Position>
+      <Position>
+        <Filename Value="coreaudiosoundengine.pas"/>
+        <Caret Line="192" TopLine="163"/>
+      </Position>
+      <Position>
+        <Filename Value="coreaudiosoundengine.pas"/>
+        <Caret Line="158" TopLine="147"/>
+      </Position>
+      <Position>
+        <Filename Value="coreaudiosoundengine.pas"/>
+        <Caret Line="192" TopLine="161"/>
+      </Position>
+      <Position>
+        <Filename Value="coreaudiosoundengine.pas"/>
+        <Caret Line="158" TopLine="147"/>
+      </Position>
+      <Position>
+        <Filename Value="coreaudiosoundengine.pas"/>
+        <Caret Line="192" TopLine="181"/>
+      </Position>
+      <Position>
+        <Filename Value="coreaudiosoundengine.pas"/>
+        <Caret Line="82" Column="19" TopLine="80"/>
+      </Position>
+      <Position>
+        <Filename Value="coreaudiosoundengine.pas"/>
+        <Caret Line="83" Column="21" TopLine="76"/>
+      </Position>
+      <Position>
+        <Filename Value="coreaudiosoundengine.pas"/>
+        <Caret Line="318" Column="50" TopLine="280"/>
+      </Position>
+      <Position>
+        <Filename Value="coreaudiosoundengine.pas"/>
+        <Caret Line="8" Column="71" TopLine="6"/>
+      </Position>
+      <Position>
+        <Filename Value="soundwave.pas"/>
+        <Caret Column="7"/>
+      </Position>
+      <Position>
+        <Filename Value="soundwave.pas"/>
+        <Caret Line="38" Column="22" TopLine="27"/>
+      </Position>
+      <Position>
+        <Filename Value="soundwave.pas"/>
+        <Caret Line="48" Column="65" TopLine="37"/>
+      </Position>
+      <Position>
+        <Filename Value="coreaudiosoundengine.pas"/>
+        <Caret Line="112" TopLine="93"/>
+      </Position>
+      <Position>
+        <Filename Value="coreaudiosoundengine.pas"/>
+        <Caret Line="111" Column="128" TopLine="100"/>
+      </Position>
+      <Position>
+        <Filename Value="coreaudiosoundengine.pas"/>
+        <Caret Line="45" Column="16" TopLine="35"/>
+      </Position>
+      <Position>
+        <Filename Value="coreaudiosoundengine.pas"/>
+        <Caret Line="43" Column="30" TopLine="34"/>
+      </Position>
+      <Position>
+        <Filename Value="coreaudiosoundengine.pas"/>
+        <Caret Line="111" Column="87" TopLine="100"/>
+      </Position>
+      <Position>
+        <Filename Value="coreaudiosoundengine.pas"/>
+        <Caret Line="46" Column="36" TopLine="25"/>
+      </Position>
+      <Position>
+        <Filename Value="coreaudiosoundengine.pas"/>
+        <Caret Line="248" Column="23" TopLine="61"/>
       </Position>
       <Position>
         <Filename Value="soundtimer.pas"/>
-        <Caret Line="83" TopLine="71"/>
-      </Position>
-      <Position>
-        <Filename Value="miniaudiosoundengine.pas"/>
-        <Caret Line="205" TopLine="194"/>
-      </Position>
-      <Position>
-        <Filename Value="miniaudiosoundengine.pas"/>
-        <Caret Line="206" TopLine="194"/>
+        <Caret Line="51" Column="32" TopLine="53"/>
       </Position>
       <Position>
         <Filename Value="soundtimer.pas"/>
-        <Caret Line="83" TopLine="71"/>
+        <Caret Line="91" Column="11" TopLine="73"/>
       </Position>
       <Position>
         <Filename Value="soundtimer.pas"/>
-        <Caret Line="85" TopLine="71"/>
+        <Caret Line="51" Column="39" TopLine="82"/>
+      </Position>
+      <Position>
+        <Filename Value="coreaudiosoundengine.pas"/>
+        <Caret Line="209" TopLine="198"/>
+      </Position>
+      <Position>
+        <Filename Value="coreaudiosoundengine.pas"/>
+        <Caret Line="211" TopLine="198"/>
+      </Position>
+      <Position>
+        <Filename Value="coreaudiosoundengine.pas"/>
+        <Caret Line="178" Column="10" TopLine="181"/>
       </Position>
       <Position>
         <Filename Value="soundtimer.pas"/>
-        <Caret Line="86" TopLine="71"/>
+        <Caret Line="33" Column="20" TopLine="15"/>
       </Position>
       <Position>
-        <Filename Value="miniaudiosoundengine.pas"/>
-        <Caret Line="210" TopLine="194"/>
-      </Position>
-      <Position>
-        <Filename Value="miniaudiosoundengine.pas"/>
-        <Caret Line="211" TopLine="194"/>
-      </Position>
-      <Position>
-        <Filename Value="miniaudiosoundengine.pas"/>
-        <Caret Line="213" TopLine="194"/>
-      </Position>
-      <Position>
-        <Filename Value="soundtimer.pas"/>
-        <Caret Line="58" TopLine="47"/>
-      </Position>
-      <Position>
-        <Filename Value="soundtimer.pas"/>
-        <Caret Line="60" TopLine="47"/>
-      </Position>
-      <Position>
-        <Filename Value="soundtimer.pas"/>
-        <Caret Line="62" TopLine="47"/>
-      </Position>
-      <Position>
-        <Filename Value="soundtimer.pas"/>
-        <Caret Line="76" TopLine="66"/>
-      </Position>
-      <Position>
-        <Filename Value="soundtimer.pas"/>
-        <Caret Line="58" TopLine="46"/>
-      </Position>
-      <Position>
-        <Filename Value="soundtimer.pas"/>
-        <Caret Line="60" TopLine="46"/>
-      </Position>
-      <Position>
-        <Filename Value="soundtimer.pas"/>
-        <Caret Line="62" TopLine="46"/>
-      </Position>
-      <Position>
-        <Filename Value="states.pas"/>
-        <Caret Line="338" TopLine="327"/>
-      </Position>
-      <Position>
-        <Filename Value="states.pas"/>
-        <Caret Line="339" TopLine="327"/>
-      </Position>
-      <Position>
-        <Filename Value="soundtimer.pas"/>
-        <Caret Line="62" TopLine="46"/>
-      </Position>
-      <Position>
-        <Filename Value="soundtimer.pas"/>
-        <Caret Line="93" TopLine="74"/>
-      </Position>
-      <Position>
-        <Filename Value="soundtimer.pas"/>
-        <Caret Line="94" TopLine="74"/>
-      </Position>
-      <Position>
-        <Filename Value="soundtimer.pas"/>
-        <Caret Line="62" TopLine="52"/>
-      </Position>
-      <Position>
-        <Filename Value="soundtimer.pas"/>
-        <Caret Line="83" TopLine="71"/>
-      </Position>
-      <Position>
-        <Filename Value="miniaudiosoundengine.pas"/>
-        <Caret Line="88" Column="10" TopLine="77"/>
-      </Position>
-      <Position>
-        <Filename Value="miniaudiosoundengine.pas"/>
-        <Caret Line="82" TopLine="77"/>
-      </Position>
-      <Position>
-        <Filename Value="miniaudiosoundengine.pas"/>
-        <Caret Line="127" TopLine="117"/>
-      </Position>
-      <Position>
-        <Filename Value="miniaudiosoundengine.pas"/>
-        <Caret Line="86" TopLine="74"/>
-      </Position>
-      <Position>
-        <Filename Value="clockellipse.pas"/>
-        <Caret Line="116" Column="62" TopLine="32"/>
-      </Position>
-      <Position>
-        <Filename Value="clockellipse.pas"/>
-        <Caret Line="34" Column="51" TopLine="32"/>
+        <Filename Value="unit1.pas"/>
+        <Caret Line="155" Column="19" TopLine="249"/>
       </Position>
     </JumpHistory>
     <RunParams>
