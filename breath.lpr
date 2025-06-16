@@ -1,16 +1,13 @@
 program breath;
 
 {$mode objfpc}{$H+}
+{$DEFINE DYNAMIC_LINK_ALL}
 
 uses
- {$IFDEF UNIX}
-  cthreads,
-   {$ENDIF} {$IFDEF HASAMIGA}
-  athreads,
-   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, lazcontrols, Unit1, clockEllipse, AppSettings, clockText, states,
-  ClockTimer, TrayIconTimer, SoundTimer, Backgrounds, Unit2 { you can add units after this };
+  Forms,
+  unit1,
+  unit2 { you can add units after this };
 
 {$R *.res}
 

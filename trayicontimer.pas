@@ -42,7 +42,7 @@ begin
   yr := xr;
   FBitmap.FontHeight := 14;
   FBitmap.FontName := 'monospace';
-  FBitmap.FontAntialias := false;
+  FBitmap.FontAntialias := False;
   inherited Create;
 end;
 

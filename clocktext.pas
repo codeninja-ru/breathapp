@@ -59,7 +59,8 @@ end;
 
 destructor TClockText.Destroy;
 begin
-  FSecondsBitmap.Free;
+  FreeAndNil(FSecondsBitmap);
+  FreeAndNil(FStateTextBitmap);
   inherited Destroy;
 end;
 

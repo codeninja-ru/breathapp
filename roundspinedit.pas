@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, LResources, Forms, Controls, Graphics, Dialogs, ExtCtrls,
-  StdCtrls, Buttons, RoundSpinEditTheme, RoundUpDown;
+  StdCtrls, Buttons, RoundSpinEditTheme, RoundUpDown, Types;
 
 type
   { TRoundSpinEdit }
@@ -41,6 +41,7 @@ type
     procedure Paint; override;
     procedure CalculatePreferredSize(var PreferredWidth, PreferredHeight: integer;
       WithThemeSpace: boolean); override;
+    class function GetControlClassDefaultSize: TSize; override;
 
     procedure SetValue(const AValue: integer);
     procedure SetMaxValue(const AValue: integer);
@@ -51,6 +52,8 @@ type
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
   published
+    property Width;
+    property Height;
     property Theme: TAbstractRoundSpinEditTheme read FTheme write SetTheme;
     property MinValue: integer read FMinValue write SetMinValue;
     property MaxValue: integer read FMaxValue write SetMaxValue nodefault;
@@ -166,7 +169,7 @@ end;
 
 procedure TRoundSpinEdit.Paint;
 begin
-  GetCurrentTheme.PaintBox(Canvas, GetCanvasScaleFactor);
+  GetCurrentTheme.PaintBox(Canvas, Width, Height, GetCanvasScaleFactor);
 end;
 
 procedure TRoundSpinEdit.CalculatePreferredSize(
@@ -175,6 +178,13 @@ begin
   inherited CalculatePreferredSize(PreferredWidth, PreferredHeight, WithThemeSpace);
   PreferredHeight := GetCurrentTheme.Height;
   PreferredWidth := 0;
+end;
+
+class function TRoundSpinEdit.GetControlClassDefaultSize: TSize;
+begin
+  Result:=inherited GetControlClassDefaultSize;
+  Result.CX:=185;
+  Result.CY:=80;
 end;
 
 procedure TRoundSpinEdit.SetValue(const AValue: integer);
@@ -216,6 +226,7 @@ begin
 
   with GetControlClassDefaultSize do
     SetInitialBounds(0, 0, 185, 80);
+
 
   FValue := 0;
 

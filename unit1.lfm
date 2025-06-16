@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 725
+  Left = 507
   Height = 512
-  Top = 147
+  Top = 159
   Width = 320
   BorderStyle = bsSingle
   Caption = 'Breath'
@@ -90,391 +90,412 @@ object MainForm: TMainForm
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   LCLVersion = '2.2.2.0'
-  object PageControl: TPageControl
+  object SettingsPanel: TPanel
     Left = 0
     Height = 512
     Top = 0
     Width = 320
-    ActivePage = TabSettings
     Align = alClient
-    ShowTabs = False
-    TabIndex = 1
-    TabOrder = 0
-    object TabTimer: TTabSheet
-      Caption = 'TabTimer'
-      ClientHeight = 512
-      ClientWidth = 320
-      object BgImage: TBGRAGraphicControl
-        Left = 0
-        Height = 512
-        Top = 0
-        Width = 320
-        Align = alClient
-        BevelOuter = bvNone
-        Color = clNone
-        ColorOpacity = 128
-        Alignment = taCenter
-        OnPaint = BgImagePaint
-        Caption = 'Start'
-      end
-      object StartButton: TBCButton
-        Cursor = crHandPoint
-        Left = 104
-        Height = 38
-        Top = 454
-        Width = 116
-        Anchors = [akTop, akLeft, akRight]
-        StateClicked.Background.Gradient1.StartColor = 8404992
-        StateClicked.Background.Gradient1.EndColor = 4194304
-        StateClicked.Background.Gradient1.GradientType = gtRadial
-        StateClicked.Background.Gradient1.Point1XPercent = 50
-        StateClicked.Background.Gradient1.Point1YPercent = 100
-        StateClicked.Background.Gradient1.Point2XPercent = 0
-        StateClicked.Background.Gradient1.Point2YPercent = 0
-        StateClicked.Background.Gradient2.StartColor = clWhite
-        StateClicked.Background.Gradient2.EndColor = clBlack
-        StateClicked.Background.Gradient2.GradientType = gtLinear
-        StateClicked.Background.Gradient2.Point1XPercent = 0
-        StateClicked.Background.Gradient2.Point1YPercent = 0
-        StateClicked.Background.Gradient2.Point2XPercent = 0
-        StateClicked.Background.Gradient2.Point2YPercent = 100
-        StateClicked.Background.Gradient1EndPercent = 100
-        StateClicked.Background.Style = bbsClear
-        StateClicked.Border.Style = bboSolid
-        StateClicked.FontEx.Color = 16770790
-        StateClicked.FontEx.FontQuality = fqFineAntialiasing
-        StateClicked.FontEx.Shadow = True
-        StateClicked.FontEx.ShadowRadius = 2
-        StateClicked.FontEx.ShadowOffsetX = 1
-        StateClicked.FontEx.ShadowOffsetY = 1
-        StateClicked.FontEx.Style = [fsBold]
-        StateHover.Background.Gradient1.StartColor = 16744448
-        StateHover.Background.Gradient1.EndColor = 8404992
-        StateHover.Background.Gradient1.GradientType = gtRadial
-        StateHover.Background.Gradient1.Point1XPercent = 50
-        StateHover.Background.Gradient1.Point1YPercent = 100
-        StateHover.Background.Gradient1.Point2XPercent = 0
-        StateHover.Background.Gradient1.Point2YPercent = 0
-        StateHover.Background.Gradient2.StartColor = clWhite
-        StateHover.Background.Gradient2.EndColor = clBlack
-        StateHover.Background.Gradient2.GradientType = gtLinear
-        StateHover.Background.Gradient2.Point1XPercent = 0
-        StateHover.Background.Gradient2.Point1YPercent = 0
-        StateHover.Background.Gradient2.Point2XPercent = 0
-        StateHover.Background.Gradient2.Point2YPercent = 100
-        StateHover.Background.Gradient1EndPercent = 100
-        StateHover.Background.Style = bbsClear
-        StateHover.Border.Style = bboSolid
-        StateHover.Border.Width = 2
-        StateHover.FontEx.Color = clWhite
-        StateHover.FontEx.FontQuality = fqFineAntialiasing
-        StateHover.FontEx.Shadow = True
-        StateHover.FontEx.ShadowRadius = 2
-        StateHover.FontEx.ShadowOffsetX = 1
-        StateHover.FontEx.ShadowOffsetY = 1
-        StateHover.FontEx.Style = []
-        StateNormal.Background.Gradient1.StartColor = 4194304
-        StateNormal.Background.Gradient1.EndColor = 8405056
-        StateNormal.Background.Gradient1.GradientType = gtLinear
-        StateNormal.Background.Gradient1.Point1XPercent = 0
-        StateNormal.Background.Gradient1.Point1YPercent = 0
-        StateNormal.Background.Gradient1.Point2XPercent = 0
-        StateNormal.Background.Gradient1.Point2YPercent = 100
-        StateNormal.Background.Gradient2.StartColor = 8405056
-        StateNormal.Background.Gradient2.EndColor = 4194304
-        StateNormal.Background.Gradient2.GradientType = gtRadial
-        StateNormal.Background.Gradient2.Point1XPercent = 50
-        StateNormal.Background.Gradient2.Point1YPercent = 100
-        StateNormal.Background.Gradient2.Point2XPercent = 0
-        StateNormal.Background.Gradient2.Point2YPercent = 0
-        StateNormal.Background.Gradient1EndPercent = 60
-        StateNormal.Background.Style = bbsClear
-        StateNormal.Border.Style = bboSolid
-        StateNormal.Border.Width = 2
-        StateNormal.FontEx.Color = clBlack
-        StateNormal.FontEx.FontQuality = fqFineAntialiasing
-        StateNormal.FontEx.Shadow = False
-        StateNormal.FontEx.ShadowRadius = 2
-        StateNormal.FontEx.ShadowOffsetX = 1
-        StateNormal.FontEx.ShadowOffsetY = 1
-        StateNormal.FontEx.Style = []
-        Caption = 'Start'
-        Color = clNone
-        DropDownWidth = 16
-        DropDownArrowSize = 8
-        GlobalOpacity = 255
-        OnClick = StartButtonClick
-        ParentColor = False
-        Rounding.RoundX = 20
-        Rounding.RoundY = 20
-        RoundingDropDown.RoundX = 1
-        RoundingDropDown.RoundY = 1
-        TextApplyGlobalOpacity = False
-        MemoryUsage = bmuHigh
-      end
-      object SettingsButton: TSpeedButton
-        Left = 280
-        Height = 28
-        Top = 16
-        Width = 28
-        Color = clNone
-        Flat = True
-        Images = ImageListButton
-        ImageIndex = 0
-        ImageWidth = 28
-        OnClick = SettingsButtonClick
-        OnMouseEnter = SettingsButtonMouseEnter
-        OnMouseLeave = SettingsButtonMouseLeave
-      end
+    BevelOuter = bvNone
+    ClientHeight = 512
+    ClientWidth = 320
+    TabOrder = 1
+    object LabelCaption: TLabel
+      Left = 0
+      Height = 27
+      Top = 10
+      Width = 320
+      Align = alTop
+      Alignment = taCenter
+      BorderSpacing.Top = 10
+      BorderSpacing.Bottom = 10
+      Caption = '< Settings >'
+      Font.CharSet = ANSI_CHARSET
+      Font.Height = -24
+      Font.Name = 'PT Sans Caption'
+      ParentColor = False
+      ParentFont = False
+      OnClick = SettingsBackActionExecute
     end
-    object TabSettings: TTabSheet
-      Caption = 'Settings'
-      ClientHeight = 512
-      ClientWidth = 320
-      object LabelCaption: TLabel
-        Left = 0
-        Height = 29
-        Top = 10
-        Width = 320
-        Align = alTop
-        Alignment = taCenter
-        BorderSpacing.Top = 10
-        BorderSpacing.Bottom = 10
-        Caption = '❮ Settings ❯'
-        Font.CharSet = ANSI_CHARSET
-        Font.Height = -24
-        Font.Name = 'PT Sans Caption'
-        ParentColor = False
-        ParentFont = False
-        OnClick = SettingsBackActionExecute
-      end
-      object BackButton: TBCButton
-        Cursor = crHandPoint
-        Left = 104
-        Height = 38
-        Top = 454
-        Width = 116
-        Action = SettingsBackAction
-        Anchors = [akTop, akLeft, akRight]
-        StateClicked.Background.Gradient1.StartColor = 8404992
-        StateClicked.Background.Gradient1.EndColor = 4194304
-        StateClicked.Background.Gradient1.GradientType = gtRadial
-        StateClicked.Background.Gradient1.Point1XPercent = 50
-        StateClicked.Background.Gradient1.Point1YPercent = 100
-        StateClicked.Background.Gradient1.Point2XPercent = 0
-        StateClicked.Background.Gradient1.Point2YPercent = 0
-        StateClicked.Background.Gradient2.StartColor = clWhite
-        StateClicked.Background.Gradient2.EndColor = clBlack
-        StateClicked.Background.Gradient2.GradientType = gtLinear
-        StateClicked.Background.Gradient2.Point1XPercent = 0
-        StateClicked.Background.Gradient2.Point1YPercent = 0
-        StateClicked.Background.Gradient2.Point2XPercent = 0
-        StateClicked.Background.Gradient2.Point2YPercent = 100
-        StateClicked.Background.Gradient1EndPercent = 100
-        StateClicked.Background.Style = bbsClear
-        StateClicked.Border.Style = bboSolid
-        StateClicked.FontEx.Color = 16770790
-        StateClicked.FontEx.FontQuality = fqFineAntialiasing
-        StateClicked.FontEx.Shadow = True
-        StateClicked.FontEx.ShadowRadius = 2
-        StateClicked.FontEx.ShadowOffsetX = 1
-        StateClicked.FontEx.ShadowOffsetY = 1
-        StateClicked.FontEx.Style = [fsBold]
-        StateHover.Background.Gradient1.StartColor = 16744448
-        StateHover.Background.Gradient1.EndColor = 8404992
-        StateHover.Background.Gradient1.GradientType = gtRadial
-        StateHover.Background.Gradient1.Point1XPercent = 50
-        StateHover.Background.Gradient1.Point1YPercent = 100
-        StateHover.Background.Gradient1.Point2XPercent = 0
-        StateHover.Background.Gradient1.Point2YPercent = 0
-        StateHover.Background.Gradient2.StartColor = clWhite
-        StateHover.Background.Gradient2.EndColor = clBlack
-        StateHover.Background.Gradient2.GradientType = gtLinear
-        StateHover.Background.Gradient2.Point1XPercent = 0
-        StateHover.Background.Gradient2.Point1YPercent = 0
-        StateHover.Background.Gradient2.Point2XPercent = 0
-        StateHover.Background.Gradient2.Point2YPercent = 100
-        StateHover.Background.Gradient1EndPercent = 100
-        StateHover.Background.Style = bbsClear
-        StateHover.Border.Style = bboSolid
-        StateHover.Border.Width = 2
-        StateHover.FontEx.Color = clWhite
-        StateHover.FontEx.FontQuality = fqFineAntialiasing
-        StateHover.FontEx.Shadow = True
-        StateHover.FontEx.ShadowRadius = 2
-        StateHover.FontEx.ShadowOffsetX = 1
-        StateHover.FontEx.ShadowOffsetY = 1
-        StateHover.FontEx.Style = []
-        StateNormal.Background.Gradient1.StartColor = 4194304
-        StateNormal.Background.Gradient1.EndColor = 8405056
-        StateNormal.Background.Gradient1.GradientType = gtLinear
-        StateNormal.Background.Gradient1.Point1XPercent = 0
-        StateNormal.Background.Gradient1.Point1YPercent = 0
-        StateNormal.Background.Gradient1.Point2XPercent = 0
-        StateNormal.Background.Gradient1.Point2YPercent = 100
-        StateNormal.Background.Gradient2.StartColor = 8405056
-        StateNormal.Background.Gradient2.EndColor = 4194304
-        StateNormal.Background.Gradient2.GradientType = gtRadial
-        StateNormal.Background.Gradient2.Point1XPercent = 50
-        StateNormal.Background.Gradient2.Point1YPercent = 100
-        StateNormal.Background.Gradient2.Point2XPercent = 0
-        StateNormal.Background.Gradient2.Point2YPercent = 0
-        StateNormal.Background.Gradient1EndPercent = 60
-        StateNormal.Background.Style = bbsClear
-        StateNormal.Border.Style = bboSolid
-        StateNormal.Border.Width = 2
-        StateNormal.FontEx.Color = clBlack
-        StateNormal.FontEx.FontQuality = fqFineAntialiasing
-        StateNormal.FontEx.Shadow = False
-        StateNormal.FontEx.ShadowRadius = 2
-        StateNormal.FontEx.ShadowOffsetX = 1
-        StateNormal.FontEx.ShadowOffsetY = 1
-        StateNormal.FontEx.Style = []
-        Caption = '❮ Back'
-        Color = clNone
-        DropDownWidth = 16
-        DropDownArrowSize = 8
-        GlobalOpacity = 255
-        ParentColor = False
-        Rounding.RoundX = 20
-        Rounding.RoundY = 20
-        RoundingDropDown.RoundX = 1
-        RoundingDropDown.RoundY = 1
-        TextApplyGlobalOpacity = False
-        MemoryUsage = bmuHigh
-      end
-      object BreathInLabel: TLabel
-        Left = 16
-        Height = 18
-        Top = 56
-        Width = 63
-        Caption = 'Inhale(s)'
-        Font.CharSet = ANSI_CHARSET
-        Font.Height = -16
-        Font.Name = '.SF NS'
-        ParentColor = False
-        ParentFont = False
-      end
-      object BreathOutLabel: TLabel
-        Left = 200
-        Height = 18
-        Top = 56
-        Width = 67
-        Caption = 'Exhale(s)'
-        Font.CharSet = ANSI_CHARSET
-        Font.Height = -16
-        Font.Name = '.SF NS'
-        ParentColor = False
-        ParentFont = False
-      end
-      object HoldInLabel: TLabel
-        Left = 16
-        Height = 18
-        Top = 144
-        Width = 70
-        Caption = 'Hold in(s)'
-        Font.CharSet = ANSI_CHARSET
-        Font.Height = -16
-        Font.Name = '.SF NS'
-        ParentColor = False
-        ParentFont = False
-      end
-      object HoldOutLabel: TLabel
-        Left = 200
-        Height = 18
-        Top = 144
-        Width = 81
-        Caption = 'Hold out(s)'
-        Font.CharSet = ANSI_CHARSET
-        Font.Height = -16
-        Font.Name = '.SF NS'
-        ParentColor = False
-        ParentFont = False
-      end
-      object NightModeSwitchBox: TSwitchBox
-        Left = 88
-        Height = 24
-        Top = 328
-        Width = 56
-        Action = ToggleNightModeEnabledAction
-        TabOrder = 0
-      end
-      object NightModeLabel: TLabel
-        Left = 160
-        Height = 22
-        Top = 328
-        Width = 99
-        Caption = 'Night mode'
-        Font.CharSet = ANSI_CHARSET
-        Font.Height = -19
-        Font.Name = '.SF NS'
-        ParentColor = False
-        ParentFont = False
-      end
-      object SoundSwitchBox: TSwitchBox
-        Left = 88
-        Height = 24
-        Top = 272
-        Width = 56
-        Action = ToggleSoundEnabledAction
-        TabOrder = 1
-      end
-      object SoundLabel: TLabel
-        Left = 160
-        Height = 22
-        Top = 272
-        Width = 55
-        Caption = 'Sound'
-        Font.CharSet = ANSI_CHARSET
-        Font.Height = -19
-        Font.Name = '.SF NS'
-        ParentColor = False
-        ParentFont = False
-      end
-      object BreathInSpinEdit: TRoundSpinEdit
-        Left = 16
-        Height = 43
-        Top = 80
-        Width = 100
-        MinValue = 1
-        MaxValue = 60
-        Value = 5
-        Increment = 1
-        OnChange = SpinEditChanged
-      end
-      object BreathOutSpinEdit: TRoundSpinEdit
-        Left = 200
-        Height = 43
-        Top = 80
-        Width = 100
-        MinValue = 1
-        MaxValue = 60
-        Value = 5
-        Increment = 1
-        OnChange = SpinEditChanged
-      end
-      object HoldInSpinEdit: TRoundSpinEdit
-        Left = 16
-        Height = 43
-        Top = 168
-        Width = 100
-        MinValue = 0
-        MaxValue = 60
-        Value = 0
-        Increment = 1
-        OnChange = SpinEditChanged
-      end
-      object HoldOutSpinEdit: TRoundSpinEdit
-        Left = 200
-        Height = 43
-        Top = 168
-        Width = 100
-        MinValue = 0
-        MaxValue = 60
-        Value = 0
-        Increment = 1
-        OnChange = SpinEditChanged
-      end
+    object BackButton: TBCButton
+      Cursor = crHandPoint
+      Left = 104
+      Height = 38
+      Top = 454
+      Width = 108
+      Action = SettingsBackAction
+      Anchors = [akTop, akLeft, akRight]
+      StateClicked.Background.Gradient1.StartColor = 8404992
+      StateClicked.Background.Gradient1.EndColor = 4194304
+      StateClicked.Background.Gradient1.GradientType = gtRadial
+      StateClicked.Background.Gradient1.Point1XPercent = 50
+      StateClicked.Background.Gradient1.Point1YPercent = 100
+      StateClicked.Background.Gradient1.Point2XPercent = 0
+      StateClicked.Background.Gradient1.Point2YPercent = 0
+      StateClicked.Background.Gradient2.StartColor = clWhite
+      StateClicked.Background.Gradient2.EndColor = clBlack
+      StateClicked.Background.Gradient2.GradientType = gtLinear
+      StateClicked.Background.Gradient2.Point1XPercent = 0
+      StateClicked.Background.Gradient2.Point1YPercent = 0
+      StateClicked.Background.Gradient2.Point2XPercent = 0
+      StateClicked.Background.Gradient2.Point2YPercent = 100
+      StateClicked.Background.Gradient1EndPercent = 100
+      StateClicked.Background.Style = bbsClear
+      StateClicked.Border.Style = bboSolid
+      StateClicked.FontEx.Color = 16770790
+      StateClicked.FontEx.FontQuality = fqFineAntialiasing
+      StateClicked.FontEx.Shadow = True
+      StateClicked.FontEx.ShadowRadius = 2
+      StateClicked.FontEx.ShadowOffsetX = 1
+      StateClicked.FontEx.ShadowOffsetY = 1
+      StateClicked.FontEx.Style = [fsBold]
+      StateHover.Background.Gradient1.StartColor = 16744448
+      StateHover.Background.Gradient1.EndColor = 8404992
+      StateHover.Background.Gradient1.GradientType = gtRadial
+      StateHover.Background.Gradient1.Point1XPercent = 50
+      StateHover.Background.Gradient1.Point1YPercent = 100
+      StateHover.Background.Gradient1.Point2XPercent = 0
+      StateHover.Background.Gradient1.Point2YPercent = 0
+      StateHover.Background.Gradient2.StartColor = clWhite
+      StateHover.Background.Gradient2.EndColor = clBlack
+      StateHover.Background.Gradient2.GradientType = gtLinear
+      StateHover.Background.Gradient2.Point1XPercent = 0
+      StateHover.Background.Gradient2.Point1YPercent = 0
+      StateHover.Background.Gradient2.Point2XPercent = 0
+      StateHover.Background.Gradient2.Point2YPercent = 100
+      StateHover.Background.Gradient1EndPercent = 100
+      StateHover.Background.Style = bbsClear
+      StateHover.Border.Style = bboSolid
+      StateHover.Border.Width = 2
+      StateHover.FontEx.Color = clWhite
+      StateHover.FontEx.FontQuality = fqFineAntialiasing
+      StateHover.FontEx.Shadow = True
+      StateHover.FontEx.ShadowRadius = 2
+      StateHover.FontEx.ShadowOffsetX = 1
+      StateHover.FontEx.ShadowOffsetY = 1
+      StateHover.FontEx.Style = []
+      StateNormal.Background.Gradient1.StartColor = 4194304
+      StateNormal.Background.Gradient1.EndColor = 8405056
+      StateNormal.Background.Gradient1.GradientType = gtLinear
+      StateNormal.Background.Gradient1.Point1XPercent = 0
+      StateNormal.Background.Gradient1.Point1YPercent = 0
+      StateNormal.Background.Gradient1.Point2XPercent = 0
+      StateNormal.Background.Gradient1.Point2YPercent = 100
+      StateNormal.Background.Gradient2.StartColor = 8405056
+      StateNormal.Background.Gradient2.EndColor = 4194304
+      StateNormal.Background.Gradient2.GradientType = gtRadial
+      StateNormal.Background.Gradient2.Point1XPercent = 50
+      StateNormal.Background.Gradient2.Point1YPercent = 100
+      StateNormal.Background.Gradient2.Point2XPercent = 0
+      StateNormal.Background.Gradient2.Point2YPercent = 0
+      StateNormal.Background.Gradient1EndPercent = 60
+      StateNormal.Background.Style = bbsClear
+      StateNormal.Border.Style = bboSolid
+      StateNormal.Border.Width = 2
+      StateNormal.FontEx.Color = clBlack
+      StateNormal.FontEx.FontQuality = fqFineAntialiasing
+      StateNormal.FontEx.Shadow = False
+      StateNormal.FontEx.ShadowRadius = 2
+      StateNormal.FontEx.ShadowOffsetX = 1
+      StateNormal.FontEx.ShadowOffsetY = 1
+      StateNormal.FontEx.Style = []
+      Color = clNone
+      DropDownWidth = 16
+      DropDownArrowSize = 8
+      GlobalOpacity = 255
+      ParentColor = False
+      Rounding.RoundX = 20
+      Rounding.RoundY = 20
+      RoundingDropDown.RoundX = 1
+      RoundingDropDown.RoundY = 1
+      TextApplyGlobalOpacity = False
+      MemoryUsage = bmuHigh
+    end
+    object BreathInLabel: TLabel
+      Left = 16
+      Height = 18
+      Top = 56
+      Width = 58
+      Caption = 'Inhale(s)'
+      Font.CharSet = ANSI_CHARSET
+      Font.Height = -16
+      Font.Name = '.SF NS'
+      ParentColor = False
+      ParentFont = False
+    end
+    object BreathOutLabel: TLabel
+      Left = 200
+      Height = 18
+      Top = 56
+      Width = 65
+      Caption = 'Exhale(s)'
+      Font.CharSet = ANSI_CHARSET
+      Font.Height = -16
+      Font.Name = '.SF NS'
+      ParentColor = False
+      ParentFont = False
+    end
+    object HoldInLabel: TLabel
+      Left = 16
+      Height = 18
+      Top = 144
+      Width = 66
+      Caption = 'Hold in(s)'
+      Font.CharSet = ANSI_CHARSET
+      Font.Height = -16
+      Font.Name = '.SF NS'
+      ParentColor = False
+      ParentFont = False
+    end
+    object HoldOutLabel: TLabel
+      Left = 200
+      Height = 18
+      Top = 144
+      Width = 75
+      Caption = 'Hold out(s)'
+      Font.CharSet = ANSI_CHARSET
+      Font.Height = -16
+      Font.Name = '.SF NS'
+      ParentColor = False
+      ParentFont = False
+    end
+    object NightModeSwitchBox: TSwitchBox
+      Left = 88
+      Height = 24
+      Top = 328
+      Width = 56
+      Action = ToggleNightModeEnabledAction
+      TabOrder = 0
+    end
+    object NightModeLabel: TLabel
+      Left = 160
+      Height = 22
+      Top = 328
+      Width = 97
+      Caption = 'Night mode'
+      Font.CharSet = ANSI_CHARSET
+      Font.Height = -19
+      Font.Name = '.SF NS'
+      ParentColor = False
+      ParentFont = False
+    end
+    object SoundSwitchBox: TSwitchBox
+      Left = 88
+      Height = 24
+      Top = 272
+      Width = 56
+      Action = ToggleSoundEnabledAction
+      TabOrder = 1
+    end
+    object SoundLabel: TLabel
+      Left = 160
+      Height = 22
+      Top = 272
+      Width = 55
+      Caption = 'Sound'
+      Font.CharSet = ANSI_CHARSET
+      Font.Height = -19
+      Font.Name = '.SF NS'
+      ParentColor = False
+      ParentFont = False
+    end
+    object BreathInSpinEdit: TRoundSpinEdit
+      Left = 16
+      Height = 43
+      Top = 80
+      Width = 100
+      MinValue = 1
+      MaxValue = 60
+      Value = 5
+      Increment = 1
+      OnChange = SpinEditChanged
+    end
+    object BreathOutSpinEdit: TRoundSpinEdit
+      Left = 200
+      Height = 43
+      Top = 80
+      Width = 100
+      MinValue = 1
+      MaxValue = 60
+      Value = 5
+      Increment = 1
+      OnChange = SpinEditChanged
+    end
+    object HoldInSpinEdit: TRoundSpinEdit
+      Left = 16
+      Height = 43
+      Top = 168
+      Width = 100
+      MinValue = 0
+      MaxValue = 60
+      Value = 0
+      Increment = 1
+      OnChange = SpinEditChanged
+    end
+    object HoldOutSpinEdit: TRoundSpinEdit
+      Left = 200
+      Height = 43
+      Top = 168
+      Width = 100
+      MinValue = 0
+      MaxValue = 60
+      Value = 0
+      Increment = 1
+      OnChange = SpinEditChanged
+    end
+  end
+  object TimerPanel: TPanel
+    Left = 0
+    Height = 512
+    Top = 0
+    Width = 320
+    Align = alClient
+    BevelOuter = bvNone
+    ClientHeight = 512
+    ClientWidth = 320
+    TabOrder = 0
+    Visible = False
+    object BgImage: TBGRAGraphicControl
+      Left = 0
+      Height = 512
+      Top = 0
+      Width = 320
+      Align = alClient
+      BevelOuter = bvNone
+      Color = clNone
+      ColorOpacity = 128
+      Alignment = taCenter
+      OnPaint = BgImagePaint
+      Caption = 'Start'
+    end
+    object StartButton: TBCButton
+      Cursor = crHandPoint
+      Left = 104
+      Height = 38
+      Top = 454
+      Width = 108
+      Anchors = [akTop, akLeft, akRight]
+      StateClicked.Background.Gradient1.StartColor = 8404992
+      StateClicked.Background.Gradient1.EndColor = 4194304
+      StateClicked.Background.Gradient1.GradientType = gtRadial
+      StateClicked.Background.Gradient1.Point1XPercent = 50
+      StateClicked.Background.Gradient1.Point1YPercent = 100
+      StateClicked.Background.Gradient1.Point2XPercent = 0
+      StateClicked.Background.Gradient1.Point2YPercent = 0
+      StateClicked.Background.Gradient2.StartColor = clWhite
+      StateClicked.Background.Gradient2.EndColor = clBlack
+      StateClicked.Background.Gradient2.GradientType = gtLinear
+      StateClicked.Background.Gradient2.Point1XPercent = 0
+      StateClicked.Background.Gradient2.Point1YPercent = 0
+      StateClicked.Background.Gradient2.Point2XPercent = 0
+      StateClicked.Background.Gradient2.Point2YPercent = 100
+      StateClicked.Background.Gradient1EndPercent = 100
+      StateClicked.Background.Style = bbsClear
+      StateClicked.Border.Style = bboSolid
+      StateClicked.FontEx.Color = 16770790
+      StateClicked.FontEx.FontQuality = fqFineAntialiasing
+      StateClicked.FontEx.Shadow = True
+      StateClicked.FontEx.ShadowRadius = 2
+      StateClicked.FontEx.ShadowOffsetX = 1
+      StateClicked.FontEx.ShadowOffsetY = 1
+      StateClicked.FontEx.Style = [fsBold]
+      StateHover.Background.Gradient1.StartColor = 16744448
+      StateHover.Background.Gradient1.EndColor = 8404992
+      StateHover.Background.Gradient1.GradientType = gtRadial
+      StateHover.Background.Gradient1.Point1XPercent = 50
+      StateHover.Background.Gradient1.Point1YPercent = 100
+      StateHover.Background.Gradient1.Point2XPercent = 0
+      StateHover.Background.Gradient1.Point2YPercent = 0
+      StateHover.Background.Gradient2.StartColor = clWhite
+      StateHover.Background.Gradient2.EndColor = clBlack
+      StateHover.Background.Gradient2.GradientType = gtLinear
+      StateHover.Background.Gradient2.Point1XPercent = 0
+      StateHover.Background.Gradient2.Point1YPercent = 0
+      StateHover.Background.Gradient2.Point2XPercent = 0
+      StateHover.Background.Gradient2.Point2YPercent = 100
+      StateHover.Background.Gradient1EndPercent = 100
+      StateHover.Background.Style = bbsClear
+      StateHover.Border.Style = bboSolid
+      StateHover.Border.Width = 2
+      StateHover.FontEx.Color = clWhite
+      StateHover.FontEx.FontQuality = fqFineAntialiasing
+      StateHover.FontEx.Shadow = True
+      StateHover.FontEx.ShadowRadius = 2
+      StateHover.FontEx.ShadowOffsetX = 1
+      StateHover.FontEx.ShadowOffsetY = 1
+      StateHover.FontEx.Style = []
+      StateNormal.Background.Gradient1.StartColor = 4194304
+      StateNormal.Background.Gradient1.EndColor = 8405056
+      StateNormal.Background.Gradient1.GradientType = gtLinear
+      StateNormal.Background.Gradient1.Point1XPercent = 0
+      StateNormal.Background.Gradient1.Point1YPercent = 0
+      StateNormal.Background.Gradient1.Point2XPercent = 0
+      StateNormal.Background.Gradient1.Point2YPercent = 100
+      StateNormal.Background.Gradient2.StartColor = 8405056
+      StateNormal.Background.Gradient2.EndColor = 4194304
+      StateNormal.Background.Gradient2.GradientType = gtRadial
+      StateNormal.Background.Gradient2.Point1XPercent = 50
+      StateNormal.Background.Gradient2.Point1YPercent = 100
+      StateNormal.Background.Gradient2.Point2XPercent = 0
+      StateNormal.Background.Gradient2.Point2YPercent = 0
+      StateNormal.Background.Gradient1EndPercent = 60
+      StateNormal.Background.Style = bbsClear
+      StateNormal.Border.Style = bboSolid
+      StateNormal.Border.Width = 2
+      StateNormal.FontEx.Color = clBlack
+      StateNormal.FontEx.FontQuality = fqFineAntialiasing
+      StateNormal.FontEx.Shadow = False
+      StateNormal.FontEx.ShadowRadius = 2
+      StateNormal.FontEx.ShadowOffsetX = 1
+      StateNormal.FontEx.ShadowOffsetY = 1
+      StateNormal.FontEx.Style = []
+      Caption = 'Start'
+      Color = clNone
+      DropDownWidth = 16
+      DropDownArrowSize = 8
+      GlobalOpacity = 255
+      OnClick = StartButtonClick
+      ParentColor = False
+      Rounding.RoundX = 20
+      Rounding.RoundY = 20
+      RoundingDropDown.RoundX = 1
+      RoundingDropDown.RoundY = 1
+      TextApplyGlobalOpacity = False
+      MemoryUsage = bmuHigh
+    end
+    object SettingsButton: TColorSpeedButton
+      Cursor = crHandPoint
+      Left = 278
+      Height = 30
+      Top = 13
+      Width = 30
+      Caption = 'Show / Hide'
+      Color = clNone
+      Flat = True
+      Font.Color = clBlack
+      Images = ImageListButton
+      ImageWidth = 28
+      OnClick = SettingsButtonClick
+      OnMouseEnter = SettingsButtonMouseEnter
+      OnMouseLeave = SettingsButtonMouseLeave
+      ShowCaption = False
+      ParentFont = False
+      TextAutoSize = False
+      Toggle = False
+      Pressed = False
+      PopupMode = False
+      StateNormal.Color = clNone
+      StateNormal.BorderColor = 11382189
+      StateNormal.BorderWidth = 0
+      StateHover.Color = clNone
+      StateHover.BorderColor = 14120960
+      StateHover.BorderWidth = 0
+      StateActive.Color = clNone
+      StateActive.BorderColor = 10048512
+      StateActive.BorderWidth = 0
+      StateDisabled.Color = clNone
+      StateDisabled.BorderColor = 12566463
+      StateDisabled.BorderWidth = 0
     end
   end
   object TrayIcon: TTrayIcon
@@ -602,7 +623,6 @@ object MainForm: TMainForm
     Top = 464
   end
   object ImageListButton: TImageList
-    BlendColor = clSkyBlue
     Height = 64
     Scaled = True
     Width = 64

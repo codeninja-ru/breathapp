@@ -22,7 +22,7 @@ uses Ctypes{$ifdef UNIX},unix{$endif};
 	    {linklib /usr/x86_64-w64-mingw32/lib/libmingwex.a}
 	    {$linklib /usr/x86_64-w64-mingw32/lib/libmsvcr120d.a}
     {$endif}
-    {$ifdef cpu32}
+    {{$ifdef cpu32}
 	    { apt install mingw-w64-i686-dev }
 	    {$linklib /usr/lib/gcc-cross/i686-linux-gnu/12/libgcc.a}
 	    {$linklib /usr/i686-w64-mingw32/lib/libkernel32.a}
@@ -42,7 +42,7 @@ uses Ctypes{$ifdef UNIX},unix{$endif};
 	    {$linklib /usr/i686-w64-mingw32/lib/libmingwex.a}
 	    {$linklib /usr/i686-w64-mingw32/lib/libmsvcr120d.a}
 	    {$linklib /usr/i686-w64-mingw32/lib/libmincore.a}
-    {$endif}
+    {$endif} }
 {$endif}
 
 {$ifdef CPU64}
@@ -12921,7 +12921,7 @@ one:  	cmp  %rax, %rcx
   end;
 {$endif}
 {$endif}
-{$ifdef cpu32}
+{{$ifdef cpu32}
 {see https://github.com/synopse/mORMot/blob/master/SynSQLite3Static.pas }
 function moddi3(num, den: int64): int64; cdecl; {$ifdef linux}public alias: '__moddi3';{$endif}{$ifdef window}public alias: '___moddi3';{$endif}
 begin
@@ -12939,5 +12939,5 @@ function udivdi3(num, den: uint64): uint64; cdecl; {$ifdef linux}public alias: '
 begin
   result := num div den;
 end;
-{$endif}
+{$endif}}
 end.

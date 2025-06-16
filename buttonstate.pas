@@ -2,10 +2,16 @@ unit buttonState;
 
 {$mode ObjFPC}{$H+}
 
+{todo rename to SettingButtonState }
+
 interface
 
 uses
-  states, Graphics, BGRABitmapTypes, Controls, BGRABitmap, AppSettings, Buttons;
+  states, Graphics, BGRABitmapTypes, Controls, BGRABitmap, AppSettings,
+  Buttons, SysUtils;
+
+const
+  DEFAULT_ALPHA_VALUE = 70;
 
 type
   { TButtonState }
@@ -18,14 +24,16 @@ type
     FImageList: TImageList;
     FAppSettings: TAppSettings;
     isFirstRun: boolean;
+    FIsFocused: boolean;
     procedure FillImageListButton;
+    procedure SetIsFocused(AValue: boolean);
   public
     function GetDefaultImageIndex(state: TState): integer;
     function GetFocusImageIndex(state: TState): integer;
-
     procedure Draw(state: TState; button: TSpeedButton);
-
     constructor Create(AImageList: TImageList; AAppSettings: TAppSettings);
+
+    property Focused: boolean read FIsFocused write SetIsFocused;
   end;
 
 implementation
@@ -34,6 +42,7 @@ implementation
 
 constructor TButtonState.Create(AImageList: TImageList; AAppSettings: TAppSettings);
 begin
+  FIsFocused := False;
   FImageList := AImageList;
   FAppSettings := AAppSettings;
   isFirstRun := True;
@@ -42,39 +51,54 @@ end;
 
 procedure TButtonState.FillImageListButton;
 
-  function addColoredButton(color: TBGRAPixel): integer;
+  function addColoredButton(bitmap: TBGRABitmap; color: TBGRAPixel): integer;
   var
-    bitmap, colored: TBGRABitmap;
+    colored: TBGRABitmap;
   begin
-    bitmap := TBGRABitmap.Create(FImageList.Width, FImageList.Height);
     colored := TBGRABitmap.Create(FImageList.Width, FImageList.Height);
     try
-      FImageList.GetBitmap(0, bitmap.Bitmap);
-
       colored.FillMask(0, 0, bitmap, color);
-      Result := FImageList.Add(colored.Bitmap, colored.Bitmap);
-
+      Result := FImageList.Add(colored.Bitmap, nil);
     finally
-      bitmap.Free;
       colored.Free;
+      ;
     end;
   end;
 
+var
+  imgBitmap: TBitmap;
+  bitmap: TBGRABitmap;
 begin
-  FDefaultIdx[stBreathIn] :=
-    addColoredButton(ColorToBGRA(FAppSettings.BreathInColor, 50));
-  FFocusIdx[stBreathIn] := addColoredButton(FAppSettings.BreathInColor);
+  imgBitmap := TBitmap.Create;
+  FImageList.GetBitmap(0, imgBitmap);
+  bitmap := TBGRABitmap.Create(imgBitmap);
 
-  FDefaultIdx[stBreathOut] :=
-    addColoredButton(ColorToBGRA(FAppSettings.BreathOutColor, 50));
-  FFocusIdx[stBreathOut] := addColoredButton(FAppSettings.BreathOutColor);
+  try
+    FDefaultIdx[stBreathIn] :=
+      addColoredButton(bitmap, ColorToBGRA(FAppSettings.BreathInColor,
+      DEFAULT_ALPHA_VALUE));
+    FFocusIdx[stBreathIn] := addColoredButton(bitmap, FAppSettings.BreathInColor);
 
-  FDefaultIdx[stHoldIn] :=
-    addColoredButton(ColorToBGRA(FAppSettings.HoldColor, 50));
-  FFocusIdx[stHoldIn] := addColoredButton(FAppSettings.HoldColor);
+    FDefaultIdx[stBreathOut] :=
+      addColoredButton(bitmap, ColorToBGRA(FAppSettings.BreathOutColor,
+      DEFAULT_ALPHA_VALUE));
+    FFocusIdx[stBreathOut] := addColoredButton(bitmap, FAppSettings.BreathOutColor);
 
-  FDefaultIdx[stHoldOut] := FDefaultIdx[stHoldIn];
-  FFocusIdx[stHoldOut] := FFocusIdx[stHoldOut];
+    FDefaultIdx[stHoldIn] :=
+      addColoredButton(bitmap, ColorToBGRA(FAppSettings.HoldColor, DEFAULT_ALPHA_VALUE));
+    FFocusIdx[stHoldIn] := addColoredButton(bitmap, FAppSettings.HoldColor);
+
+    FDefaultIdx[stHoldOut] := FDefaultIdx[stHoldIn];
+    FFocusIdx[stHoldOut] := FFocusIdx[stHoldOut];
+  finally
+    bitmap.Free;
+    imgBitmap.Free;
+  end;
+end;
+
+procedure TButtonState.SetIsFocused(AValue: boolean);
+begin
+  FIsFocused := AValue;
 end;
 
 function TButtonState.GetDefaultImageIndex(state: TState): integer;
@@ -91,7 +115,7 @@ procedure TButtonState.Draw(state: TState; button: TSpeedButton);
 begin
   if (state.StateType <> FCurrentState) or (isFirstRun) then
   begin
-    if button.Cursor = crDefault then
+    if not FIsFocused then
       button.ImageIndex := GetDefaultImageIndex(state)
     else
       button.ImageIndex := GetFocusImageIndex(state);

@@ -10,3 +10,5 @@ log
 link*.res
 vendor/miniaudio/backup/
 *.bak
+*.swp
+*.trc

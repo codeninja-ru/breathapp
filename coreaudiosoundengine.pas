@@ -37,8 +37,8 @@ type
     procedure StartDevice(deviceId: AudioObjectID; procId: AudioDeviceIOProcID);
     procedure StopDevice(deviceId: AudioObjectID; procId: AudioDeviceIOProcID);
   public
-    procedure Start;
-    procedure Stop;
+    procedure Open;
+    procedure Close;
     procedure Play(AFreq: integer);
     constructor Create;
     destructor Destroy;
@@ -61,6 +61,7 @@ var
   channels: integer;
   framesPerChannel: integer;
   generator: TBeepWaveGenerator;
+  val: single;
 begin
   clientData := PSoundClientData(inClientData);
   generator := clientData^.Generator;
@@ -78,10 +79,10 @@ begin
 
       for i := 0 to framesPerChannel - 1 do
       begin
+        val := generator.GetDataForFrame(clientData^.Cursor, clientData^.Freq);
         for ch := 0 to channels - 1 do
         begin
-          Data[i * channels + ch] :=
-            generator.GetDataForFrame(clientData^.Cursor, clientData^.Freq);
+          Data[i * channels + ch] := val;
         end;
         Inc(ClientData^.Cursor);
       end;
@@ -173,7 +174,7 @@ begin
     raise Exception.Create('Error stoping audio device');
 end;
 
-procedure TCoreAudioSoundEngine.Start;
+procedure TCoreAudioSoundEngine.Open;
 begin
   if not FIsPlaying then
   begin
@@ -186,14 +187,14 @@ begin
     FClientData.SampleRate := round(FOutputDeviceFormat.mSampleRate);
     FClientData.Freq := 440;
     FClientData.Cursor := 0;
-    FClientData.Generator := TBeepWaveGenerator.Create(FClientData.SampleRate);
+    FClientData.Generator := TBeepWaveGenerator.Create(FClientData.SampleRate);  {TODO: should be an external dep }
     FProcId := RegisterCallback(FDeviceId, @beepCallback);
     StartDevice(FDeviceId, FProcId);
     FIsPlaying := True;
   end;
 end;
 
-procedure TCoreAudioSoundEngine.Stop;
+procedure TCoreAudioSoundEngine.Close;
 begin
   if FIsPlaying then
   begin
@@ -208,7 +209,7 @@ procedure TCoreAudioSoundEngine.Play(AFreq: integer);
 begin
   if not FIsPlaying then
   begin
-    Start;
+    Open;
   end;
 
   FClientData.Freq := AFreq;
@@ -222,7 +223,7 @@ end;
 
 destructor TCoreAudioSoundEngine.Destroy;
 begin
-  Stop;
+  Close;
 end;
 
 end.

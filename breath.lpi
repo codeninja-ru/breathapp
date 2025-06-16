@@ -125,6 +125,16 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="SoundWave"/>
       </Unit>
+      <Unit>
+        <Filename Value="directsoundsoundengine.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="DirectSoundSoundEngine"/>
+      </Unit>
+      <Unit>
+        <Filename Value="autosoundengine.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="AutoSoundEngine"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

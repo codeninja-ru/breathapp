@@ -8,6 +8,13 @@
       <SearchPaths>
         <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
       </SearchPaths>
+      <Linking>
+        <Debugging>
+          <DebugInfoType Value="dsDwarf3"/>
+          <UseHeaptrc Value="True"/>
+          <TrashVariables Value="True"/>
+        </Debugging>
+      </Linking>
     </CompilerOptions>
     <Files>
       <Item>
@@ -21,7 +28,7 @@
       </Item>
       <Item>
         <Filename Value="roundupdown.pas"/>
-        <UnitName Value="roundupdown"/>
+        <UnitName Value="RoundUpDown"/>
       </Item>
     </Files>
     <RequiredPkgs>

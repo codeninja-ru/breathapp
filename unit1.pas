@@ -6,8 +6,8 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, ExtCtrls, Menus, ComCtrls,
-  StdCtrls, Buttons, ActnList, BGRAGraphicControl, BGRABitmap,
-  BGRABitmapTypes, ClockEllipse, ClockText, AppSettings, BCTypes, BCButton,
+  StdCtrls, Buttons, ActnList, BGRAGraphicControl, BGRABitmap, BGRABitmapTypes,
+  ClockEllipse, ClockText, AppSettings, BCTypes, BCButton, ColorSpeedButton,
   states, ClockTimer, TrayIconTimer, SoundTimer, Backgrounds, buttonState,
   SwitchBox, RoundSpinEdit, RoundSpinEditTheme, unit2;
 
@@ -16,6 +16,9 @@ type
   { TMainForm }
 
   TMainForm = class(TForm)
+    SettingsButton: TColorSpeedButton;
+    SettingsPanel: TPanel;
+    TimerPanel: TPanel;
     ShowAboutFormAction: TAction;
     BreathInSpinEdit: TRoundSpinEdit;
     BreathOutSpinEdit: TRoundSpinEdit;
@@ -42,17 +45,13 @@ type
     LabelCaption: TLabel;
     MenuItemNightMode: TMenuItem;
     MenuItemExit: TMenuItem;
-    PageControl: TPageControl;
     SeparatorExit: TMenuItem;
-    SettingsButton: TSpeedButton;
     StartButton: TBCButton;
     BgImage: TBGRAGraphicControl;
     MenuItemShow: TMenuItem;
     MenuItemSound: TMenuItem;
     ImgTimer: TTimer;
     BackButton: TBCButton;
-    TabTimer: TTabSheet;
-    TabSettings: TTabSheet;
     TrayMenu: TPopupMenu;
     TrayIcon: TTrayIcon;
     procedure ExitActionExecute(Sender: TObject);
@@ -136,7 +135,8 @@ begin
   DayRoundSpinEditTheme := TDefaultRoundSpinEditTheme.Create();
 
   FSettingButtonState := TButtonState.Create(ImageListButton, AppSettings);
-  Self.PageControl.ActivePageIndex := 0;
+  TimerPanel.Visible := True;
+  SettingsPanel.Visible := False;
   UpdateFormColors;
 end;
 
@@ -180,7 +180,7 @@ begin
 
   ToggleNightModeEnabledAction.Checked := AppSettings.NightModeEnabled;
   UpdateFormColors;
-  TabTimer.Refresh;
+  TimerPanel.Refresh;
 end;
 
 procedure TMainForm.ToggleSoundEnabledActionExecute(Sender: TObject);
@@ -216,10 +216,18 @@ var
 begin
   MainForm.Color := AppSettings.Bg;
   MainForm.Font.Color := AppSettings.FontColor;
-  for i := 0 to TabSettings.ControlCount - 1 do
+  SettingsButton.Color := AppSettings.Bg;
+  SettingsButton.StateActive.Color := AppSettings.Bg;
+  SettingsButton.StateDisabled.Color := AppSettings.Bg;
+  SettingsButton.StateHover.Color := AppSettings.Bg;
+  SettingsButton.StateNormal.Color := AppSettings.Bg;
+  SettingsButton.ImageIndex :=
+    FSettingButtonState.GetDefaultImageIndex(StateManager.State);
+  SettingsButton.Refresh;
+  for i := 0 to SettingsPanel.ControlCount - 1 do
   begin
-    if not TabSettings.Controls[i].IsParentFont then;
-    TabSettings.Controls[i].Font.Color := AppSettings.FontColor;
+    if not SettingsPanel.Controls[i].IsParentFont then;
+    SettingsPanel.Controls[i].Font.Color := AppSettings.FontColor;
   end;
 
   if AppSettings.NightModeEnabled then
@@ -275,7 +283,8 @@ end;
 
 procedure TMainForm.SettingsBackActionExecute(Sender: TObject);
 begin
-  PageControl.PageIndex := 0;
+  TimerPanel.Visible := True;
+  SettingsPanel.Visible := False;
 end;
 
 procedure TMainForm.ExitActionExecute(Sender: TObject);
@@ -285,19 +294,20 @@ end;
 
 procedure TMainForm.SettingsButtonClick(Sender: TObject);
 begin
-  PageControl.ActivePageIndex := 1;
+  TimerPanel.Visible := False;
+  SettingsPanel.Visible := True;
 end;
 
 procedure TMainForm.SettingsButtonMouseEnter(Sender: TObject);
 begin
-  SettingsButton.Cursor := crHandPoint;
+  FSettingButtonState.Focused := True;
   SettingsButton.ImageIndex :=
     FSettingButtonState.GetFocusImageIndex(StateManager.State);
 end;
 
 procedure TMainForm.SettingsButtonMouseLeave(Sender: TObject);
 begin
-  SettingsButton.Cursor := crDefault;
+  FSettingButtonState.Focused := False;
   SettingsButton.ImageIndex :=
     FSettingButtonState.GetDefaultImageIndex(StateManager.State);
 end;

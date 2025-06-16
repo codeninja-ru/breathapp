@@ -2,13 +2,14 @@ unit SwitchBox;
 
 {$mode ObjFPC}{$H+}
 {$R switchboxpackage.res}
+{$Interfaces CORBA}
 
 interface
 
 uses
-  Classes, SysUtils, LResources, Forms, Controls, Graphics, Dialogs, StdCtrls,
+  Classes, SysUtils, LResources, Forms, Controls, Graphics, Dialogs,
   LMessages, LCLType, ActnList,
-  LazMethodList, SwitchBoxTheme, BGRABitmap;
+  LazMethodList, SwitchBoxTheme;
 
 type
 
@@ -16,7 +17,6 @@ type
 
   TSwitchBox = class(TCustomControl)
   private
-    FBitmap: TBGRABitmap;
     FChecked: boolean;
     FCheckBoxHovered: boolean;
     FCheckFromAction: boolean;
@@ -31,10 +31,9 @@ type
   protected
     CheckBoxPressed: boolean;
     FOnChange: TNotifyEvent;
-    FTheme: TAbstractSwitchBoxTheme;
+    FTheme: ISwitchBoxTheme;
 
     procedure Paint; override;
-    procedure Draw;
 
     function DialogChar(var Message: TLMKey): boolean; override;
     procedure DoClick;
@@ -135,7 +134,7 @@ begin
   if FChecked <> AValue then
   begin
     FChecked := AValue;
-    Draw;
+    Invalidate;
   end;
 
   if Assigned(OnEditingDone) then OnEditingDone(self);
@@ -162,16 +161,11 @@ end;
 
 procedure TSwitchBox.Paint;
 begin
-  FBitmap.Draw(Canvas, rect(0, 0, Canvas.Width, Canvas.Height), False);
   inherited Paint;
-end;
-
-procedure TSwitchBox.Draw;
-begin
   if FChecked then
-    FTheme.DrawChecked(FBitmap)
+    FTheme.DrawChecked(Canvas, GetCanvasScaleFactor())
   else
-    FTheme.DrawUnchecked(FBitmap);
+    FTheme.DrawUnchecked(Canvas, GetCanvasScaleFactor());
 end;
 
 function TSwitchBox.DialogChar(var Message: TLMKey): boolean;
@@ -296,15 +290,10 @@ begin
   FTheme := TDefaultSwitchBoxTheme.Create();
   Width := FTheme.Width;
   Height := FTheme.Height;
-
-  FBitmap := FTheme.CreateBitmap;
-  Draw;
 end;
 
 destructor TSwitchBox.Destroy;
 begin
-  FreeAndNil(FBitmap);
-  FreeAndNil(FTheme);
   inherited Destroy;
 end;
 

@@ -8,6 +8,9 @@ uses
   Classes, SysUtils;
 
 type
+
+  { TBeepWaveGenerator }
+
   TBeepWaveGenerator = class
   private
   const
@@ -20,9 +23,13 @@ type
   private
     FDeviceSampleRate: integer;
     FFramesInMsec: integer;
+    function GetSoundTimeMs: integer;
+    function GetSountTimeMs: integer;
   public
     constructor Create(ADeviceSampleRate: integer);
     destructor Destroy;
+
+    property SoundTimeMs: integer read GetSoundTimeMs;
 
     function IsPlaying(ACursor: integer): boolean;
     function GetDataForFrame(const ACursor: integer; const AFreq: integer): single;
@@ -31,6 +38,16 @@ type
 implementation
 
 { TBeepWaveGenerator }
+
+function TBeepWaveGenerator.GetSoundTimeMs: integer;
+begin
+  Result := NOTE_TIME;
+end;
+
+function TBeepWaveGenerator.GetSountTimeMs: integer;
+begin
+
+end;
 
 constructor TBeepWaveGenerator.Create(ADeviceSampleRate: integer);
 begin
@@ -72,8 +89,8 @@ begin
     volume := 0.5;
   end;
 
-  if (time >= ATTACK + DECAY + SUSTAIN) and (time <= ATTACK +
-    DECAY + SUSTAIN + Release) then
+  if (time >= ATTACK + DECAY + SUSTAIN) and (time <= ATTACK + DECAY +
+    SUSTAIN + Release) then
   begin
     volume := (-0.5 / Release) * time + 0.5 + (0.5 / Release) *
       (ATTACK + DECAY + SUSTAIN);

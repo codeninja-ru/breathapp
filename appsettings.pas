@@ -80,7 +80,7 @@ begin
     FClockMarginTop := 60;
     FMainFontName := 'PT Sans Caption';
     FSecondFontName := 'PT Sans';
-    FFontColor:= TColor($555555);
+    FFontColor := TColor($555555);
   end;
 end;
 
@@ -101,7 +101,7 @@ begin
     FClockMarginTop := 60;
     FMainFontName := 'PT Sans Caption';
     FSecondFontName := 'PT Sans';
-    FFontColor:= TColor($eeeeee);
+    FFontColor := TColor($eeeeee);
   end;
 end;
 

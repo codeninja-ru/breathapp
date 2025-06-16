@@ -22,6 +22,7 @@ type
     function formatTime(minutes: integer; seconds: integer): string;
 
 
+
   public
     constructor Create(AFormWidth: integer; AFormHeight: integer;
       AAppSettings: TAppSettings);

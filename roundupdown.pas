@@ -61,6 +61,7 @@ type
     procedure SetUpButtonOnClick(Value: TNotifyEvent);
     procedure SetDownButtonOnClick(Value: TNotifyEvent);
     procedure SetTheme(Value: TAbstractRoundSpinEditTheme);
+    procedure Paint; override;
   public
     property Theme: TAbstractRoundSpinEditTheme write SetTheme;
     property UpButtonOnClick: TNotifyEvent write SetUpButtonOnClick;
@@ -204,6 +205,12 @@ begin
   FUpButton.Theme := Value;
   FDownButton.Theme := Value;
   Self.Width := Value.ButtonWidth;
+end;
+
+procedure TRoundUpDown.Paint;
+begin
+  Canvas.Brush.Color:=Self.Color;
+  Canvas.FillRect(Canvas.ClipRect);
 end;
 
 end.

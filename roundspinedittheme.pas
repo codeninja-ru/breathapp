@@ -1,6 +1,7 @@
 unit RoundSpinEditTheme;
 
 {$mode objfpc}{$H+}
+{$interfaces CORBA}
 
 interface
 
@@ -10,6 +11,21 @@ uses
   {$IFDEF LCLGTK2},gtk2, WSProc{$ENDIF};
 
 type
+
+  IRoundSpinEditTheme = interface
+    property ButtonHeight: integer;
+    property ButtonWidth: integer;
+    property Height: integer;
+
+    procedure PaintBox(Canvas: TCanvas; AWidth: integer; AHeight: integer; ScaleFactor: double);
+    procedure PaintUpArrowButton(Canvas: TCanvas; ScaleFactor: double);
+    procedure PaintDownArrowButton(Canvas: TCanvas; ScaleFactor: double);
+    procedure PaintUpArrowButtonHover(Canvas: TCanvas; ScaleFactor: double);
+    procedure PaintDownArrowButtonHover(Canvas: TCanvas; ScaleFactor: double);
+    procedure PaintUpArrowButtonPressed(Canvas: TCanvas; ScaleFactor: double);
+    procedure PaintDownArrowButtonPressed(Canvas: TCanvas; ScaleFactor: double);
+    procedure UpdateControls(Edit: TEdit; UpDown: TControl); virtual; abstract;
+  end;
 
   { TAbstractRoundSpinEditTheme }
 
@@ -27,7 +43,7 @@ type
     property ButtonWidth: integer read FButtonWidth;
     property Height: integer read GetHeight;
 
-    procedure PaintBox(Canvas: TCanvas; ScaleFactor: double); virtual; abstract;
+    procedure PaintBox(Canvas: TCanvas; AWidth: integer; AHeight: integer; ScaleFactor: double); virtual; abstract;
     procedure PaintUpArrowButton(Canvas: TCanvas; ScaleFactor: double);
       virtual; abstract;
     procedure PaintDownArrowButton(Canvas: TCanvas; ScaleFactor: double);
@@ -40,7 +56,7 @@ type
       virtual; abstract;
     procedure PaintDownArrowButtonPressed(Canvas: TCanvas; ScaleFactor: double);
       virtual; abstract;
-    procedure UpdateControls(Edit: TEdit; UpDown: TCustomControl); virtual; abstract;
+    procedure UpdateControls(Edit: TEdit; UpDown: TControl); virtual; abstract;
   end;
 
   { TDefaultRoundSpinEditTheme }
@@ -103,7 +119,7 @@ type
     property ButtonWidth: integer read FButtonWidth write FButtonWidth;
     property Height: integer read GetHeight;
   public
-    procedure PaintBox(Canvas: TCanvas; ScaleFactor: double); override;
+    procedure PaintBox(Canvas: TCanvas; AWidth: integer; AHeight: integer; ScaleFactor: double); override;
     procedure PaintUpArrowButton(Canvas: TCanvas; ScaleFactor: double); override;
     procedure PaintDownArrowButton(Canvas: TCanvas; ScaleFactor: double); override;
     procedure PaintUpArrowButtonHover(Canvas: TCanvas; ScaleFactor: double); override;
@@ -111,7 +127,7 @@ type
     procedure PaintUpArrowButtonPressed(Canvas: TCanvas; ScaleFactor: double); override;
     procedure PaintDownArrowButtonPressed(Canvas: TCanvas; ScaleFactor: double);
       override;
-    procedure UpdateControls(Edit: TEdit; UpDown: TCustomControl); override;
+    procedure UpdateControls(Edit: TEdit; UpDown: TControl); override;
 
     procedure Assign(Source: TPersistent); override;
 
@@ -192,13 +208,14 @@ begin
   Bitmap.Canvas.Polygon(points);
 end;
 
-procedure TDefaultRoundSpinEditTheme.PaintBox(Canvas: TCanvas; ScaleFactor: double);
+procedure TDefaultRoundSpinEditTheme.PaintBox(Canvas: TCanvas; AWidth: integer;
+  AHeight: integer; ScaleFactor: double);
 var
   bitmap: TBGRABitmap;
   radius: integer;
 begin
-  bitmap := TBGRABitmap.Create(round(Canvas.Width * ScaleFactor),
-    round(Canvas.Height * ScaleFactor));
+  bitmap := TBGRABitmap.Create(round(AWidth * ScaleFactor),
+    round(AHeight * ScaleFactor));
   radius := round(FBorderRadius * ScaleFactor);
 
   try
@@ -208,7 +225,7 @@ begin
       FBorderColor, FBorderWidth,
       FBgColor);
 
-    bitmap.Draw(Canvas, Rect(0, 0, Canvas.Width, Canvas.Height), False);
+    bitmap.Draw(Canvas, Rect(0, 0, bitmap.Width, bitmap.Height), False);
 
   finally
     FreeAndNil(bitmap);
@@ -330,7 +347,7 @@ begin
 end;
 
 procedure TDefaultRoundSpinEditTheme.UpdateControls(Edit: TEdit;
-  UpDown: TCustomControl);
+  UpDown: TControl);
 begin
   Edit.BorderStyle := bsNone;
   Edit.Align := alClient;
@@ -365,6 +382,7 @@ begin
   UpDown.Color := FBgColor;
   UpDown.Width := FButtonWidth;
   UpDown.Align := alRight;
+  UpDown.Invalidate;
 end;
 
 procedure TDefaultRoundSpinEditTheme.Assign(Source: TPersistent);
