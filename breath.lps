@@ -11,7 +11,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="vendor/miniaudio;vendor/FPC_DirectX92"/>
+            <OtherUnitFiles Value="vendor/miniaudio;vendor/FPC_DirectX92;sound;vendor/fpalsa"/>
             <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <Parsing>
@@ -80,9 +80,10 @@
       <Unit>
         <Filename Value="breath.lpr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="28" Y="4"/>
+        <EditorIndex Value="2"/>
+        <CursorPos X="8" Y="10"/>
         <UsageCount Value="205"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="unit1.pas"/>
@@ -153,10 +154,11 @@
         <Filename Value="soundtimer.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="SoundTimer"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="12"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="11"/>
         <CursorPos X="35" Y="11"/>
         <UsageCount Value="203"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="backgrounds.pas"/>
@@ -179,10 +181,8 @@
         <Filename Value="buttonstate.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="buttonState"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="38"/>
-        <CursorPos X="23" Y="45"/>
+        <EditorIndex Value="1"/>
+        <CursorPos X="44" Y="89"/>
         <UsageCount Value="203"/>
         <Loaded Value="True"/>
       </Unit>
@@ -199,7 +199,7 @@
         <UsageCount Value="246"/>
       </Unit>
       <Unit>
-        <Filename Value="miniaudiosoundengine.pas"/>
+        <Filename Value="sound/miniaudiosoundengine.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="MiniaudioSoundEngine"/>
         <EditorIndex Value="-1"/>
@@ -207,7 +207,7 @@
         <UsageCount Value="241"/>
       </Unit>
       <Unit>
-        <Filename Value="coreaudiosoundengine.pas"/>
+        <Filename Value="sound/coreaudiosoundengine.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="CoreAudioSoundEngine"/>
         <EditorIndex Value="-1"/>
@@ -224,7 +224,7 @@
         <UsageCount Value="232"/>
       </Unit>
       <Unit>
-        <Filename Value="directsoundsoundengine.pas"/>
+        <Filename Value="sound/directsoundsoundengine.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="DirectSoundSoundEngine"/>
         <EditorIndex Value="-1"/>
@@ -233,42 +233,82 @@
         <UsageCount Value="230"/>
       </Unit>
       <Unit>
-        <Filename Value="autosoundengine.pas"/>
+        <Filename Value="sound/winmmsoundengine.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="WinMMSoundSoundEngine"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="18"/>
+        <CursorPos X="79" Y="23"/>
+        <UsageCount Value="211"/>
+      </Unit>
+      <Unit>
+        <Filename Value="sound/autosoundengine.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="AutoSoundEngine"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="29"/>
+        <CursorPos X="79" Y="61"/>
+        <UsageCount Value="97"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="sound/nosoundengine.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="NoSoundEngine"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="7"/>
-        <CursorPos X="24" Y="25"/>
-        <UsageCount Value="67"/>
+        <TopLine Value="19"/>
+        <CursorPos X="43" Y="31"/>
+        <UsageCount Value="49"/>
+      </Unit>
+      <Unit>
+        <Filename Value="sound/alsasoundengine.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="AlsaSoundEngine"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="98"/>
+        <CursorPos X="13" Y="106"/>
+        <UsageCount Value="49"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="sound/pulseaudiosoundengine.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="PulseAudioSoundEngine"/>
+        <EditorIndex Value="7"/>
+        <CursorPos X="14" Y="12"/>
+        <UsageCount Value="49"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="sound/ossaudioengine.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="OSSAudioEngine"/>
+        <EditorIndex Value="8"/>
+        <CursorPos X="3" Y="12"/>
+        <UsageCount Value="49"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="vendor/miniaudio/miniaudio.pp"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="12924"/>
         <CursorPos X="10" Y="12942"/>
-        <UsageCount Value="3141"/>
+        <UsageCount Value="3138"/>
       </Unit>
       <Unit>
         <Filename Value="vendor/FPC_DirectX92/DirectSound.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1172"/>
         <CursorPos X="3" Y="1181"/>
-        <UsageCount Value="25"/>
+        <UsageCount Value="22"/>
       </Unit>
       <Unit>
-        <Filename Value="winmmsoundengine.pas"/>
-        <UnitName Value="WinMMSoundEngine"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="18"/>
-        <CursorPos X="79" Y="23"/>
-        <UsageCount Value="213"/>
-      </Unit>
-      <Unit>
-        <Filename Value="soundengine.pas"/>
+        <Filename Value="sound/soundengine.pas"/>
         <UnitName Value="SoundEngine"/>
         <EditorIndex Value="-1"/>
-        <CursorPos Y="3"/>
-        <UsageCount Value="212"/>
+        <CursorPos Y="4"/>
+        <UsageCount Value="209"/>
       </Unit>
       <Unit>
         <Filename Value="../../progz/lazarus/fpc/3.2.2/source/packages/winunits-base/src/mmsystem.pp"/>
@@ -276,14 +316,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="2476"/>
         <CursorPos X="10" Y="2486"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
         <Filename Value="../../progz/lazarus/fpc/3.2.2/source/rtl/inc/objpash.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="196"/>
         <CursorPos X="23" Y="206"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="3"/>
       </Unit>
       <Unit>
         <Filename Value="roundupdown.pas"/>
@@ -291,7 +331,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="190"/>
         <CursorPos X="37" Y="213"/>
-        <UsageCount Value="35"/>
+        <UsageCount Value="32"/>
       </Unit>
       <Unit>
         <Filename Value="roundspinedittheme.pas"/>
@@ -299,7 +339,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="420"/>
         <CursorPos Y="381"/>
-        <UsageCount Value="35"/>
+        <UsageCount Value="32"/>
       </Unit>
       <Unit>
         <Filename Value="../../progz/lazarus/lcl/imglist.pp"/>
@@ -307,7 +347,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="342"/>
         <CursorPos X="22" Y="346"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="../../Documents and Settings/admin/Local Settings/Application Data/lazarus/onlinepackagemanager/packages/BGRABitmap/bgrabitmap/bgradefaultbitmap.pas"/>
@@ -315,42 +355,42 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="477"/>
         <CursorPos X="15" Y="486"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="../../Documents and Settings/admin/Local Settings/Application Data/lazarus/onlinepackagemanager/packages/BGRABitmap/bgrabitmap/bgracustombitmap.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1031"/>
         <CursorPos Y="1044"/>
-        <UsageCount Value="12"/>
+        <UsageCount Value="9"/>
       </Unit>
       <Unit>
         <Filename Value="../../Documents and Settings/admin/Local Settings/Application Data/lazarus/onlinepackagemanager/packages/BGRABitmap/bgrabitmap/unibitmapgeneric.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="123"/>
         <CursorPos X="15" Y="130"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
         <Filename Value="../../Documents and Settings/admin/Local Settings/Application Data/lazarus/onlinepackagemanager/packages/BGRABitmap/bgrabitmap/bgrascanner.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="246"/>
         <CursorPos X="10" Y="258"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="../../Documents and Settings/admin/Local Settings/Application Data/lazarus/onlinepackagemanager/packages/BGRABitmap/bgrabitmap/bgrabitmaptypes.pas"/>
         <UnitName Value="BGRABitmapTypes"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="6" Y="14"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="3"/>
       </Unit>
       <Unit>
         <Filename Value="../../Documents and Settings/admin/Local Settings/Application Data/lazarus/onlinepackagemanager/packages/BGRABitmap/bgrabitmap/bgrafilterscanner.pas"/>
         <UnitName Value="BGRAFilterScanner"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="3" Y="28"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="3"/>
       </Unit>
       <Unit>
         <Filename Value="../../progz/lazarus/fpc/3.2.2/source/packages/fcl-image/src/fpimage.pp"/>
@@ -358,7 +398,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="119"/>
         <CursorPos X="19" Y="128"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="4"/>
       </Unit>
       <Unit>
         <Filename Value="../../Documents and Settings/admin/Local Settings/Application Data/lazarus/onlinepackagemanager/packages/BGRABitmap/bgrabitmap/bgragradientscanner.pas"/>
@@ -366,21 +406,21 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="2503"/>
         <CursorPos X="9" Y="2512"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="8"/>
       </Unit>
       <Unit>
         <Filename Value="../../progz/lazarus/lcl/include/application.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="138"/>
         <CursorPos Y="154"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="7"/>
       </Unit>
       <Unit>
         <Filename Value="../../Documents and Settings/admin/Local Settings/Application Data/lazarus/onlinepackagemanager/packages/BGRABitmap/bgrabitmap/unibitmap.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="234"/>
         <CursorPos X="17" Y="242"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="../../Documents and Settings/admin/Local Settings/Application Data/lazarus/onlinepackagemanager/packages/BGRABitmap/bgrabitmap/bgrablend.pas"/>
@@ -388,14 +428,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="346"/>
         <CursorPos Y="358"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
         <Filename Value="../../Documents and Settings/admin/Local Settings/Application Data/lazarus/onlinepackagemanager/packages/BGRABitmap/bgrabitmap/bgrapixel.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="212"/>
         <CursorPos X="5" Y="225"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
         <Filename Value="../../Documents and Settings/admin/Local Settings/Application Data/lazarus/onlinepackagemanager/packages/BGRABitmap/bgrabitmap/bgrawinbitmap.pas"/>
@@ -403,28 +443,28 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="140"/>
         <CursorPos X="3" Y="146"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="../../progz/lazarus/lcl/include/imglist.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1767"/>
         <CursorPos X="3" Y="1777"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="4"/>
       </Unit>
       <Unit>
         <Filename Value="../../progz/lazarus/fpc/3.2.2/source/rtl/win/wininc/base.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="759"/>
         <CursorPos X="20" Y="775"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="4"/>
       </Unit>
       <Unit>
         <Filename Value="../../progz/lazarus/fpc/3.2.2/source/rtl/objpas/sysutils/sysutilh.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="103"/>
         <CursorPos X="19" Y="112"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="5"/>
       </Unit>
       <Unit>
         <Filename Value="../../progz/lazarus/lcl/controls.pp"/>
@@ -432,7 +472,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="1730"/>
         <CursorPos X="14" Y="1742"/>
-        <UsageCount Value="16"/>
+        <UsageCount Value="13"/>
       </Unit>
       <Unit>
         <Filename Value="switchbox.pas"/>
@@ -440,35 +480,35 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="14"/>
         <CursorPos Y="296"/>
-        <UsageCount Value="22"/>
+        <UsageCount Value="19"/>
       </Unit>
       <Unit>
         <Filename Value="switchboxtheme.pas"/>
         <UnitName Value="SwitchBoxTheme"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="24" Y="91"/>
-        <UsageCount Value="22"/>
+        <UsageCount Value="19"/>
       </Unit>
       <Unit>
         <Filename Value="../../progz/lazarus/lcl/include/control.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="5597"/>
         <CursorPos X="28" Y="5616"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="7"/>
       </Unit>
       <Unit>
         <Filename Value="../../progz/lazarus/lcl/include/canvas.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="110"/>
         <CursorPos Y="125"/>
-        <UsageCount Value="12"/>
+        <UsageCount Value="9"/>
       </Unit>
       <Unit>
         <Filename Value="../../Documents and Settings/admin/Local Settings/Application Data/lazarus/onlinepackagemanager/packages/BGRABitmap/bgrabitmap/geometrytypes.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="904"/>
         <CursorPos X="3" Y="905"/>
-        <UsageCount Value="18"/>
+        <UsageCount Value="15"/>
       </Unit>
       <Unit>
         <Filename Value="../../progz/lazarus/lcl/lclclasses.pp"/>
@@ -476,14 +516,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="129"/>
         <CursorPos X="41" Y="133"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="../../progz/lazarus/lcl/include/customform.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="119"/>
         <CursorPos Y="141"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="../../progz/lazarus/components/ideintf/propedits.pp"/>
@@ -491,7 +531,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="8278"/>
         <CursorPos Y="8287"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="roundspinedit.pas"/>
@@ -499,21 +539,21 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="226"/>
         <CursorPos X="48" Y="135"/>
-        <UsageCount Value="18"/>
+        <UsageCount Value="15"/>
       </Unit>
       <Unit>
         <Filename Value="../../progz/lazarus/lcl/include/customcontrol.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="104"/>
         <CursorPos X="4" Y="111"/>
-        <UsageCount Value="12"/>
+        <UsageCount Value="9"/>
       </Unit>
       <Unit>
         <Filename Value="../../progz/lazarus/lcl/include/wincontrol.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="8139"/>
         <CursorPos Y="8151"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="7"/>
       </Unit>
       <Unit>
         <Filename Value="../../progz/lazarus/fpc/3.2.2/source/rtl/objpas/types.pp"/>
@@ -521,171 +561,193 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="71"/>
         <CursorPos X="3" Y="83"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="../../progz/lazarus/fpc/3.2.2/source/rtl/inc/typshrdh.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="37"/>
         <CursorPos X="3" Y="38"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="7"/>
       </Unit>
       <Unit>
         <Filename Value="unit1.lfm"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="456"/>
         <CursorPos X="14" Y="437"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="10"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit>
       <Unit>
         <Filename Value="../../progz/lazarus/lcl/include/controlcanvas.inc"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="7"/>
       </Unit>
       <Unit>
         <Filename Value="../../progz/lazarus/lcl/lcltype.pp"/>
         <UnitName Value="LCLType"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="3" Y="2667"/>
-        <UsageCount Value="12"/>
+        <UsageCount Value="9"/>
       </Unit>
       <Unit>
         <Filename Value="../../progz/lazarus/fpc/3.2.2/source/rtl/objpas/classes/classesh.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1945"/>
         <CursorPos X="17" Y="1959"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="7"/>
       </Unit>
       <Unit>
         <Filename Value="../../progz/lazarus/lcl/include/speedbutton.inc"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="202"/>
         <CursorPos Y="216"/>
+        <UsageCount Value="7"/>
+      </Unit>
+      <Unit>
+        <Filename Value="vendor/alsa/alsa.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="243"/>
+        <CursorPos X="22" Y="60"/>
+        <UsageCount Value="12"/>
+      </Unit>
+      <Unit>
+        <Filename Value="vendor/fpalsa/pcm.inc"/>
+        <EditorIndex Value="6"/>
+        <TopLine Value="512"/>
+        <CursorPos X="102" Y="525"/>
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/share/fpcsrc/3.2.2/rtl/objpas/math.pp"/>
+        <UnitName Value="Math"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="168"/>
+        <CursorPos X="10" Y="181"/>
+        <UsageCount Value="10"/>
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
       <Position>
-        <Filename Value="../../progz/lazarus/lcl/include/speedbutton.inc"/>
-        <Caret Line="215" TopLine="202"/>
+        <Filename Value="soundtimer.pas"/>
+        <Caret Line="11" Column="35" TopLine="11"/>
       </Position>
       <Position>
-        <Filename Value="../../progz/lazarus/lcl/include/speedbutton.inc"/>
-        <Caret Line="216" TopLine="202"/>
+        <Filename Value="sound/alsasoundengine.pas"/>
+        <Caret Line="19" Column="25"/>
       </Position>
       <Position>
-        <Filename Value="../../progz/lazarus/lcl/include/speedbutton.inc"/>
-        <Caret Line="217" TopLine="202"/>
+        <Filename Value="sound/alsasoundengine.pas"/>
+        <Caret Line="26" Column="10" TopLine="8"/>
       </Position>
       <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="226" TopLine="212"/>
+        <Filename Value="sound/alsasoundengine.pas"/>
+        <Caret Line="97" Column="15" TopLine="75"/>
       </Position>
       <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="224" TopLine="212"/>
+        <Filename Value="sound/alsasoundengine.pas"/>
+        <Caret Line="25" Column="10" TopLine="12"/>
       </Position>
       <Position>
-        <Filename Value="../../progz/lazarus/lcl/include/speedbutton.inc"/>
-        <Caret Line="215" TopLine="202"/>
+        <Filename Value="sound/alsasoundengine.pas"/>
+        <Caret Line="32" Column="24" TopLine="26"/>
       </Position>
       <Position>
-        <Filename Value="../../progz/lazarus/lcl/include/speedbutton.inc"/>
-        <Caret Line="216" TopLine="202"/>
+        <Filename Value="sound/alsasoundengine.pas"/>
+        <Caret Line="51" Column="14" TopLine="31"/>
       </Position>
       <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="224" TopLine="212"/>
+        <Filename Value="sound/alsasoundengine.pas"/>
+        <Caret Line="40" Column="38" TopLine="19"/>
       </Position>
       <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="226" TopLine="212"/>
+        <Filename Value="sound/alsasoundengine.pas"/>
+        <Caret Line="60" Column="15" TopLine="41"/>
       </Position>
       <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="224" TopLine="212"/>
+        <Filename Value="sound/alsasoundengine.pas"/>
+        <Caret Line="75" Column="16" TopLine="60"/>
       </Position>
       <Position>
-        <Filename Value="../../progz/lazarus/lcl/include/speedbutton.inc"/>
-        <Caret Line="215" TopLine="202"/>
+        <Filename Value="sound/alsasoundengine.pas"/>
+        <Caret Line="30" Column="25" TopLine="19"/>
       </Position>
       <Position>
-        <Filename Value="../../progz/lazarus/lcl/include/speedbutton.inc"/>
-        <Caret Line="216" TopLine="202"/>
+        <Filename Value="sound/autosoundengine.pas"/>
+        <Caret Line="46" Column="5" TopLine="2"/>
       </Position>
       <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="224" TopLine="212"/>
+        <Filename Value="sound/alsasoundengine.pas"/>
+        <Caret Line="36" Column="35" TopLine="28"/>
       </Position>
       <Position>
-        <Filename Value="../../progz/lazarus/lcl/include/speedbutton.inc"/>
-        <Caret Line="215" TopLine="202"/>
+        <Filename Value="sound/alsasoundengine.pas"/>
+        <Caret Line="33" Column="26" TopLine="28"/>
       </Position>
       <Position>
-        <Filename Value="../../progz/lazarus/lcl/include/speedbutton.inc"/>
-        <Caret Line="216" TopLine="202"/>
+        <Filename Value="sound/alsasoundengine.pas"/>
+        <Caret Line="82" Column="22"/>
       </Position>
       <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="224" TopLine="212"/>
+        <Filename Value="sound/autosoundengine.pas"/>
+        <Caret Line="61" Column="79" TopLine="38"/>
       </Position>
       <Position>
-        <Filename Value="../../progz/lazarus/lcl/include/speedbutton.inc"/>
-        <Caret Line="215" TopLine="202"/>
+        <Filename Value="sound/alsasoundengine.pas"/>
+        <Caret Line="20" Column="35" TopLine="7"/>
       </Position>
       <Position>
-        <Filename Value="../../progz/lazarus/lcl/include/speedbutton.inc"/>
-        <Caret Line="216" TopLine="202"/>
+        <Filename Value="sound/alsasoundengine.pas"/>
+        <Caret Line="20" Column="7" TopLine="7"/>
       </Position>
       <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="221" Column="21" TopLine="212"/>
+        <Filename Value="sound/alsasoundengine.pas"/>
+        <Caret Line="9" Column="52" TopLine="4"/>
       </Position>
       <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="225" Column="24" TopLine="212"/>
+        <Filename Value="sound/alsasoundengine.pas"/>
+        <Caret Line="54" Column="33" TopLine="45"/>
       </Position>
       <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="279" Column="22" TopLine="258"/>
+        <Filename Value="sound/alsasoundengine.pas"/>
+        <Caret Line="128" Column="22" TopLine="13"/>
       </Position>
       <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="304" Column="24" TopLine="283"/>
+        <Filename Value="sound/alsasoundengine.pas"/>
+        <Caret Line="130" Column="8" TopLine="89"/>
       </Position>
       <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="310" Column="24" TopLine="289"/>
+        <Filename Value="sound/alsasoundengine.pas"/>
+        <Caret Line="129" Column="5" TopLine="116"/>
       </Position>
       <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="84" Column="24" TopLine="72"/>
+        <Filename Value="sound/alsasoundengine.pas"/>
+        <Caret Line="128" Column="22" TopLine="115"/>
       </Position>
       <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="137" Column="22" TopLine="117"/>
+        <Filename Value="sound/alsasoundengine.pas"/>
+        <Caret Line="129" Column="5" TopLine="116"/>
       </Position>
       <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="156" Column="33" TopLine="135"/>
+        <Filename Value="sound/alsasoundengine.pas"/>
+        <Caret Line="52" Column="5" TopLine="45"/>
       </Position>
       <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="225" Column="24" TopLine="204"/>
+        <Filename Value="sound/alsasoundengine.pas"/>
+        <Caret Line="9" Column="27"/>
       </Position>
       <Position>
-        <Filename Value="unit1.pas"/>
-        <Caret Line="279" Column="22" TopLine="258"/>
+        <Filename Value="sound/alsasoundengine.pas"/>
+        <Caret Line="129" Column="54" TopLine="116"/>
       </Position>
       <Position>
-        <Filename Value="buttonstate.pas"/>
-        <Caret Line="28" Column="19" TopLine="17"/>
+        <Filename Value="sound/alsasoundengine.pas"/>
+        <Caret Line="130" Column="36" TopLine="117"/>
       </Position>
       <Position>
-        <Filename Value="buttonstate.pas"/>
-        <Caret Line="11" Column="11"/>
+        <Filename Value="sound/autosoundengine.pas"/>
+        <Caret Line="61" Column="79" TopLine="29"/>
       </Position>
     </JumpHistory>
     <RunParams>

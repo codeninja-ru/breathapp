@@ -111,12 +111,12 @@
         <UnitName Value="Unit2"/>
       </Unit>
       <Unit>
-        <Filename Value="miniaudiosoundengine.pas"/>
+        <Filename Value="sound/miniaudiosoundengine.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="MiniaudioSoundEngine"/>
       </Unit>
       <Unit>
-        <Filename Value="coreaudiosoundengine.pas"/>
+        <Filename Value="sound/coreaudiosoundengine.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="CoreAudioSoundEngine"/>
       </Unit>
@@ -126,14 +126,39 @@
         <UnitName Value="SoundWave"/>
       </Unit>
       <Unit>
-        <Filename Value="directsoundsoundengine.pas"/>
+        <Filename Value="sound/directsoundsoundengine.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="DirectSoundSoundEngine"/>
       </Unit>
       <Unit>
-        <Filename Value="autosoundengine.pas"/>
+        <Filename Value="sound/winmmsoundengine.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="WinMMSoundSoundEngine"/>
+      </Unit>
+      <Unit>
+        <Filename Value="sound/autosoundengine.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="AutoSoundEngine"/>
+      </Unit>
+      <Unit>
+        <Filename Value="sound/nosoundengine.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="NoSoundEngine"/>
+      </Unit>
+      <Unit>
+        <Filename Value="sound/alsasoundengine.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="AlsaSoundEngine"/>
+      </Unit>
+      <Unit>
+        <Filename Value="sound/pulseaudiosoundengine.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="PulseAudioSoundEngine"/>
+      </Unit>
+      <Unit>
+        <Filename Value="sound/ossaudioengine.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="OSSAudioEngine"/>
       </Unit>
     </Units>
   </ProjectOptions>

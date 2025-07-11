@@ -7,9 +7,10 @@ interface
 uses
   Classes,
   SysUtils,
-  SoundEngine
+  SoundEngine, NoSoundEngine
   {$IFDEF WINDOWS},WinMMSoundEngine, DirectSoundSoundEngine{$ENDIF}
-  {$IFDEF DARWIN},CoreAudioSoundEngine{$ENDIF};
+  {$IFDEF DARWIN},CoreAudioSoundEngine{$ENDIF}
+  {$IFDEF LINUX},AlsaSoundEngine{$ENDIF};
 
 type
 
@@ -56,6 +57,10 @@ begin
   if TCoreAudioSoundEngine.IsSupported then FSoundEngine := TCoreAudioSoundEngine.Create
   else raise Exception.Create('Cound Not Load Sound Engine (CoreAudio)');
   {$ENDIF}
+  {$IFDEF LINUX}
+  {$ENDIF}
+
+  if FSoundEngine = nil then FSoundEngine := TNoSoundEngine.Create;
 end;
 
 end.
