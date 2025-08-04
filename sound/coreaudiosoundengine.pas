@@ -5,7 +5,7 @@ unit CoreAudioSoundEngine;
 interface
 
 uses
-  Classes, SysUtils, CoreAudio, Dialogs, MacOSAll, CFString, SoundWave;
+  Classes, SysUtils, CoreAudio, Dialogs, MacOSAll, CFString, SoundWave, SoundEngine;
 
 type
 
@@ -22,7 +22,7 @@ type
 
   { TCoreAudioSoundEngine }
 
-  TCoreAudioSoundEngine = class
+  TCoreAudioSoundEngine = class(ISoundEngine)
   private
     FOutputDeviceFormat: AudioStreamBasicDescription;
     FDeviceId: AudioObjectID;
@@ -37,6 +37,7 @@ type
     procedure StartDevice(deviceId: AudioObjectID; procId: AudioDeviceIOProcID);
     procedure StopDevice(deviceId: AudioObjectID; procId: AudioDeviceIOProcID);
   public
+    class function IsSupported: boolean; static;
     procedure Open;
     procedure Close;
     procedure Play(AFreq: integer);
@@ -172,6 +173,15 @@ procedure TCoreAudioSoundEngine.StopDevice(deviceId: AudioObjectID;
 begin
   if AudioDeviceStop(deviceId, procId) <> 0 then
     raise Exception.Create('Error stoping audio device');
+end;
+
+class function TCoreAudioSoundEngine.IsSupported: boolean;
+begin
+  {$IFDEF DARWIN}
+  Result := True;
+  {$ELSE}
+  Result := False;
+  {$ENDIF}
 end;
 
 procedure TCoreAudioSoundEngine.Open;

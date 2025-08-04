@@ -225,7 +225,7 @@ begin
       FBorderColor, FBorderWidth,
       FBgColor);
 
-    bitmap.Draw(Canvas, Rect(0, 0, bitmap.Width, bitmap.Height), False);
+    bitmap.Draw(Canvas, Canvas.ClipRect, False);
 
   finally
     FreeAndNil(bitmap);
@@ -245,7 +245,7 @@ begin
   try
     DrawButtonBg(bitmap, FButtonBgColor, ScaleFactor);
     DrawUpArrow(bitmap, ScaleFactor);
-    bitmap.Draw(Canvas, Rect(0, 0, FButtonWidth, FButtonHeight), False);
+    bitmap.Draw(Canvas, Canvas.ClipRect, False);
   finally
     FreeAndNil(bitmap)
   end;
@@ -264,7 +264,7 @@ begin
   try
     DrawButtonBg(bitmap, FButtonBgColor, ScaleFactor);
     DrawDownArrow(bitmap, ScaleFactor);
-    bitmap.Draw(Canvas, Rect(0, 0, FButtonWidth, FButtonHeight), False);
+    bitmap.Draw(Canvas, Canvas.ClipRect, False);
   finally
     FreeAndNil(bitmap)
   end;
@@ -283,7 +283,7 @@ begin
   try
     DrawButtonBg(bitmap, FButtonBgHoverColor, ScaleFactor);
     DrawUpArrow(bitmap, ScaleFactor);
-    bitmap.Draw(Canvas, Rect(0, 0, FButtonWidth, FButtonHeight), False);
+    bitmap.Draw(Canvas, Canvas.ClipRect, False);
   finally
     FreeAndNil(bitmap)
   end;
@@ -302,7 +302,7 @@ begin
   try
     DrawButtonBg(bitmap, FButtonBgHoverColor, ScaleFactor);
     DrawDownArrow(bitmap, ScaleFactor);
-    bitmap.Draw(Canvas, Rect(0, 0, FButtonWidth, FButtonHeight), False);
+    bitmap.Draw(Canvas, Canvas.ClipRect, False);
   finally
     FreeAndNil(bitmap)
   end;

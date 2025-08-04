@@ -108,7 +108,7 @@ begin
     round(Height * AScaleFactor));
   try
     DrawChecked(bitmap);
-    bitmap.Draw(ACanvas, Rect(0, 0, bitmap.Width, bitmap.Height), False);
+    bitmap.Draw(ACanvas, ACanvas.ClipRect, False);
   finally
     bitmap.Free;
   end;
@@ -123,7 +123,7 @@ begin
     round(Height * AScaleFactor));
   try
     DrawUnchecked(bitmap);
-    bitmap.Draw(ACanvas, Rect(0, 0, bitmap.Width, bitmap.Height), False);
+    bitmap.Draw(ACanvas, ACanvas.ClipRect, False);
   finally
     bitmap.Free;
   end;

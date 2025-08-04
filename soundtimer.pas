@@ -97,9 +97,6 @@ end;
 procedure TSoundTimer.StartDevice;
 begin
   FSoundEngine.Open;
-  {$IFDEF DARWIN}
-  FCoreAudioEngine.Open;
-  {$ENDIF}
 end;
 
 procedure TSoundTimer.StopDevice;

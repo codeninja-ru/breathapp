@@ -155,8 +155,8 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="SoundTimer"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="11"/>
-        <CursorPos X="35" Y="11"/>
+        <TopLine Value="102"/>
+        <CursorPos X="30" Y="12"/>
         <UsageCount Value="203"/>
         <Loaded Value="True"/>
       </Unit>
@@ -210,9 +210,11 @@
         <Filename Value="sound/coreaudiosoundengine.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="CoreAudioSoundEngine"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="25" Y="6"/>
+        <EditorIndex Value="6"/>
+        <TopLine Value="171"/>
+        <CursorPos Y="220"/>
         <UsageCount Value="260"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="soundwave.pas"/>
@@ -227,10 +229,11 @@
         <Filename Value="sound/directsoundsoundengine.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="DirectSoundSoundEngine"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="21"/>
-        <CursorPos Y="37"/>
+        <CursorPos X="49" Y="36"/>
         <UsageCount Value="230"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="sound/winmmsoundengine.pas"/>
@@ -246,9 +249,9 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="AutoSoundEngine"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="29"/>
-        <CursorPos X="79" Y="61"/>
-        <UsageCount Value="97"/>
+        <TopLine Value="45"/>
+        <CursorPos X="28" Y="57"/>
+        <UsageCount Value="98"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -258,35 +261,33 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="19"/>
         <CursorPos X="43" Y="31"/>
-        <UsageCount Value="49"/>
+        <UsageCount Value="50"/>
       </Unit>
       <Unit>
         <Filename Value="sound/alsasoundengine.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="AlsaSoundEngine"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="5"/>
-        <TopLine Value="98"/>
-        <CursorPos X="13" Y="106"/>
-        <UsageCount Value="49"/>
+        <EditorIndex Value="13"/>
+        <CursorPos X="46" Y="15"/>
+        <UsageCount Value="50"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="sound/pulseaudiosoundengine.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="PulseAudioSoundEngine"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="15"/>
         <CursorPos X="14" Y="12"/>
-        <UsageCount Value="49"/>
+        <UsageCount Value="50"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="sound/ossaudioengine.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="OSSAudioEngine"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="16"/>
         <CursorPos X="3" Y="12"/>
-        <UsageCount Value="49"/>
+        <UsageCount Value="50"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -336,10 +337,12 @@
       <Unit>
         <Filename Value="roundspinedittheme.pas"/>
         <UnitName Value="RoundSpinEditTheme"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="420"/>
-        <CursorPos Y="381"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="8"/>
+        <TopLine Value="218"/>
+        <CursorPos X="17" Y="228"/>
         <UsageCount Value="32"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../../progz/lazarus/lcl/imglist.pp"/>
@@ -477,17 +480,20 @@
       <Unit>
         <Filename Value="switchbox.pas"/>
         <UnitName Value="SwitchBox"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="14"/>
-        <CursorPos Y="296"/>
+        <EditorIndex Value="9"/>
+        <TopLine Value="155"/>
+        <CursorPos Y="165"/>
         <UsageCount Value="19"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="switchboxtheme.pas"/>
         <UnitName Value="SwitchBoxTheme"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="24" Y="91"/>
+        <EditorIndex Value="12"/>
+        <TopLine Value="110"/>
+        <CursorPos X="42" Y="111"/>
         <UsageCount Value="19"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../../progz/lazarus/lcl/include/control.inc"/>
@@ -536,10 +542,11 @@
       <Unit>
         <Filename Value="roundspinedit.pas"/>
         <UnitName Value="RoundSpinEdit"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="226"/>
-        <CursorPos X="48" Y="135"/>
+        <EditorIndex Value="7"/>
+        <TopLine Value="157"/>
+        <CursorPos X="75" Y="161"/>
         <UsageCount Value="15"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../../progz/lazarus/lcl/include/customcontrol.inc"/>
@@ -613,7 +620,7 @@
       </Unit>
       <Unit>
         <Filename Value="vendor/fpalsa/pcm.inc"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="14"/>
         <TopLine Value="512"/>
         <CursorPos X="102" Y="525"/>
         <UsageCount Value="10"/>
@@ -627,127 +634,180 @@
         <CursorPos X="10" Y="181"/>
         <UsageCount Value="10"/>
       </Unit>
+      <Unit>
+        <Filename Value="/usr/local/share/fpcsrc/packages/paszlib/src/infcodes.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="23"/>
+        <CursorPos X="62" Y="31"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="vendor/fpalsa/control.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="627"/>
+        <CursorPos Y="649"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/Applications/Lazarus/lcl/include/customcontrol.inc"/>
+        <EditorIndex Value="10"/>
+        <TopLine Value="107"/>
+        <CursorPos Y="127"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/Applications/Lazarus/lcl/include/wincontrol.inc"/>
+        <EditorIndex Value="11"/>
+        <TopLine Value="4867"/>
+        <CursorPos Y="4880"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../.lazarus/onlinepackagemanager/packages/BGRABitmap/bgrabitmap/bgradefaultbitmap.pas"/>
+        <UnitName Value="BGRADefaultBitmap"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1740"/>
+        <CursorPos X="3" Y="1742"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/share/fpcsrc/rtl/objpas/classes/classesh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="2197"/>
+        <CursorPos X="10" Y="2208"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/share/fpcsrc/packages/fcl-image/src/fpcanvas.pp"/>
+        <UnitName Value="FPCanvas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="377"/>
+        <CursorPos X="14" Y="386"/>
+        <UsageCount Value="10"/>
+      </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
       <Position>
-        <Filename Value="soundtimer.pas"/>
-        <Caret Line="11" Column="35" TopLine="11"/>
+        <Filename Value="switchbox.pas"/>
+        <Caret Line="166" TopLine="155"/>
       </Position>
       <Position>
-        <Filename Value="sound/alsasoundengine.pas"/>
-        <Caret Line="19" Column="25"/>
+        <Filename Value="switchbox.pas"/>
+        <Caret Line="169" TopLine="155"/>
       </Position>
       <Position>
-        <Filename Value="sound/alsasoundengine.pas"/>
-        <Caret Line="26" Column="10" TopLine="8"/>
+        <Filename Value="/Applications/Lazarus/lcl/include/customcontrol.inc"/>
+        <Caret Line="125" TopLine="107"/>
       </Position>
       <Position>
-        <Filename Value="sound/alsasoundengine.pas"/>
-        <Caret Line="97" Column="15" TopLine="75"/>
+        <Filename Value="/Applications/Lazarus/lcl/include/customcontrol.inc"/>
+        <Caret Line="127" TopLine="107"/>
       </Position>
       <Position>
-        <Filename Value="sound/alsasoundengine.pas"/>
-        <Caret Line="25" Column="10" TopLine="12"/>
+        <Filename Value="/Applications/Lazarus/lcl/include/wincontrol.inc"/>
+        <Caret Line="4857" TopLine="4847"/>
       </Position>
       <Position>
-        <Filename Value="sound/alsasoundengine.pas"/>
-        <Caret Line="32" Column="24" TopLine="26"/>
+        <Filename Value="/Applications/Lazarus/lcl/include/wincontrol.inc"/>
+        <Caret Line="4878" TopLine="4867"/>
       </Position>
       <Position>
-        <Filename Value="sound/alsasoundengine.pas"/>
-        <Caret Line="51" Column="14" TopLine="31"/>
+        <Filename Value="/Applications/Lazarus/lcl/include/wincontrol.inc"/>
+        <Caret Line="4880" TopLine="4867"/>
       </Position>
       <Position>
-        <Filename Value="sound/alsasoundengine.pas"/>
-        <Caret Line="40" Column="38" TopLine="19"/>
+        <Filename Value="switchbox.pas"/>
+        <Caret Line="165" TopLine="155"/>
       </Position>
       <Position>
-        <Filename Value="sound/alsasoundengine.pas"/>
-        <Caret Line="60" Column="15" TopLine="41"/>
+        <Filename Value="switchbox.pas"/>
+        <Caret Line="166" TopLine="155"/>
       </Position>
       <Position>
-        <Filename Value="sound/alsasoundengine.pas"/>
-        <Caret Line="75" Column="16" TopLine="60"/>
+        <Filename Value="switchboxtheme.pas"/>
+        <Caret Line="106" TopLine="96"/>
       </Position>
       <Position>
-        <Filename Value="sound/alsasoundengine.pas"/>
-        <Caret Line="30" Column="25" TopLine="19"/>
+        <Filename Value="switchbox.pas"/>
+        <Caret Line="165" TopLine="155"/>
       </Position>
       <Position>
-        <Filename Value="sound/autosoundengine.pas"/>
-        <Caret Line="46" Column="5" TopLine="2"/>
+        <Filename Value="switchboxtheme.pas"/>
+        <Caret Line="111" Column="14" TopLine="96"/>
       </Position>
       <Position>
-        <Filename Value="sound/alsasoundengine.pas"/>
-        <Caret Line="36" Column="35" TopLine="28"/>
+        <Filename Value="switchboxtheme.pas"/>
+        <Caret Line="111" Column="59" TopLine="96"/>
       </Position>
       <Position>
-        <Filename Value="sound/alsasoundengine.pas"/>
-        <Caret Line="33" Column="26" TopLine="28"/>
+        <Filename Value="switchboxtheme.pas"/>
+        <Caret Line="126" Column="38" TopLine="109"/>
       </Position>
       <Position>
-        <Filename Value="sound/alsasoundengine.pas"/>
-        <Caret Line="82" Column="22"/>
+        <Filename Value="roundspinedittheme.pas"/>
+        <Caret Line="407" Column="28" TopLine="400"/>
       </Position>
       <Position>
-        <Filename Value="sound/autosoundengine.pas"/>
-        <Caret Line="61" Column="79" TopLine="38"/>
+        <Filename Value="roundspinedittheme.pas"/>
+        <Caret Line="103" Column="19" TopLine="93"/>
       </Position>
       <Position>
-        <Filename Value="sound/alsasoundengine.pas"/>
-        <Caret Line="20" Column="35" TopLine="7"/>
+        <Filename Value="roundspinedittheme.pas"/>
+        <Caret Line="105" Column="19" TopLine="93"/>
       </Position>
       <Position>
-        <Filename Value="sound/alsasoundengine.pas"/>
-        <Caret Line="20" Column="7" TopLine="7"/>
+        <Filename Value="roundspinedittheme.pas"/>
+        <Caret Line="106" Column="19" TopLine="93"/>
       </Position>
       <Position>
-        <Filename Value="sound/alsasoundengine.pas"/>
-        <Caret Line="9" Column="52" TopLine="4"/>
+        <Filename Value="roundspinedittheme.pas"/>
+        <Caret Line="164" Column="42" TopLine="145"/>
       </Position>
       <Position>
-        <Filename Value="sound/alsasoundengine.pas"/>
-        <Caret Line="54" Column="33" TopLine="45"/>
+        <Filename Value="roundspinedittheme.pas"/>
+        <Caret Line="179" Column="42" TopLine="160"/>
       </Position>
       <Position>
-        <Filename Value="sound/alsasoundengine.pas"/>
-        <Caret Line="128" Column="22" TopLine="13"/>
+        <Filename Value="roundspinedittheme.pas"/>
+        <Caret Line="195" Column="42" TopLine="176"/>
       </Position>
       <Position>
-        <Filename Value="sound/alsasoundengine.pas"/>
-        <Caret Line="130" Column="8" TopLine="89"/>
+        <Filename Value="roundspinedittheme.pas"/>
+        <Caret Line="226" Column="38" TopLine="209"/>
       </Position>
       <Position>
-        <Filename Value="sound/alsasoundengine.pas"/>
-        <Caret Line="129" Column="5" TopLine="116"/>
+        <Filename Value="roundspinedittheme.pas"/>
+        <Caret Line="228" Column="17" TopLine="209"/>
       </Position>
       <Position>
-        <Filename Value="sound/alsasoundengine.pas"/>
-        <Caret Line="128" Column="22" TopLine="115"/>
+        <Filename Value="roundspinedittheme.pas"/>
+        <Caret Line="248" Column="40" TopLine="229"/>
       </Position>
       <Position>
-        <Filename Value="sound/alsasoundengine.pas"/>
-        <Caret Line="129" Column="5" TopLine="116"/>
+        <Filename Value="roundspinedittheme.pas"/>
+        <Caret Line="267" Column="40" TopLine="248"/>
       </Position>
       <Position>
-        <Filename Value="sound/alsasoundengine.pas"/>
-        <Caret Line="52" Column="5" TopLine="45"/>
+        <Filename Value="roundspinedittheme.pas"/>
+        <Caret Line="286" Column="40" TopLine="267"/>
       </Position>
       <Position>
-        <Filename Value="sound/alsasoundengine.pas"/>
-        <Caret Line="9" Column="27"/>
+        <Filename Value="roundspinedittheme.pas"/>
+        <Caret Line="305" Column="40" TopLine="286"/>
       </Position>
       <Position>
-        <Filename Value="sound/alsasoundengine.pas"/>
-        <Caret Line="129" Column="54" TopLine="116"/>
+        <Filename Value="roundspinedittheme.pas"/>
+        <Caret Line="320" Column="46" TopLine="305"/>
       </Position>
       <Position>
-        <Filename Value="sound/alsasoundengine.pas"/>
-        <Caret Line="130" Column="36" TopLine="117"/>
+        <Filename Value="roundspinedittheme.pas"/>
+        <Caret Line="324" Column="17" TopLine="305"/>
       </Position>
       <Position>
-        <Filename Value="sound/autosoundengine.pas"/>
-        <Caret Line="61" Column="79" TopLine="29"/>
+        <Filename Value="roundspinedittheme.pas"/>
+        <Caret Line="343" Column="17" TopLine="324"/>
       </Position>
     </JumpHistory>
     <RunParams>

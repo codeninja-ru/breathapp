@@ -103,6 +103,7 @@ var
   buf: array of smallint;
   phase, step: double;
   i, framesToWrite: csize_t;
+  err: cint;
 begin
   OpenDevice;
 

@@ -6,7 +6,7 @@ unit AlsaSoundEngine;
 interface
 
 uses
-  Classes, SysUtils, Math, SoundEngine, ctypes, asoundlib, SoundWave;
+  Classes, SysUtils, Math, SoundEngine, ctypes, asoundlib, BaseUnix, SoundWave;
 
 type
 
