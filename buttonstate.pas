@@ -61,7 +61,6 @@ procedure TButtonState.FillImageListButton;
       Result := FImageList.Add(colored.Bitmap, nil);
     finally
       colored.Free;
-      ;
     end;
   end;
 

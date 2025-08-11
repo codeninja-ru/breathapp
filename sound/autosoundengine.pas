@@ -1,6 +1,7 @@
 unit AutoSoundEngine;
 
 {$mode ObjFPC}{$H+}
+{$Interfaces CORBA}
 
 interface
 

@@ -89,7 +89,7 @@ object MainForm: TMainForm
   }
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  LCLVersion = '2.2.6.0'
+  LCLVersion = '2.2.2.0'
   object SettingsPanel: TPanel
     Left = 0
     Height = 512
@@ -102,7 +102,7 @@ object MainForm: TMainForm
     TabOrder = 1
     object LabelCaption: TLabel
       Left = 0
-      Height = 32
+      Height = 29
       Top = 10
       Width = 320
       Align = alTop
@@ -213,9 +213,9 @@ object MainForm: TMainForm
     end
     object BreathInLabel: TLabel
       Left = 16
-      Height = 23
+      Height = 18
       Top = 56
-      Width = 65
+      Width = 63
       Caption = 'Inhale(s)'
       Font.CharSet = ANSI_CHARSET
       Font.Height = -16
@@ -225,7 +225,7 @@ object MainForm: TMainForm
     end
     object BreathOutLabel: TLabel
       Left = 200
-      Height = 23
+      Height = 18
       Top = 56
       Width = 67
       Caption = 'Exhale(s)'
@@ -237,9 +237,9 @@ object MainForm: TMainForm
     end
     object HoldInLabel: TLabel
       Left = 16
-      Height = 23
+      Height = 18
       Top = 144
-      Width = 72
+      Width = 70
       Caption = 'Hold in(s)'
       Font.CharSet = ANSI_CHARSET
       Font.Height = -16
@@ -249,9 +249,9 @@ object MainForm: TMainForm
     end
     object HoldOutLabel: TLabel
       Left = 200
-      Height = 23
+      Height = 18
       Top = 144
-      Width = 84
+      Width = 81
       Caption = 'Hold out(s)'
       Font.CharSet = ANSI_CHARSET
       Font.Height = -16
@@ -269,9 +269,9 @@ object MainForm: TMainForm
     end
     object NightModeLabel: TLabel
       Left = 160
-      Height = 27
+      Height = 22
       Top = 328
-      Width = 107
+      Width = 99
       Caption = 'Night mode'
       Font.CharSet = ANSI_CHARSET
       Font.Height = -19
@@ -289,9 +289,9 @@ object MainForm: TMainForm
     end
     object SoundLabel: TLabel
       Left = 160
-      Height = 27
+      Height = 22
       Top = 272
-      Width = 57
+      Width = 55
       Caption = 'Sound'
       Font.CharSet = ANSI_CHARSET
       Font.Height = -19

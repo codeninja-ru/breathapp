@@ -262,7 +262,7 @@ begin
     SetButtonStateStyle(StartButton, StateManager.State);
     if Self.Visible = True then BGImage.Refresh;
     TrayIcon.Icon.Assign(MainTrayIcon);
-    SoundTimer.StartDevice;
+    SoundTimer.StopDevice;
   end;
 end;
 

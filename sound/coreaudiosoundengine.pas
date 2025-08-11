@@ -1,11 +1,12 @@
 unit CoreAudioSoundEngine;
 
 {$mode ObjFPC}{$H+}
+{$Interfaces CORBA}
 
 interface
 
 uses
-  Classes, SysUtils, CoreAudio, Dialogs, MacOSAll, CFString, SoundWave, SoundEngine;
+  Classes, SysUtils, CoreAudio, MacOSAll, CFString, SoundWave, SoundEngine;
 
 type
 
@@ -48,10 +49,12 @@ type
 
 implementation
 
+{thows EStackOverflow error when ran with -Ct option}
 function beepCallback(inDevice: AudioObjectID; const (*var*) inNow: AudioTimeStamp;
   const (*var*) inInputData: AudioBufferList; const (*var*) inInputTime: AudioTimeStamp;
   var outOutputData: AudioBufferList; const (*var*) inOutputTime: AudioTimeStamp;
-  inClientData: UnivPtr): OSStatus;  mwpascal;
+  inClientData: UnivPtr): OSStatus; mwpascal;
+
 var
   clientData: PSoundClientData;
   Data: PSingle;
@@ -188,11 +191,12 @@ procedure TCoreAudioSoundEngine.Open;
 begin
   if not FIsPlaying then
   begin
+    FIsPlaying := True;
     FDeviceId := GetDefaultOutputDevice();
     FOutputDeviceFormat := GetOutputDeviceFormat(FDeviceId);
     {ShowMessage('DeviceName:' + GetOutputDeviceName(FDeviceId) +
       ' SampleRate = ' + FloatToStr(FOutputDeviceFormat.mSampleRate) +
-      ' Channels = ' + IntToStr(FOutputDeviceFormat.mChannelsPerFrame));}
+      ' Channels = ' + IntToStr(FOutputDeviceFormat.mChannelsPerFrame));  }
     FClientData.Channels := FOutputDeviceFormat.mChannelsPerFrame;
     FClientData.SampleRate := round(FOutputDeviceFormat.mSampleRate);
     FClientData.Freq := 440;
@@ -200,7 +204,6 @@ begin
     FClientData.Generator := TBeepWaveGenerator.Create(FClientData.SampleRate);  {TODO: should be an external dep }
     FProcId := RegisterCallback(FDeviceId, @beepCallback);
     StartDevice(FDeviceId, FProcId);
-    FIsPlaying := True;
   end;
 end;
 
@@ -210,8 +213,8 @@ begin
   begin
     StopDevice(FDeviceId, FProcId);
     AudioDeviceDestroyIOProcID(FDeviceId, FProcId);
-    FIsPlaying := False;
     FreeAndNil(FClientData.Generator);
+    FIsPlaying := False;
   end;
 end;
 
@@ -228,12 +231,14 @@ end;
 
 constructor TCoreAudioSoundEngine.Create;
 begin
+  inherited Create;
   FIsPlaying := False;
 end;
 
 destructor TCoreAudioSoundEngine.Destroy;
 begin
   Close;
+  inherited Destroy;
 end;
 
 end.

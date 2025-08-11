@@ -1,13 +1,12 @@
 unit SoundTimer;
 
 {$mode ObjFPC}{$H+}
+{$Interfaces CORBA}
 {DEFINE USE_MINIAUDIO}
 
 interface
 
 uses
-  Forms,
-  Classes,
   SysUtils,
   states,
   Math,
@@ -34,8 +33,8 @@ type
     destructor Destroy;
 
     procedure PlayEverySecond(State: TState);
-    procedure StartDevice;
-    procedure StopDevice;
+    procedure StartDevice;  //TODO rename to StartTimer
+    procedure StopDevice;   //TODO rename to StopTimer
   end;
 
 implementation
