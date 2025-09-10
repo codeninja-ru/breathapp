@@ -83,13 +83,10 @@ end;
 { TAlsaSoundEngine }
 
 function TAlsaSoundEngine.AlsaOpenDevice: Pointer;
-{$IFDEF UNIX}
 var
   rc: Integer;
   latencyUs: Cardinal;
-{$ENDIF}
 begin
-  {$IFDEF UNIX}
   Result := nil;
 
   rc := snd_pcm_open(Result, PChar('default'), SND_PCM_STREAM_PLAYBACK, 0);
@@ -109,10 +106,6 @@ begin
         );
   if rc < 0 then
     RaiseAlsaError('Could not set ALSA params', rc);
-
-  {$ELSE}
-  // не UNIX — не поддерживается
-  {$ENDIF}
 end;
 
 procedure TAlsaSoundEngine.AlsaCloseDevice(FPcm: Pointer);
@@ -208,13 +201,23 @@ begin
   AlsaCloseDevice(pcm);
 end;
 
-class function TAlsaSoundEngine.IsSupported: Boolean; static;
+class function TAlsaSoundEngine.IsSupported: Boolean;
+{$IFDEF UNIX}
+var
+  pcm: Pointer = nil;
+  rc: Integer;
+{$ENDIF}
 begin
-  {$IFDEF UNIX}
+{$IFDEF UNIX}
+  rc := snd_pcm_open(pcm, PChar('default'), SND_PCM_STREAM_PLAYBACK, SND_PCM_NONBLOCK);
+  if rc < 0 then
+    Exit(False);
+
+  snd_pcm_close(pcm);
   Result := True;
-  {$ELSE}
+{$ELSE}
   Result := False;
-  {$ENDIF}
+{$ENDIF}
 end;
 
 constructor TAlsaSoundEngine.Create;

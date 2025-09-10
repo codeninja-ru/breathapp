@@ -51,8 +51,6 @@ const
 
   AFMT_S16_LE = $00000010;
 
-function FpIoctl(fd: cint; request: culong; argp: Pointer): cint; cdecl; external name 'fpIOCtl';
-
 {$ENDIF}
 
 procedure RaiseOssError(const Msg: string);
@@ -147,12 +145,12 @@ end;
 
 procedure TOssSoundEngine.Open;
 begin
-  // не нужно — открываем при Play
+
 end;
 
 procedure TOssSoundEngine.Close;
 begin
-  // не нужно
+
 end;
 
 procedure TOssSoundEngine.Play(AFreq: Integer);
@@ -173,7 +171,6 @@ end;
 
 class function TOssSoundEngine.IsSupported: Boolean;
 begin
-  // Проверяем, что /dev/dsp существует и можно открыть
   Result := fpAccess('/dev/dsp', W_OK) = 0;
 end;
 

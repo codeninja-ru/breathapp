@@ -156,9 +156,9 @@
         <UnitName Value="PulseAudioSoundEngine"/>
       </Unit>
       <Unit>
-        <Filename Value="sound/ossaudioengine.pas"/>
+        <Filename Value="sound/osssoundengine.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="OSSAudioEngine"/>
+        <UnitName Value="OssSoundEngine"/>
       </Unit>
     </Units>
   </ProjectOptions>
@@ -169,7 +169,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="vendor/miniaudio"/>
+      <OtherUnitFiles Value="vendor/miniaudio;sound"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Parsing>

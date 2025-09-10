@@ -2,7 +2,7 @@
 <CONFIG>
   <ProjectSession>
     <Version Value="12"/>
-    <BuildModes Active="Debug">
+    <BuildModes Active="Release">
       <Item Name="Debug">
         <CompilerOptions>
           <Version Value="11"/>
@@ -51,7 +51,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="vendor/miniaudio"/>
+            <OtherUnitFiles Value="vendor/miniaudio;sound"/>
             <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <CodeGeneration>
@@ -80,7 +80,7 @@
         <Filename Value="breath.lpr"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="3"/>
-        <CursorPos X="8" Y="10"/>
+        <CursorPos Y="21"/>
         <UsageCount Value="205"/>
         <Loaded Value="True"/>
       </Unit>
@@ -127,7 +127,7 @@
         <Filename Value="states.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="27"/>
+        <TopLine Value="24"/>
         <CursorPos X="45" Y="24"/>
         <UsageCount Value="235"/>
         <Loaded Value="True"/>
@@ -155,7 +155,6 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="SoundTimer"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="3"/>
         <CursorPos Y="103"/>
         <UsageCount Value="203"/>
         <Loaded Value="True"/>
@@ -231,7 +230,7 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="DirectSoundSoundEngine"/>
         <EditorIndex Value="6"/>
-        <TopLine Value="125"/>
+        <TopLine Value="118"/>
         <CursorPos X="20" Y="145"/>
         <UsageCount Value="230"/>
         <Loaded Value="True"/>
@@ -250,9 +249,9 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="AutoSoundEngine"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="41"/>
-        <CursorPos Y="36"/>
-        <UsageCount Value="147"/>
+        <TopLine Value="48"/>
+        <CursorPos X="81" Y="14"/>
+        <UsageCount Value="149"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -262,17 +261,16 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="19"/>
         <CursorPos X="43" Y="31"/>
-        <UsageCount Value="99"/>
+        <UsageCount Value="101"/>
       </Unit>
       <Unit>
         <Filename Value="sound/alsasoundengine.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="AlsaSoundEngine"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="12"/>
-        <TopLine Value="81"/>
-        <CursorPos Y="97"/>
-        <UsageCount Value="99"/>
+        <TopLine Value="88"/>
+        <CursorPos X="92" Y="212"/>
+        <UsageCount Value="101"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -280,17 +278,21 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="PulseAudioSoundEngine"/>
         <EditorIndex Value="13"/>
-        <CursorPos X="14" Y="12"/>
-        <UsageCount Value="99"/>
+        <TopLine Value="211"/>
+        <CursorPos Y="238"/>
+        <UsageCount Value="101"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
-        <Filename Value="sound/ossaudioengine.pas"/>
+        <Filename Value="sound/osssoundengine.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="OSSAudioEngine"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="3" Y="12"/>
-        <UsageCount Value="99"/>
+        <UnitName Value="OssSoundEngine"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="14"/>
+        <TopLine Value="34"/>
+        <CursorPos X="27" Y="52"/>
+        <UsageCount Value="101"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="vendor/miniaudio/miniaudio.pp"/>
@@ -319,7 +321,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="2476"/>
         <CursorPos X="10" Y="2486"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="roundupdown.pas"/>
@@ -335,7 +337,7 @@
         <EditorIndex Value="9"/>
         <TopLine Value="218"/>
         <CursorPos X="78" Y="226"/>
-        <UsageCount Value="57"/>
+        <UsageCount Value="58"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -366,7 +368,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="123"/>
         <CursorPos X="15" Y="130"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="../../Documents and Settings/admin/Local Settings/Application Data/lazarus/onlinepackagemanager/packages/BGRABitmap/bgrabitmap/bgrascanner.inc"/>
@@ -403,14 +405,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="346"/>
         <CursorPos Y="358"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="../../Documents and Settings/admin/Local Settings/Application Data/lazarus/onlinepackagemanager/packages/BGRABitmap/bgrabitmap/bgrapixel.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="212"/>
         <CursorPos X="5" Y="225"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="../../Documents and Settings/admin/Local Settings/Application Data/lazarus/onlinepackagemanager/packages/BGRABitmap/bgrabitmap/bgrawinbitmap.pas"/>
@@ -425,7 +427,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="103"/>
         <CursorPos X="19" Y="112"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit>
       <Unit>
         <Filename Value="../../progz/lazarus/lcl/controls.pp"/>
@@ -441,7 +443,7 @@
         <EditorIndex Value="10"/>
         <TopLine Value="155"/>
         <CursorPos Y="165"/>
-        <UsageCount Value="44"/>
+        <UsageCount Value="45"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -450,7 +452,7 @@
         <EditorIndex Value="11"/>
         <TopLine Value="110"/>
         <CursorPos X="42" Y="111"/>
-        <UsageCount Value="44"/>
+        <UsageCount Value="45"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -501,9 +503,9 @@
         <Filename Value="roundspinedit.pas"/>
         <UnitName Value="RoundSpinEdit"/>
         <EditorIndex Value="8"/>
-        <TopLine Value="16"/>
+        <TopLine Value="134"/>
         <CursorPos X="75" Y="161"/>
-        <UsageCount Value="40"/>
+        <UsageCount Value="41"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -689,76 +691,21 @@
         <CursorPos Y="118"/>
         <UsageCount Value="8"/>
       </Unit>
+      <Unit>
+        <Filename Value="/usr/share/fpcsrc/3.2.2/rtl/objpas/sysutils/sysutilh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="231"/>
+        <CursorPos X="4" Y="107"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/share/fpcsrc/3.2.2/rtl/linux/termio.pp"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="28"/>
+        <UsageCount Value="10"/>
+      </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="sound/alsasoundengine.pas"/>
-        <Caret Line="148" TopLine="127"/>
-      </Position>
-      <Position>
-        <Filename Value="sound/alsasoundengine.pas"/>
-        <Caret Line="151" TopLine="128"/>
-      </Position>
-      <Position>
-        <Filename Value="sound/alsasoundengine.pas"/>
-        <Caret Line="152" TopLine="129"/>
-      </Position>
-      <Position>
-        <Filename Value="sound/alsasoundengine.pas"/>
-        <Caret Line="161" TopLine="148"/>
-      </Position>
-      <Position>
-        <Filename Value="sound/alsasoundengine.pas"/>
-        <Caret Line="162" TopLine="148"/>
-      </Position>
-      <Position>
-        <Filename Value="sound/alsasoundengine.pas"/>
-        <Caret Line="148" TopLine="135"/>
-      </Position>
-      <Position>
-        <Filename Value="sound/alsasoundengine.pas"/>
-        <Caret Line="151" TopLine="135"/>
-      </Position>
-      <Position>
-        <Filename Value="sound/alsasoundengine.pas"/>
-        <Caret Line="152" TopLine="135"/>
-      </Position>
-      <Position>
-        <Filename Value="sound/alsasoundengine.pas"/>
-        <Caret Line="155" TopLine="135"/>
-      </Position>
-      <Position>
-        <Filename Value="sound/alsasoundengine.pas"/>
-        <Caret Line="156" TopLine="135"/>
-      </Position>
-      <Position>
-        <Filename Value="sound/alsasoundengine.pas"/>
-        <Caret Line="158" TopLine="136"/>
-      </Position>
-      <Position>
-        <Filename Value="sound/alsasoundengine.pas"/>
-        <Caret Line="148" TopLine="136"/>
-      </Position>
-      <Position>
-        <Filename Value="sound/alsasoundengine.pas"/>
-        <Caret Line="151" TopLine="136"/>
-      </Position>
-      <Position>
-        <Filename Value="sound/alsasoundengine.pas"/>
-        <Caret Line="152" TopLine="136"/>
-      </Position>
-      <Position>
-        <Filename Value="sound/alsasoundengine.pas"/>
-        <Caret Line="161" TopLine="139"/>
-      </Position>
-      <Position>
-        <Filename Value="sound/alsasoundengine.pas"/>
-        <Caret Line="162" TopLine="140"/>
-      </Position>
-      <Position>
-        <Filename Value="sound/alsasoundengine.pas"/>
-        <Caret Line="148" TopLine="140"/>
-      </Position>
       <Position>
         <Filename Value="sound/alsasoundengine.pas"/>
         <Caret Line="166" TopLine="144"/>
@@ -811,6 +758,74 @@
         <Filename Value="sound/alsasoundengine.pas"/>
         <Caret Line="103" Column="56" TopLine="89"/>
       </Position>
+      <Position>
+        <Filename Value="sound/pulseaudiosoundengine.pas"/>
+        <Caret Line="10" Column="21"/>
+      </Position>
+      <Position>
+        <Filename Value="sound/alsasoundengine.pas"/>
+        <Caret Line="75" Column="64" TopLine="63"/>
+      </Position>
+      <Position>
+        <Filename Value="sound/alsasoundengine.pas"/>
+        <Caret Line="74" Column="58" TopLine="60"/>
+      </Position>
+      <Position>
+        <Filename Value="soundtimer.pas"/>
+        <Caret Line="103" TopLine="42"/>
+      </Position>
+      <Position>
+        <Filename Value="sound/pulseaudiosoundengine.pas"/>
+        <Caret Line="34" Column="77" TopLine="26"/>
+      </Position>
+      <Position>
+        <Filename Value="sound/alsasoundengine.pas"/>
+        <Caret Line="219" TopLine="140"/>
+      </Position>
+      <Position>
+        <Filename Value="sound/autosoundengine.pas"/>
+        <Caret Line="60" Column="66" TopLine="43"/>
+      </Position>
+      <Position>
+        <Filename Value="sound/alsasoundengine.pas"/>
+        <Caret Line="208" Column="15" TopLine="196"/>
+      </Position>
+      <Position>
+        <Filename Value="sound/pulseaudiosoundengine.pas"/>
+        <Caret Line="76" Column="28"/>
+      </Position>
+      <Position>
+        <Filename Value="sound/pulseaudiosoundengine.pas"/>
+        <Caret Line="87" Column="22" TopLine="73"/>
+      </Position>
+      <Position>
+        <Filename Value="sound/pulseaudiosoundengine.pas"/>
+        <Caret Line="76" Column="28" TopLine="62"/>
+      </Position>
+      <Position>
+        <Filename Value="sound/pulseaudiosoundengine.pas"/>
+        <Caret Line="73" Column="49" TopLine="62"/>
+      </Position>
+      <Position>
+        <Filename Value="sound/pulseaudiosoundengine.pas"/>
+        <Caret Line="238" TopLine="211"/>
+      </Position>
+      <Position>
+        <Filename Value="sound/autosoundengine.pas"/>
+        <Caret Line="64" Column="29" TopLine="43"/>
+      </Position>
+      <Position>
+        <Filename Value="sound/autosoundengine.pas"/>
+        <Caret Line="14" Column="81" TopLine="48"/>
+      </Position>
+      <Position>
+        <Filename Value="sound/osssoundengine.pas"/>
+        <Caret Line="15" Column="28"/>
+      </Position>
+      <Position>
+        <Filename Value="sound/osssoundengine.pas"/>
+        <Caret Line="45" Column="47" TopLine="34"/>
+      </Position>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
@@ -832,13 +847,6 @@
         <WatchKind Value="wpkWrite"/>
         <Source Value="../../Documents and Settings/admin/Local Settings/Application Data/lazarus/onlinepackagemanager/packages/BGRABitmap/bgrabitmap/unibitmap.inc"/>
         <Line Value="930"/>
-      </Item>
-      <Item>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="sound/alsasoundengine.pas"/>
-        <Line Value="97"/>
       </Item>
     </BreakPoints>
   </Debugging>
