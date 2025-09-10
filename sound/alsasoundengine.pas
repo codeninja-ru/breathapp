@@ -1,89 +1,186 @@
 unit AlsaSoundEngine;
 
 {$mode ObjFPC}{$H+}
-{$Interfaces CORBA}
+{$DEFINE DYNAMIC_LINK_ALL}
 
 interface
 
 uses
-  Classes, SysUtils, Math, SoundEngine, ctypes, asoundlib, BaseUnix, SoundWave;
+  Classes, SysUtils, SoundWave, SoundEngine
+  {$IFDEF UNIX}
+  , DynLibs
+  {$ENDIF}
+  ;
 
 type
-
   { TAlsaSoundEngine }
 
   TAlsaSoundEngine = class(ISoundEngine)
   private
-  const
-    SAMPLE_RATE = 44100;
-    CHANNELS = 1;
-    //FORMAT = SND_PCM_FORMAT_S16_LE;  // 16-bit PCM, little endian
-    PERIOD_FRAMES = 1024;
-    BUFFER_SECONDS = 2;
-    FREQUENCY = 440.0;  // Гц
-  private
-    pcmHandle: Psnd_pcm_t;
-    hwParams: Psnd_pcm_hw_params_t;
     FGenerator: TBeepWaveGenerator;
-    procedure OpenDevice;
-    procedure AllocParams;
-    procedure SettupParams;
-    procedure DrainAndClose;
+  private
+  const
+    DEVICE_CHANNELS   = 2;
+    DEVICE_SAMPLE_RATE = 48000; // кадров (фреймов) в секунду
+    DEVICE_BITS       = 16;
+    AMPLITUDE         = 30000;
+  protected
+    function AlsaOpenDevice: Pointer;
+    procedure AlsaCloseDevice(FPcm: Pointer);
+    procedure AlsaWriteFrames(FPcm: Pointer; const Frames: PSmallInt; FrameCount: SizeInt);
+    procedure GenerateBuffer(AFreq: Integer; out Buf: PSmallInt; out Frames: SizeInt);
   public
-    class function IsSupported: boolean; static;
+    // ISoundEngine
     procedure Open;
     procedure Close;
-    procedure Play(AFreq: integer);
+    procedure Play(AFreq: Integer);
+    class function IsSupported: Boolean; static;
+
     constructor Create;
-    destructor Destroy;
+    destructor Destroy; override;
   end;
 
 implementation
 
+{$IFDEF UNIX}
+// --- Минимальные объявления ALSA (чтобы не тянуть полноразмерные заголовки) ---
+
+const
+  // stream
+  SND_PCM_STREAM_PLAYBACK = 0;
+  // mode
+  SND_PCM_NONBLOCK = $0001;
+
+  // format
+  SND_PCM_FORMAT_S16_LE = 2;
+
+  // access
+  SND_PCM_ACCESS_RW_INTERLEAVED = 3;
+
+type
+  snd_pcm_sframes_t = NativeInt;
+
+function snd_pcm_open(var pcm: Pointer; name: PChar; stream: Integer; mode: Integer): Integer; cdecl; external 'asound';
+function snd_pcm_close(pcm: Pointer): Integer; cdecl; external 'asound';
+function snd_pcm_prepare(pcm: Pointer): Integer; cdecl; external 'asound';
+function snd_pcm_drain(pcm: Pointer): Integer; cdecl; external 'asound';
+function snd_pcm_writei(pcm: Pointer; buffer: Pointer; size: NativeUInt): snd_pcm_sframes_t; cdecl; external 'asound';
+function snd_pcm_set_params(pcm: Pointer; format: Integer; access: Integer;
+  channels: Cardinal; rate: Cardinal; soft_resample: Integer; latency: Cardinal): Integer; cdecl; external 'asound';
+function snd_strerror(errnum: Integer): PChar; cdecl; external 'asound';
+function snd_pcm_drop(pcm: Pointer): Integer; cdecl; external 'asound';
+function snd_pcm_recover(pcm: Pointer; err: Integer; silent: Integer): Integer; cdecl; external 'asound';
+{$ENDIF}
+
+procedure RaiseAlsaError(const Msg: string; Err: Integer);
+begin
+  {$IFDEF UNIX}
+  raise Exception.CreateFmt('%s (ALSA err=%d: %s)', [Msg, Err, StrPas(snd_strerror(Err))]);
+  {$ELSE}
+  raise Exception.Create(Msg);
+  {$ENDIF}
+end;
+
 { TAlsaSoundEngine }
 
-procedure TAlsaSoundEngine.AllocParams;
-begin
-  snd_pcm_hw_params_malloc(@hwParams);
-  snd_pcm_hw_params_any(pcmHandle, hwParams);
-end;
-
-procedure TAlsaSoundEngine.SettupParams;
-var periodSize, avail: snd_pcm_sframes_t;
-begin
-  snd_pcm_hw_params_set_access(pcmHandle, hwParams,
-    SND_PCM_ACCESS_RW_INTERLEAVED);
-  snd_pcm_hw_params_set_format(pcmHandle, hwParams, SND_PCM_FORMAT_S16_LE);
-  snd_pcm_hw_params_set_rate(pcmHandle, hwParams, SAMPLE_RATE, 0);
-  snd_pcm_hw_params_set_channels(pcmHandle, hwParams, CHANNELS);
-  snd_pcm_hw_params_set_period_size(pcmHandle, hwParams, periodSize, 0);
-  snd_pcm_hw_params(pcmHandle, hwParams);
-  snd_pcm_hw_params_free(hwParams);
-end;
-
-procedure TAlsaSoundEngine.OpenDevice;
+function TAlsaSoundEngine.AlsaOpenDevice: Pointer;
+{$IFDEF UNIX}
 var
-  err: cint;
+  rc: Integer;
+  latencyUs: Cardinal;
+{$ENDIF}
 begin
-  err := snd_pcm_open(@pcmHandle, 'default', SND_PCM_STREAM_PLAYBACK, 0);
-  if err < 0 then
-    raise Exception.Create('Alsa error: snd_pcm_open: ' + snd_strerror(err));
+  {$IFDEF UNIX}
+  Result := nil;
+
+  rc := snd_pcm_open(Result, PChar('default'), SND_PCM_STREAM_PLAYBACK, 0);
+  if rc < 0 then
+    RaiseAlsaError('Could not open ALSA device "default"', rc);
+
+  latencyUs := 100000;
+
+  rc := snd_pcm_set_params(
+          Result,
+          SND_PCM_FORMAT_S16_LE,
+          SND_PCM_ACCESS_RW_INTERLEAVED,
+          DEVICE_CHANNELS,
+          DEVICE_SAMPLE_RATE,
+          1 {soft_resample},
+          latencyUs
+        );
+  if rc < 0 then
+    RaiseAlsaError('Could not set ALSA params', rc);
+
+  {$ELSE}
+  // не UNIX — не поддерживается
+  {$ENDIF}
 end;
 
-procedure TAlsaSoundEngine.DrainAndClose;
+procedure TAlsaSoundEngine.AlsaCloseDevice(FPcm: Pointer);
+var
+  rc: Integer;
 begin
-  snd_pcm_drain(pcmHandle);
-  snd_pcm_close(pcmHandle);
-  pcmHandle := nil;
+    rc := snd_pcm_close(FPcm);
+    if rc < 0 then
+      RaiseAlsaError('ALSA close failed', rc);
 end;
 
-class function TAlsaSoundEngine.IsSupported: boolean;
-var h: TLibHandle;
+procedure TAlsaSoundEngine.AlsaWriteFrames(FPcm: Pointer; const Frames: PSmallInt; FrameCount: SizeInt);
+var
+  written, left: snd_pcm_sframes_t;
+  p: PSmallInt;
+  rc: Integer;
 begin
-  h := LoadLibrary(libasound);
+  if FPcm = nil then
+    raise Exception.Create('ALSA device is not open');
 
-  Result := h <> NilHandle;
-  if h <> NilHandle then FreeAndNil(h);
+  rc := snd_pcm_prepare(FPcm);
+  if rc < 0 then
+    RaiseAlsaError('ALSA prepare failed', rc);
+
+  p := Frames;
+  left := FrameCount;
+
+  while left > 0 do
+  begin
+    written := snd_pcm_writei(FPcm, p, left);
+    if written < 0 then
+    begin
+      rc := snd_pcm_prepare(FPcm);
+      if rc < 0 then
+        RaiseAlsaError('ALSA recover (prepare) failed', rc);
+      continue;
+    end;
+
+    Inc(p, written * DEVICE_CHANNELS);
+    Dec(left, written);
+  end;
+
+  rc := snd_pcm_drain(FPcm);
+  if rc < 0 then
+    RaiseAlsaError('ALSA drain failed', rc);
+end;
+
+
+procedure TAlsaSoundEngine.GenerateBuffer(AFreq: Integer; out Buf: PSmallInt; out Frames: SizeInt);
+var
+  totalFrames, i, ch: SizeInt;
+  val: SmallInt;
+  data: PSmallInt;
+begin
+  totalFrames := (DEVICE_SAMPLE_RATE * FGenerator.SoundTimeMs) div 1000;
+  Frames := totalFrames;
+
+  GetMem(data, totalFrames * DEVICE_CHANNELS * SizeOf(SmallInt));
+
+  for i := 0 to totalFrames - 1 do
+  begin
+    val := SmallInt(Round(AMPLITUDE * FGenerator.GetDataForFrame(i, AFreq)));
+    for ch := 0 to DEVICE_CHANNELS - 1 do
+      data[i * DEVICE_CHANNELS + ch] := val;
+  end;
+
+  Buf := data;
 end;
 
 procedure TAlsaSoundEngine.Open;
@@ -96,65 +193,44 @@ begin
 
 end;
 
-procedure TAlsaSoundEngine.Play(AFreq: integer);
+procedure TAlsaSoundEngine.Play(AFreq: Integer);
 var
-  periodSize: snd_pcm_uframes_t = PERIOD_FRAMES;
-  bufferFrames: snd_pcm_uframes_t = SAMPLE_RATE * BUFFER_SECONDS;
-  buf: array of smallint;
-  phase, step: double;
-  i, framesToWrite: csize_t;
-  err: cint;
+  buf: PSmallInt = nil;
+  frames: SizeInt = 0;
+  pcm: Pointer;
 begin
-  OpenDevice;
-
-  AllocParams;
-
-  SettupParams;
-
-  snd_pcm_prepare(pcmHandle);
-
-  SetLength(buf, bufferFrames);
-  step := 2 * Pi * FREQUENCY / SAMPLE_RATE;
-  phase := 0.0;
-  for i := 0 to High(buf) do
-  begin
-    buf[i] := Round(32767 * Sin(phase));
-    phase += step;
-    if phase >= 2 * Pi then phase -= 2 * Pi;
+  pcm := AlsaOpenDevice;
+  GenerateBuffer(AFreq, buf, frames);
+  try
+    AlsaWriteFrames(pcm, buf, frames);
+  finally
+    if buf <> nil then FreeMem(buf);
   end;
+  AlsaCloseDevice(pcm);
+end;
 
-  // 6. Воспроизводим поток
-  i := 0;
-  while i < Length(buf) do
-  begin
-    framesToWrite := Min(csize_t(periodSize), csize_t(Length(buf) - i));
-    err := snd_pcm_writei(pcmHandle, @buf[i], framesToWrite);
-    if err = -EPIPE then
-    begin
-      // underrun, переподготовка
-      snd_pcm_prepare(pcmHandle);
-      Continue;
-    end;
-    if err < 0 then
-    begin
-      raise Exception.Create('Alsa: writing error ' + snd_strerror(err));
-    end;
-    Inc(i, err);
-  end;
-
-  DrainAndClose;
+class function TAlsaSoundEngine.IsSupported: Boolean; static;
+begin
+  {$IFDEF UNIX}
+  Result := True;
+  {$ELSE}
+  Result := False;
+  {$ENDIF}
 end;
 
 constructor TAlsaSoundEngine.Create;
 begin
-  pcmHandle := nil;
-  FGenerator := TBeepWaveGenerator.Create(SAMPLE_RATE);
+  if not TAlsaSoundEngine.IsSupported then
+    raise Exception.Create('ALSA is not supported on this platform');
+
+  FGenerator := TBeepWaveGenerator.Create(DEVICE_SAMPLE_RATE);
 end;
 
 destructor TAlsaSoundEngine.Destroy;
 begin
-  if pcmHandle <> nil then Close;
   FreeAndNil(FGenerator);
+  inherited Destroy;
 end;
 
 end.
+
