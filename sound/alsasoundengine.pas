@@ -21,7 +21,7 @@ type
   private
   const
     DEVICE_CHANNELS   = 2;
-    DEVICE_SAMPLE_RATE = 48000; // кадров (фреймов) в секунду
+    DEVICE_SAMPLE_RATE = 48000;
     DEVICE_BITS       = 16;
     AMPLITUDE         = 30000;
   protected
@@ -43,7 +43,6 @@ type
 implementation
 
 {$IFDEF UNIX}
-// --- Минимальные объявления ALSA (чтобы не тянуть полноразмерные заголовки) ---
 
 const
   // stream
