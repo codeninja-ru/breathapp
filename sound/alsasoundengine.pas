@@ -206,10 +206,17 @@ class function TAlsaSoundEngine.IsSupported: Boolean;
 var
   pcm: Pointer = nil;
   rc: Integer;
+  dyn_snd_pcm_open: function(var pcm: Pointer; name: PChar; stream: Integer; mode: Integer): Integer; cdecl;
+  LibHandle: TLibHandle;
 {$ENDIF}
 begin
 {$IFDEF UNIX}
-  rc := snd_pcm_open(pcm, PChar('default'), SND_PCM_STREAM_PLAYBACK, SND_PCM_NONBLOCK);
+  LibHandle := LoadLibrary('libasound.so');
+  if LibHandle = 0 then Exit(False);
+  Pointer(dyn_snd_pcm_open) := GetProcedureAddress(LibHandle, 'snd_pcm_open');
+  if not Assigned(dyn_snd_pcm_open) then Exit(False);
+
+  rc := dyn_snd_pcm_open(pcm, PChar('default'), SND_PCM_STREAM_PLAYBACK, SND_PCM_NONBLOCK);
   if rc < 0 then
     Exit(False);
 

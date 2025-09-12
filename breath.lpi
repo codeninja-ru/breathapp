@@ -9,7 +9,9 @@
       <ResourceType Value="res"/>
       <UseXPManifest Value="True"/>
       <XPManifest>
-        <DpiAware Value="True"/>
+        <DpiAware Value="True/PM"/>
+        <TextName Value="vmayorov.breathapp"/>
+        <TextDesc Value="Breath trainer"/>
       </XPManifest>
       <Icon Value="0"/>
     </General>
@@ -160,6 +162,10 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="OssSoundEngine"/>
       </Unit>
+      <Unit>
+        <Filename Value="vendor/FPC_DirectX92/DirectSound.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -169,7 +175,8 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="vendor/miniaudio;sound"/>
+      <Libraries Value="vendor/FPC_DirectX92"/>
+      <OtherUnitFiles Value="sound;vendor/FPC_DirectX92"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Parsing>

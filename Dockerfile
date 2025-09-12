@@ -15,8 +15,10 @@ RUN apt-get install -y mingw-w64-x86-64-dev mingw-w64-i686-dev
 # osxcross deps
 RUN apt-get install -y bzip2-doc llvm llvm-runtime cmake git
 
-# MacOs sdk
+# MacOs sdk and lazarus components
 COPY ./vendor/MacOSX*.1.sdk.tar.xz /tmp
+COPY ./vendor/BGRAControls.zip /tmp
+COPY ./vendor/BGRABitmap.zip /tmp
 
 # fix for i386 fpc 3.2.2 / remove when fpc 3.2.4 is out
 COPY <<-"EOF" /tmp/si_c21.patch
@@ -125,6 +127,21 @@ wget https://gitlab.com/freepascal.org/lazarus/lazarus/-/archive/lazarus_2_2_6/l
 rm lazarus-lazarus_2_2_6.zip
 mv lazarus-lazarus_2_2_6 2.2.6 && cd 2.2.6
 make lazbuild
+
+# unpack project deps
+mkdir -p /opt/vendor
+mv /tmp/BGRABitmap.zip /opt/
+mv /tmp/BGRAControls.zip /opt/
+cd /opt/vendor
+unzip -e BGRABitmap.zip
+unzip -e BGRAControls.zip
+
+cd /usr/src
+EOF
+
+COPY <<-"EOF" make.sh
+# run docker like this: docker run -v $(pwd):/usr/src_mapped -it breath ./make.sh
+make crossbuild
 EOF
 
 RUN chmod +x build.sh
@@ -139,5 +156,3 @@ WORKDIR /usr/src
 #RUN cp -r /usr/shared/src /tmp && cd /tmp/src
 #RUN wget https://packages.lazarus-ide.org/BGRABitmap.zip && unzip -e BGRABitmap.zip
 #RUN wget https://packages.lazarus-ide.org/BGRAControls.zip && unzip -e BGRAControls.zip
-
-WORKDIR /usr/src
