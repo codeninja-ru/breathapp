@@ -14,6 +14,10 @@ RUN apt-get install -y libc6-dev-i386  libx11-6:i386  libx11-dev:i386  libgdk-pi
 RUN apt-get install -y mingw-w64-x86-64-dev mingw-w64-i686-dev
 # osxcross deps
 RUN apt-get install -y bzip2-doc llvm llvm-runtime cmake git
+# alsa and pulseaudio
+RUN apt-get install -y libasound-dev libpulse-dev
+# UPX executable compression
+RUN apt-get install -y upx-ucl
 
 # MacOs sdk and lazarus components
 COPY ./vendor/MacOSX*.1.sdk.tar.xz /tmp
@@ -130,8 +134,8 @@ make lazbuild
 
 # unpack project deps
 mkdir -p /opt/vendor
-mv /tmp/BGRABitmap.zip /opt/
-mv /tmp/BGRAControls.zip /opt/
+mv /tmp/BGRABitmap.zip /opt/vendor/
+mv /tmp/BGRAControls.zip /opt/vendor/
 cd /opt/vendor
 unzip -e BGRABitmap.zip
 unzip -e BGRAControls.zip
@@ -139,10 +143,12 @@ unzip -e BGRAControls.zip
 cd /usr/src
 EOF
 
-COPY <<-"EOF" make.sh
+COPY <<-"EOF" /make.sh
 # run docker like this: docker run -v $(pwd):/usr/src_mapped -it breath ./make.sh
+cd /usr/src
 make crossbuild
 EOF
+RUN chmod +x make.sh
 
 RUN chmod +x build.sh
 RUN ./build.sh

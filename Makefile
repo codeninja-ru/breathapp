@@ -12,10 +12,10 @@ PACKAGES = /opt/vendor/BGRABitmap/bgrabitmap/bgrabitmappack.lpk \
 PROJECT  = breath.lpi
 
 clean:
-	echo "TODO clean"
+	rm -rf lib/*
 
 define build_template
-$1:
+$1: clean
 	$(LAZBUILD) $2 $(PACKAGES) -B -r --no-write-project $(PROJECT)
 endef
 
@@ -27,5 +27,17 @@ $(eval $(call build_template,build_linux_x86_64_qt,--os=linux --ws=qt --cpu=x86_
 $(eval $(call build_template,build_linux_x86_64_qt5,--os=linux --ws=qt5 --cpu=x86_64))
 $(eval $(call build_template,build_linux_i386_qt5,--os=linux --ws=qt5 --cpu=i386))
 $(eval $(call build_template,build_darwin_x86_64,--os=darwin --ws=cocoa --cpu=x86_64))
+#$(eval $(call build_template,build_darwin_aarch64,--os=darwin --ws=cocoa --cpu=aarch64))
 
-crossbuild: build_win_x86_64 build_linux_x86_64_gtk2 build_linux_x86_64_qt5 build_win_i386
+#TODO upx
+#TODO clean template
+
+crossbuild: 
+	$(MAKE) build_win_x86_64 
+	$(MAKE) build_linux_x86_64_gtk2 
+	$(MAKE) build_linux_x86_64_qt5 
+	$(MAKE) build_darwin_x86_64
+	$(MAKE) build_win_i386
+	$(MAKE) build_linux_i386_gtk2
+	$(MAKE) build_linux_i386_qt5
+	$(MAKE) build_linux_x86_64_qt 
