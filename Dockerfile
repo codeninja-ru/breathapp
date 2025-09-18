@@ -11,13 +11,13 @@ RUN apt-get install -y wget unzip make binutils clang libgtk2.0-dev libqt5pas-de
 # linux x86_64 to linux i386
 RUN apt-get install -y libc6-dev-i386  libx11-6:i386  libx11-dev:i386  libgdk-pixbuf2.0-0:i386  libatk1.0-dev:i386 libgdk-pixbuf2.0-dev:i386  libpango1.0-dev:i386  libgtk2.0-dev:i386 libnotify-dev:i386 libqt5pas-dev:i386
 # gcc cross compile
-RUN apt-get install -y mingw-w64-x86-64-dev mingw-w64-i686-dev
+#RUN apt-get install -y mingw-w64-x86-64-dev mingw-w64-i686-dev
 # osxcross deps
 RUN apt-get install -y bzip2-doc llvm llvm-runtime cmake git
 # alsa and pulseaudio
 RUN apt-get install -y libasound-dev libpulse-dev
 # UPX executable compression
-RUN apt-get install -y upx-ucl
+# RUN apt-get install -y upx-ucl
 
 # MacOs sdk and lazarus components
 COPY ./vendor/MacOSX*.1.sdk.tar.xz /tmp
@@ -59,7 +59,7 @@ wget -O /tmp/fpc-bin.tar https://sourceforge.net/projects/freepascal/files/Linux
 mkdir -p /tmp/fpc-bin
 tar xvf /tmp/fpc-bin.tar -C /tmp/fpc-bin --strip-components=1 && cd /tmp/fpc-bin
 echo "/opt/fpc/$FPCVER" | ./install.sh
-fpcmkcfg -d basepath="/opt/fpc/$FPCVER/lib/fpc/\$fpcversion" -p -o ~/fpc.cfg
+fpcmkcfg -d basepath="/opt/fpc/$FPCVER/lib/fpc/\$fpcversion" -p -o /etc/fpc.cfg
 cd /opt/fpc && rm -rf /tmp/fpc-bin && rm /tmp/fpc-bin.tar
 
 
@@ -76,7 +76,8 @@ EOT
 chmod +x /usr/bin/i386-linux-as
 
 # install osxcross
-cd /opt && wget https://github.com/tpoechtrager/osxcross/archive/refs/heads/master.zip -O osxcross.zip
+cd /opt && wget https://github.com/tpoechtrager/osxcross/archive/refs/heads/osxcross-1.1.zip -O osxcross.zip
+#cd /opt && wget https://github.com/tpoechtrager/osxcross/archive/refs/heads/master.zip -O osxcross.zip
 unzip -e osxcross.zip && mv osxcross-master osxcross && rm osxcross.zip
 #todo sdk
 mv /tmp/MacOSX*.1.sdk.tar.xz /opt/osxcross/tarballs
@@ -95,35 +96,41 @@ EOT
 chmod +x /usr/bin/x86_64-darwin-ld
 
 ## install fpc sources
+
 mkdir -p /opt/fpcsrc/$FPCVER && cd /opt/fpcsrc/$FPCVER
 wget -O /tmp/fpc-source.tar.gz https://sourceforge.net/projects/freepascal/files/Source/$FPCVER/fpc-$FPCVER.source.tar.gz/download
 tar xzvf /tmp/fpc-source.tar.gz -C /opt/fpcsrc/$FPCVER/ --strip-components=1
 rm /tmp/fpc-source.tar.gz
 patch /opt/fpcsrc/3.2.2/rtl/linux/i386/si_c21.inc < /tmp/si_c21.patch
+
 make clean all OS_TARGET=win64 CPU_TARGET=x86_64
+mkdir -p /opt/cross/win/x86_64
+make crossinstall OS_TARGET=win64 CPU_TARGET=x86_64 INSTALL_PREFIX=/opt/cross/win/x86_64
+
 make clean all OS_TARGET=win32 CPU_TARGET=i386
-make crossinstall OS_TARGET=win64 CPU_TARGET=x86_64 INSTALL_PREFIX=/opt/fpc/$FPCVER
-make crossinstall OS_TARGET=win32 CPU_TARGET=i386 INSTALL_PREFIX=/opt/fpc/$FPCVER
+mkdir -p /opt/cross/win/i386
+make crossinstall OS_TARGET=win32 CPU_TARGET=i386 INSTALL_PREFIX=/opt/cross/win/i386
 #echo "\\n-Fu/usr/lib/fpc/\$fpcversion/units/\$fpctarget/*" >> ~/fpc.cfg
 
 sudo make all OS_TARGET=linux CPU_TARGET=i386
-make crossinstall OS_TARGET=linux CPU_TARGET=i386 INSTALL_PREFIX=/opt/fpc/$FPCVER
-
-#cat >> /root/fpc.cfg << EOT
-##IFDEF darwin
-#-Fu/opt/osxcross/target/lib/fpc/$fpcversion/units/x86_64-darwin/
-#-Fu/opt/osxcross/target/lib/fpc/$fpcversion/units/x86_64-darwin/*
-#-Fu/opt/osxcross/target/lib/fpc/$fpcversion/units/x86_64-darwin/rtl
-#-FD/opt/osxcross/target/bin"
-##ENDIF
-#EOT
+mkdir -p /opt/cross/linux/i386
+make crossinstall OS_TARGET=linux CPU_TARGET=i386 INSTALL_PREFIX=/opt/cross/linux/i386
 
 make clean all OS_TARGET=darwin CPU_TARGET=x86_64 OPT="-Fl/opt/osxcross/target/SDK/MacOSX11.1.sdk/usr/lib" CROSSBINDIR=/opt/osxcross/target/bin/ BINUTILSPREFIX=x86_64-apple-darwin20.2-
 #make clean all OS_TARGET=darwin CPU_TARGET=x86_64
-make crossinstall OS_TARGET=darwin CPU_TARGET=x86_64 INSTALL_PREFIX=/opt/fpc/$FPCVER 
+mkdir -p /opt/cross/darwin/x86_64
+make crossinstall OS_TARGET=darwin CPU_TARGET=x86_64 INSTALL_PREFIX=/opt/cross/darwin/x86_64
 
-ln -sf /opt/fpc/${FPCVER}/lib/fpc/${FPCVER}/ppcross386 /usr/bin/ppcross386
-ln -sf /opt/fpc/${FPCVER}/lib/fpc/${FPCVER}/ppcrossx64 /usr/bin/ppcrossx64
+cat >> /etc/fpc.cfg << EOT
+
+#IFDEF darwin
+-FD/opt/osxcross/target/bin
+-XR/opt/osxcross/target/SDK/MacOSX11.1.sdk
+-Fl/opt/osxcross/target/SDK/MacOSX11.1.sdk/System/Library/Frameworks
+-Fl/opt/osxcross/target/SDK/MacOSX11.1.sdk/System/iOSSupport/System/Library/Frameworks
+#ENDIF
+
+EOT
 
 # lazarus
 mkdir -p /opt/lazarus/ && cd /opt/lazarus
