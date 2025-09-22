@@ -45,13 +45,17 @@ COPY <<-"EOF" /tmp/si_c21.patch
 
 EOF
 
+ENV FPCVER="3.2.2"
+ENV LAZVER="2.2.6"
+ENV PATH="/opt/fpc/${FPCVER}/bin/:/opt/lazarus/${LAZVER}/:/opt/osxcross/target/bin/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+
 COPY <<-"EOF" build.sh
 #!/bin/sh
 
-export FPCVER="3.2.2"
-echo 'export FPCVER="3.2.2"' >> ~/.bashrc
-export PATH="/opt/fpc/$FPCVER/bin/:/opt/lazarus/2.2.6/:/opt/osxcross/target/bin/:$PATH"
-echo "PATH=\"/opt/fpc/$FPCVER/bin/\":\"/opt/lazarus/2.2.6/\":\"/opt/osxcross/target/bin/\":\"\$PATH\"" >> ~/.bashrc
+#export FPCVER="3.2.2"
+#echo 'export FPCVER="3.2.2"' >> ~/.bashrc
+#export PATH="/opt/fpc/$FPCVER/bin/:/opt/lazarus/2.2.6/:/opt/osxcross/target/bin/:$PATH"
+#echo "PATH=\"/opt/fpc/$FPCVER/bin/\":\"/opt/lazarus/2.2.6/\":\"/opt/osxcross/target/bin/\":\"\$PATH\"" >> ~/.bashrc
 
 # install fpc
 mkdir -p /opt/fpc/$FPCVER && cd /opt/fpc/$FPCVER
@@ -136,7 +140,7 @@ EOT
 mkdir -p /opt/lazarus/ && cd /opt/lazarus
 wget https://gitlab.com/freepascal.org/lazarus/lazarus/-/archive/lazarus_2_2_6/lazarus-lazarus_2_2_6.zip && unzip -e lazarus-lazarus_2_2_6.zip
 rm lazarus-lazarus_2_2_6.zip
-mv lazarus-lazarus_2_2_6 2.2.6 && cd 2.2.6
+mv lazarus-lazarus_2_2_6 2.2.6 && cd $LAZVER
 make lazbuild
 
 # unpack project deps
@@ -149,13 +153,6 @@ unzip -e BGRAControls.zip
 
 cd /usr/src
 EOF
-
-COPY <<-"EOF" /make.sh
-# run docker like this: docker run -v $(pwd):/usr/src_mapped -it breath ./make.sh
-cd /usr/src
-make crossbuild
-EOF
-RUN chmod +x make.sh
 
 RUN chmod +x build.sh
 RUN ./build.sh

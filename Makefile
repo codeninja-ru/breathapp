@@ -4,7 +4,7 @@
         build_linux_x86_64_qt build_linux_x86_64_qt5 build_linux_i386_qt5 \
         build_darwin_x86_64
 
-LAZBUILD = /opt/lazarus/2.2.6/lazbuild --lazarusdir=/opt/lazarus/2.2.6/
+LAZBUILD = /opt/lazarus/$(LAZVER)/lazbuild --lazarusdir=/opt/lazarus/$(LAZVER)/
 PACKAGES = /opt/vendor/BGRABitmap/bgrabitmap/bgrabitmappack.lpk \
            /opt/vendor/BGRAControls/bgracontrols.lpk \
            /opt/vendor/BGRABitmap/bglcontrols/bglcontrols.lpk \
