@@ -1,15 +1,13 @@
 # syntax=docker/dockerfile:1
-FROM debian:bookworm
+FROM debian:trixie
 
 # see https://wiki.freepascal.org/Cross_compiling_for_Windows_under_Linux
 
-# TODO update fpc.cfg with pathes for mingw libs
-# https://packages.debian.org/bookworm/gcc-mingw-w64
 RUN dpkg --add-architecture i386
 RUN apt-get update
-RUN apt-get install -y wget unzip make binutils clang libgtk2.0-dev libqt5pas-dev
+RUN apt-get install -y wget unzip make binutils clang libgtk2.0-dev libqt5pas-dev libqt5pas-dev:i386 libqt5pas-dev:i386 libgtk2.0-dev:i386
 # linux x86_64 to linux i386
-RUN apt-get install -y libc6-dev-i386  libx11-6:i386  libx11-dev:i386  libgdk-pixbuf2.0-0:i386  libatk1.0-dev:i386 libgdk-pixbuf2.0-dev:i386  libpango1.0-dev:i386  libgtk2.0-dev:i386 libnotify-dev:i386 libqt5pas-dev:i386
+#RUN apt-get install -y libc6-dev-i386  libx11-6:i386  libx11-dev:i386  libgdk-pixbuf2.0-0:i386  libatk1.0-dev:i386 libgdk-pixbuf2.0-dev:i386  libpango1.0-dev:i386  libgtk2.0-dev:i386 libnotify-dev:i386 
 # gcc cross compile
 #RUN apt-get install -y mingw-w64-x86-64-dev mingw-w64-i686-dev
 # osxcross deps
@@ -17,7 +15,7 @@ RUN apt-get install -y bzip2-doc llvm llvm-runtime cmake git
 # alsa and pulseaudio
 RUN apt-get install -y libasound-dev libpulse-dev libasound-dev:i386 libpulse-dev:i386
 # UPX executable compression
-# RUN apt-get install -y upx-ucl
+RUN apt-get install -y upx-ucl
 
 # MacOs sdk and lazarus components
 COPY ./vendor/MacOSX*.1.sdk.tar.xz /tmp
@@ -113,15 +111,12 @@ mv /opt/fpc/$FPCVER/lib/fpc/$FPCVER/ppcrossx64 /opt/fpc/$FPCVER/lib/fpc/$FPCVER/
 make clean all OS_TARGET=win32 CPU_TARGET=i386
 make crossinstall OS_TARGET=win32 CPU_TARGET=i386 INSTALL_PREFIX=/opt/fpc/$FPCVER
 mv /opt/fpc/$FPCVER/lib/fpc/$FPCVER/ppcross386 /opt/fpc/$FPCVER/lib/fpc/$FPCVER/ppcross386_win32
-#echo "\\n-Fu/usr/lib/fpc/\$fpcversion/units/\$fpctarget/*" >> ~/fpc.cfg
 
-#todo is it neccesry for linux?
 sudo make all OS_TARGET=linux CPU_TARGET=i386
 make crossinstall OS_TARGET=linux CPU_TARGET=i386 INSTALL_PREFIX=/opt/fpc/$FPCVER
 mv /opt/fpc/$FPCVER/lib/fpc/$FPCVER/ppcross386 /opt/fpc/$FPCVER/lib/fpc/$FPCVER/ppcross386_linux
 
 make clean all OS_TARGET=darwin CPU_TARGET=x86_64 OPT="-Fl/opt/osxcross/target/SDK/MacOSX11.1.sdk/usr/lib" CROSSBINDIR=/opt/osxcross/target/bin/ BINUTILSPREFIX=x86_64-apple-darwin20.2-
-#make clean all OS_TARGET=darwin CPU_TARGET=x86_64
 make crossinstall OS_TARGET=darwin CPU_TARGET=x86_64 INSTALL_PREFIX=/opt/fpc/$FPCVER
 mv /opt/fpc/$FPCVER/lib/fpc/$FPCVER/ppcrossx64 /opt/fpc/$FPCVER/lib/fpc/$FPCVER/ppcrossx64_darwin
 
@@ -162,8 +157,3 @@ WORKDIR /usr/src
 #TODO add all downloadable zip to project as static files
 #TODO macos sdks https://github.com/phracker/MacOSX-SDKs/releases
 # https://github.com/tpoechtrager/osxcross
-
-#
-#RUN cp -r /usr/shared/src /tmp && cd /tmp/src
-#RUN wget https://packages.lazarus-ide.org/BGRABitmap.zip && unzip -e BGRABitmap.zip
-#RUN wget https://packages.lazarus-ide.org/BGRAControls.zip && unzip -e BGRAControls.zip
