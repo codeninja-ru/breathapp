@@ -15,7 +15,7 @@ RUN apt-get install -y libc6-dev-i386  libx11-6:i386  libx11-dev:i386  libgdk-pi
 # osxcross deps
 RUN apt-get install -y bzip2-doc llvm llvm-runtime cmake git
 # alsa and pulseaudio
-RUN apt-get install -y libasound-dev libpulse-dev
+RUN apt-get install -y libasound-dev libpulse-dev libasound-dev:i386 libpulse-dev:i386
 # UPX executable compression
 # RUN apt-get install -y upx-ucl
 
@@ -76,8 +76,7 @@ EOT
 chmod +x /usr/bin/i386-linux-as
 
 # install osxcross
-cd /opt && wget https://github.com/tpoechtrager/osxcross/archive/refs/heads/osxcross-1.1.zip -O osxcross.zip
-#cd /opt && wget https://github.com/tpoechtrager/osxcross/archive/refs/heads/master.zip -O osxcross.zip
+cd /opt && wget https://github.com/tpoechtrager/osxcross/archive/refs/heads/master.zip -O osxcross.zip
 unzip -e osxcross.zip && mv osxcross-master osxcross && rm osxcross.zip
 #todo sdk
 mv /tmp/MacOSX*.1.sdk.tar.xz /opt/osxcross/tarballs
@@ -104,22 +103,23 @@ rm /tmp/fpc-source.tar.gz
 patch /opt/fpcsrc/3.2.2/rtl/linux/i386/si_c21.inc < /tmp/si_c21.patch
 
 make clean all OS_TARGET=win64 CPU_TARGET=x86_64
-mkdir -p /opt/cross/win/x86_64
-make crossinstall OS_TARGET=win64 CPU_TARGET=x86_64 INSTALL_PREFIX=/opt/cross/win/x86_64
+make crossinstall OS_TARGET=win64 CPU_TARGET=x86_64 INSTALL_PREFIX=/opt/fpc/$FPCVER
+mv /opt/fpc/$FPCVER/lib/fpc/$FPCVER/ppcrossx64 /opt/fpc/$FPCVER/lib/fpc/$FPCVER/ppcrossx64_win64
 
 make clean all OS_TARGET=win32 CPU_TARGET=i386
-mkdir -p /opt/cross/win/i386
-make crossinstall OS_TARGET=win32 CPU_TARGET=i386 INSTALL_PREFIX=/opt/cross/win/i386
+make crossinstall OS_TARGET=win32 CPU_TARGET=i386 INSTALL_PREFIX=/opt/fpc/$FPCVER
+mv /opt/fpc/$FPCVER/lib/fpc/$FPCVER/ppcross386 /opt/fpc/$FPCVER/lib/fpc/$FPCVER/ppcross386_win32
 #echo "\\n-Fu/usr/lib/fpc/\$fpcversion/units/\$fpctarget/*" >> ~/fpc.cfg
 
+#todo is it neccesry for linux?
 sudo make all OS_TARGET=linux CPU_TARGET=i386
-mkdir -p /opt/cross/linux/i386
-make crossinstall OS_TARGET=linux CPU_TARGET=i386 INSTALL_PREFIX=/opt/cross/linux/i386
+make crossinstall OS_TARGET=linux CPU_TARGET=i386 INSTALL_PREFIX=/opt/fpc/$FPCVER
+mv /opt/fpc/$FPCVER/lib/fpc/$FPCVER/ppcross386 /opt/fpc/$FPCVER/lib/fpc/$FPCVER/ppcross386_linux
 
 make clean all OS_TARGET=darwin CPU_TARGET=x86_64 OPT="-Fl/opt/osxcross/target/SDK/MacOSX11.1.sdk/usr/lib" CROSSBINDIR=/opt/osxcross/target/bin/ BINUTILSPREFIX=x86_64-apple-darwin20.2-
 #make clean all OS_TARGET=darwin CPU_TARGET=x86_64
-mkdir -p /opt/cross/darwin/x86_64
-make crossinstall OS_TARGET=darwin CPU_TARGET=x86_64 INSTALL_PREFIX=/opt/cross/darwin/x86_64
+make crossinstall OS_TARGET=darwin CPU_TARGET=x86_64 INSTALL_PREFIX=/opt/fpc/$FPCVER
+mv /opt/fpc/$FPCVER/lib/fpc/$FPCVER/ppcrossx64 /opt/fpc/$FPCVER/lib/fpc/$FPCVER/ppcrossx64_darwin
 
 cat >> /etc/fpc.cfg << EOT
 
@@ -162,6 +162,7 @@ RUN ./build.sh
 
 WORKDIR /usr/src
 
+#TODO add all downloadable zip to project as static files
 #TODO macos sdks https://github.com/phracker/MacOSX-SDKs/releases
 # https://github.com/tpoechtrager/osxcross
 

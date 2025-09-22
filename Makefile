@@ -19,14 +19,13 @@ $1: clean
 	$(LAZBUILD) $2 $(PACKAGES) -B -r --no-write-project --bm=Release $(PROJECT)
 endef
 
-$(eval $(call build_template,build_win_x86_64,--os=win64 --ws=win32 --cpu=x86_64 --compiler=/opt/cross/win/x86_64/lib/fpc/$(FPCVER)/ppcrossx64))
-$(eval $(call build_template,build_win_i386,--os=win32 --ws=win32 --cpu=i386 --compiler=/opt/cross/win/i386/lib/fpc/$FPCVER/ppcrossx64))
+$(eval $(call build_template,build_win_x86_64,--os=win64 --ws=win32 --cpu=x86_64 --compiler=/opt/fpc/$(FPCVER)/lib/fpc/$(FPCVER)/ppcrossx64_win64))
+$(eval $(call build_template,build_win_i386,--os=win32 --ws=win32 --cpu=i386 --compiler=/opt/fpc/$(FPCVER)/lib/fpc/$(FPCVER)/ppcross386_win32))
 $(eval $(call build_template,build_linux_x86_64_gtk2,--os=linux --ws=gtk2 --cpu=x86_64))
-$(eval $(call build_template,build_linux_i386_gtk2,--os=linux --ws=gtk2 --cpu=i386 --compiler=/opt/cross/linux/i386/lib/fpc/$(FPCVER)/ppcrossx64))
-$(eval $(call build_template,build_linux_x86_64_qt,--os=linux --ws=qt --cpu=x86_64))
+$(eval $(call build_template,build_linux_i386_gtk2,--os=linux --ws=gtk2 --cpu=i386 --compiler=/opt/fpc/$(FPCVER)/lib/fpc/$(FPCVER)/ppcross386_linux))
 $(eval $(call build_template,build_linux_x86_64_qt5,--os=linux --ws=qt5 --cpu=x86_64))
-$(eval $(call build_template,build_linux_i386_qt5,--os=linux --ws=qt5 --cpu=i386 --compiler=/opt/cross/linux/i386/lib/fpc/$(FPCVER)/ppcrossx64))
-$(eval $(call build_template,build_darwin_x86_64,--os=darwin --ws=cocoa --cpu=x86_64 --compiler=/opt/cross/darwin/x86_64/lib/fpc/$(FPCVER)/ppcrossx64))
+$(eval $(call build_template,build_linux_i386_qt5,--os=linux --ws=qt5 --cpu=i386 --compiler=/opt/fpc/$(FPCVER)/lib/fpc/$(FPCVER)/ppcross386_linux))
+$(eval $(call build_template,build_darwin_x86_64,--os=darwin --ws=cocoa --cpu=x86_64 --compiler=/opt/fpc/$(FPCVER)/lib/fpc/$(FPCVER)/ppcrossx64_darwin))
 #$(eval $(call build_template,build_darwin_aarch64,--os=darwin --ws=cocoa --cpu=aarch64))
 
 #TODO upx
@@ -36,7 +35,6 @@ crossbuild:
 	$(MAKE) build_win_x86_64 
 	$(MAKE) build_linux_x86_64_gtk2 
 	$(MAKE) build_linux_x86_64_qt5 
-	$(MAKE) build_linux_x86_64_qt 
 	$(MAKE) build_darwin_x86_64
 	$(MAKE) build_win_i386
 	$(MAKE) build_linux_i386_gtk2
