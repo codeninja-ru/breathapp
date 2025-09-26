@@ -37,4 +37,5 @@ crossbuild:
 	$(MAKE) build_linux_i386_gtk2
 	$(MAKE) build_linux_i386_qt5
 	upx bin/breath-linux-*
-	upx bin/breath-win* # darwin is not supported by upx yet
+	upx bin/breath-win*
+#	upx bin/breath-darwin* # darwin is not supported by upx yet
