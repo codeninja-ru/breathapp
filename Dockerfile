@@ -7,7 +7,7 @@ RUN dpkg --add-architecture i386
 RUN apt-get update
 RUN apt-get install -y wget unzip make binutils clang libgtk2.0-dev libqt5pas-dev libqt5pas-dev:i386 libqt5pas-dev:i386 libgtk2.0-dev:i386
 # linux x86_64 to linux i386
-#RUN apt-get install -y libc6-dev-i386  libx11-6:i386  libx11-dev:i386  libgdk-pixbuf2.0-0:i386  libatk1.0-dev:i386 libgdk-pixbuf2.0-dev:i386  libpango1.0-dev:i386  libgtk2.0-dev:i386 libnotify-dev:i386 
+RUN apt-get install -y libc6-dev-i386  libx11-6:i386  libx11-dev:i386 libatk1.0-dev:i386 libpango1.0-dev:i386  libgtk2.0-dev:i386 libnotify-dev:i386 
 # gcc cross compile
 #RUN apt-get install -y mingw-w64-x86-64-dev mingw-w64-i686-dev
 # osxcross deps
@@ -21,6 +21,10 @@ RUN apt-get install -y upx-ucl
 COPY ./vendor/MacOSX*.1.sdk.tar.xz /tmp
 COPY ./vendor/BGRAControls.zip /tmp
 COPY ./vendor/BGRABitmap.zip /tmp
+COPY ./vendor/fpc-bin.tar.bz2 /tmp
+COPY ./vendor/fpc-source.tar.gz /tmp
+COPY ./vendor/osxcross.zip /tmp
+COPY ./vendor/lazarus-lazarus_2_2_6.zip /tmp
 
 # fix for i386 fpc 3.2.2 / remove when fpc 3.2.4 is out
 COPY <<-"EOF" /tmp/si_c21.patch
@@ -43,6 +47,23 @@ COPY <<-"EOF" /tmp/si_c21.patch
 
 EOF
 
+# fix for "non-private labels cannot appear between .cfi_startproc / .cfi_endproc pairs" see: https://gitlab.com/freepascal.org/fpc/source/-/merge_requests/887 and https://forum.lazarus.freepascal.org/index.php?topic=69380.15
+COPY <<-"EOF" /tmp/rautils.patch
+--- a/compiler/rautils.pas
++++ b/compiler/rautils.pas
+@@ -1781,7 +1781,8 @@ function AsmRegisterPara(sym: tabstractnormalvarsym): boolean;
+       begin
+         if symtablestack.top.symtablelevel<>srsymtable.symtablelevel then
+           begin
+-            Tlabelsym(sym).nonlocal:=true;
++            if (srsymtable.symtabletype=globalsymtable) or create_smartlink_library then
++              Tlabelsym(sym).nonlocal:=true;
+             if emit then
+               include(current_procinfo.flags,pi_has_interproclabel);
+           end;
+
+EOF
+
 ENV FPCVER="3.2.2"
 ENV LAZVER="2.2.6"
 ENV PATH="/opt/fpc/${FPCVER}/bin/:/opt/lazarus/${LAZVER}/:/opt/osxcross/target/bin/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
@@ -50,14 +71,10 @@ ENV PATH="/opt/fpc/${FPCVER}/bin/:/opt/lazarus/${LAZVER}/:/opt/osxcross/target/b
 COPY <<-"EOF" build.sh
 #!/bin/sh
 
-#export FPCVER="3.2.2"
-#echo 'export FPCVER="3.2.2"' >> ~/.bashrc
-#export PATH="/opt/fpc/$FPCVER/bin/:/opt/lazarus/2.2.6/:/opt/osxcross/target/bin/:$PATH"
-#echo "PATH=\"/opt/fpc/$FPCVER/bin/\":\"/opt/lazarus/2.2.6/\":\"/opt/osxcross/target/bin/\":\"\$PATH\"" >> ~/.bashrc
-
 # install fpc
 mkdir -p /opt/fpc/$FPCVER && cd /opt/fpc/$FPCVER
-wget -O /tmp/fpc-bin.tar https://sourceforge.net/projects/freepascal/files/Linux/3.2.2/fpc-$FPCVER.$(uname -m)-linux.tar
+#wget -O /tmp/fpc-bin.tar https://sourceforge.net/projects/freepascal/files/Linux/3.2.2/fpc-$FPCVER.$(uname -m)-linux.tar
+bzip2 -d /tmp/fpc-bin.tar.bz2
 mkdir -p /tmp/fpc-bin
 tar xvf /tmp/fpc-bin.tar -C /tmp/fpc-bin --strip-components=1 && cd /tmp/fpc-bin
 echo "/opt/fpc/$FPCVER" | ./install.sh
@@ -78,7 +95,8 @@ EOT
 chmod +x /usr/bin/i386-linux-as
 
 # install osxcross
-cd /opt && wget https://github.com/tpoechtrager/osxcross/archive/refs/heads/master.zip -O osxcross.zip
+#cd /opt && wget https://github.com/tpoechtrager/osxcross/archive/refs/heads/master.zip -O osxcross.zip
+mv /tmp/osxcross.zip /opt && cd /opt
 unzip -e osxcross.zip && mv osxcross-master osxcross && rm osxcross.zip
 #todo sdk
 mv /tmp/MacOSX*.1.sdk.tar.xz /opt/osxcross/tarballs
@@ -99,10 +117,11 @@ chmod +x /usr/bin/x86_64-darwin-ld
 ## install fpc sources
 
 mkdir -p /opt/fpcsrc/$FPCVER && cd /opt/fpcsrc/$FPCVER
-wget -O /tmp/fpc-source.tar.gz https://sourceforge.net/projects/freepascal/files/Source/$FPCVER/fpc-$FPCVER.source.tar.gz/download
+#wget -O /tmp/fpc-source.tar.gz https://sourceforge.net/projects/freepascal/files/Source/$FPCVER/fpc-$FPCVER.source.tar.gz/download
 tar xzvf /tmp/fpc-source.tar.gz -C /opt/fpcsrc/$FPCVER/ --strip-components=1
 rm /tmp/fpc-source.tar.gz
 patch /opt/fpcsrc/3.2.2/rtl/linux/i386/si_c21.inc < /tmp/si_c21.patch
+patch /opt/fpcsrc/3.2.2/compiler/rautils.pas < /tmp/rautils.patch
 
 make clean all OS_TARGET=win64 CPU_TARGET=x86_64
 make crossinstall OS_TARGET=win64 CPU_TARGET=x86_64 INSTALL_PREFIX=/opt/fpc/$FPCVER
@@ -133,7 +152,9 @@ EOT
 
 # lazarus
 mkdir -p /opt/lazarus/ && cd /opt/lazarus
-wget https://gitlab.com/freepascal.org/lazarus/lazarus/-/archive/lazarus_2_2_6/lazarus-lazarus_2_2_6.zip && unzip -e lazarus-lazarus_2_2_6.zip
+#wget https://gitlab.com/freepascal.org/lazarus/lazarus/-/archive/lazarus_2_2_6/lazarus-lazarus_2_2_6.zip 
+mv /tmp/lazarus-lazarus_2_2_6.zip /opt/lazarus
+unzip -e lazarus-lazarus_2_2_6.zip
 rm lazarus-lazarus_2_2_6.zip
 mv lazarus-lazarus_2_2_6 2.2.6 && cd $LAZVER
 make lazbuild

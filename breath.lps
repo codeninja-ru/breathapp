@@ -47,7 +47,7 @@
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
-            <Filename Value="bin/breath-$(TargetCPU)-$(TargetOS)-$(LCLWidgetType)"/>
+            <Filename Value="bin/breath-$(TargetOS)-$(LCLWidgetType)-$(TargetCPU)"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>

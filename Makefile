@@ -28,8 +28,6 @@ $(eval $(call build_template,build_linux_i386_qt5,--os=linux --ws=qt5 --cpu=i386
 $(eval $(call build_template,build_darwin_x86_64,--os=darwin --ws=cocoa --cpu=x86_64 --compiler=/opt/fpc/$(FPCVER)/lib/fpc/$(FPCVER)/ppcrossx64_darwin))
 #$(eval $(call build_template,build_darwin_aarch64,--os=darwin --ws=cocoa --cpu=aarch64))
 
-#TODO clean template
-
 crossbuild: 
 	$(MAKE) build_win_x86_64 
 	$(MAKE) build_linux_x86_64_gtk2 
@@ -38,4 +36,5 @@ crossbuild:
 	$(MAKE) build_win_i386
 	$(MAKE) build_linux_i386_gtk2
 	$(MAKE) build_linux_i386_qt5
-	upx bin/*
+	upx bin/breath-linux-*
+	upx bin/breath-win* # darwin is not supported by upx yet
