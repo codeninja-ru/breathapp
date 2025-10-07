@@ -56,7 +56,7 @@ const
   // access
   SND_PCM_ACCESS_RW_INTERLEAVED = 3;
 
-  libname = libname;
+  libname = 'asound';
 
 type
   snd_pcm_sframes_t = NativeInt;
