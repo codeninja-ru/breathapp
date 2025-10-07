@@ -8,8 +8,7 @@ uses
   Classes, SysUtils, SoundWave, SoundEngine
   {$IFDEF UNIX}
   , DynLibs
-  {$ENDIF}
-  ;
+  {$ENDIF}  ;
 
 type
   { TPulseAudioSoundEngine }
@@ -19,20 +18,20 @@ type
     FGenerator: TBeepWaveGenerator;
   private
   const
-    DEVICE_CHANNELS    = 2;
+    DEVICE_CHANNELS = 2;
     DEVICE_SAMPLE_RATE = 48000;
-    DEVICE_BITS        = 16;
-    AMPLITUDE          = 30000;
+    DEVICE_BITS = 16;
+    AMPLITUDE = 30000;
   protected
     function PulseOpenDevice: Pointer;
     procedure PulseCloseDevice(p: Pointer);
     procedure PulseWriteFrames(p: Pointer; const Frames: PSmallInt; FrameCount: SizeInt);
-    procedure GenerateBuffer(AFreq: Integer; out Buf: PSmallInt; out Frames: SizeInt);
+    procedure GenerateBuffer(AFreq: integer; out Buf: PSmallInt; out Frames: SizeInt);
   public
     procedure Open;
     procedure Close;
-    procedure Play(AFreq: Integer);
-    class function IsSupported: Boolean; static;
+    procedure Play(AFreq: integer);
+    class function IsSupported: boolean; static;
 
     constructor Create;
     destructor Destroy; override;
@@ -42,10 +41,11 @@ implementation
 
 {$IFDEF UNIX}
 
+const libname = 'pulse-simple';
+
 type
-  // минимальное определение структуры pa_sample_spec
   pa_sample_spec = record
-    format: Integer;  // используем константы PA_SAMPLE_*
+    format: Integer;
     rate: Cardinal;
     channels: Byte;
     // padding чтобы размер структуры был кратен 4 (безопасно)
@@ -69,15 +69,15 @@ function pa_simple_new(
   map: Pointer;
   attr: Pointer;
   var error: Integer
-): Ppa_simple; cdecl; external 'pulse-simple';
+): Ppa_simple; cdecl; external libname;
 
-procedure pa_simple_free(s: Ppa_simple); cdecl; external 'pulse-simple';
-function pa_simple_write(s: Ppa_simple; const data: Pointer; bytes: NativeUInt; var error: Integer): Integer; cdecl; external 'pulse-simple';
-function pa_simple_drain(s: Ppa_simple; var error: Integer): Integer; cdecl; external 'pulse-simple';
+procedure pa_simple_free(s: Ppa_simple); cdecl; external libname;
+function pa_simple_write(s: Ppa_simple; const data: Pointer; bytes: NativeUInt; var error: Integer): Integer; cdecl; external libname;
+function pa_simple_drain(s: Ppa_simple; var error: Integer): Integer; cdecl; external libname;
 
 {$ENDIF}
 
-procedure RaisePulseError(const Msg: string; Err: Integer);
+procedure RaisePulseError(const Msg: string; Err: integer);
 begin
   raise Exception.CreateFmt('%s (PulseAudio err=%d)', [Msg, Err]);
 end;
@@ -96,8 +96,7 @@ begin
   ss.rate := DEVICE_SAMPLE_RATE;
   ss.channels := DEVICE_CHANNELS;
 
-  // server = nil (default), dev = nil (default device)
-  s := pa_simple_new(nil, PChar('PascalApp'), PA_STREAM_PLAYBACK,
+  s := pa_simple_new(nil, PChar('BreathApp'), PA_STREAM_PLAYBACK,
                      nil, PChar('beep'), @ss, nil, nil, err);
   if s = nil then
     raise Exception.CreateFmt('PulseAudio: could not open stream (err=%d)', [err]);
@@ -108,6 +107,7 @@ end;
 begin
   Result := nil;
 end;
+
 {$ENDIF}
 
 procedure TPulseAudioSoundEngine.PulseCloseDevice(p: Pointer);
@@ -119,9 +119,11 @@ end;
 {$ELSE}
 begin
 end;
+
 {$ENDIF}
 
-procedure TPulseAudioSoundEngine.PulseWriteFrames(p: Pointer; const Frames: PSmallInt; FrameCount: SizeInt);
+procedure TPulseAudioSoundEngine.PulseWriteFrames(p: Pointer;
+  const Frames: PSmallInt; FrameCount: SizeInt);
 {$IFDEF UNIX}
 var
   bytes: NativeUInt;
@@ -144,44 +146,46 @@ end;
 {$ELSE}
 begin
 end;
+
 {$ENDIF}
 
-procedure TPulseAudioSoundEngine.GenerateBuffer(AFreq: Integer; out Buf: PSmallInt; out Frames: SizeInt);
+procedure TPulseAudioSoundEngine.GenerateBuffer(AFreq: integer;
+  out Buf: PSmallInt; out Frames: SizeInt);
 var
   totalFrames, i, ch: SizeInt;
-  val: SmallInt;
-  data: PSmallInt;
+  val: smallint;
+  Data: PSmallInt;
 begin
   totalFrames := (DEVICE_SAMPLE_RATE * FGenerator.SoundTimeMs) div 1000;
   Frames := totalFrames;
 
-  GetMem(data, totalFrames * DEVICE_CHANNELS * SizeOf(SmallInt));
+  GetMem(Data, totalFrames * DEVICE_CHANNELS * SizeOf(smallint));
   try
     for i := 0 to totalFrames - 1 do
     begin
-      val := SmallInt(Round(AMPLITUDE * FGenerator.GetDataForFrame(i, AFreq)));
+      val := smallint(Round(AMPLITUDE * FGenerator.GetDataForFrame(i, AFreq)));
       for ch := 0 to DEVICE_CHANNELS - 1 do
-        data[i * DEVICE_CHANNELS + ch] := val;
+        Data[i * DEVICE_CHANNELS + ch] := val;
     end;
   except
-    FreeMem(data);
+    FreeMem(Data);
     raise;
   end;
 
-  Buf := data;
+  Buf := Data;
 end;
 
 procedure TPulseAudioSoundEngine.Open;
 begin
-  // ничего — открываем в Play
+
 end;
 
 procedure TPulseAudioSoundEngine.Close;
 begin
-  // ничего — закрываем в Play
+
 end;
 
-procedure TPulseAudioSoundEngine.Play(AFreq: Integer);
+procedure TPulseAudioSoundEngine.Play(AFreq: integer);
 var
   buf: PSmallInt = nil;
   frames: SizeInt = 0;
@@ -197,29 +201,23 @@ begin
   end;
 end;
 
-class function TPulseAudioSoundEngine.IsSupported: Boolean;
+class function TPulseAudioSoundEngine.IsSupported: boolean;
 {$IFDEF UNIX}
 var
-  ss: pa_sample_spec;
-  err: Integer = 0;
-  s: Ppa_simple;
-begin
-  ss.format := PA_SAMPLE_S16LE;
-  ss.rate := DEVICE_SAMPLE_RATE;
-  ss.channels := DEVICE_CHANNELS;
-
-  s := pa_simple_new(nil, PChar('PascalTest'), PA_STREAM_PLAYBACK, nil, PChar('test'), @ss, nil, nil, err);
-  if s = nil then
-    Exit(False);
-
-  pa_simple_free(s);
-  Result := True;
-end;
-{$ELSE}
-begin
-  Result := False;
-end;
+  LibHandle: TLibHandle;
+  dyn_pa_simple_free: procedure (s: Ppa_simple); cdecl;
 {$ENDIF}
+begin
+{$IFDEF UNIX}
+  LibHandle := LoadLibrary(libname);
+  if LibHandle = nil then Exit(False);
+  Pointer(dyn_pa_simple_free) := GetProcedureAddress(LibHandle, 'pa_simple_free');
+  if not Assigned(dyn_pa_simple_free) then Exit(False);
+  Result := True;
+{$ELSE}
+  Result := False;
+{$ENDIF}
+end;
 
 constructor TPulseAudioSoundEngine.Create;
 begin
@@ -235,4 +233,3 @@ begin
 end;
 
 end.
-

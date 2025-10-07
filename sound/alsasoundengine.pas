@@ -56,19 +56,21 @@ const
   // access
   SND_PCM_ACCESS_RW_INTERLEAVED = 3;
 
+  libname = libname;
+
 type
   snd_pcm_sframes_t = NativeInt;
 
-function snd_pcm_open(var pcm: Pointer; name: PChar; stream: Integer; mode: Integer): Integer; cdecl; external 'asound';
-function snd_pcm_close(pcm: Pointer): Integer; cdecl; external 'asound';
-function snd_pcm_prepare(pcm: Pointer): Integer; cdecl; external 'asound';
-function snd_pcm_drain(pcm: Pointer): Integer; cdecl; external 'asound';
-function snd_pcm_writei(pcm: Pointer; buffer: Pointer; size: NativeUInt): snd_pcm_sframes_t; cdecl; external 'asound';
+function snd_pcm_open(var pcm: Pointer; name: PChar; stream: Integer; mode: Integer): Integer; cdecl; external libname;
+function snd_pcm_close(pcm: Pointer): Integer; cdecl; external libname;
+function snd_pcm_prepare(pcm: Pointer): Integer; cdecl; external libname;
+function snd_pcm_drain(pcm: Pointer): Integer; cdecl; external libname;
+function snd_pcm_writei(pcm: Pointer; buffer: Pointer; size: NativeUInt): snd_pcm_sframes_t; cdecl; external libname;
 function snd_pcm_set_params(pcm: Pointer; format: Integer; access: Integer;
-  channels: Cardinal; rate: Cardinal; soft_resample: Integer; latency: Cardinal): Integer; cdecl; external 'asound';
-function snd_strerror(errnum: Integer): PChar; cdecl; external 'asound';
-function snd_pcm_drop(pcm: Pointer): Integer; cdecl; external 'asound';
-function snd_pcm_recover(pcm: Pointer; err: Integer; silent: Integer): Integer; cdecl; external 'asound';
+  channels: Cardinal; rate: Cardinal; soft_resample: Integer; latency: Cardinal): Integer; cdecl; external libname;
+function snd_strerror(errnum: Integer): PChar; cdecl; external libname;
+function snd_pcm_drop(pcm: Pointer): Integer; cdecl; external libname;
+function snd_pcm_recover(pcm: Pointer; err: Integer; silent: Integer): Integer; cdecl; external libname;
 {$ENDIF}
 
 procedure RaiseAlsaError(const Msg: string; Err: Integer);
@@ -204,23 +206,15 @@ end;
 class function TAlsaSoundEngine.IsSupported: Boolean;
 {$IFDEF UNIX}
 var
-  pcm: Pointer = nil;
-  rc: Integer;
   dyn_snd_pcm_open: function(var pcm: Pointer; name: PChar; stream: Integer; mode: Integer): Integer; cdecl;
   LibHandle: TLibHandle;
 {$ENDIF}
 begin
 {$IFDEF UNIX}
-  LibHandle := LoadLibrary('libasound.so');
-  if LibHandle = 0 then Exit(False);
+  LibHandle := LoadLibrary(libname);
+  if LibHandle = nil then Exit(False);
   Pointer(dyn_snd_pcm_open) := GetProcedureAddress(LibHandle, 'snd_pcm_open');
   if not Assigned(dyn_snd_pcm_open) then Exit(False);
-
-  rc := dyn_snd_pcm_open(pcm, PChar('default'), SND_PCM_STREAM_PLAYBACK, SND_PCM_NONBLOCK);
-  if rc < 0 then
-    Exit(False);
-
-  snd_pcm_close(pcm);
   Result := True;
 {$ELSE}
   Result := False;

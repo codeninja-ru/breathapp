@@ -25,6 +25,7 @@ COPY ./vendor/fpc-bin.tar.bz2 /tmp
 COPY ./vendor/fpc-source.tar.gz /tmp
 COPY ./vendor/osxcross.zip /tmp
 COPY ./vendor/lazarus-lazarus_2_2_6.zip /tmp
+# todo github doesn't want large files to be stored in the repo, consider remove them https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github#removing-files-from-a-repositorys-history
 
 # fix for i386 fpc 3.2.2 / remove when fpc 3.2.4 is out
 COPY <<-"EOF" /tmp/si_c21.patch
