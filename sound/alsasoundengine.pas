@@ -212,7 +212,7 @@ var
 begin
 {$IFDEF UNIX}
   LibHandle := LoadLibrary(libname);
-  if LibHandle = nil then Exit(False);
+  if LibHandle = 0 then Exit(False);
   Pointer(dyn_snd_pcm_open) := GetProcedureAddress(LibHandle, 'snd_pcm_open');
   if not Assigned(dyn_snd_pcm_open) then Exit(False);
   Result := True;

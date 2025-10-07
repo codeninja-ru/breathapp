@@ -210,7 +210,7 @@ var
 begin
 {$IFDEF UNIX}
   LibHandle := LoadLibrary(libname);
-  if LibHandle = nil then Exit(False);
+  if LibHandle = 0 then Exit(False);
   Pointer(dyn_pa_simple_free) := GetProcedureAddress(LibHandle, 'pa_simple_free');
   if not Assigned(dyn_pa_simple_free) then Exit(False);
   Result := True;
