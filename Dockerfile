@@ -160,6 +160,16 @@ rm lazarus-lazarus_2_2_6.zip
 mv lazarus-lazarus_2_2_6 2.2.6 && cd $LAZVER
 make lazbuild
 
+# pre-build lazarus
+
+lazbuild --build-ide= --os=win64 --ws=win32 --cpu=x86_64 --compiler=/opt/fpc/$FPCVER/lib/fpc/$FPCVER/ppcrossx64_win64
+lazbuild --build-ide= --os=win32 --ws=win32 --cpu=i386 --compiler=/opt/fpc/$FPCVER/lib/fpc/$FPCVER/ppcross386_win32
+lazbuild --build-ide= --os=linux --ws=gtk2 --cpu=x86_64
+lazbuild --build-ide= --os=linux --ws=gtk2 --cpu=i386 --compiler=/opt/fpc/$FPCVER/lib/fpc/$FPCVER/ppcross386_linux
+lazbuild --build-ide= --os=linux --ws=qt5 --cpu=x86_64
+lazbuild --build-ide= --os=linux --ws=qt5 --cpu=i386 --compiler=/opt/fpc/$FPCVER/lib/fpc/$FPCVER/ppcross386_linux
+lazbuild --build-ide= --os=darwin --ws=cocoa --cpu=x86_64 --compiler=/opt/fpc/$FPCVER/lib/fpc/$FPCVER/ppcrossx64_darwin
+
 # unpack project deps
 mkdir -p /opt/vendor
 mv /tmp/BGRABitmap.zip /opt/vendor/
@@ -176,6 +186,5 @@ RUN ./build.sh
 
 WORKDIR /usr/src
 
-#TODO add all downloadable zip to project as static files
 #TODO macos sdks https://github.com/phracker/MacOSX-SDKs/releases
 # https://github.com/tpoechtrager/osxcross
