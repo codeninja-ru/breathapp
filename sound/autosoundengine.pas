@@ -55,23 +55,19 @@ begin
   FSoundEngine := nil;
   {$IFDEF WINDOWS}
   if TDirectSoundSoundEngine.IsSupported then FSoundEngine := TDirectSoundSoundEngine.Create
-  else if TWinMMSoundEngine.IsSupported then FSoundEngine := TWinMMSoundEngine.Create
-  else raise Exception.Create('Could Not Load Sound Engine (DirectSound, WinMM)');
+  else if TWinMMSoundEngine.IsSupported then FSoundEngine := TWinMMSoundEngine.Create;
   {$ENDIF}
   {$IFDEF LINUX}
   if TPulseAudioSoundEngine.IsSupported then FSoundEngine := TPulseAudioSoundEngine.Create
   else if TAlsaSoundEngine.IsSupported then FSoundEngine := TAlsaSoundEngine.Create
-  else if TOssSoundEngine.IsSupported then FSoundEngine := TOssSoundEngine.Create
-  else raise Exception.Create('Could Not Load SoundEngine (Alsa, PulseAudio, OSS)');
+  else if TOssSoundEngine.IsSupported then FSoundEngine := TOssSoundEngine.Create;
   {$ENDIF}
   {$IF DEFINED(DARWIN)}
   if TCoreAudioSoundEngine.IsSupported then FSoundEngine := TCoreAudioSoundEngine.Create
   else raise Exception.Create('Could Not Load Sound Engine (CoreAudio)');
   {$ELSEIF DEFINED(BSD)}
-  if TOssSoundEngine.IsSupported then FSoundEngine := TOssSoundEngine.Create
-  else raise Exception.Create('Could Not Load SoundEngine (OSS)');
+  if TOssSoundEngine.IsSupported then FSoundEngine := TOssSoundEngine.Create;
   {$ENDIF}
-
   if FSoundEngine = nil then FSoundEngine := TNoSoundEngine.Create;
 end;
 

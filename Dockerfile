@@ -151,6 +151,14 @@ cat >> /etc/fpc.cfg << EOT
 
 EOT
 
+# unpack project deps
+mkdir -p /opt/vendor
+mv /tmp/BGRABitmap.zip /opt/vendor/
+mv /tmp/BGRAControls.zip /opt/vendor/
+cd /opt/vendor
+unzip -e BGRABitmap.zip
+unzip -e BGRAControls.zip
+
 # lazarus
 mkdir -p /opt/lazarus/ && cd /opt/lazarus
 #wget https://gitlab.com/freepascal.org/lazarus/lazarus/-/archive/lazarus_2_2_6/lazarus-lazarus_2_2_6.zip 
@@ -160,23 +168,15 @@ rm lazarus-lazarus_2_2_6.zip
 mv lazarus-lazarus_2_2_6 2.2.6 && cd $LAZVER
 make lazbuild
 
-# pre-build lazarus
-
-lazbuild --build-ide= --os=win64 --ws=win32 --cpu=x86_64 --compiler=/opt/fpc/$FPCVER/lib/fpc/$FPCVER/ppcrossx64_win64
-lazbuild --build-ide= --os=win32 --ws=win32 --cpu=i386 --compiler=/opt/fpc/$FPCVER/lib/fpc/$FPCVER/ppcross386_win32
-lazbuild --build-ide= --os=linux --ws=gtk2 --cpu=x86_64
-lazbuild --build-ide= --os=linux --ws=gtk2 --cpu=i386 --compiler=/opt/fpc/$FPCVER/lib/fpc/$FPCVER/ppcross386_linux
-lazbuild --build-ide= --os=linux --ws=qt5 --cpu=x86_64
-lazbuild --build-ide= --os=linux --ws=qt5 --cpu=i386 --compiler=/opt/fpc/$FPCVER/lib/fpc/$FPCVER/ppcross386_linux
-lazbuild --build-ide= --os=darwin --ws=cocoa --cpu=x86_64 --compiler=/opt/fpc/$FPCVER/lib/fpc/$FPCVER/ppcrossx64_darwin
-
-# unpack project deps
-mkdir -p /opt/vendor
-mv /tmp/BGRABitmap.zip /opt/vendor/
-mv /tmp/BGRAControls.zip /opt/vendor/
-cd /opt/vendor
-unzip -e BGRABitmap.zip
-unzip -e BGRAControls.zip
+# pre-build lazarus and BGRA
+PACKAGES="/opt/vendor/BGRABitmap/bgrabitmap/bgrabitmappack.lpk /opt/vendor/BGRAControls/bgracontrols.lpk /opt/vendor/BGRABitmap/bglcontrols/bglcontrols.lpk"
+lazbuild $PACKAGES --os=win64 --ws=win32 --cpu=x86_64 --compiler=/opt/fpc/$FPCVER/lib/fpc/$FPCVER/ppcrossx64_win64
+lazbuild $PACKAGES --os=win32 --ws=win32 --cpu=i386 --compiler=/opt/fpc/$FPCVER/lib/fpc/$FPCVER/ppcross386_win32
+lazbuild $PACKAGES --os=linux --ws=gtk2 --cpu=x86_64
+lazbuild $PACKAGES --os=linux --ws=gtk2 --cpu=i386 --compiler=/opt/fpc/$FPCVER/lib/fpc/$FPCVER/ppcross386_linux
+lazbuild $PACKAGES --os=linux --ws=qt5 --cpu=x86_64
+lazbuild $PACKAGES --os=linux --ws=qt5 --cpu=i386 --compiler=/opt/fpc/$FPCVER/lib/fpc/$FPCVER/ppcross386_linux
+lazbuild $PACKAGES --os=darwin --ws=cocoa --cpu=x86_64 --compiler=/opt/fpc/$FPCVER/lib/fpc/$FPCVER/ppcrossx64_darwin
 
 cd /usr/src
 EOF

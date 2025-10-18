@@ -103,7 +103,7 @@ begin
 
   Result := s;
 end;
-{$ELSE}
+  {$ELSE}
 begin
   Result := nil;
 end;
@@ -202,21 +202,31 @@ begin
 end;
 
 class function TPulseAudioSoundEngine.IsSupported: boolean;
-{$IFDEF UNIX}
+  {$IFDEF UNIX}
 var
-  LibHandle: TLibHandle;
+  libHandle: TLibHandle;
   dyn_pa_simple_free: procedure (s: Ppa_simple); cdecl;
-{$ENDIF}
+  {$ENDIF}
 begin
-{$IFDEF UNIX}
-  LibHandle := LoadLibrary(libname);
-  if LibHandle = 0 then Exit(False);
-  Pointer(dyn_pa_simple_free) := GetProcedureAddress(LibHandle, 'pa_simple_free');
-  if not Assigned(dyn_pa_simple_free) then Exit(False);
+  {$IFDEF UNIX}
   Result := True;
-{$ELSE}
+  libHandle := LoadLibrary(libname);
+  if libHandle = 0 then Exit(False);
+  try
+    try
+
+       Pointer(dyn_pa_simple_free) := GetProcedureAddress(libHandle, 'pa_simple_free');
+       if not Assigned(dyn_pa_simple_free) then Exit(False);
+    except
+          Result := false;
+    end;
+
+  finally
+    FreeLibrary(libHandle);
+  end;
+  {$ELSE}
   Result := False;
-{$ENDIF}
+  {$ENDIF}
 end;
 
 constructor TPulseAudioSoundEngine.Create;
