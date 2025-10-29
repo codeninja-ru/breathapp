@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, ExtCtrls, Menus, ComCtrls,
   StdCtrls, Buttons, ActnList, BGRAGraphicControl, BGRABitmap, BGRABitmapTypes,
-  ClockEllipse, ClockText, AppSettings, BCTypes, BCButton, ColorSpeedButton,
+  ClockEllipse, ClockText, AppSettings, BCTypes, BCButton,
   states, ClockTimer, TrayIconTimer, SoundTimer, Backgrounds, buttonState,
   SwitchBox, RoundSpinEdit, RoundSpinEditTheme, unit2;
 
@@ -16,8 +16,9 @@ type
   { TMainForm }
 
   TMainForm = class(TForm)
-    SettingsButton: TColorSpeedButton;
+    SettingsAction: TAction;
     SettingsPanel: TPanel;
+    SettingsButton: TSpeedButton;
     TimerPanel: TPanel;
     ShowAboutFormAction: TAction;
     BreathInSpinEdit: TRoundSpinEdit;
@@ -55,11 +56,9 @@ type
     TrayMenu: TPopupMenu;
     TrayIcon: TTrayIcon;
     procedure ExitActionExecute(Sender: TObject);
+    procedure SettingsActionExecute(Sender: TObject);
     procedure SettingsBackActionExecute(Sender: TObject);
     procedure BgImagePaint(Sender: TObject);
-    procedure SettingsButtonClick(Sender: TObject);
-    procedure SettingsButtonMouseEnter(Sender: TObject);
-    procedure SettingsButtonMouseLeave(Sender: TObject);
     procedure ShowAboutFormActionExecute(Sender: TObject);
     procedure ShowMainActionExecute(Sender: TObject);
     procedure SpinEditChanged(Sender: TObject);
@@ -217,13 +216,7 @@ begin
   MainForm.Color := AppSettings.Bg;
   MainForm.Font.Color := AppSettings.FontColor;
   SettingsButton.Color := AppSettings.Bg;
-  SettingsButton.StateActive.Color := AppSettings.Bg;
-  SettingsButton.StateDisabled.Color := AppSettings.Bg;
-  SettingsButton.StateHover.Color := AppSettings.Bg;
-  SettingsButton.StateNormal.Color := AppSettings.Bg;
-  SettingsButton.ImageIndex :=
-    FSettingButtonState.GetDefaultImageIndex(StateManager.State);
-  SettingsButton.Refresh;
+  FSettingButtonState.Draw(StateManager.State, SettingsButton);
   for i := 0 to SettingsPanel.ControlCount - 1 do
   begin
     if not SettingsPanel.Controls[i].IsParentFont then;
@@ -292,24 +285,10 @@ begin
   Self.Close;
 end;
 
-procedure TMainForm.SettingsButtonClick(Sender: TObject);
+procedure TMainForm.SettingsActionExecute(Sender: TObject);
 begin
   TimerPanel.Visible := False;
   SettingsPanel.Visible := True;
-end;
-
-procedure TMainForm.SettingsButtonMouseEnter(Sender: TObject);
-begin
-  FSettingButtonState.Focused := True;
-  SettingsButton.ImageIndex :=
-    FSettingButtonState.GetFocusImageIndex(StateManager.State);
-end;
-
-procedure TMainForm.SettingsButtonMouseLeave(Sender: TObject);
-begin
-  FSettingButtonState.Focused := False;
-  SettingsButton.ImageIndex :=
-    FSettingButtonState.GetDefaultImageIndex(StateManager.State);
 end;
 
 procedure TMainForm.ShowAboutFormActionExecute(Sender: TObject);

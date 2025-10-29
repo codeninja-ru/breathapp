@@ -24,16 +24,12 @@ type
     FImageList: TImageList;
     FAppSettings: TAppSettings;
     isFirstRun: boolean;
-    FIsFocused: boolean;
     procedure FillImageListButton;
-    procedure SetIsFocused(AValue: boolean);
   public
     function GetDefaultImageIndex(state: TState): integer;
     function GetFocusImageIndex(state: TState): integer;
     procedure Draw(state: TState; button: TSpeedButton);
     constructor Create(AImageList: TImageList; AAppSettings: TAppSettings);
-
-    property Focused: boolean read FIsFocused write SetIsFocused;
   end;
 
 implementation
@@ -42,7 +38,6 @@ implementation
 
 constructor TButtonState.Create(AImageList: TImageList; AAppSettings: TAppSettings);
 begin
-  FIsFocused := False;
   FImageList := AImageList;
   FAppSettings := AAppSettings;
   isFirstRun := True;
@@ -95,11 +90,6 @@ begin
   end;
 end;
 
-procedure TButtonState.SetIsFocused(AValue: boolean);
-begin
-  FIsFocused := AValue;
-end;
-
 function TButtonState.GetDefaultImageIndex(state: TState): integer;
 begin
   Result := FDefaultIdx[state.StateType];
@@ -112,19 +102,8 @@ end;
 
 procedure TButtonState.Draw(state: TState; button: TSpeedButton);
 begin
-  if (state.StateType <> FCurrentState) or (isFirstRun) then
-  begin
-    if not FIsFocused then
-      button.ImageIndex := GetDefaultImageIndex(state)
-    else
-      button.ImageIndex := GetFocusImageIndex(state);
-    FCurrentState := state.StateType;
-  end;
-
-  if isFirstRun then
-  begin
-    isFirstRun := False;
-  end;
+  button.ImageIndex := GetDefaultImageIndex(state);
+  button.HotImageIndex := GetFocusImageIndex(state);
 end;
 
 end.

@@ -3,7 +3,7 @@ object MainForm: TMainForm
   Height = 512
   Top = 167
   Width = 320
-  BorderStyle = bsSingle
+  BorderStyle = bsDialog
   Caption = 'Breath'
   ClientHeight = 512
   ClientWidth = 320
@@ -89,7 +89,6 @@ object MainForm: TMainForm
   }
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  LCLVersion = '2.2.2.0'
   object SettingsPanel: TPanel
     Left = 0
     Height = 512
@@ -213,9 +212,9 @@ object MainForm: TMainForm
     end
     object BreathInLabel: TLabel
       Left = 16
-      Height = 18
+      Height = 19
       Top = 56
-      Width = 63
+      Width = 69
       Caption = 'Inhale(s)'
       Font.CharSet = ANSI_CHARSET
       Font.Height = -16
@@ -225,9 +224,9 @@ object MainForm: TMainForm
     end
     object BreathOutLabel: TLabel
       Left = 200
-      Height = 18
+      Height = 19
       Top = 56
-      Width = 67
+      Width = 73
       Caption = 'Exhale(s)'
       Font.CharSet = ANSI_CHARSET
       Font.Height = -16
@@ -237,9 +236,9 @@ object MainForm: TMainForm
     end
     object HoldInLabel: TLabel
       Left = 16
-      Height = 18
+      Height = 19
       Top = 144
-      Width = 70
+      Width = 75
       Caption = 'Hold in(s)'
       Font.CharSet = ANSI_CHARSET
       Font.Height = -16
@@ -249,9 +248,9 @@ object MainForm: TMainForm
     end
     object HoldOutLabel: TLabel
       Left = 200
-      Height = 18
+      Height = 19
       Top = 144
-      Width = 81
+      Width = 87
       Caption = 'Hold out(s)'
       Font.CharSet = ANSI_CHARSET
       Font.Height = -16
@@ -269,9 +268,9 @@ object MainForm: TMainForm
     end
     object NightModeLabel: TLabel
       Left = 160
-      Height = 22
+      Height = 23
       Top = 328
-      Width = 99
+      Width = 111
       Caption = 'Night mode'
       Font.CharSet = ANSI_CHARSET
       Font.Height = -19
@@ -289,9 +288,9 @@ object MainForm: TMainForm
     end
     object SoundLabel: TLabel
       Left = 160
-      Height = 22
+      Height = 23
       Top = 272
-      Width = 55
+      Width = 60
       Caption = 'Sound'
       Font.CharSet = ANSI_CHARSET
       Font.Height = -19
@@ -463,39 +462,17 @@ object MainForm: TMainForm
       TextApplyGlobalOpacity = False
       MemoryUsage = bmuHigh
     end
-    object SettingsButton: TColorSpeedButton
+    object SettingsButton: TSpeedButton
       Cursor = crHandPoint
       Left = 278
       Height = 30
-      Top = 13
+      Top = 10
       Width = 30
-      Caption = 'Show / Hide'
-      Color = clNone
+      Action = SettingsAction
       Flat = True
-      Font.Color = clBlack
       Images = ImageListButton
       ImageWidth = 28
-      OnClick = SettingsButtonClick
-      OnMouseEnter = SettingsButtonMouseEnter
-      OnMouseLeave = SettingsButtonMouseLeave
       ShowCaption = False
-      ParentFont = False
-      TextAutoSize = False
-      Toggle = False
-      Pressed = False
-      PopupMode = False
-      StateNormal.Color = clNone
-      StateNormal.BorderColor = 11382189
-      StateNormal.BorderWidth = 0
-      StateHover.Color = clNone
-      StateHover.BorderColor = 14120960
-      StateHover.BorderWidth = 0
-      StateActive.Color = clNone
-      StateActive.BorderColor = 10048512
-      StateActive.BorderWidth = 0
-      StateDisabled.Color = clNone
-      StateDisabled.BorderColor = 12566463
-      StateDisabled.BorderWidth = 0
     end
   end
   object TrayIcon: TTrayIcon
@@ -675,6 +652,10 @@ object MainForm: TMainForm
     object ShowAboutFormAction: TAction
       Caption = 'About'
       OnExecute = ShowAboutFormActionExecute
+    end
+    object SettingsAction: TAction
+      Caption = 'Settings'
+      OnExecute = SettingsActionExecute
     end
   end
 end
