@@ -16,7 +16,7 @@ clean:
 
 define build_template
 $1: clean
-	$(LAZBUILD) $2 $(PACKAGES) -B -r --no-write-project --bm=Release $(PROJECT)
+	$(LAZBUILD) $2 $(PACKAGES) -B -r --verbose --no-write-project --bm=Release $(PROJECT)
 endef
 
 $(eval $(call build_template,build_win_x86_64,--os=win64 --ws=win32 --cpu=x86_64 --compiler=/opt/fpc/$(FPCVER)/lib/fpc/$(FPCVER)/ppcrossx64_win64))

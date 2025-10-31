@@ -24,7 +24,7 @@ COPY ./vendor/BGRABitmap.zip /tmp
 COPY ./vendor/fpc-bin.tar.bz2 /tmp
 COPY ./vendor/fpc-source.tar.gz /tmp
 COPY ./vendor/osxcross.zip /tmp
-COPY ./vendor/lazarus-lazarus_2_2_6.zip /tmp
+COPY ./vendor/lazarus-4.2-0.tar.gz /tmp
 # todo github doesn't want large files to be stored in the repo, consider remove them https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github#removing-files-from-a-repositorys-history
 
 # fix for i386 fpc 3.2.2 / remove when fpc 3.2.4 is out
@@ -66,7 +66,7 @@ COPY <<-"EOF" /tmp/rautils.patch
 EOF
 
 ENV FPCVER="3.2.2"
-ENV LAZVER="2.2.6"
+ENV LAZVER="4.2"
 ENV PATH="/opt/fpc/${FPCVER}/bin/:/opt/lazarus/${LAZVER}/:/opt/osxcross/target/bin/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 COPY <<-"EOF" build.sh
@@ -162,10 +162,14 @@ unzip -e BGRAControls.zip
 # lazarus
 mkdir -p /opt/lazarus/ && cd /opt/lazarus
 #wget https://gitlab.com/freepascal.org/lazarus/lazarus/-/archive/lazarus_2_2_6/lazarus-lazarus_2_2_6.zip 
-mv /tmp/lazarus-lazarus_2_2_6.zip /opt/lazarus
-unzip -e lazarus-lazarus_2_2_6.zip
-rm lazarus-lazarus_2_2_6.zip
-mv lazarus-lazarus_2_2_6 2.2.6 && cd $LAZVER
+#mv /tmp/lazarus-lazarus_2_2_6.zip /opt/lazarus
+#unzip -e lazarus-lazarus_2_2_6.zip
+#rm lazarus-lazarus_2_2_6.zip
+#mv lazarus-lazarus_2_2_6 2.2.6 && cd $LAZVER
+mv /tmp/lazarus-4.2-0.tar.gz /opt/lazarus
+tar xzvf lazarus-4.2-0.tar.gz
+rm lazarus-4.2-0.tar.gz
+mv lazarus $LAZVER && cd $LAZVER
 make lazbuild
 
 # pre-build lazarus and BGRA
