@@ -103,8 +103,6 @@ begin
   ToggleSoundEnabledAction.Checked := AppSettings.SoundEnabled;
   ToggleNightModeEnabledAction.Checked := AppSettings.NightModeEnabled;
 
-  TrayIcon.Show();
-
   FSolidBackground := TSolidBackground.Create;
   FGradientBackground := TGradientBackround.Create(BgImage.Width,
     BgImage.Height, AppSettings);
@@ -127,6 +125,7 @@ begin
   TrayIconTimer := TTrayIconTimer.Create(AppSettings);
   MainTrayIcon := TIcon.Create;
   MainTrayIcon.Assign(TrayIcon.Icon);
+  TrayIcon.Show();
 
   SoundTimer := TSoundTimer.Create;
 
